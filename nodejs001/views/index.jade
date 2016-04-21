@@ -1,0 +1,18 @@
+extends layout
+
+block content_main
+
+    div#m_left
+        div#m_left_login
+            div#login_success
+            fieldset#login_fm
+                legend 登录
+                label 用户名：
+                input(type="text",id="username",name="username" style="width:150px;border:1px #ccccff solid;")
+                br
+                br
+                label 口&nbsp;&nbsp;&nbsp;令：
+                input(type="password", id="pwd",name="pwd" style="width:150px;border:1px #ccccff solid;")
+                br
+                br
+                button(id="loginBtn",name="loginBtn", onclick="loginClick()") 登录
