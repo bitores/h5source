@@ -1,0 +1,7 @@
+.info{margin: 1rem 0;padding: 1rem;display: block;width: 100%;height:6rem;font-size: 1.0rem;}
+.upload{display: block;width: 100%;}
+.upload .add{display: block;width: 100%;background-color: white;padding: 1rem;position: relative;}
+.upload img{display: inline-block; width: 4rem;height: 4rem;margin-right: .5rem;}
+.upload p{padding-left: 1rem;color: #8C8A8A;font-size: 0.9rem;padding-bottom: .5rem;}
+.ft{display: block;width: 100%;padding: .2rem 1rem;margin-top: 1rem;}
+.ft .btn{display: block;width: 100%;border-radius: 4px;text-align: center;color: white;padding: 0.6rem 0;background-color: #E84817;font-size: 1.2rem;}

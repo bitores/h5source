@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>申请售后</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/aftersale.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<p class="title">
+			选择问题原因
+		</p>
+		<ul class="list" data-id='1'>
+			<li class="seld" data-id='1'>
+				<p class="bt">报价不实</p>
+				<p class="sm">4S店报价与实际咨询相差太大</p>
+			</li>
+			<li data-id='2'>
+				<p class="bt">服务问题</p>
+				<p class="sm">4S店的服务态度不好</p>
+			</li>
+			<li data-id='3'>
+				<p class="bt">不想买了</p>
+				<p class="sm">对这款车不感兴趣了</p>
+			</li>
+		</ul>
+		
+		<div class="ft">
+			<span class="btn">提交</span>
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/aftersale.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

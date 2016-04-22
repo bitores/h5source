@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>快比价</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/login.css"/>
+		{include html/common/shareable.tpl.html}
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		<div id="regin" class="box">
+			<p class="info"><span><img src="{__CTPL_URL__}images/login@2x.png"/></span><span>手机验证登录</span></p>
+			<ul class="top">
+				<li><span class="sms">手机号</span><input  id="user_tel" type="tel" class="tel" maxlength="11" placeholder="请输入手机号码"/><span id="gen_sms" class="gen_scode">获取验证码&nbsp;</span><span class="sec_info gr_color" style="display: none;">&nbsp;重新获取&nbsp;</span></li>
+			</ul>
+			<p class="line"></p>
+			<ul>
+				<!--<li id="pcode" ><span class="sms">图形码</span><input id="user_pcode" class="pcode" maxlength="4" placeholder="请输入图形验证码"/><span><em id="gen_pic" class="gen_pcode">&nbsp;</em></span></li>-->
+				<li><span class="sms">验证码</span><input id="user_scode" type="tel" class="scode"  maxlength="4" placeholder="请输入短信验证码"/><span></span></li>
+			</ul>
+			<p class="line"></p>
+			<p class="dialog_rt"><span class="error_info"></span><span><em class="gr_color">收不到短信？请使用</em><em id="gen_voice" class="blue">语音认证</em></span></p>
+			
+			<div id="login" class="button"><button>登录</button></div>
+			<p class="bz">我们将会对您的手机号保密，不会泄露给任何4S店或经销商</p>
+			
+		</div>
+		<div class="dialog_xy"><span class="gr_color" style="text-align: right;">点击登录表示同意</span><span id="xybtn" style="text-align: left;">《快比价用户协议》</span></div>
+		<div class="xy_mask">
+			<div class='xy'>
+				<p class="tip_head">快比价用户协议<span id="regin_close_btn"  class="right_close">×</span></p>
+				<div id='xyTxt' class="xyTxt">
+				</div>
+				<!--<div class="xybtn"><input type="button" id="regin_close_btn" value="关闭"></div>-->
+			</div>
+		</div>
+
+		<div id="pcode" class="mask">
+			<div class="p_ver">
+				<p class="right"><span class="close">×</span></p>
+				<p class="pp p"><input id="user_pcode" class="pcode" maxlength="4" placeholder="请输入图形验证码"/><span class="img_c"><em id="gen_pic" class="gen_pcode">&nbsp;</em></span></p>
+				<p id="pcode_info" class="p_info"></p>
+				<p class="p"><button id='p_btn'>确定</button></p>
+			</div>
+			
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/login.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

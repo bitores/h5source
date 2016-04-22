@@ -1,0 +1,14 @@
+.ret{display: block;width: 100%;}
+.ret ul{display: block;width: 100%;background-color: white;}
+.ret .info{margin-top: 1rem;padding: 1rem 0 0 1rem;}
+.ret .info li{display: block;width: 100%;height: 2rem;height: 2rem;padding-right: 1rem;}
+.ret .info p.line{border-top: 1px solid #EFEFF4;height: 1rem;}
+.ret .info span{display: inline-block;width: 50%;}
+.ret .info li span:last-child{color: #8C8A8A;text-align: right;}
+.ret .til{display: block;width: 100%;height: 3rem;line-height: 4rem;color: #8C8A8A;padding-left: 1rem;font-size: .9rem;}
+.ret .way{padding: 0rem 0 0 1rem;min-height: 4rem;}
+.ret .way li{margin-left: 4rem;height: 4rem;line-height: 4rem;color: #3F3A3A;}
+.ret .way li img{display: inline-block;width: 3rem; height: 3rem;position:absolute;left:0rem;margin-left: 1rem;margin-top: .5rem;}
+.ret .way li.seld{background: url(../../images/seld.jpg) no-repeat 90% center;background-size: 1.5rem 1.5rem;}
+
+.ret .btn{background-color: #0AB606;color: #FFFFFF;text-align: center;padding: 0.6rem 0;border-radius: 4px;font-size: 1.2rem;margin: 2rem 5%;width: 90%;}

@@ -1,0 +1,72 @@
+<link rel="import" href="/html/common/qr.tpl.html?__inline">
+<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/fastclick/1.0.6/fastclick.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/js/lib/wxshare.js"></script>
+<script type="text/javascript" src="/js/lib/lazyload.js" ></script>
+<script type="text/javascript" src="/js/lib/App.js" ></script>
+<script type="text/javascript" src="/js/lib/h.js" ></script>
+<script>
+wxObj.config({
+	title: "快比价", // 分享标题
+    link: typeof share_url !=='undefined'? share_url : location.host, // 分享链接
+    imgUrl: "/images/wxshare.png", // 分享图标
+    desc:'买车神器，同城比价买车，顾问在线报价。'
+});
+$.ajax({
+	type:"get",
+	url:$wxshare_gateway+'?actMark=JS_SHARE&url='+encodeURIComponent(location.href.split('#')[0]),
+	async:true,
+	dataType: "json",
+	success: function(res) {
+		if(!!res){
+			wxObj.init(res.appId,res.timestamp,res.nonceStr,res.signature,!!getQueryString("debug"));
+		}
+	}
+});
+
+$(function() {
+FastClick.attach(document.body);
+isLogin2(function(res){
+	ga('set', 'userId', res.data.id); 
+	_vds.push(['setCS1', 'user_id', res.data.id]);
+})
+$('.back').on('click',function(){
+	history.go(-1);
+//	location.href = localStorage.kqc_backurl;
+});
+$(".logo").on("click", function(e) {
+	e.stopPropagation();
+	location.href = $home_index
+});
+$(".login").on("click", function() {
+	if (!!localStorage.kqc_sess_id == false) {
+		localStorage.kqc_backurl = location.href;
+		location.href = $user_login;
+		return 0
+	}
+	$.ajax({
+		type: "post",
+		url: gateway,
+		async: true,
+		dataType: "json",
+		data: JSON.stringify({
+			"uri": "bijia_product.isLogin",
+			"sess_id": localStorage.kqc_sess_id,
+			"param": {}
+		}),
+		success: function(res) {
+			if (res.code == "0") {
+				location.href = $user_mine
+			} else if (res.code == "1") {
+				location.href = $home_index
+			} else {
+				localStorage.kqc_backurl = location.href;
+				location.href = $user_login
+			}
+		}
+	})
+});
+});
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>选择品牌</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/car/brand.css"/>
+		{include html/common/shareable.tpl.html}
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<div class="hot" style="display: none;">
+			<p class="title">热门品牌</p>
+			<ul class="hot_band">
+				<li ng-click="onclick(band.id,band.name)" ng-repeat="band in recommend" data-bandid="{{band.id}}">
+					<p><img class='lazy' ng-src='' data-lazyload="{{band.img}}" data-origin="{__CTPL_URL__}/images/lazyload.png"/></p>
+					<p class="band_name" ng-bind='band.name'></p>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="default">
+			<div class="list" ng-repeat="(bandfc,list) in default">
+				<p id="{{bandfc}}" class="title" ng-bind='bandfc'></p>
+				<ul class="band_list">
+					<li ng-click="onclick(band.id,band.name)" ng-repeat="band in list" data-bandid="{{band.id}}">
+						<span class="band_logo"><img ng-src="{{band.img}}" onerror="error()" data-origin="{__CTPL_URL__}/images/lazyload.png"/></span><span class="band_name" ng-bind="band.name"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		{include html/common/footer.tpl.html}
+		<script>
+			function error(){
+				var img = event.srcElement;
+				img.src = "{__CTPL_URL__}/images/lazyload.png";
+			}
+		</script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/car/brand.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

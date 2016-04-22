@@ -1,0 +1,9 @@
+.title{color: #8C8A8A;padding: 1rem 1rem .2rem;}
+ul{display: block;width: 100%;background-color: white;padding-left: 1rem;}
+ul li{padding: 1rem 0;border-bottom: 1px solid #EFEFF4;}
+ul li.seld{background: url(../../images/seld.jpg) no-repeat 95% center;background-size: 1.5rem 1.5rem;}
+ul .bt{color: #3F3A3A;font-size: 1.1rem;}
+ul .sm{color: #8C8A8A;font-size: 1.1rem;}
+
+.ft{display: block;width: 100%;padding: .2rem 1rem;margin-top: 2rem;}
+.ft .btn{display: block;width: 100%;border-radius: 4px;text-align: center;color: white;padding: .6rem 0;background-color: #E84817;font-size: 1.2rem;}

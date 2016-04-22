@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>我的比价</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/collected.css"/>
+		<script type="text/javascript">
+			localStorage.kqc_page_cur = 1;
+		</script>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl" ng-cloak ng-style='white'>
+		<div class="carlist" style="display: none;">
+			<ul ng-repeat="data in list" ng-click="goto_bidList(data.expire,data.id,data.carId,data.colorCode,data.colorName,data.payType,data.brand,data.name,data.img)">
+				<p class="row_header"></p>
+				<li> 
+					<div class="row">
+						<span class="cell lf">
+							<img ng-src="{{data.img}}"/>
+						</span><span class="cell">
+							<p class="bt"><em class="brand" ng-bind="data.brand"></em></p>
+							<p class="bt"><em class="name" ng-bind="data.name"></em></p>
+							<p class="ls"><em class="dk" ng-bind="data.payType"></em><em class="color" style="background-color: #{{data.colorCode}};"></em><em class="colorname" ng-bind="data.colorName"></em></p>
+						</span>
+					</div>
+				</li>
+				<li class="bt">
+					<div class="row">
+						<span class="cell">
+							<em class="count" ng-bind="data.bidNum"></em><em class="fb">份报价</em>
+						</span><span class="cell rt">
+							<em class="state" ng-bind="data.expire>0?'有效期剩余'+data.expire+'天':'已过期'"></em>
+						</span>
+					</div>
+				</li>	
+				<span class="del"  data-carid="{{data.id}}" ng-click="del(data.id,$event)"></span>
+			</ul>
+		</div>
+		
+		<div class="ret" style="display: none;">
+			<p><img src="{__CTPL_URL__}images/noCar@2x.png"/></p>
+			<p class="btil">暂无比价车</p>
+			<p class="stil">&nbsp;</p>
+			
+			<p class="btn" ng-click="goto_brand()">马上选车</p>
+		</div>
+		
+		<div class="mask" style="display: none;">
+			<div class="mask_ft">
+				<p class="info">删除当前车款的比价？</p>
+				<p class="ok">删除</p>
+				<p class="cancel">取消</p>
+			</div>
+		</div>
+		
+		<div class="foot_placeholder" style="display: block;width: 100%;height: 3rem;"></div>
+		{include html/common/footer.tpl.html}
+		{include html/common/nav_footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/collected.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>报价列表</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/inquiry/result.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<div class="sel_car_block">
+			<p class="t0"><img ng-src="{{cartypeimg}}" alt="" /></p>
+			<p class="t1" ng-bind='cartypename + " " + carmodelname'></p>
+			<p class="t3"><span class="k" ng-bind='carbuyingway'></span><span class="color" style="background-color: #{{carcolorcode}};"></span><span ng-bind='carcolorname'></span></p>
+		</div>
+		
+		<div class="scrollbox">
+			<p class="tip"><span ng-bind="'共收到'+len+'份报价'"></span></p>
+			<ul>
+				<li ng-repeat="oLi in inquirylist" ng-class="$index==0?'seld':''" ng-click="selli($event,oLi.agent_id,oLi.id,oLi.cid,oLi.ext)">
+					<div class="row">
+						<span><img src="{__CTPL_URL__}images/avatarBlurred.png" data-src="{{oLi.img}}" onerror="error()" alt="" /></span>
+						<span class="name_info">
+							<em ng-bind="oLi.name|dotdot"></em><em class="gray">*****4S店</em></span><span class="pos_right"><em class="inblock big" ng-bind="oLi.bare_price|int"></em><em class="inblock" ng-bind="'.'+(oLi.bare_price|float)+'万'"></em>
+						</span>
+						<em class="qk" ng-bind="{0:'现车',1:'期车'}[oLi.instock_type]"></em>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="for_xkkj" ng-click="goto_xkkj()">
+			价格还不够低？试试小快砍价
+		</div>
+		<div class="home_qr">
+			<img src="{__CTPL_URL__}images/home/Bijia_QR.gif" alt="二维码" />
+			<p class="qr_info">长按指纹识别二维码</p>
+			<p class="qr_info">或微信搜索公众号“快比价”关注我们</p>
+		</div>
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript">
+			function error(){var img = event.srcElement;img.src="{__CTPL_URL__}images/man.png";}
+		</script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/inquiry/result.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

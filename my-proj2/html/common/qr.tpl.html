@@ -1,0 +1,30 @@
+<style type="text/css">
+	@keyframes bounceInDown{0%,100%,60%,75%,90%{-webkit-transition-timing-function:cubic-bezier(0.215,.61,.355,1);transition-timing-function:cubic-bezier(0.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(0,-3000px,0);-ms-transform:translate3d(0,-3000px,0);transform:translate3d(0,-3000px,0)}60%{opacity:1;-webkit-transform:translate3d(0,25px,0);-ms-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}75%{-webkit-transform:translate3d(0,-10px,0);-ms-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}90%{-webkit-transform:translate3d(0,5px,0);-ms-transform:translate3d(0,5px,0);transform:translate3d(0,5px,0)}100%{-webkit-transform:none;-ms-transform:none;transform:none}}
+	.bounceInDown{-webkit-animation-name:bounceInDown;animation-name:bounceInDown}
+	.qr{display: table;width: 100%;height: 100%;position: fixed;z-index: 1000;background-color: rgba(0,0,0,0.7);}
+	.qr .qrrow{display: table-row;}
+	.qr .qrcell{display: table-cell;vertical-align: middle;}
+	.qr .qrimg {display: block;width: 100%;text-align: center;}
+	.qr .qrimg img{display: inline-block;width: 90%;}
+</style>
+<div id="qr" class="qr" style="visibility: hidden;">
+<div class="qrrow">
+<div class="qrcell">
+<div id="qrimg" class="qrimg  bounceInDown">
+</div>
+<script>
+	try{
+		var isSubscribe = "{$isSubscribe}";
+		if(isSubscribe === "unsubscribe") {
+			var qr = document.getElementById('qr'),
+				qrThumb = document.getElementById('qrThumb'),
+				qrimg = document.getElementById('qrimg');
+			qr.style.visibility = 'visible';
+			qrimg.innerHTML = '<img src="{__CTPL_URL__}images/QR@2x.png"/>';
+		}
+	}catch(e){
+	}
+</script>
+</div>
+</div>
+</div>

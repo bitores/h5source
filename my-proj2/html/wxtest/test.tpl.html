@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include html/common/meta.tpl.html}
+	<title>测试</title>
+	<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+	<style type="text/css">
+		@-webkit-keyframes press{from{left: 70%;bottom: 25%;} to{left: 50%;bottom: 45%;}}
+		.show{-webkit-animation:press 0.8s alternate ease-in-out 5 forwards;}
+		.qr{display: table;width: 100%;height: 100%;position: fixed;z-index: 1000;background-color: rgba(0,0,0,0.7);}
+		.qr .qrrow{display: table-row;}
+		.qr .qrcell{display: table-cell;vertical-align: middle;}
+		.qr .qrimg {display: block;width: 100%;text-align: center;}
+		.qr .qrimg img{display: inline-block;width: 50%;}
+		.qr img.qrhand {display: inline-block;width: 20%; position: absolute;left: 70%;bottom: 25%;}
+	</style>
+</head>
+<body>
+<div id="qr" class="qr" style="visibility: hidden;">
+<div class="qrrow">
+<div class="qrcell">
+<div class="qrimg">
+	<img src="{__CTPL_URL__}images/QR@2x.png"/>
+</div>
+<img id="qrThumb" class="qrhand" src="{__CTPL_URL__}images/thumb@2x.png"/>
+<script>
+	try{
+		var isSubscribe = "{$isSubscribe}";
+		if(isSubscribe === "unsubscribe") {
+			var qr = document.getElementById('qr'),
+				qrThumb = document.getElementById('qrThumb');
+			qr.style.visibility = 'visible';
+			qrThumb.className = "qrhand show";
+			qrThumb.addEventListener('webkitAnimationEnd',function(){
+				qrThumb.style.display = 'none';
+			})
+		}
+	}catch(e){
+	}
+</script>
+</div>
+</div>
+</div>
+</body>
+
+</html>

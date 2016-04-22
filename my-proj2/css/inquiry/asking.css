@@ -1,0 +1,34 @@
+body{background-color: white;}
+.content{display: block;width: 100%;}
+.sel_car_block{display: block;width: 100%;height: 12rem;color: #8C8A8A;padding: 1rem;border-bottom: 1px solid rgba(151,151,151,0.4);}
+.sel_car_block p{text-align: center;}
+.sel_car_block .t0 img{width: 9rem;height: 6rem;}
+.sel_car_block .t1{color: #3F3A3A;font-size: 1.1rem;line-height: 1.6rem;}
+.sel_car_block .t2{font-size: 0.9rem;line-height: 1.4rem;}
+.sel_car_block .t3{font-size: 0.8rem;line-height: 1.2rem;margin-top: .5rem;}
+.sel_car_block .t3 .k{border: 1px solid #8C8A8A;border-radius: 4px;padding: .1rem;}
+.sel_car_block .color{display: inline-block;width: 1rem; height: 1rem;border: 1px solid #EDEDED;border-radius: 1rem;margin-left: .5rem;vertical-align:middle;margin-right: .2rem;}
+
+.ing{display: block;width:100%;padding:1rem 1rem 0 1rem;color: #8C8A8A;}
+.ing .tip{text-align: center;font-size: 1.3rem;}
+.ing .gif{}
+.ing .gif img{display: block;width: 100%;height: 10rem;}
+
+.ing .man_img{padding-right: 1.8rem;}
+.ing .man_img p{text-align: center;height: 4rem;}
+.ing .man_img span{display: inline-block;width: 2.3rem;height: 2.3rem;margin-left: 1.8rem;background-color: black;visibility: hidden;}
+.ing .man_img span.img1{background:url(../../images/home/homeSales1@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img2{background:url(../../images/home/homeSales2@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img3{background:url(../../images/home/homeSales3@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img4{background:url(../../images/home/homeSales4@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img5{background:url(../../images/home/homeSales5@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img6{background:url(../../images/home/homeSales6@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img7{background:url(../../images/home/homeSales7@2x.png) no-repeat left center;background-size: 100% 100%;}
+.ing .man_img span.img8{background:url(../../images/home/homeSales8@2x.png) no-repeat left center;background-size: 100% 100%;}
+
+.ret{display: block;width: 100%;height:24rem;text-align: center;padding: .5rem 0;position: absolute;left: 0;bottom: 0;top: 0;right: 0;margin: auto;}
+.ret p{padding: .2rem 0;}
+.ret img{display: inline-block;width: 10rem;height: 10rem;}
+.ret .btil{font-size: 1.8rem; font-weight: 500; color: #3F3A3A;}
+.ret .stil{color: #8C8A8A;}
+.ret .btn{background-color: #E84817;color: #FFFFFF;text-align: center;padding: 0.6rem 0;border-radius: 4px;font-size: 1.2rem;width: 85%;margin: 1rem auto;}

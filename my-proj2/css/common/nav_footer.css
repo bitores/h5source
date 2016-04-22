@@ -1,0 +1,12 @@
+.nav_footer{display: table;width: 100%;position: fixed;left: 0;bottom: 0;border-top: 1px solid rgba(178,178,178,0.4);}
+.nav_footer .row{display: table-row;}
+.nav_footer .row span{display: table-cell;text-align: center;padding:0.2rem 0.5rem 0;}
+.nav_footer .row span p.img{height: 2rem;}
+.nav_footer .row span p.tx{font-size: 0.7rem;padding-top: 0rem;color: #929292;}
+.nav_footer .row span p.home{background: url(../../images/home@2x.png) no-repeat center center;background-size: 1.7rem 1.6rem;}
+.nav_footer .row span p.quote{background: url(../../images/quote@2x.png) no-repeat center center;background-size: 1.4rem 1.6rem;}
+.nav_footer .row span p.my{background: url(../../images/my@2x.png) no-repeat center center;background-size: 1.6rem 1.6rem;}
+.nav_footer .row span.seld p.home{background: url(../../images/homefill@2x.png) no-repeat center center;background-size: 1.7rem 1.6rem;}
+.nav_footer .row span.seld p.quote{background: url(../../images/quotefill@2x.png) no-repeat center center;background-size: 1.4rem 1.6rem;}
+.nav_footer .row span.seld p.my{background: url(../../images/myfill@2x.png) no-repeat center center;background-size: 1.6rem 1.6rem;}
+.nav_footer .row span.seld p.tx{color: #E84817!important;}

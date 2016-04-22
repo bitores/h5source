@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>支付意向金</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/pay.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<div class="ret">
+			<p class="center"><img src="{__CTPL_URL__}images/pay2x.png"/></p>
+			<p class="btil center">支付99元意向金</p>
+			<p class="ptil"><span class="bz">服务保障</span><span class="kt">意向金可退</span></p>
+			<ul>
+				<li>
+					<p><img src="{__CTPL_URL__}images/crown2x.png" /></p>
+					<p class="til">为什么同款车型会收到不同的报价？有的价格为什么会低？</p>
+					<p class="gil">每一家4S店根据市场环境和销售情况的不同，会制定不同的销售策略。“快比价”就是让他们在同一段时间内，报出最有竞争力的低价才能获得客户。</p>
+				</li>
+				<li>
+					<p><img src="{__CTPL_URL__}images/reliable2x.png" /></p>
+					<p class="til"><span>顾问的报价真实有效吗？</span></p>
+					<p class="gil">10年专业汽车行业经验，专业的城市服务团队，优质4S店、经销商合作。如果出现虚假报价或者服务问题都可以予我们投诉。我们将会在第一时间处理问题。</p>
+				</li>
+				<li>
+					<p><img src="{__CTPL_URL__}images/car2x.png" /></p>
+					<p class="til"><span>为什么要支付意向金？</span></p>
+					<p class="gil">意向金是为了确保客户具有真实的购买意向，尊重每一个销售顾问的报价与隐私。避免出现恶意扰乱市场的行为。</p>
+				</li>
+				<li>
+					<p><img src="{__CTPL_URL__}images/tuikuan2x.png" /></p>
+					<p class="til"><span>意向金可以退吗？</span></p>
+					<p class="gil">无论任何原因，只要订单未能成交，客户都可以申请退款。注：意向金为服务费用，交易时不抵扣车款。</p>
+				</li>
+			</ul>
+		</div>
+		<p class="dialog_xy">点击立即支付表示同意 <em id="xybtn">快比价协议  ››</em></p>
+		<div class="xy_mask">
+			<div class='xy'>
+				<p class="tip_head">快比价用户协议<span id="regin_close_btn"  class="right_close">×</span></p>
+				<div id='xyTxt' class="xyTxt">
+				</div>
+			</div>
+		</div>
+		
+		<p class="ft_placeholder"></p>
+		<div class="ft">
+			<span class="call"><em><img src="{__CTPL_URL__}images/service@2x.png" alt="" style="vertical-align: middle;width: 1.2rem;height: 1.2rem;padding-right: 0.3rem;padding-bottom: 0.3rem;" /></im></em><em>联系客服</em></span><span class="btn">立即支付</span>
+		</div>
+		
+		<div class="ttip">
+			<img src="{__CTPL_URL__}images/activity@2x.png"/>
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript">
+			var $pay_pt = "{url:'@user-payensure-pt-1'}";
+			$('.ttip img').on('click',function(){
+				$('.ttip').hide();
+			})
+		</script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/pay.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

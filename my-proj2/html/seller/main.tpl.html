@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>销售顾问主页</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/seller/main.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		
+		<div class="redhead">
+			<p><span class="{{done?'':'blur'}}"><img ng-src="{{done?data.broke_avatar:defaultimg}}"/></span></p>
+			<p class="b"><em class="dv" ng-bind="done?data.broke_name:(data.broke_name|dotdot)"></em></p>
+			<p class="s" ng-bind="done?data.broke_shop:'*****4S店'"></p>
+		</div>
+		<p class="pf">评分</p>
+		<div class="box">
+			<ul>
+				<li class="bd">
+					<span ng-bind="pinglun.length"></span><span>条</span>
+				</li>
+				<li class="bd">
+					<em ng-bind="data.tip0=='暂无' ? '暂无':data.tip0 + '%'"></em><em>态度</em>
+				</li>
+				<li class="bd">
+					<em ng-bind="data.tip1=='暂无' ? '暂无':data.tip1 + '%'"></em><em>专业</em>
+				</li>
+				<li>
+					<em ng-bind="data.tip2=='暂无' ? '暂无':data.tip2 + '%'"></em><em>颜值</em>
+				</li>
+			</ul>
+		</div>
+		<p class="pj">评价</p>
+		<ul class="pjs">
+			<li ng-if="pinglun.length==0">
+				<p class="center">暂无评论</p>
+			</li>
+			<li ng-repeat="v in pinglun">
+				<p class="tg"><em ng-bind="v.user_mobile"></em><em ng-bind="v.cr_adate*1000|date:'yyyy.MM.dd HH:mm'"></em></p>
+				<p class="ct" ng-bind="v.cr_comment"></p>
+			</li>
+		</ul>
+		
+		{include html/common/footer.tpl.html}
+		<script>var defaultimg = "{__CTPL_URL__}images/avatarBlurred.png";</script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/seller/main.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

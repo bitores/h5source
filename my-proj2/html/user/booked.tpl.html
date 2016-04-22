@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>我的意向金车</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/booked.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl" ng-cloak ng-style='white'>
+		{include html/common/nav_header.tpl.html}
+		<div class="box">
+			<ul ng-repeat="data in orderlist" data-tel="{{data.tel}}" data-name="{{data.name}}" data-config="{{data.config}}" data-bid="{{data.bid}}" data-orderid="{{data.id}}" data-agentid="{{data.agent}}" data-inquiryId="{{data.inquiryId}}" data-carId="{{data.carId}}" data-ext="">
+				<p class="row_header"></p>
+				<li class="bd">
+					<div class="row">
+						<span class="cell">
+							<em class="time" ng-bind="'下单时间  '+data.orderTime"></em>
+						</span><span class="cell rt">
+							<em class="dd" ng-class="{true:'dred',false:'dd'}[data.orderStatus=='售后中']" ng-bind="data.orderStatus"></em>
+						</span>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<span class="cell lf">
+							<img ng-src="{{data.img}}"/>
+						</span><span class="cell">
+							<p class="bt brand" ng-bind="data.name"></p>
+							<p class="bt name" ng-bind="data.config"></p>
+							<p class="ls"><em class="dk"  ng-bind="data.payType==1?'贷款':'全款'"></em><em class="color" style="background-color: #{{data.colorCode}}"></em><em class="colorname" ng-bind="data.colorName"></em></p>
+						</span>
+					</div>
+				</li>
+				<li class="bd">
+					<div class="row">
+						<span class="cell">
+							<em class="price" ng-bind="'&#165;'+data.totalPrice+'万'"></em>
+						</span><span class="cell rt">
+							<em data-btn='{{data.serviceStatus}}' ng-class="{0:'btn gr_c',1:'btn hide',2:'btn',3:'btn hide',4:'btn hide'}[data.serviceStatus]" ng-bind="{0:'申请售后',1:'售后中',2:'评价',3:'已评价',4:'其它状态'}[data.serviceStatus]" ng-click="handle($event)"></em>
+						</span>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<span class="cell img">
+							<img ng-src="{{data.saleImag}}"/>
+						</span><span class="cell name">
+							<p class="salename" ng-bind="data.saleName"></p>
+							<p class="shopname" ng-bind="data.saleShop"></p>
+						</span><span class="cell rt" ng-click="callme(data.tel,$event)">
+							<em class="tel"  ng-bind="data.tel"></em>
+						</span>
+					</div>
+				</li>	
+			</ul>
+		</div>
+		
+		<div class="ret">
+			<p><img src="{__CTPL_URL__}images/noCar@2x.png"/></p>
+			<p class="btil">暂无意向金车</p>
+			<p class="stil">&nbsp;</p>
+			
+			<p class="btn" ng-click="goto_brand()">马上选车</p>
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/booked.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

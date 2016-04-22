@@ -1,0 +1,11 @@
+body{background-color: white;}
+.ret{display: table-cell;width: 100%;height:25rem;padding: .5rem 1rem 2rem;position: absolute;left: 0;bottom: 0;top: 0rem;right: 0;margin: auto;vertical-align: middle;}
+.center{text-align: center;}
+.ret p{padding: .2rem 0;}
+.ret img{display: inline-block;width: 10rem;height: 10rem;}
+.ret .btil{font-size: 2.0rem; font-weight: 500; color: #3F3A3A;}
+.ret .stil{color: #8C8A8A;padding:.4rem 0;font-size: 1.1rem;}
+.ret .line{border-bottom: 1px solid #EFEFF4;height: 2rem;color: #8C8A8A;}
+.ret .line span{position: relative;padding: .5rem;bottom: -1.1rem;background-color: white;}
+.ret .info{margin-top: 1rem;}
+.ret .time{color: #BBBBBB;}

@@ -1,0 +1,16 @@
+.title{color: #8C8A8A;padding:1.5rem 1.1rem .2rem;color: #8C8A8A;}
+.hot{display: block;width: 100%;}
+.hot_cartype{display: block;padding:0 1.1rem;background-color: white;}
+.hot_cartype >li{display: block;padding: 1.0rem 0;border-bottom: 1px solid #EFEFF4;}
+.hot_cartype img{width: 6rem;height: 4rem;}
+.hot_cartype .cartype_logo,.hot_cartype .cartype_name{display: table-cell;vertical-align: middle;font-size: 1.2rem;}
+.hot_cartype .cartype_name{padding-left: 1rem;}
+.hot_cartype .pri_info{font-size: .8rem;color: #8C8A8A;}
+.type{display: block;width: 100%;}
+.list{display: block;width: 100%;}
+.cartype_list{display: block;padding-left: 1.1rem;background-color: white;}
+.cartype_list >li{display: block;padding: 1.0rem 0;border-bottom: 1px solid #EFEFF4;}
+.cartype_list img{width: 6rem;height: 4rem;}
+.cartype_list .cartype_logo,.cartype_list .cartype_name{display: table-cell;vertical-align: middle;font-size: 1.2rem;}
+.cartype_list .cartype_name{padding-left: 1rem;}
+.cartype_list .pri_info{font-size: .8rem;color: #8C8A8A;margin-top: .5rem;}

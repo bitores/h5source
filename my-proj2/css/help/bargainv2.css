@@ -1,0 +1,34 @@
+body{background-color: white;}
+.bargain{display: block;width: 100%;}
+.bargain .marq{display: block;width: 100%; height: 25px; background-color: #FFFBCC;color: #FF835B;overflow:hidden;white-space:nowrap;padding: 0 0.5rem;text-align: center;}
+.bargain .marq li{height: 25px; line-height: 25px;}
+.bargain .img img{display: block;width: 100%;}
+.bargain .img.padding{padding:1.8rem 1rem;}
+.bargain .img.qr_xkkj{padding:2rem 0;text-align:center; border-top: 1px solid rgba(233,233,235,1);border-bottom: 1px solid rgba(233,233,235,1);}
+.bargain .img.qr_xkkj img{display:inline-block;width: 40%;}
+.bargain .tip{display: block;width: 100%; text-align: center;font-size: 0.93rem;color: #262626;line-height: 1.3rem;}
+.bargain .blk{display: block;width: 100%;color: #262626;padding: 1rem;line-height: 1.5rem;text-align: center;}
+.bargain .blk .row{display: block;width: 100%;padding-top: 2rem;}
+.bargain .blk .row.sm{padding-top: 0rem!important;font-size: 1.5rem;}
+.bargain .blk .row .img{text-align: center;padding: 1rem 0 0;}
+.bargain .blk .row .img img{display: inline-block;width:70%;}
+.bargain .blk .cap{font-size: 1.2rem;font-weight: 600;}
+.bargain .blk .tit_b{font-size: 1.13rem;font-weight: 600;}
+.bargain .blk .tit_s{font-size: 0.93rem;margin-top: 0.5rem;}
+.bargain .blk .gray{color: #999999;padding-top: 0rem;font-size: 0.8rem;}
+.bargain .blk .red{color: #E84817;}
+
+.btt{display: block;padding: 0 1rem;}
+.sm_qr img{width: 40%!important;}
+.home_qr{display: table; width: 100%; background-color: white;text-align: center;padding-bottom: 1rem;border-top: 1px solid rgba(233,233,235,1);padding-top: 2rem;}
+.home_qr .row{display: table-row;}
+.home_qr .cell{display: table-cell;vertical-align: middle;text-align: center;}
+.home_qr img{display: block;margin: 0 auto;width: 70%;}
+/*.home_qr .cell.lf{width: 60%;padding-left:1rem ;}
+.home_qr .cell.rt{width: 40%;padding-right:1rem ;}
+.home_qr .cell.lf img{width: 60%;}
+.home_qr .cell.rt img{width: 90%;}*/
+/*.home_qr img.lf{margin: 0 1rem 0 3rem;}
+.home_qr img.rt{margin: 0 3rem 0 1rem;}*/
+.home_qr .qr_info{font-size: 0.9rem;}
+.bottom_s{font-size: 0.8rem; text-align: center;color: #999999;}

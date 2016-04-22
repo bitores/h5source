@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>评价</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/seller/evaluate.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl" ng-cloak>
+		{include html/common/nav_header.tpl.html}
+		<div class="gw">
+			<div class="row">
+				<span class="tx"><img class="saleimg" ng-src="{{img}}" data-origin="{__CTPL_URL__}images/man.png" /></span>
+				<span class="des">
+					<em class="salename" ng-bind="salename?salename:'销售顾问'"></em>
+					<em class="shopname" ng-bind="shopname?shopname:'*****4S店'"></em>
+				</span>
+				<span class="dj">
+					<em ng-bind="!!score?score+'%综合评分':'暂无综合评分'"></em>
+					<em ng-bind="!!remark_sum?remark_sum+'条评价':'暂无评价'"></em>
+				</span>
+			</div>
+		</div>
+		
+		<div class="car">
+			<p class="cartype" ng-bind="name"></p>
+			<p class="carconf" ng-bind="config"></p>
+		</div>
+		
+		<ul class="ev" data-tip0='2' data-tip1='2' data-tip2='2'>
+			<li>
+				<span>态度</span><span data-bind='data-tip0'>
+					<em class="active" data-value='2'>很赞</em><em data-value='1'>无感</em><em data-value='0'>呵呵</em> 
+				</span>
+			</li>
+			<li>
+				<span>专业</span><span data-bind='data-tip1'>
+					<em class="active" data-value='2'>很赞</em><em data-value='1'>无感</em><em data-value='0'>呵呵</em> 
+				</span>
+			</li>
+			<li>
+				<span>颜值</span><span data-bind='data-tip2'>
+					<em class="active" data-value='2'>很赞</em><em data-value='1'>无感</em><em data-value='0'>呵呵</em> 
+				</span>
+			</li>
+		</ul>
+			
+		<div class="incontent">
+			<p class="pj">评价</p>
+			<textarea name="ev" rows="5" maxlength="100" cols="20" placeholder="请输入评价"></textarea>
+			
+			<div class="start_btn">提交</div>
+		</div>
+		
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/seller/evaluate.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

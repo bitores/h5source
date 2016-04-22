@@ -1,0 +1,26 @@
+body{background-color: #EFEFF4;}
+.gw{display: table;width:100%;padding: 1rem 1rem;margin:1rem 0 ;background-color: white;}
+.gw .row{display: table-row;}
+.gw span{display: table-cell;vertical-align: middle;font-size: 1rem;}
+.gw .tx{width: 4rem;height: 4rem;text-align: center;vertical-align: middle;}
+.gw .tx img{width: 3.5rem;height: 3.5rem;border-radius: 3.5rem;}
+.gw span em{display: block;}
+.gw .dj{text-align: right;}
+
+.car{display: block;width: 100%;padding:0 1rem .5rem;}
+.cartype{font-size: 1.1rem;color: #3F3A3A;line-height: 1.6rem;}
+.carconf{font-size: .9rem;color: #8C8A8A;line-height: 1.3rem;}
+
+.ev{display: block;width: 100%;background-color: white;padding: .5rem 1rem;}
+.ev li{display: block;width: 100%;background-color: white;padding: .5rem 0;}
+.ev li span{display: inline-block;}
+.ev li span:first-child{width: 25%;text-align: left;}
+.ev li span:nth-child(2){width: 75%;background-color: #F6F6F6;color: #BBBBBB;border-radius: 20px;font-size: .9rem;}
+.ev li span em{display: inline-block;width: 33.3%;text-align: center;padding: .5rem 0;}
+.ev li span em.active{border-radius: 20px;background-color: #FCDA5C;color: white;}
+
+.pj{padding-bottom: .2rem;color: #8C8A8A;}
+
+.incontent{display: block;width: 100%;padding: 1rem;}
+.incontent textarea{display: block;width: 100%;border: none;padding: 1rem;font-size: .9rem;}
+.start_btn{background-color: #E84817;color: #FFFFFF;text-align: center;padding: 0.6rem 0;margin-top: 2rem; border-radius: 4px;font-size: 1.1rem;}

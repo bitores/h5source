@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>图片剪切</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/imgclip/clipboard.css"/>
+		<style>
+		#clipArea {
+			height: 28rem;
+		}
+		#view {
+			margin: 0 auto;
+			width: 150px;
+			height: 150px;
+		}
+		#file{
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			height: 100%;
+			filter:alpha(opacity=0);
+		    -moz-opacity:0;
+		    opacity:0; 
+		}
+		.htmleaf-container .table{display: table;width: 100%; height: 6rem; position: fixed;bottom: 0;left: 0;vertical-align: baseline;}
+		.htmleaf-container .row{display: table-row;}
+		.htmleaf-container .cell{display: table-cell;position: relative;width: 33.33%;overflow: hidden;padding:0.5rem 1rem;text-align: center;}
+		.htmleaf-container .cell button{display: block;width: 70%;height: 2rem;margin: 0 auto;border: none;background-color: black;color: white;}
+		</style>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		<article class="htmleaf-container">
+			<div id="clipArea"></div>
+			<div class="table">
+				<div class="row">
+					<span class="cell"><button>选择头像</button><input type="file" id="file" value="浏览"></span>
+					<span class="cell"><button id="clipBtn">上传头像</button></span>
+				</div>
+			</div>
+		</article>
+		
+		{include html/common/footer.tpl.html}
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+		<script>window.jQuery || document.write('<script src="{__CTPL_URL__}js/jquery-2.1.1.min.js"><\/script>')</script>
+		<script src="{__CTPL_URL__}js/imgclip/iscroll-zoom.js"></script>
+		<script src="{__CTPL_URL__}js/imgclip/hammer.js"></script>
+		<script src="{__CTPL_URL__}js/imgclip/lrz.all.bundle.js"></script>
+		<script src="{__CTPL_URL__}js/imgclip/jquery.photoClip.min.js"></script>
+		<!--<script type="text/javascript" src="http://cdn.bootcss.com/fastclick/1.0.6/fastclick.js"></script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/lib/h.js" ></script>-->
+		<script type="text/javascript" src="{__CTPL_URL__}js/lib/upload.js" ></script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/imgclip/clipboard.js" ></script>
+
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>快抢车</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/mine.css"/>
+		<script type="text/javascript">
+			localStorage.kqc_page_cur = 2;
+		</script>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		<div class="box">
+			<div class="toper">
+				<p class="img">
+					<span class="uploadbtn">
+						<span class="container"><img ng-src="{{imgsrc}}"/></span>
+						<!--<input id="ts-image-uploader" type="file" data-role="uploader" accept="image/*" style="display: block;width: 5rem!important;height: 5rem!important; position: absolute; top: 0px; left: 0px; font-size: 80px; z-index: 100; opacity: 0; overflow: hidden; width: 52px; height: 39px;">-->
+					</span>
+				</p>
+				<p class="name" data-name="" ng-bind="!!data.name?data.name:'请输入真实姓名'"></p>
+				<p class="tel" data-tel="{{data.tel}}" ng-bind="data.tel"></p>
+			</div>
+			
+			<ul class="group">
+				<li data-btn='2'>
+					<span>
+						<em>我的意向金车</em><em></em>
+					</span><span class="rt line">
+						<em ng-bind="data.count+'款'" class="tip"></em><em class="btn"></em>
+					</span>
+				</li>
+			</ul>
+			
+			<ul>
+				<li data-btn='3'>
+					<span>
+						<em>问题反馈</em><em></em>
+					</span><span class="rt">
+						<em ></em><em class="btn"></em>
+					</span>
+				</li>
+			</ul>
+			
+			<ul>
+				<li data-btn='4'>
+					<span>
+						<em>退出</em><em></em>
+					</span><span class="rt">
+						<em></em><em class="btn"></em>
+					</span>
+				</li>
+			</ul>
+		</div>
+		
+		
+		{include html/common/footer.tpl.html}
+		{include html/common/nav_footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/lib/upload.js" ></script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/mine.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

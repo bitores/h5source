@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>支付订金</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/payensure.css"/>
+		<script>
+			var PT = "{$PT}",code = "";
+			switch(PT){
+				case "5":{
+					//微信支付
+					code = "{$wechat_code}";
+				}
+				break;
+				default:{
+					// 支付宝等其它支付方式
+				}
+			}
+
+		</script>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		
+		<div class="ret">
+			<ul class="info">
+				<li><span>订单名称</span><span>意向金</span></li>
+				<p class="line">&nbsp;</p>
+				<li><span>订单金额</span><span>￥99</span></li>
+			</ul>
+			<p class="til">选择支付方式</p>
+			<ul class="way">
+				<li data-way="0" data-b="1" style="display: none;" class="zfb seld"><img src="{__CTPL_URL__}images/zhifubao@2x.png"/>支付宝支付</li>
+				<li data-way="1" data-b="5" style="display: none;" class="wx seld"><img src="{__CTPL_URL__}images/wechat@2x.png"/>微信支付</li>
+			</ul>
+			
+			<p class="btn">确认支付</p>
+		</div>
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/payensure.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

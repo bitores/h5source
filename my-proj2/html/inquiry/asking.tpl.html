@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>询价中</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/inquiry/asking.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<div class="content">
+			<div class="sel_car_block">
+				<p class="t0"><img ng-src="{{cartypeimg}}" alt="" /></p>
+				<p class="t1" ng-bind='cartypename + " " + carmodelname'></p>
+				<p class="t3"><span class="k" ng-bind='carbuyingway'></span><span class="color" style="background-color: #{{carcolorcode}};"></span><span ng-bind='carcolorname'></span></p>
+			</div>
+			<div class="ing">
+				<p class="tip">正在为您询价...</p>
+				<p class="gif"><img src="{__CTPL_URL__}images/ing2.gif" alt="loading" /></p>
+				<div class="man_img">
+					<p><span class="img1"></span><span class="img2"></span><span class="img3"></span><span class="img4"></span></p>
+					<p><span class="img5"></span><span class="img6"></span><span class="img7"></span><span class="img8"></span></p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="ret" style="display: none;" >
+			<p><img src="{__CTPL_URL__}images/unavailable@2x.png"/></p>
+			<p class="btil" ng-bind="'已经帮你通知了'+ count +'位顾问'"></p>
+			<p class="stil">如果60分钟之内还未收到报价短信，客服</p>
+			<p class="stil">将会人工电话为你向顾问们询价。</p>
+			<p class="btn" ng-click="goto_brand()">看看其他车型</p>
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script src="{__CTPL_URL__}js/lib/Polyfill.js" type="text/javascript"></script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/inquiry/asking.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

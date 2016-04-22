@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include html/common/meta.tpl.html}
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+	<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/home/kqc_old.css"/>
+	<script type="text/javascript">localStorage.kqc_page_cur = 0;</script>
+</head>
+<body ng-app="App" ng-controller="Ctrl">
+<div class="box">
+	<div class="middle">
+		<div class="info">
+			<p class="big_info"><img src="{__CTPL_URL__}images/kbj.png"/></p>
+			<p class="small_info">同城比价买车，实时获取销售顾问报价</p>
+			<p class="small_info">让你轻松买到底价车</p>
+		</div>
+		<div class="start_btn">马上比价</div>
+		<div class="pl">
+			<p class="info_tip"><span>报价进行中</span></p>
+			<div class="table">
+				<div class="row bd">
+					<span class="cell r1">
+						<img ng-src="{__CTPL_URL__}images/home/{{info.icon}}"/>
+					</span><span class="cell" ng-bind="info.txt">
+					</span>
+				</div>
+			</div>
+			
+			<div class="table">
+				<div class="row pd">
+					<span class="cell r2 {{info.seld=='0'?'seld':''}}">
+						<p><img ng-src="{__CTPL_URL__}images/home/{{info.sales[0]}}"/></p>
+						<p ng-bind="info.name[0]"></p>
+						<p class="tt" ng-bind="'&#165;'+ info.price[0] +'万'"></p>
+					</span><span class="cell r2 {{info.seld=='1'?'seld':''}}">
+						<p><img ng-src="{__CTPL_URL__}images/home/{{info.sales[1]}}"/></p>
+						<p ng-bind="info.name[1]"></p>
+						<p class="tt" ng-bind="'&#165;'+ info.price[1] +'万'"></p>
+					</span><span class="cell r2 {{info.seld=='2'?'seld':''}}">
+						<p><img ng-src="{__CTPL_URL__}images/home/{{info.sales[2]}}"/></p>
+						<p ng-bind="info.name[2]"></p>
+						<p class="tt" ng-bind="'&#165;'+ info.price[2] +'万'"></p>
+					</span><span class="cell r2 {{info.seld=='3'?'seld':''}}">
+						<p><img ng-src="{__CTPL_URL__}images/home/{{info.sales[3]}}"/></p>
+						<p ng-bind="info.name[3]"></p>
+						<p class="tt" ng-bind="'&#165;'+ info.price[3] +'万'"></p>
+					</span>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+{include html/common/footer.tpl.html}
+{include html/common/nav_footer.tpl.html}
+<script type="text/javascript" src="{__CTPL_URL__}js/lib/swipeSlide.min.js" ></script>
+<script type="text/javascript" src="{__CTPL_URL__}js/home/kqc_old.js" ></script>
+{include html/common/tongji.tpl.html}
+</body>
+</html>

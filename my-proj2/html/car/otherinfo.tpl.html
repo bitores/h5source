@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>其它信息</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/car/otherinfo.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<div class="content">
+			<p class="thi_title"></p>
+			<div class="hot_carmodel">
+				<div class="row">
+				<span class="carmodel_logo"><img class='lazy' ng-src="{{cartypeimg}}"/></span><span class="carmodel_name"><p ng-bind='cartypename'></p><p class="model_info" ng-bind='carmodelname'></p></span>	
+				</div>
+			</div>
+			<p class="title"></p>
+			<ul class="other_info">
+				<li data-btnid='0' class="border">
+					<span class="tx_info">外观颜色</span>
+					<span class="sel_btn"><em id="curr_color" class="curr_color" data-id>选择颜色</em></span>
+				</li>
+			</ul>
+			<p class="title"></p>
+			<ul class="other_info_t">
+				<li id="section_city" data-btnid='1' class="border">
+					<p class="center"><span class="tx_info">城市</span></p>
+					<!--<span class="sel_btn"><em id="curr_city" class="curr_city dz" data-id=''><b>杭州</b>(其它城市陆续开放)</em></span>-->
+					<p class="opt"><span class="seld">杭州</span><em class="ttip">(其它城市陆续开放)</em></p>
+				</li>
+				<li id="section_time" data-btnid='2' class="border">
+					<p class="center"><span class="tx_info">预计购车时间</span></p>
+					<!--<span class="sel_btn"><em id="curr_time" class="curr_time" data-id>选择时间</em></span>-->
+					<p class="opt"><span class="seld" data-buyingtime='2周内'>两周内</span><span class="mar_left" data-buyingtime='1月内'>一月内</span><span class="mar_left" data-buyingtime='3月内'>三月内</span></p>
+				</li>
+				<li id='section_way' data-btnid='3'>
+					<p class="center"><span class="tx_info">购车方式</span></p>
+					<!--<span class="sel_btn"><em id="curr_way" class="curr_way" data-id>选择方式</em></span>-->
+					<p class="opt"><span class="seld" data-buyingway='贷款' data-id='1'>贷款</span><span class="mar_left" data-buyingway='全款' data-id='0'>全款</span></p>
+				</li>
+			</ul>
+			
+			<div class="p_btn">
+				<div class="start_btn">查看底价</div>
+			</div>
+			
+			
+			<div id="section_color" class="scroll_box show">
+				<p class="box_title tp">颜色</p>
+				<div class="wrap">
+					<ul>
+						<li ng-repeat="color in colors track by $index" data-colorid="{{color.color_id}}" data-colorcode="{{color.color_code}}" data-colorname="{{color.color_name}}">
+							<span class="color_box"><em class="color" style="background-color: #{{color.color_code}};"></em></span><span class="color_name" ng-bind='color.color_name'></span>
+						</li>
+					</ul>
+				</div>
+				<p class="box_title bt" ></p>
+			</div>
+		</div>
+		
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/car/otherinfo.js?v=20160401" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

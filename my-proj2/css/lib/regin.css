@@ -1,0 +1,75 @@
+.bd_mask{/*height: 100%;overflow: hidden;*/}
+.empty{display: block;width: 100%;height: 3rem;}
+.header{display:block;width:100%;background-color: white;padding: .5rem 1rem;}
+.header span{display: inline-block;vertical-align: middle;}
+.header .logo{display: inline-block;width: 85%;}
+.header .logo img{display:block;width: 80%;}
+.header .login{display: inline-block;width: 15%; padding: .2rem 0 .2rem 1rem;}
+.header .login img{display:block;width: 80%;}
+
+.nav_header_inner{display: inline-block;width:10%;position: fixed;z-index: 100;top: 1rem;}
+.nav_header_inner.logo{left: 1rem;}
+.nav_header_inner.login{right: 1rem;}
+.nav_header_inner img{display: block;width: 100%;}
+
+
+
+.footer{display:block;width:100%;position: fixed;z-index: 100;left: 0;background-color: white;}
+.footer{bottom: 0;padding-left: 1rem;}
+.footer span{display: inline-block;height: 100%;}
+.footer span a{display: inline-block;width: 100%;height: 100%;color: white;}
+.footer .tel{width: 65%;vertical-align: middle;} 
+.footer .tel img{display: block;width: 80%;}
+.footer .tel_info{width: 35%;text-align: center;background-color: rgb(255,51,0);color: white;height: 3rem;line-height: 3rem;}
+
+
+
+.regin{display: block;width: 100%;height: 100%;background-color: rgba(0,0,0,.7);position: fixed;z-index: 120;left: 0;top: 0;}
+.regin .mask{display: block;width: 100%;height: 100%;background-color: rgba(0,0,0,.7);position: fixed;z-index: 121;left: 0;top: 0;}
+.regin .hidden{display: none;}
+.regin .dialog{display: block;width: 90%;padding: 1rem 1.5rem;border-radius: 4px;background-color: white;position: absolute;z-index:125;left: 50%;top: 50%;-webkit-transform: translate(-50%,-50%);
+-moz-transform: translate(-50%,-50%);
+-ms-transform: translate(-50%,-50%);
+-o-transform: translate(-50%,-50%);
+transform: translate(-50%,-50%);
+font-size: .8rem;}
+.regin ul{display: block;width: 100%;}
+.regin ul li{display: block;width: 100%; height: 2.5rem;line-height:2rem;padding: .2rem .5rem;border-radius: 2px;margin: .8rem 0;}
+.regin .dialog_logo{height: 100%;margin-bottom: 1rem;}
+.regin .dialog_logo img{display: block;width: 40%;}
+.regin .dialog_info{color: rgb(255,51,0);font-size: .6rem;padding: 0;}
+.regin .dialog_in{border: 1px solid rgb(174,174,174);}
+.regin .dialog_in span{display: inline-block;height: 2rem;line-height: 2rem;}
+.regin .dialog_in span:nth-child(1){width: 4rem;float: left;}
+.regin .dialog_in span:nth-child(3){float: right; }
+.regin .dialog_in span:nth-child(4){float: right; }
+.regin .dialog_in div{display: inline-block;height: 2rem;border: none;white-space:nowrap;}
+.regin .dialog_in div:empty:before{ content: attr(placeholder);color:#bbb;}
+.regin .dialog_in div:focus:before{content:none;}
+.regin .dialog_in .tel{display: inline-block;width: 8rem;}
+.regin .dialog_in .pcode{display: inline-block;width: 5rem;}
+.regin .dialog_in .gen_pcode{display: inline-block;width: 4rem;background-color: rgb(153,153,153);color: white;text-align: center;}
+.regin .dialog_in .gen_pcode img{display: block;width: 100%;height: 100%;}
+.regin .dialog_in .scode{display: inline-block;width: 5rem;}
+.regin .dialog_in .gen_scode{display: inline-block;width: 4.5rem;color: rgb(255,51,0);}
+.regin .dialog_in .sec_info{display: inline-block;width: 4rem;text-align: center;color: rgb(153,153,153);}
+.regin .dialog_btn{margin: .8rem 0;border-radius: 2px;color: white;line-height: 2.5rem;padding: 0;border: none;display: block;width: 100%;}
+.regin .dialog_btn.no{background-color: gray;}
+.regin .dialog_btn.yes{background-color: rgb(255,51,0);}
+.regin .dialog_xy{text-align: center;padding: 0 0;}
+.regin .dialog_xy span{display:inline-block;height:2rem}
+.regin .dialog_xy span:nth-child(1){}
+.regin .dialog_xy span:nth-child(2){color: rgb(255,51,0);}
+.regin .dialog_rt{text-align: right;}
+.regin .dialog_rt span{color: rgb(255,51,0);}
+.xy{width:90%;height:80%;background: #FFF;position:fixed;z-index:200;display: none;left: 0;top: 0;right: 0;bottom: 0;margin: auto;}/*top:50%;left:50%;-webkit-transform: translate(-50%,-50%);*/
+.xy h1{color:#666;text-align: center;margin:5px 0px;font-size:20px;}
+.xyTxt{height:80%;margin:0 5%;width:90%;overflow-y:scroll;color:#666;}
+.xybtn{text-align: center;margin-top:5px;position:absolute;bottom:10px;width:100%;}
+.xybtn input{width:90%;height:30px;line-height: 30px;background: #F00;border-radius: 3px;color:#FFF;border:none; }
+
+
+.yz-code{display: inline-block; width:60%;}
+.get-sms-verify-b{color: rgb(255,51,0);}
+input#user_verify.placeholder.yz-code.verify{display: none;}
+.get-sms-verify-b{ display: none;}

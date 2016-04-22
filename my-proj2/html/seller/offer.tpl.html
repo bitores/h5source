@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>报价详细</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/seller/offer.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl" ng-cloak>
+		{include html/common/nav_header.tpl.html}
+		<div class="carinfo">
+			<div class="row">
+				<div class="cell">
+					<img ng-src="{{data.car_img}}" onerror="error('{__CTPL_URL__}images/golf@2x.png')" alt=""/>
+				</div><div class="cell">
+					<span ng-bind="data.bsy_name0"></span>
+					<span ng-bind="data.bsy_name1"></span>
+					<span class="oinfo"><em class="k" ng-bind="data.buy_type==1?'贷款':'全款'"></em><em class="color" style="background-color: #{{data.color_value}};"></em><em ng-bind="data.color"></em></span>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="box">
+			<img src="{__CTPL_URL__}images/bj_t@2x.jpg" alt="" />
+
+			<ul>
+				<li class="border">
+					<span class="cell">总价</span><span class="cell rt"><em class="lt">&#165;</em><em ng-bind="data.total_price | numgroup"></em><em class="lt">万</em></span>
+				</li>
+			</ul>
+			<ul>
+				<p class="line"><span>价格详细</span></p>
+				<li>
+					<span class="cell">裸车</span><span class="cell rt" ng-bind="(data.bare_price | numgroup)+'万'"></span>
+				</li>
+				<li ng-repeat="(key,value) in data.detail">
+					<span class="cell" ng-bind="key" >装潢</span><span class="cell rt" ng-bind="value+'万'"></span>
+				</li>
+			</ul>
+			<ul>
+				<p class="line"><span>其他信息</span></p>
+				<li>
+					<span class="cell">区域限制</span><span class="cell rt" ng-bind="data.area"></span>
+				</li>
+				<li>
+					<span class="cell">店内保险</span><span class="cell rt" ng-bind="data.secure"></span>
+				</li>
+				<li>
+					<span class="cell">库存</span><span class="cell rt" ng-bind="{0:'现车',1:'期车'}[data.instock_type]"></span>
+				</li>
+				<li>
+					<span class="cell">报价有效期</span><span class="cell rt" ng-bind="'剩'+data.remain+'天('+data.start+'-'+data.end+')'"></span>
+				</li>
+			</ul>
+			<img src="{__CTPL_URL__}images/bj_b@2x.jpg" alt="" />
+		</div>
+		
+		
+		
+		<div class="notice">
+			<p>用户须知</p>
+			<p>上述价格仅为用来衡量销售顾问的优势对比，具体报价与真实成交价格不会出现太大出入，否则可对当前销售顾问进行投诉。</p>
+		</div>	
+		
+		<div class="ft_placeholder"></div>
+		<div class="val" style="display: none;">
+			<div class="manbox">
+				<ul>
+					<li>
+						<div class="row">
+							<span><img ng-src="{{done?data.img:defaultimg}}" onerror="error('{__CTPL_URL__}images/avatarBlurred.png')" alt="" /></span>
+							<span class="name_info"><em ng-bind="done?data.name:(data.name|dotdot)"></em><em ng-bind="done?data.shop:'*****4S店'"></em></span><span class="pos_right"><em ng-bind="!!data.score?data.score+'%综合评分':'暂无综合评分'"></em><em ng-bind="!!data.remark_sum?data.remark_sum+'条评价':'暂无评价'"></em></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="btn">马上联系</div>
+		</div>
+		<div class="inval" style="display: none;">
+			<div class="invalbtn">当前报价过高，已帮您自动过滤</div>
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript">
+			function error(src){var img=event.srcElement;img.src=src}
+			var defaultimg = "{__CTPL_URL__}images/avatarBlurred.png";
+		</script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/seller/offer.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

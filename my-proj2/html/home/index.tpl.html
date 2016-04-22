@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="import" href="/html/common/meta.tpl.html?__inline">
+	<base href="../" />
+	<title>快比价</title>
+	<link rel="stylesheet" type="text/css" href="../css/lib/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home/kqc.css"/>
+	<script type="text/javascript">localStorage.kqc_page_cur = 0;</script>
+</head>
+<body ng-app="App" ng-controller="Ctrl">
+<div class="home_head">
+	<div class="img_kbj">
+		<img src="../images/home/logoHomepage@2x.png" alt="" />
+	</div>
+	<p class="tip center white">同城比价买车，实时获取销售顾问报价</p>
+	<p class="tip center white">让你轻松买到底价车</p>
+	<p class="pd"><span class="start_btn" ng-click="goto_brand()">马上比价</span></p>
+</div>
+<div class="hotDiv">
+	<p class="tit"><span class="hot bd">热门品牌</span><span class="more rt" ng-click="more()">更多</span></p>
+	<div class="table">
+		<div class="row">
+			<span class="cell w20 clickable" data-url="{url:'@car-type'}?bd={{hotB[0].id}}">
+				<i><img ng-src="../images/home/{{hotB[0].img}}" alt="" /></i><em ng-bind="hotB[0].name"></em>
+			</span>
+			<span class="cell w20 clickable" data-url="{url:'@car-type'}?bd={{hotB[1].id}}">
+				<i><img ng-src="../images/home/{{hotB[1].img}}" alt="" /></i><em ng-bind="hotB[1].name"></em>
+			</span>
+			<span class="cell w20 clickable" data-url="{url:'@car-type'}?bd={{hotB[2].id}}">
+				<i><img ng-src="../images/home/{{hotB[2].img}}" alt="" /></i><em ng-bind="hotB[2].name"></em>
+			</span>
+			<span class="cell w20 clickable" data-url="{url:'@car-type'}?bd={{hotB[3].id}}">
+				<i><img ng-src="../images/home/{{hotB[3].img}}" alt="" /></i><em ng-bind="hotB[3].name"></em>
+			</span>
+			<span class="cell w20 clickable" data-url="{url:'@car-type'}?bd={{hotB[4].id}}">
+				<i><img ng-src="../images/home/{{hotB[4].img}}" alt="" /></i><em ng-bind="hotB[4].name"></em>
+			</span>
+		</div>
+	</div>
+</div>
+<p class="lineSplit"></p>
+<p class="img clickable" data-url="{url:'@help-bargain'}"><img src="../images/home/banner@2x.png" alt="" /></p>
+<p class="lineSplit"></p>
+<div class="hotDiv">
+	<p class="tit"><span class="hot md">热门车系</span><span class="more rt" ng-click="more()">更多</span></p>
+	<div class="table">
+		<div class="row">
+			<span class="cell border-rt border-bt w33 clickable" data-url="{url:'@car-model'}?td={{hotM[0].td}}&bd={{hotM[0].bd}}">
+				<i><img ng-src="../images/home/{{hotM[0].img}}" alt="" /></i><em ng-bind="hotM[0].name"></em><b ng-bind="hotM[0].tip"></b>
+			</span>
+			<span class="cell border-rt border-bt w33 clickable" data-url="{url:'@car-model'}?td={{hotM[1].td}}&bd={{hotM[1].bd}}">
+				<i><img ng-src="../images/home/{{hotM[1].img}}" alt="" /></i><em ng-bind="hotM[1].name"></em><b ng-bind="hotM[1].tip"></b>
+			</span>
+			<span class="cell border-bt w33 clickable" data-url="{url:'@car-model'}?td={{hotM[2].td}}&bd={{hotM[2].bd}}">
+				<i><img ng-src="../images/home/{{hotM[2].img}}" alt="" /></i><em ng-bind="hotM[2].name"></em><b ng-bind="hotM[2].tip"></b>
+			</span>
+		</div>
+		<div class="row">
+			<span class="cell border-rt w33 clickable" data-url="{url:'@car-model'}?td={{hotM[3].td}}&bd={{hotM[3].bd}}">
+				<i><img ng-src="../images/home/{{hotM[3].img}}" alt="" /></i><em ng-bind="hotM[3].name"></em><b ng-bind="hotM[3].tip"></b>
+			</span>
+			<span class="cell border-rt w33 clickable" data-url="{url:'@car-model'}?td={{hotM[4].td}}&bd={{hotM[4].bd}}">
+				<i><img ng-src="../images/home/{{hotM[4].img}}" alt="" /></i><em ng-bind="hotM[4].name"></em><b ng-bind="hotM[4].tip"></b>
+			</span>
+			<span class="cell border w33 clickable" data-url="{url:'@car-model'}?td={{hotM[5].td}}&bd={{hotM[5].bd}}">
+				<i><img ng-src="../images/home/{{hotM[5].img}}" alt="" /></i><em ng-bind="hotM[5].name"></em><b ng-bind="hotM[5].tip"></b>
+			</span>
+		</div>
+	</div>
+</div>
+<p class="lineSplit"></p>
+<div class="hotDiv">
+	<p class="tit"><span class="hot gl">询价攻略</span></p>
+	<div class="table">
+		<div class="row">
+			<span class="cell w50 lf">
+				<img src="../images/home/stepOne@2x.jpg" alt="" />
+			</span>
+			<span class="cell w50 rt">
+				<em>随时随地</em>
+				<em>同城比价</em>
+			</span>
+		</div>
+		<div class="row">
+			<span class="cell w50 lf">
+				<em>选择报价&nbsp;&nbsp;&nbsp;&nbsp;</em>
+				<em>支付意向金</em>
+			</span>
+			<span class="cell w50 rt">
+				<img src="../images/home/stepTwo@2x.jpg" alt="" />
+			</span>
+		</div>
+		<div class="row">
+			<span class="cell w50 lf">
+				<img src="../images/home/stepThree@2x.jpg" alt="" />
+			</span>
+			<span class="cell w50 rt">
+				<em>到店提车</em>
+				<em>支付全款</em>
+			</span>
+		</div>
+	</div>
+</div>
+<div class="home_qr">
+	<img src="../images/home/Bijia_QR.gif" alt="二维码" />
+	<p class="qr_info">长按指纹识别二维码</p>
+	<p class="qr_info">或微信搜索公众号“快比价”关注我们</p>
+</div>
+
+
+<link rel="import" href="/html/common/footer.tpl.html?__inline">
+<link rel="import" href="/html/common/nav_footer.tpl.html?__inline">
+<script type="text/javascript" src="../js/home/kqc.js" ></script>
+<!--SCRIPT_PLACEHOLDER-->
+<link rel="import" href="/html/common/tongji.tpl.html?__inline">
+</body>
+</html>

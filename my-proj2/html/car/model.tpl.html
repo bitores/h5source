@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>选择型号</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/car/model.css"/>
+		{include html/common/shareable.tpl.html}
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<p class="title"></p>
+		<ul class="hot_carmodel">
+			<li data-bandid={{cartypeid}}>
+				<span class="carmodel_logo"><img class='lazy' ng-src="{{cartypeimg}}"/></span><span class="carmodel_name"><p ng-bind='cartypename'></p><p class="pri_info" ng-if=!!cartypeprice ng-bind="'指导价：'+cartypeprice"></p></span>
+			</li>
+		</ul>
+		<div class="list" ng-repeat="models in default track by $index">
+			<p class="title" ng-if="models.config" ng-bind='models.config'></p>
+			<ul class="carmodel_list">
+				<li ng-click="onclick(carmodel.id,models.config,carmodel.name,carmodel.price)" ng-repeat="carmodel in models.list track by $index" data-bandid={{carmodel.id}}>
+					<span class="carmodel_name"><p ng-bind='carmodel.name'></p><p class="pri_info" ng-if=!!carmodel.price ng-bind='"指导价："+carmodel.price+"万"'></p></span>
+				</li>
+			</ul>
+		</div>
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/car/model.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

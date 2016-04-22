@@ -1,0 +1,59 @@
+<link rel="stylesheet" type="text/css" href="/css/common/nav_footer.css"/>
+<div class="nav_footer">
+	<div class="row">
+		<span class="nav_footer_home" data-url="0">
+			<p class="img home"></p>
+			<p class="tx">首页</p>
+		</span><span class="nav_footer_collected" data-url="1">
+			<p class="img quote"></p>
+			<p class="tx">比价车</p>
+		</span><span class="nav_footer_mine" data-url="2">
+			<p class="img my"></p>
+			<p class="tx">我的</p>
+		</span>
+	</div>
+</div>
+<script>
+(function(){
+	switch(parseInt(localStorage.kqc_page_cur)) {
+		case 0:{
+			$('.nav_footer .nav_footer_home').addClass('seld');
+		}
+		break;
+		case 1:{
+			$('.nav_footer .nav_footer_collected').addClass('seld');
+		}
+		break;
+		case 2:{
+			$('.nav_footer .nav_footer_mine').addClass('seld');
+		}
+		break;
+	}
+//	$('.nav_footer .row span').addClass('seld');
+	$('.nav_footer .row').on('click','span',function(){
+		switch(parseInt($(this).attr('data-url'))){
+			case 0:{
+				location.href = $home_index;
+			}	
+			break;
+			case 1:{
+				// 登录 跳转 到  $user_collected
+				isLogin(function(){
+					location.href = $user_collected;
+				});
+			}
+			break;
+			case 2:{
+				// 登录 跳转 到 $user_mine
+				isLogin(function(){
+					location.href = $user_mine;
+				});
+			}
+			break;
+		}
+
+		$(this).siblings().removeClass('seld');
+		$(this).addClass('seld');
+	});
+})();
+</script>

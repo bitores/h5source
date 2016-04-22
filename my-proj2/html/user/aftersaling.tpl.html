@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>售后中</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/aftersaling.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl" ng-cloak>
+		{include html/common/nav_header.tpl.html}
+		
+
+		<div class="ret">
+			<p class="center"><img src="{__CTPL_URL__}images/success.png"/></p>
+			<p class="btil center">提交成功,售后中...</p>
+			<p class="stil center">我们售后专员将会在24小时内和您联系，请保持手机畅通哦。</p>
+			<p class="line center">
+				<span>售后内容</span>
+			</p>
+			
+			<p class="info">
+				<p class="stil" ng-bind='flag_desc'></p>
+				<p class="time" ng-bind='flag_time'></p>
+			</p>
+		</div>
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/aftersaling.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

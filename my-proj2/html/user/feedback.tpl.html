@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>问题反馈</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/user/feedback.css"/>
+	</head>
+	<body ng-app="App" ng-controller="Ctrl" ng-cloak>
+		{include html/common/nav_header.tpl.html}
+		
+		<textarea class="info" name="info" rows="2" cols="" maxlength="100" placeholder="请描述您的问题和意见"></textarea>
+		
+		<div class="upload" data-images="">
+			<p>图片 (选填，提供问题截图)</p>
+			<div class="add">
+				<img class="uploadbtn" src="{__CTPL_URL__}images/uploadpic.png" />
+				<input id="ts-image-uploader" type="file" data-role="uploader" accept="image/*" style="display: block;width: 4rem!important;height: 4rem!important;position: absolute; top: 1rem; left: 1rem; font-size: 80px; z-index: 100; opacity: 0; overflow: hidden; width: 52px; height: 39px;">
+			</div>
+		</div>
+		
+		<div class="ft">
+			<span class="btn">提交</span>
+		</div>
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/lib/upload.js" ></script>
+		<script type="text/javascript" src="{__CTPL_URL__}js/user/feedback.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

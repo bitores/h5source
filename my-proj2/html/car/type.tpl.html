@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{include html/common/meta.tpl.html}
+		<title>选择车款</title>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/lib/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{__CTPL_URL__}css/car/type.css"/>
+		{include html/common/shareable.tpl.html}
+	</head>
+	<body ng-app="App" ng-controller="Ctrl">
+		{include html/common/nav_header.tpl.html}
+		<div class="hot" style="display: none;">
+			<p class="title">热门车款</p>
+			<ul class="hot_cartype">
+				<li ng-click="onclick(cartype.id,cartype.name,cartype.img,cartype.price)" ng-repeat="cartype in recommend" data-bandid={{cartype.id}} >
+					<span class="cartype_logo"><img class='lazy' data-lazyload="{{cartype.img}}" data-origin="{__CTPL_URL__}/images/lazyload.png"/></span><span class="cartype_name"><p ng-bind='cartype.name'></p><p class="pri_info" ng-if="cartype.price" ng-bind="'指导价：'+cartype.price"></p></span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="list" style="display: none;">
+			<div class="type" ng-repeat='(key, value) in default'>
+				<p class="title" ng-bind="key"></p>
+				<ul class="cartype_list">
+					<li ng-click="onclick(cartype.id,cartype.name,cartype.img,cartype.price)" ng-repeat="cartype in value track by $index" data-bandid={{cartype.id}}>
+						<span class="cartype_logo"><img class='lazy' data-lazyload="{{cartype.img}}" data-origin="{__CTPL_URL__}/images/lazyload.png"/></span><span class="cartype_name"><p ng-bind='cartype.name'></p><p class="pri_info" ng-if="cartype.price"  ng-bind="'指导价：'+cartype.price"></p></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		{include html/common/footer.tpl.html}
+		<script type="text/javascript" src="{__CTPL_URL__}js/car/type.js" ></script>
+	{include html/common/tongji.tpl.html}
+	</body>
+</html>

@@ -1,0 +1,23 @@
+body{background-color: #EFEFF4;}
+.redhead{background-color: rgba(232,72,23,0.8);/* #E84817*/;color: white;padding: 4rem 0 1rem;text-align: center;}
+.redhead span{display: inline-block;width: 5rem;height: 5rem;border-radius: 5rem;}
+.redhead img{width: 5rem;height: 5rem;border-radius: 5rem;}
+.redhead .b{font-size: 1.2rem;line-height: 1.7rem;}
+.redhead .s{font-size: .9rem;line-height: 1.2rem;}
+.redhead .dv:after{content: ' ';display: inline-block;width: 1.2rem;height: 1.2rem; background: url(../../images/verified@2x.png) no-repeat center center;background-size: 1.2rem 1.2rem;}
+.pf,.pj{padding: 1rem 0 .2rem 1rem;color: #8C8A8A;font-size: .9rem;}
+.box{display: table;width: 100%;background-color: white;padding: 1rem 0;}
+.box ul{display: table-row;width: 100%;}
+.box ul li{display: table-cell;text-align: center;vertical-align: middle;}
+.box ul li.bd{border-right: 1px solid #C8C7CC;}
+.box li em{display: block;}
+.box li em:first-child{font-size: 1.8rem;font-weight: 500;}
+.box .bd span:first-child{font-size: 2rem;}
+.pjs{display: block;width: 100%;padding: 1rem;background-color: white;}
+.pjs li{padding: .4rem 0;}
+.pjs li p{line-height: 1.5rem;}
+.pjs .tg{color: #BBBBBB;}
+.pjs .tg em{display: inline-block;width: 50%;}
+.pjs .tg em:nth-child(2){text-align: right;}
+.pjs .ct{color: #3F3A3A;font-size: .9rem;}
+.pjs .center{text-align: center;color: #BBBBBB;}
