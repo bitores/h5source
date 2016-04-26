@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="/" />
 		<link rel="import" href="/common/meta.tpl.html?__inline">
 		<title ng-bind="title"></title>
 	</head>
 	<body>
 		<div ui-view></div>
+		<div ui-view='main1'></div>
+		<div ui-view='main2'></div>
 		<script src="/lib/require.js" defer async="true" data-main="/src/js/main.js" charset="utf-8"></script>
 	</body>
 </html>

@@ -19,8 +19,9 @@ require.config({
         'bootstrap': "/src/js/bootstrap",
         'app': "/src/js/app",
         'router': "/src/js/router",
-        //.....以及其他的js文件，这里省略
         'init':"/src/js/init"
+        //.....以及其他的js文件，这里省略
+        
     },
     //这个配置是你在引入依赖的时候的包名
     shim:{
@@ -69,20 +70,73 @@ require.config({
 
 // require run
 //应用配置
-require([
+require(['app','angular-ui-router','router'
 	// ,
     //Filters
     //Direetives
     //Services
     //TopController
     //Controller
-], function (angular,angular_route,angular_ui_router,angular_resource,angular_animate,angular_messages,angular_upload,angular_upload_shim,angular_cookies,angular_sanitize
+], function (app,angular_ui_router,router
 	// ,
 	//
     ) {
 
+        console.log('main app require');
+    // app.run(['$rootScope','$state','$stateParams',
+    //     function ($rootScope, $state, $stateParams) {
+    //         console.log('app run ...');
+    //         //方便获得当前状态的方法，绑到根作用域
+    //         $rootScope.$state = $state;
+    //         $rootScope.$stateParams = $stateParams
+    //     }
+    //  ])
+     // .config(function($stateProvider, $urlRouterProvider, $locationProvider, $uiViewScrollProvider){
+        // console.log('route config ...');
+        //用于改变state时跳至顶部
+        // $uiViewScrollProvider.useAnchorScroll();
+        // 默认进入先重定向
+        // $urlRouterProvider.when("", "/PageTab");
+        // $urlRouterProvider.otherwise('/');
+        // $stateProvider
+            // .state('index',{
+            //     url:'/index',
+            //     views: {
+            //         '':{
+            //             templateUrl:'/src/views/PageTab.html'
+            //         },
+            //         'main1@index':{
+            //             templateUrl:'/src/views/PageTab.html'
+            //         },
+            //         'main2@index':{
+            //             templateUrl:'/src/views/PageTab.html'
+            //         }
+            //     }
+            // })
+            // .state("PageTab", {
+            //     // abstract: true 表明此状态不能被显性激活，只能被子状态隐性激活
+            //     url: "/PageTab",
+            //     templateUrl: "/src/views/PageTab.html"
+            // })
+            // .state("PageTab.Page1", {
+            //     url:"/Page1",
+            //     templateUrl: "/src/views/Page1.html"
+            // })
+            // .state("PageTab.Page2", {
+            //     url:"/Page2",
+            //     templateUrl: "/src/views/Page2.html"
+            // })
+            // .state("PageTab.Page3", {
+            //     url:"/Page3",
+            //     templateUrl: "/src/views/Page3.html"
+            // });
 
 
+        //全局添加API接口指标
+        // $httpProvider.defaults.headers.common["Accept"] = "version=1.0.1&client_type=wap";
+        //开启HTML5链接 
+        // $locationProvider.html5Mode(true);                      
+    // })
 
 	 //创建应用与依赖组件
     // var  kqcmobeli = angular.module('kqcmobeli', ['ngRoute','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
