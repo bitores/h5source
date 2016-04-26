@@ -18,8 +18,9 @@ require.config({
         //js文件
         'bootstrap': "/src/js/bootstrap",
         'app': "/src/js/app",
-        'router': "/src/js/router"
+        'router': "/src/js/router",
         //.....以及其他的js文件，这里省略
+        'init':"/src/js/init"
     },
     //这个配置是你在引入依赖的时候的包名
     shim:{
@@ -61,14 +62,14 @@ require.config({
 			exports:"zepto"
         },
     },
-    deps:['init','appstart'],//先加载
+    deps:['init','bootstrap'],//先加载
     urlArgs: "bust=" + (new Date()).getTime(),  //防止读取缓存，调试用
     waitSeconds:0
 });
 
 // require run
 //应用配置
-require(['angular','angular-route','angular-ui-router','angular-resource','angular-animate','angular-messages','angular-cookies','angular-sanitize'
+require([
 	// ,
     //Filters
     //Direetives
@@ -172,10 +173,7 @@ require(['angular','angular-route','angular-ui-router','angular-resource','angul
     // });
 
 
-    //全局添加API接口指标
-    // $httpProvider.defaults.headers.common["Accept"] = "version=1.0.1&client_type=wap";
-    //开启HTML5链接 
-    // $locationProvider.html5Mode(true);
+    
 
     
 
