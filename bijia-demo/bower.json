@@ -1,0 +1,27 @@
+{
+  "name": "bijia-demo",
+  "homepage": "https://github.com/github521huang/h5source",
+  "authors": [
+    "huangzhengjie <huangzhengjie@kuaiqiangche.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+      "angular": "1.4.6",
+      "angular-cookies": "1.4.6",
+      "angular-messages": "1.4.6",
+      "angular-resource": "1.4.6",
+      "angular-route": "1.4.6",
+      "angular-sanitize": "1.4.6",
+      "angular-file-upload":"2.2.0",
+      "angular-ui-router":"~0.2.18"
+  }
+}

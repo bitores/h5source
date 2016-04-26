@@ -18,6 +18,7 @@ fis.match('::image', {
 fis.match('*.js', {
 	//https://github.com/mishoo/UglifyJS2#compressor-options
   // optimizer: fis.plugin('uglify-js',{mangle: false})// 压缩不混淆
+  // npm install fis-
   isMod:true,
   preprocessor: fis.plugin('annotate'),
   optimizer: fis.plugin('uglify-js')
