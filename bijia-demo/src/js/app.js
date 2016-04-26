@@ -1,6 +1,3 @@
-define(["angular",
-        'mainController',
-        'mainDirective'
-       ],function(angular){
-    return angular.module("webapp",['ui.router','ngStorage','ngSanitize','webapp.controllers','webapp.directive']);
+define(['angular'],function(angular){
+    return angular.module('app', ['ngRoute','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
 })

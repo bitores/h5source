@@ -5,8 +5,16 @@ require.config({
 	 //配置angular的路径
     paths:{
     	// 一些库文件
-        "angular":"path/to/angular", 
-        "angular-route":"path/to/angular-route",
+        "angular":"/pkg/angular", 
+        "angular-animate":"/pkg/angular-animate",
+        "angular-cookies":"/pkg/angular-cookies",
+        "angular-messages":"/pkg/angular-messages",
+        "angular-resource":"/pkg/angular-resource",
+        "angular-route":"/pkg/angular-route",
+        "angular-ui-router":"/pkg/angular-ui-router",
+        "angular-sanitize":"/pkg/angular-sanitize",
+        "swiper":"/lib/swiper.min",
+        "zepto":"/lib/zepto.min",
         //js文件
         'bootstrap': "/src/js/bootstrap",
         'app': "/src/js/app",
@@ -18,40 +26,70 @@ require.config({
         "angular":{
             exports:"angular"
         },
+		"angular-animate": {
+        	deps: ['angular'],   //依赖什么模块
+            exports:"angular-animate"
+        },
+		"angular-cookies":  {
+        	deps: ['angular'],   //依赖什么模块
+            exports:"angular-cookies"
+        },
+		"angular-messages":  {
+        	deps: ['angular'],   //依赖什么模块
+            exports:"angular-messages"
+        },
+		"angular-resource":  {
+        	deps: ['angular'],   //依赖什么模块
+            exports:"angular-resource"
+        },
         "angular-route":{
+        	deps: ['angular'],   //依赖什么模块
             exports:"angular-route"
         },
-        "angular-ui-route":{
-            exports:"angular-ui-route"
+        "angular-ui-router":{
+        	deps: ['angular'],   //依赖什么模块
+            exports:"angular-ui-router"
+        },
+		"angular-sanitize":  {
+        	deps: ['angular'],   //依赖什么模块
+            exports:"angular-sanitize"
+        },
+		"swiper":  {
+			exports:"swiper"
+        },
+		"zepto":  {
+			exports:"zepto"
         },
     },
-    deps:['bootstrap'],//先加载
-    urlArgs: "bust=" + (new Date()).getTime()  //防止读取缓存，调试用
+    deps:['init','appstart'],//先加载
+    urlArgs: "bust=" + (new Date()).getTime(),  //防止读取缓存，调试用
+    waitSeconds:0
 });
 
 // require run
 //应用配置
-require(['zepto','swiper','angular','angular-route','angular-resource','angular-animate','angular-messages','angular-upload','angular-upload-shim','angular-cookies','angular-sanitize'
+require(['angular','angular-route','angular-ui-router','angular-resource','angular-animate','angular-messages','angular-cookies','angular-sanitize'
 	// ,
     //Filters
     //Direetives
     //Services
     //TopController
     //Controller
-], function (nnd,swiper,angular,angular_route,angular_resource,angular_animate,angular_messages,angular_upload,angular_upload_shim,angular_cookies,angular_sanitize
+], function (angular,angular_route,angular_ui_router,angular_resource,angular_animate,angular_messages,angular_upload,angular_upload_shim,angular_cookies,angular_sanitize
 	// ,
+	//
     ) {
 
 
 
 
 	 //创建应用与依赖组件
-    var  kqcmobeli = angular.module('kqcmobeli', ['ngRoute','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
+    // var  kqcmobeli = angular.module('kqcmobeli', ['ngRoute','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
 
 
 
-    $rootScope.$on('$locationChangeSuccess',function(evt,next,current){
-            $rootScope.path = $location.path()
+    // $rootScope.$on('$locationChangeSuccess',function(evt,next,current){
+            // $rootScope.path = $location.path()
 //          console.log('地址变化后')
                
 //         	var url = $location.path();
@@ -83,9 +121,9 @@ require(['zepto','swiper','angular','angular-route','angular-resource','angular-
 
 			
         	
-        })
+        // })
         
-        $rootScope.$on('$routeChangeStart',function(evt,next,current){
+        // $rootScope.$on('$routeChangeStart',function(evt,next,current){
         	
         	
 //      	if($rootScope.Url){
@@ -110,36 +148,35 @@ require(['zepto','swiper','angular','angular-route','angular-resource','angular-
 //      	$rootScope.path = $location.path()
 //      	$rootScope.search ==  $location.search()
 
-        })
+        // })
         
-        $rootScope.$on("$routeChangeSuccess",function(evt,next,current){
+        // $rootScope.$on("$routeChangeSuccess",function(evt,next,current){
         	
             //路由后
 //             console.log('路由后')
             // console.log(evt)   
             // console.log(next)   
             // console.log(current)           
-        });
-        $rootScope.$on("$routeChangeError",function(evt,next,current){
+        // });
+        // $rootScope.$on("$routeChangeError",function(evt,next,current){
             //路由失败
             // console.log('路由失败')
             // console.log(evt,next,current)           
-        });
-        $rootScope.$on("$routeUpdate",function(evt,next,current){
+        // });
+        // $rootScope.$on("$routeUpdate",function(evt,next,current){
             //路由重新使用某个控制器
             // console.log('路由重新使用某个控制器')
             // console.log(evt,next,current)           
-        });
+        // });
         
-    });
+    // });
 
 
     //全局添加API接口指标
-    $httpProvider.defaults.headers.common["Accept"] = "version=1.0.1&client_type=wap";
+    // $httpProvider.defaults.headers.common["Accept"] = "version=1.0.1&client_type=wap";
     //开启HTML5链接 
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
 
-    //手动启动mobule
-    angular.bootstrap($("html")[0],["kqcmobeli"]);
+    
 
 });

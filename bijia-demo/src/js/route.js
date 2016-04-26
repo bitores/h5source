@@ -1,8 +1,5 @@
 define(["app"],function(app){
-    return app.run([
-        '$rootScope',
-        '$state',
-        '$stateParams',
+    return app.run(['$rootScope','$state','$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams
