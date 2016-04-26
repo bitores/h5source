@@ -1,0 +1,52 @@
+/* 配置文件 */
+@import "../config/config_mobile.less";
+
+/* 咨询列表 */
+.m-newslist { padding: 0 5px;
+    .list { width: 100%;
+        li.noner { text-align: center; background: none; padding: 30px 0; color: #bebebd;
+            p { font-size: 18px; }
+            i { font-size: 168px; }
+        }
+        li { background: #fff; border-radius: 4px; width: 100%; margin: 0 0 10px 0;
+            a { width: 100%; display: inline-block; }
+            img { max-width: 122px; float: left; margin: 0 10px 0 0; width: 122px;}
+            .info { color: #929292; display: inline-block; width: 100%; padding: 10px;
+                p { line-height: 24px; max-height: 72px; overflow: hidden; }
+                .chl { color: #ff8000; padding: 0 6px 0 0; }
+            }
+        }
+    }
+}
+
+/* 加载更多 */
+.m-loding { width: 100%; text-align: center; color: #3a3d42; height: 60px; padding: 10px 0; line-height: 40px;
+    .loading_icon { background: url(/plug/Dev/images/loading_icon.png) no-repeat; width: 35px; height: 32px; display: inline-block; vertical-align: middle; margin: 0 10px 0 0; }
+}
+
+/* 通用登录框 */
+.m-login { position: fixed; top: 0; left: 0; width: 100%; height: 0; overflow: hidden; background: rgba(0,0,0,0.8); z-index: 200;
+    p { line-height: 40px; height: 40px; text-align: center; color: #fff; position: relative;
+        .mi-close { position: absolute; right: 0; top: 0; color: #fff; height: 40px; width: 40px; background-position: center center; display:inline-block;
+        }
+    }
+    .info { text-align: center; color: #fff;
+        .error { width: 100%; padding: 0 20px; height: 30px; line-height: 30px; color: #ff0000; }
+        .cont { width: 100%; overflow: hidden; line-height: 40px;
+            .left { width: 80%; float: left; }
+            .right { width: 20%; float: right;
+                img { width: 100%; height: 40px; }
+            }
+            .but { width: 100%; height: 40px; line-height: 40px; color: #fff; display: inline-block; text-align: center; background: @web_background_color; border-radius: 0; overflow: hidden; font-size: 16px; }
+        }
+        .but { width: 200px; height: 48px; line-height: 48px; color: #fff; display: inline-block; text-align: center; background: @web_background_color; border-radius: 4px; overflow: hidden; font-size: 16px; padding: 0 10px; box-sizing: border-box; }
+
+        .but_no { width: 200px; height: 48px; line-height: 48px; color: @web_background_color; display: inline-block; text-align: center; border-radius: 4px; overflow: hidden; font-size: 16px; border: 1px solid @web_background_color; padding: 0 10px; box-sizing: border-box; }
+        input { width: 100%; height: 40px; line-height: 40px; border: 0; background: #605e5e; padding: 0 10px; color: #fff; }
+        .icon_0 { background: @web_background_color; border-radius: 50%; display: inline-block; width: 20px; height: 20px; margin: 0 2px 0 10px; text-align: center; line-height: 20px; }
+    }
+
+    .fankui { margin: 130px 0 0 0;
+        img { margin: 0 auto; display: block; }
+    }
+}

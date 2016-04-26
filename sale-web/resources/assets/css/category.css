@@ -1,0 +1,129 @@
+/*-------------------------品牌选车首页--------------------*/
+*{box-sizing:border-box;}
+.brand-box{width: 100%; padding-bottom: 30px; background-color: #f1f1f1;}
+.brand-box .brand-content{width: 1010px; margin:0 auto;	background-color: #f1f1f1;}
+.brand-box .brand-content .brand-category-content{width: 1010px; margin:0 auto;	background-color: #f1f1f1;}
+.brand-box .brand-content .brand-index{height: 54px; line-height: 54px; color: #999;}
+.brand-box .brand-content .brand-index a{color: #999;}
+.brand-box .brand-content .brand-index a:hover{color: #333;}
+.brand-box .brand-content .sale-act{padding-bottom: 20px; overflow: hidden;}
+.brand-box .brand-content .sale-act .title { float: left; height: 42px; line-height: 42px; margin-right: 10px; border: 1px dotted transparent; padding: 0px 24px 0px 28px ; background: transparent; color: #f30;background:url(../images/icon/sale-act.png) no-repeat left center; color: #666; font-size: 14px;}
+.brand-box .brand-content .sale-act .act-tt{ float: left; height: 42px; line-height: 42px; margin-right: 10px; border: 1px dotted #b5b5b5; padding: 0 24px; background: #fff; color: #666; font-size: 14px; }
+.brand-box .brand-content .sale-act .act-tt a span{ color: #ff3300;}
+.brand-box .brand-content .sale-act .act-tt:hover{ background: #ff3300; border-color: transparent; color: #fff; }
+.brand-box .brand-content .sale-act .act-tt:hover a{color: #fff;text-align: center;}
+.brand-box .brand-content .sale-act .act-tt:hover a span{color: #fff; }
+.brand-box .brand-content .brand-category .brand-name { overflow: hidden;width:1150px;}
+.brand-box .brand-content .brand-category .brand-name li{display:inline-block;width:160px;float: left; height: 43px; line-height: 43px;margin-right: 10px; margin-bottom: 8px; border:1px solid #fff; background-color: #fff; color: #000; }
+.brand-box .brand-content .brand-category .brand-name li a{width:100%;height: 43px;}
+.brand-box .brand-content .brand-category .brand-name li a span{padding-left:2px; width: 73px; display: inline-block; height: 43px;}
+.brand-box .brand-content .brand-category .brand-name .more-category{display:block; text-align: center; width: 138px; height: 43px;}
+/* .brand-box .brand-content .brand-category .brand-name li.no-mr{margin-right: 0px;}  */
+.brand-box .brand-content .brand-category .brand-name li:hover{  border:1px solid #f30; color: #f30;cursor:pointer; }
+.brand-box .brand-content .brand-category .brand-name li:hover a{  color: #f30; }
+.brand-car-list { width: 100%; background-color: #fff; overflow: hidden;}
+.brand-car-list li { float: left; width: 250px; padding:25px 25px 25px 25px;text-align: center; padding-bottom: 25px; }
+.brand-car-list li a { display: block; width:160px;text-align: center;}
+.brand-car-list li a:hover{border:0px solid #f30; color: #f30;cursor:pointer;}
+.brand-car-list li img { width: 180px; height: 120px; }
+.brand-car-list li .name { border: 0px; font-size: 14px; margin-top: 20px; }
+.brand-car-list li .brand-price { padding-top: 10px; }
+.brand-car-list li .brand-price:hover {color: rgb(255,149,0); }
+#all-brand a{width: 100%; text-align: center; display: inline-block;} 
+#checks{border: 1px solid red;}
+#checks a{color: #f30; }
+a.more-category {text-align: center;}
+.brand-box .brand-content .brand-category .brand-name li img{ width: 35px;
+height: 35px;
+margin-right: 10px;
+margin-left: 35px;}
+.t_c{text-align: center;}
+/*---------------------------品牌选车列表页--------------------------*/
+.car-display { width: 1000px; overflow: hidden; margin: 0 auto; }
+.car-display i.circle{display: inline-block; width: 18px; height: 18px; border-radius: 50%;position: relative;top: 3px;border:2px solid #ccc}
+/*左侧信息*/
+.car-display .car-info { float: left; width: 265px; margin-right: 10px;}
+.car-display .car-info .feature-port { padding: 17px; margin-bottom: 2px; background-color: #fff;}
+.car-display .car-info .feature-port .option { padding: 17px 0px 17px 8px;}
+.car-display .car-info .feature-port .feature-name i {display: block;  float: left; width:20px; height: 20px; margin-right: 10px; background:url(../images/brand-icon.png);}
+.car-display .car-info .feature-port .feature-name i.pic1 { background-position: 0 0}
+.car-display .car-info .feature-port .feature-name i.pic2 { background-position: 0 -20px;}
+.car-display .car-info .feature-port .feature-name i.pic3 { background-position: 0 -40px;}
+.car-display .car-info .feature-port .feature-name i.pic4 { background-position: 0 -60px;}
+.car-display .car-info .feature-port a{line-height: 27px; cursor: pointer;}
+.car-display .car-info .feature-port a.linked{ color: #f30;}
+.car-display .car-info .feature-port a:hover{color: #f30;}
+.car-display .car-info .feature-port .feature { font-size: 12px; color: #333; line-height: 26px; height: 26px;}
+.car-display .car-info .feature-port.feature-category1 .feature {padding: 0px; display: block;}
+.car-display .car-info .feature-port.feature-category1 .linked {color: #f00; }
+.car-display .car-info .feature-port.feature-category2 .feature {padding: 0px 5px;margin-top: 15px;}
+.car-display .car-info .feature-port.feature-category2 .linked {border-bottom:2px solid #f30; padding-bottom: 8px;}
+.car-display .car-info .feature-port.feature-category3 .feature {padding: 0px 3px;margin-top: 15px;}
+.car-display .car-info .feature-port.feature-category3 .linked .circle{border:2px solid #f00;}
+.car-display .car-info .feature-port.feature-category3 .linked .circle{border:2px solid #f00;}
+.car-display .car-info .feature-port.feature-category4 .linked .circle{border:2px solid #f00;}
+.car-display .car-info .feature-port.feature-category3 .all-list,
+.car-display .car-info .feature-port.feature-category4 .all-list{padding-right: 5px;}
+.car-display .car-info .feature-port .feature-name { font-size: 12px; color: #999999; line-height: 20px;}
+/*右侧车辆*/
+.car-display .feature-car { float: left; width: 725px;  }
+.car-display .feature-car  .car-line  {overflow: hidden; margin-bottom: 2px;background-color: #fff; padding:30px;}
+.car-display .feature-car  .car-line .left-img {  float: left; width: 219px; height: 146px; margin-right: 30px;}
+.car-display .feature-car  .car-line .left-img img{ width: 219px; height: 146px; }
+.car-display .feature-car  .car-line .right-content{ float: left; width: 406px;  }
+.car-display .feature-car  .car-line .right-content .line1 { line-height: 26px; margin-bottom: 10px; padding-left: 6px;}
+.car-display .feature-car  .car-line .right-content .line1 .current-car{ display: inline-block; width: 50px; height: 26px; background: #f30; color: #fff;text-align: center; border:1px solid #f30; border-radius: 3px; line-height: 26px; margin-right: 12px; }
+.car-display .feature-car  .car-line .right-content .line1 .presell-car{ display: inline-block; width: 50px; height: 26px; background: #fff; color: #999;text-align: center; border:1px solid #999; border-radius: 3px; line-height: 26px; margin-right: 12px;  }
+.car-display .feature-car  .car-line .right-content .line1 .car-name{font-size: 14px; color: #333; cursor: pointer;}
+.car-display .feature-car  .car-line .right-content .line2 {margin-bottom: 10px; padding-left: 6px;}
+.car-display .feature-car  .car-line .right-content .line2 .feature-title{font-size: 14px; color: #999; padding-left: 6px;}
+.car-display .feature-car  .car-line .right-content .line2 .color{padding-left: 6px; padding-right: 20px; font-size: 14px;}
+.car-display .feature-car  .car-line .right-content .line3 { position: relative; padding-left: 12px;  height: 46px; line-height: 46px; background-color: #f1f1f1; font-size: 14px;}
+.car-display .feature-car  .car-line .right-content .line3 .zd-price {text-decoration: line-through; color: #999; padding-right: 12px;}
+.car-display .feature-car  .car-line .right-content .line3 .save { color: #f30; padding-right: 12px;}
+.car-display .feature-car  .car-line .right-content .line3 .current-price {color: #f30; padding-right: 12px; color: #f30;}
+.car-display .feature-car  .car-line .right-content .line3 .current-price b{color: #f30; font-size: 27px; padding-right: 12px; color: #f30;}
+.car-display .feature-car  .car-line .right-content .line3 .discount{ position: absolute; right: -15px; top: -7px; width: 41px; display: block; height: 28px; line-height: 22px;background: url(../images/icon/discount.png);text-align: center;color: #fff;}
+/*分页*/
+dl.page-change{display: table; margin: 30px auto 10px;}
+dt { border: 1px solid #d7d7d7; width: 34px; height: 34px; float: left; margin: 0 7px; background: #f1f1f1; }
+dt.page-left { border: 0; width: 34px; height: 34px; float: left; margin: 0 7px; background: #f1f1f1; }
+dt.page-right { border: 0; width: 34px; height: 34px; float: left; margin: 0 7px; background: #f1f1f1; }
+dd { float: left;  }
+dd a { color: #b7b7b7; font-size: 14px; display: inline-block; border: 1px solid #d7d7d7; width: 34px; height: 34px; text-align: center; line-height: 34px; background-color: #fff; margin: 0 7px; }
+dd a:hover { color: #f04e29; border-color: #f04e29; }
+.ell { float: left; width: 34px; height: 34px; text-align: center; line-height: 34px; margin: 0 7px; color: #b7b7b7; font-size: 14px; }||||||| .r10845
+
+/*弹出框*/
+#myModal {box-sizing:border-box;}
+#myModal *{box-sizing:border-box;}
+.fade { opacity: 0; -webkit-transition: opacity .15s linear; -o-transition: opacity .15s linear; transition: opacity .15s linear }
+.fade.in { opacity: 1 }
+.modal-open { overflow: hidden }
+.modal { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; display: none; overflow: hidden; -webkit-overflow-scrolling: touch; outline: 0 }
+.modal.fade .modal-dialog { -webkit-transition: -webkit-transform .3s ease-out; -o-transition: -o-transform .3s ease-out; transition: transform .3s ease-out; -webkit-transform: translate(0, -25%); -ms-transform: translate(0, -25%); -o-transform: translate(0, -25%); transform: translate(0, -25%) }
+.modal.in .modal-dialog { -webkit-transform: translate(0, 0); -ms-transform: translate(0, 0); -o-transform: translate(0, 0); transform: translate(0, 0) }
+.modal-open .modal { overflow-x: hidden; overflow-y: auto }
+.modal-dialog { position: relative; width: auto; margin: 10px }
+.modal-content { position: relative; background-color: #fff; -webkit-background-clip: padding-box; background-clip: padding-box; border: 1px solid #999; border: 1px solid rgba(0, 0, 0, .2); border-radius: 6px; outline: 0; -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5); box-shadow: 0 3px 9px rgba(0, 0, 0, .5) }
+.modal-backdrop { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1040; background-color: #000 }
+.modal-backdrop.fade { filter: alpha(opacity=0); opacity: 0 }
+.modal-backdrop.in { filter: alpha(opacity=50); opacity: .5 }
+.modal-header { min-height: 16.43px; padding: 15px; border-bottom: 1px solid #e5e5e5 }
+.modal-header .close { margin-top: -2px }
+.modal-title { margin: 0; line-height: 1.42857143 }
+.modal-body { position: relative; padding: 15px }
+.modal-footer { padding: 15px; text-align: right; border-top: 1px solid #e5e5e5 }
+.modal-footer .btn+.btn { margin-bottom: 0; margin-left: 5px }
+.modal-footer .btn-group .btn+.btn { margin-left: -1px }
+.modal-footer .btn-block+.btn-block { margin-left: 0 }
+.modal-scrollbar-measure { position: absolute; top: -9999px; width: 50px; height: 50px; overflow: scroll }
+@media (min-width:768px) {
+	.modal-dialog { width: 600px; margin: 30px auto }
+	.modal-content { -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5); box-shadow: 0 5px 15px rgba(0, 0, 0, .5) }
+	.modal-sm { width: 300px }
+}
+@media (min-width:992px) {
+	.modal-lg { width: 900px }
+}
+.btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before { display: table; content: " " }

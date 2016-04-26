@@ -1,0 +1,25 @@
+/*reset.css*/
+a,address,b,big,blockquote,body,center,cite,code,dd,del,div,dl,dt,em,fieldset,font,form,h1,h2,h3,h4,h5,h6,html,i,iframe,img,ins,label,input,li,ol,p,small,span,strong,u,ul{margin:0;padding:0}
+strong,b{ font-weight:normal;}
+small{font-size: 14px;}
+em,i,small{ font-style:normal;}
+ol,ul{ list-style:none;}
+a{ text-decoration:none;color: #333333;}
+img{border:0; vertical-align:middle;}
+.clear:after{content:"\20";display:block;height:0;clear:both}
+input{border:none;background:none;outline: none;-webkit-appearance: button;}
+h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+html{width:100%;height:100%;/*-webkit-box-sizing:border-box;*/}
+body{width:100%;height:100%;/*-webkit-box-sizing:border-box;*/min-width: 1000px;
+font-family:'PingFang SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans
+}
+/*body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, q, dl, dt, dd, ol, ul, li, fieldset, form, legend, caption, tbody, tfoot, thead, article, aside, dialog, figure, footer, header, hgroup, nav, section, ul {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 14px;
+	font: inherit;
+	vertical-align: baseline
+}*/
+.clear:after{content:"\20";display:block;height:0;clear:both}
+/** { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box }*/

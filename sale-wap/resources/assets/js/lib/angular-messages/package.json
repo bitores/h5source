@@ -1,0 +1,82 @@
+{
+  "_args": [
+    [
+      "angular-messages@1.4.6",
+      "C:\\Users\\睿霖\\Desktop\\cs"
+    ]
+  ],
+  "_from": "angular-messages@1.4.6",
+  "_id": "angular-messages@1.4.6",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/angular-messages",
+  "_nodeVersion": "0.10.26",
+  "_npmUser": {
+    "email": "angular-core+npm@google.com",
+    "name": "angularcore"
+  },
+  "_npmVersion": "2.0.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular-messages",
+    "raw": "angular-messages@1.4.6",
+    "rawSpec": "1.4.6",
+    "scope": null,
+    "spec": "1.4.6",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-messages/-/angular-messages-1.4.6.tgz",
+  "_shasum": "347791749c505ab09632303fb14b50807fa41283",
+  "_shrinkwrap": null,
+  "_spec": "angular-messages@1.4.6",
+  "_where": "C:\\Users\\睿霖\\Desktop\\cs",
+  "author": {
+    "email": "angular-core+npm@google.com",
+    "name": "Angular Core Team"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "dependencies": {},
+  "description": "AngularJS module that provides enhanced support for displaying messages within templates",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "347791749c505ab09632303fb14b50807fa41283",
+    "tarball": "http://registry.npmjs.org/angular-messages/-/angular-messages-1.4.6.tgz"
+  },
+  "gitHead": "4bc0969caf9adea6b184780169033ac5ed12cf6f",
+  "homepage": "http://angularjs.org",
+  "keywords": [
+    "angular",
+    "browser",
+    "client-side",
+    "framework"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "name": "angular-messages",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.4.6"
+}

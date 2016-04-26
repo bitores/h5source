@@ -17,7 +17,10 @@ fis.match('::image', {
 
 fis.match('*.js', {
 	//https://github.com/mishoo/UglifyJS2#compressor-options
-  optimizer: fis.plugin('uglify-js',{mangle: false})
+  // optimizer: fis.plugin('uglify-js',{mangle: false})// 压缩不混淆
+  isMod:true,
+  preprocessor: fis.plugin('annotate'),
+  optimizer: fis.plugin('uglify-js')
 });
 
 fis.match('*.css', {
@@ -33,7 +36,8 @@ fis.match('*.html', {
   optimizer: fis.plugin('html-minifier',{
   	//option https://github.com/kangax/html-minifier
   	minifyCSS: true,
-  	minifyJS: true
+  	minifyJS: true,
+  	preserveLineBreaks:true
   })  
 });
 

@@ -1,0 +1,407 @@
+/*---------------------------第一次快感专题页----------------------------*/
+.first-banner{background:url(../images/portal/first-banner.jpg) center; height:887px; background-size:cover;}
+.sub-title{text-align: center;background: #fff; position: relative; z-index: 2; height: 158px;}
+.first-content{background: url(../images/portal/content-bg.jpg) top center; position: relative;z-index: 1; background-size:cover;}
+
+.first-content .port{width: 1000px;margin: 0 auto;}
+/*第一部车*/
+.first-content .port1 {padding-top: 230px;}
+.first-content .port1 .car-picture {float: left; position: relative;width: 600px;}
+.first-content .port1 .car-picture img { position: relative;left: -82px; top: 51px; }
+.first-content .port1 .introduce {width: 400px;float: left;}
+.first-content .introduce .title {font-size: 68px; color: #007bc7;}
+.first-content .introduce .title strong{font-weight: 900; }
+.first-content .introduce .sub-tt{font-weight: bolder;font-size: 25px;color: #0092d7; }
+.first-content .introduce .split{border: 1px dotted #727171; }
+.first-content .introduce .first-line{ padding: 16px 0px; }
+.first-content .introduce .first-line .car-name{ color: #595757;font-size: 29px;text-indent: 18px;background: url(../images/portal/orange.jpg) center left no-repeat;}
+.first-content .introduce .first-line .own-price{ color: #000;font-size: 18px;text-indent: 18px; margin-top: 10px;}
+.first-content .introduce .first-line .own-price b{ font-weight: bold; font-size: 20px;}
+.first-content .introduce .first-line .our-price{ color: #484747;font-size: 20px;text-indent: 18px; }
+.first-content .introduce .first-line .our-price span{ color: #e94816;font-size: 32px;font-weight: bolder;}
+.first-content .introduce .look-more{text-indent: 18px; margin-top: 6px;}
+/*第二部车*/
+.first-content .port2 {padding-top: 84px;}
+.first-content .port2 .car-picture {float: left; position: relative;width: 614px;}
+.first-content .port2 .car-picture img { position: relative;left: -100px; top: 55px; }
+.first-content .port2 .introduce {width: 386px;float: left;}
+.first-content .port2 .introduce .look-more{text-indent: 18px; margin-top: 40px;}
+/*第三部车*/
+.first-content .port3 {padding-top: 227px;}
+.first-content .port3 .car-picture {float: left; position: relative;width: 600px;}
+.first-content .port3 .car-picture img { position: relative;left: -140px; top: 51px; }
+.first-content .port3 .introduce {width: 400px;float: left;}
+/*第四部车*/
+.first-content .port4 {padding-top: 136px;}
+.first-content .port4 .car-picture {float: left; position: relative;width: 628px;}
+.first-content .port4 .car-picture img { position: relative; top: 138px;}
+.first-content .port4 .introduce {width: 372px;float: left;}
+/*活动说明*/
+.first-content .activity-info .tt{text-align: center;margin-top: 158px;}
+.first-content .activity-info ul.act-info{ width: 836px;margin: 0 auto; margin-top: 24px;}
+.first-content .activity-info ul.act-info li{first-line-height: 30px; font-size: 18px;color: #221815;padding-bottom: 12px; padding-left: 18px;background: url(../images/portal/act-dot.png) no-repeat left 10px;}
+.first-content .pcs-box{margin-top: 38px;}
+.first-content .pcs-box .tt{text-align: center;}
+.first-content .pcs-box .pcs{width: 700px; margin: 0 auto;}
+.first-content .pcs-box .pcs .pcs-list{overflow: hidden;padding-top: 30px;padding-bottom: 70px;}
+.first-content .pcs-box .pcs .list-box1{width: 76px; float: left;}
+.first-content .pcs-box .pcs .arrow{float: left; padding: 54px;}
+.first-content .pcs-box .pcs .list-box1 .img{height: 75px;text-align: center; }
+.first-content .pcs-box .pcs .list-box1 .tt{font-size: 12px;color: #fff;height: 20px;first-line-height: 20px; background: #353841; text-align: center;}
+.first-content .pcs-box .pcs .list-box1 .info{color: #999;font-size: 12px; text-align: center;}
+.first-content .pcs-box .pcs .list-box1 .info.mt20{margin-top: 20px;}
+/*屏幕尺寸大于1920*/
+@media (min-width: 1921px){
+.first-banner{padding-bottom: 50px;}
+.sub-title{text-align: center;background: #fff; position: relative; z-index: 2; height: 190px;}
+.first-content  .port2 .introduce .title {margin-top: 20px;}
+.first-content  .port3 .introduce .title {margin-top: 50px;}
+.first-content  .port4 .introduce .title {margin-top: 50px;}
+.first-content .port4 .car-picture {float: left; position: relative;width: 600px;}
+.first-content .port4 .car-picture img { position: relative; top: 138px;}
+.first-content .port4 .introduce {width: 400px;float: left;}
+.activity-info {margin-top: 300px;}
+ }
+
+/*-------------------------------- 赛道专题页--------------------------------*/
+.track-banner{position: relative;z-index: 2; background: url(../images/portal/track.png) center;height:640px; background-size: cover;}
+.track-content{position: relative;z-index: 1;top: -180px;margin-bottom: -180px; background: url(../images/portal/track-content.jpg) center top; background-size: cover;}
+.track-content .port{width: 947px;margin:0 auto; text-align: center;}
+.track-content .port.port1{width: 978px; padding-top: 240px;}
+.track-content .port.port2{width: 978px; padding-top: 89px;background: url(../images/portal/port1-bg.png) right -90px no-repeat;}
+.track-content .port.port3{ padding-top: 59px;background: url(../images/portal/port3-bg.png) right -90px no-repeat;}
+.track-content .port.port3 img{ margin-left: 18px;}
+.track-content .port.port4{width: 978px; padding-top: 100px;background: url(../images/portal/port4-bg.png) 18px -140px no-repeat;}
+.track-content .port.port5{ padding-top: 100px;background: url(../images/portal/port5-bg.png) 15px -90px no-repeat;}
+.track-content .activity-info{width: 1000px;margin: 100px auto 0;}
+.track-content .activity-info .tt{text-align: center;height: 53px; line-height: 53px; background: url(../images/portal/act3-bg.png);}
+.track-content .activity-info .tt img{margin-top: 15px;}
+.track-content .activity-info ul.act-info{ width: 738px;margin: 0 auto; margin-top: 24px;}
+.track-content .activity-info ul.act-info li{line-height: 30px; font-size: 14px;color: #666666; border-bottom: 1px solid #313334; height: 34px; line-height: 34px;}
+.track-content .activity-info ul.act-info li.indent{text-indent: 16px;}
+.track-content .pcs-box {width: 1000px;margin: 63px auto 0;}
+.track-content .pcs-box .tt{text-align: center;height: 53px; line-height: 53px; background: url(../images/portal/act3-bg.png);}
+.track-content .pcs-box .tt img{margin-top: 15px;}
+.track-content .pcs-box .pcs{width: 700px; margin: 0 auto;}
+.track-content .pcs-box .pcs .pcs-list{overflow: hidden;padding-top: 30px;padding-bottom: 70px;}
+.track-content .pcs-box .pcs .list-box1{width: 76px; float: left;}
+.track-content .pcs-box .pcs .arrow{float: left; padding: 54px;}
+.track-content .pcs-box .pcs .list-box1 .img{height: 75px;text-align: center; }
+.track-content .pcs-box .pcs .list-box1 .tt{font-size: 12px;color: #fff;height: 20px;line-height: 20px; background: #353841; text-align: center;}
+.track-content .pcs-box .pcs .list-box1 .info{color: #999;font-size: 12px; text-align: center;}
+.track-content .pcs-box .pcs .list-box1 .info.mt20{margin-top: 20px;}
+
+
+/*----------------------------------------英菲尼迪----------------------------------------*/
+.infinity-top{background:url(../images/portal/top.png) center; height:548px;position: relative;z-index: 2;}
+.infinity-content{width: 100%; background-color: #212120; position: relative; z-index: 1; top: -60px;margin-bottom: -60px;}
+.infinity-content .main-box{width: 991px;margin: 0 auto;overflow: hidden;}
+.infinity-content .main-box .box{float: left; width: 450px;}
+.infinity-content .main-box .box.ml60{padding-left: 60px; border-left: 1px dotted #4a4a4c;}
+.infinity-content .main-box .box .img{text-align: center;padding-top: 102px;}
+.infinity-content .main-box .box .img a{display: block;}
+.infinity-content .main-box .box .car-name{width:300px; margin:0 auto;font-size: 23px;color: #9999;text-indent: 10px; margin-top: 52px;padding-bottom: 24px;}
+.infinity-content .main-box .box .car-name a{color: #999999;}
+.infinity-content .main-box .box .price-1{border: 0; overflow: hidden; width: 300px; margin: 0 auto;}
+.infinity-content .main-box .box .price-1 .left {float: left;}
+.infinity-content .main-box .box .price-1 .left .s{color: #666; font-size: 12px; }
+.infinity-content .main-box .box .price-1 .left .kqc-price{color: #666; font-size: 16px; padding-top: 6px;}
+.infinity-content .main-box .box .price-1 .right{float: left; font-size: 38px; color: #fff;}
+.infinity-content .main-box .box .price-1 .right span{color: #666;font-size: 16px }
+.infinity-content .main-box .box .performance{width: 300px; margin: 40px auto 0; color: #999999;}
+.infinity-content .main-box .box .performance li{line-height: 28px; list-style-image: url(../images/portal/d.png);}
+.infinity-content .brand-info{width: 991px;margin: 60px auto 0px;overflow: hidden;background-image: url(../images/portal/brand-bg.png); height: 279px;}
+.infinity-content .brand-info .infinity-brand{float: left; padding-top: 88px;padding-left: 100px; width: 235px;}
+.infinity-content .brand-info .brand-brief{float: left; padding-top: 50px;padding-right: 70px; width: 586px;}
+.infinity-content .brand-info .brand-brief p{text-indent: 2em}
+.infinity-content .brand-info .brand-brief .in-title{font-size: 25px; color: #fff;}
+.infinity-content .brand-info .brand-brief p{line-height: 25px;color: #999999;font-size: 12px;margin-top: 24px;}
+.infinity-content .car-config{width: 100%;background: url(../images/portal/config.png) center; height: 1522px;padding-top: 20px;}
+.infinity-content .big-tt{font-size: 23px; color: #999999; width: 309px;text-align: center; margin: 0 auto 20px; background: url(../images/portal/title-bg.png) center no-repeat no-repeat;  margin-top: 40px;  height: 58px;}
+.infinity-content .car-config .group1,.group2,.group3,.group4{width: 991px;margin: 0 auto;overflow: hidden;}
+.infinity-content .car-config .word{width: 50%; float: left;background: #333;height: 351px;}
+.infinity-content .car-config .picture{width: 50%;float: left;height: 351px;}
+.infinity-content .car-config .group1 .word{background: #333;}
+.infinity-content .car-config .group2 .word{background: #fff;}
+.infinity-content .car-config .group3 .word{background: #a29f9f;}
+.infinity-content .car-config .group4 .word{background: #1a1a1a;}
+.infinity-content .car-config .word .detial-tt{width: 380px; margin: 94px auto 0; font-size: 24px;text-indent:  }
+.infinity-content .car-config .group1 .word .detial-tt{color: #fff;  }
+.infinity-content .car-config .group2 .word .detial-tt{color: #0f0e14;  }
+.infinity-content .car-config .group3 .word .detial-tt{color: #0f0e14;  }
+.infinity-content .car-config .group4 .word .detial-tt{color: #fff;  }
+.infinity-content .car-config .word .detial-all{width: 380px;text-indent: 2em;  margin: 24px auto 0; line-height: 26px; font-size: 14px;color:#666666;}
+.infinity-content .car-config .group1 .word .detial-all{color:#666666;}
+.infinity-content .car-config  .picture img{width: 100%; height: 100%; -webkit-transition: all 0.8s;
+-o-transition: all 0.8s;
+transition: all 0.8s; }
+.infinity-content .car-config  .picture:hover img{width: 100%; height: 100%; -webkit-transform: scale(1.1,1.1);
+-ms-transform: scale(1.1,1.1);
+-o-transform: scale(1.1,1.1);
+transform: scale(1.1,1.1);}
+.infinity-content .car-list{width: 991px;margin: 0 auto;overflow: hidden;}
+.infinity-content .car-list .list-box{width: 276px; float: left; margin-top: 80px;}
+.infinity-content .car-list .list-box.ml24{margin-left: 24px;}
+.infinity-content .car-list .list-box.ml52{margin-left: 52px;}
+.infinity-content .car-list .list-box .img{height: 129px;}
+.infinity-content .car-list .list-box .car-name{font-size: 22px; color: #666;}
+.infinity-content .car-list .list-box .car-name span.gift{margin-left: 10px;}
+.infinity-content .car-list .list-box .cl1{font-size: 14px; color: #999; line-height: 26px;}
+.infinity-content .car-list .list-box .cl2{font-size: 32px; color: #fff;}
+.infinity-content .car-list .list-box .cl2 span{font-size: 19px; color: #666;}
+.infinity-content .car-list .list-box .cl2 s{font-size: 12px; color: #666;margin-left: 10px;}
+.infinity-content .car-list .list-box .more-button{font-size: 12px;margin-left: 10px;margin-top: 15px;}
+.infinity-content .car-list .list-box .more-button a{display: block;border: 1px #fff solid; height: 37px;line-height: 37px;text-align: center;color: #fff; font-size: 16px; -webkit-transition: all 0.3s ;
+-o-transition: all 0.3s ;
+transition: all 0.3s ;}
+.infinity-content .car-list .list-box .more-button a:hover{background: #fff; color: #202020; }
+.infinity-content .activity{background: url(../images/portal/activity.png) no-repeat;border: 0; width: 944px; margin: 0 auto; height: 204px; margin-top: 82px; position: relative;}
+.infinity-content .activity .big-tt{ position: absolute;top: -62px; left: 50%;margin-left: -154px;}
+.infinity-content .activity ul.announce{ width: 520px;margin: 0 auto;margin-top: 48px;}
+.infinity-content .activity ul.announce li{line-height: 26px; color: #666; font-size: 14px; }
+.infinity-content .pcs{width: 680px; margin: 0 auto;}
+.infinity-content .pcs .pcs-list{overflow: hidden;padding-top: 30px;padding-bottom: 70px;}
+.infinity-content .pcs .list-box1{width: 76px; float: left;}
+.infinity-content .pcs .arrow{float: left; padding: 54px;}
+.infinity-content .pcs .list-box1 .img{height: 66px;text-align: center; }
+.infinity-content .pcs .list-box1 .tt{font-size: 12px;color: #fff;height: 20px;line-height: 20px; background: #353841; text-align: center;}
+.infinity-content .pcs .list-box1 .info{color: #999;font-size: 12px; text-align: center;}
+.infinity-content .pcs .list-box1 .info.mt20{margin-top: 20px;}
+/*悬浮框*/
+.float-gift {position: fixed;bottom: 0px;width: 100%;height: 65px;background: #fff;}
+.float-gift .more-content {position: relative;width: 996px;margin:0 auto;height: 65px;}
+.float-gift .more-content img.gift{position: absolute;left: 4px;bottom: 0px;}
+.float-gift .more-content span.font-red{padding-left: 130px;font-size: 32px;font-weight: bolder;color: #ff3300;line-height: 65px;}
+.float-gift .more-content span.font-brown{padding-left: 20px;font-size: 16px;color: #999999;line-height: 65px;}
+.float-gift .more-content span.font-more{display: inline-block;padding-left: 21px; width:100px;margin-left: 80px;font-size: 16px;color: #ff3300;line-height: 65px;background: url(../images/portal/more-bg.png) center no-repeat; }
+.float-gift .more-content span.call{display: inline-block;float: right; padding-left: 21px; width:210px;background-color: #ff3300; line-height: 65px;color: #fff;height: 65px; }
+.float-gift .more-content span.call img{margin-top: 25px;}
+
+/*礼包说明*/
+.modal.gift-info {left:50%;top:150px;margin-left: -272px; width: 800px;height: 376px; overflow: auto;} 
+.gift-info-content .cont-top{height:90px;width: 544px;background: url(../images/portal/modal-top-bg.png);overflow: hidden;}
+.gift-info-content .cont-top .word{float: left;margin-left: 35px; }
+.gift-info-content .cont-top .word .sm{font-size: 14px;color: #fff;margin-top: 26px;}
+.gift-info-content .cont-top .word .bg{font-size: 22px;color: #fff;}
+.gift-info-content .cont-top .close{float: right;margin-right: 35px;margin-top: 35px; background: none;}
+.gift-info-content .cont-content {position: relative;padding:0 28px;width: 488px; background: url(../images/portal/content-bottom.png) bottom no-repeat #fff; border-bottom-left-radius: 10px;}
+.gift-info-content .cont-content .line1{border-bottom: 1px dotted #999;overflow: hidden;}
+.gift-info-content .cont-content .line1 .line-left{float: left; width: 184px;}
+.gift-info-content .cont-content .line1 .line-right{float: left; width: 243px; margin-left: 45px;}
+.gift-info-content .cont-content .line1 .line-right.special{ width: 190px;}
+.gift-info-content .cont-content .line1 .car-title{font-size: 12px; color: #333;height: 60px;line-height: 60px;}
+.gift-info-content .cont-content .line1 .line-right.special .car-title{height: 60px;margin-top: 10px;margin-bottom: -10px; line-height: 18px;}
+.gift-info-content .cont-content .line1 .car-title span{color: #f30; }
+.gift-info-content .cont-content .line1 p.gift-list{line-height: 18px; color: #333;padding-bottom: 20px; }
+.gift-info-content .cont-content .line2 {line-height: 50px; height: 50px;color: #f30;font-weight: bold; }
+.gift-info-content .cont-content .gift-2 {position: absolute;right: -77px;bottom: 0px;}
+.new-gift{ position: relative; width: 982px; height:291px; margin: 0 auto;background: url(../images/portal/new-gift.png);}
+.new-gift .title{position: absolute; top: 40px; right: 300px; width: 382px; height: 40px; background: url(../images/portal/new-gift-tt.png) center no-repeat; text-align: center;color: #fff; font-size: 24px; }
+.new-gift .title span{color: #ff9900;}
+.new-gift ul.ng-content{width: 735px; margin: 0 auto; padding-top: 120px;}
+.new-gift ul.ng-content li{color: #fff; line-height: 33px; font-size: 17px;}
+.new-gift ul.ng-content li span{color: #ff9900;}
+
+/*------------------------------------------------途观专题页-----------------------------------------*/
+.tiguan-content{max-width: 1920px; margin: 0 auto;}
+.tiguan-content .port{width: 100%; margin: 0 auto;}
+.tiguan-content .port.port1{background: url(../images/portal/1/tiguan_02.png) top center; background-size: cover; height: 827px; }
+.tiguan-content .port img{width: 100%;}
+.tiguan-content .talk{width: 100%; margin: 0 auto; position: relative;}
+.tiguan-content .talk img{ width: 100%;}
+/*活动说明*/
+.tiguan-content .activity-info{position: relative; top:-200px;background:url(../images/portal/1/act-bg.png); width: 953px; height: 449px; margin: 0 auto;}
+.tiguan-content .activity-info ul.act-info{ width: 750px;margin: 0 auto; padding-top: 150px;}
+.tiguan-content .activity-info ul.act-info li{line-height: 30px; font-size: 18px;color: #fff;padding-bottom: 12px; padding-left: 30px;}
+.tiguan-content .pcs-box{position: relative; top:-200px;background:url(../images/portal/1/pas-bg.png); width: 953px; height: 449px; margin: 0 auto;}
+.tiguan-content .pcs-box .tt{text-align: center;}
+.tiguan-content .pcs-box .pcs{width: 700px; margin: 0 auto;}
+.tiguan-content .pcs-box .pcs .pcs-list{overflow: hidden;padding-top:160px;padding-bottom: 70px;}
+.tiguan-content .pcs-box .pcs .list-box1{width: 76px; float: left;}
+.tiguan-content .pcs-box .pcs .arrow{float: left; padding: 54px;}
+.tiguan-content .pcs-box .pcs .list-box1 .img{height: 75px;text-align: center; }
+.tiguan-content .pcs-box .pcs .list-box1 .tt{font-size: 12px;color: #fff;height: 20px;line-height: 20px; background: #353841; text-align: center;}
+.tiguan-content .pcs-box .pcs .list-box1 .info{color: #999;font-size: 12px; text-align: center;}
+.tiguan-content .pcs-box .pcs .list-box1 .info.mt20{margin-top: 20px;}
+/*-------------------------------------------新年专题页-----------------------------------------*/
+.newyear-content { max-width: 1920px; margin: 0 auto; }
+.new-port { width: 100%; margin: 0 auto; }
+.new-port .include { width: 1000px; margin: 0 auto; overflow: hidden; }
+.new-port .include .new_item { float: left; width: 50%; padding-top: 190px; }
+.new-port .include .new_item2 { float: left; width: 50%; padding-top: 80px; }
+.nwyport { background: url(../images/portal/newyear/nwybanner.png) no-repeat top center; width: 100%; background-size: cover; height: 546px; z-index: 0; }
+.new-port.port-1 { background: url(../images/portal/newyear/nwybgbmw.png) no-repeat top center; width: 100%; height: 524px; z-index: 3; position: relative; top: -90px; }
+.new-port .new-right img { position: relative; left: 80px; }
+.new-port.port-2 { background: url(../images/portal/newyear/nwybgsmart.png) no-repeat top center; width: 100%; height: 280px; z-index: 3; position: relative; top: -50px; }
+.new-port.port-3 { background: url(../images/portal/newyear/nwybgtuguan.png) no-repeat top center; width: 100%; height: 519px; z-index: 3; }
+
+
+/*------------------------------购车有礼专题页------------------------------------------*/
+.gift-content { max-width: 1920px; margin: 0 auto; box-sizing:content-box; }
+.gift-content *{box-sizing:content-box;}
+.gift-port.bg-port{ background: url(../images/portal/gift-bg1.jpg) top center; height: 611px;}
+.gift-port.port-1{ background: url(../images/portal/gift-bg2.jpg) top center; height: 697px; position: relative;}
+.gift-port.port-2{ background: url(../images/portal/gift-bg3.jpg) top center; height: 714px;}
+.gift-port.port-3{ background: url(../images/portal/gift-bg4.jpg) top center; height: 404px; padding-top: 250px;}
+.gift-port.port-4{ background-color: #191919;}
+.gift-port.port-5{ background-color: #191919; padding-top: 80px;}
+.gift-port .include{ text-align: center; }
+.gift-port.port-1 img{position: relative; top: -140px;}
+.gift-port.port-3 .include{width:600px; height:219px;  margin: 0 auto; padding:56px 175px; overflow: hidden; background-image: url(../images/portal/port3-include.png); }
+.gift-port.port-3 .include .gift-left{float: left; width: 205px; margin-right: 64px;}
+.gift-port.port-3 .include .gift-left .consult-tt{ font-size: 30px; line-height: 35px; color: #fff; text-align: left; padding-bottom: 14px;}
+.gift-port.port-3 .include .gift-left .more-words{ font-size: 14px; line-height: 25px; color: #fff; text-align: left; padding-top: 14px;}
+.gift-port.port-3 .include .gift-right{float: left; width: 331px;}
+.gift-port.port-3 .include .gift-right .gift-input{width: 290px; width: 100%; border-bottom: 1px solid #fff; text-align: left; height: 30px; padding-top: 10px;}
+.gift-port.port-3 .include .gift-right .gift-input input{vertical-align: middle; color: #fff; padding-left: 10px;}
+.gift-port.port-3 .include .gift-right .send-info {text-align: left;}
+.gift-port.port-3 .include .gift-right .gift-verify {display: none;}
+.gift-port.port-3 .include .gift-right .send-info .send-btn{width: 194px; height: 46px; background-color: #f6ba02; color: #fff; margin-top: 30px;}
+.gift-back-top{background-color: #191919; text-align: center; padding-top: 85px; padding-bottom: 70px;}
+
+/*---------------------------------------------宝马专题页----------------------------------*/
+.clear:after { clear: both; display: block; visibility: hidden; height: 0; content: "." }
+.bmwact-banner { background: url(../images/portal/images/bmw3banner.jpg) center; }
+.bmwact-banner a { display: block; height: 620px; }
+.bmwact-content { background: #000; overflow: hidden; }
+.bmwacon1 { background: url(../images/portal/images/bmwactcon.jpg) center; background-size: cover; height: 2125px; }
+.bmwact-content .bmwacon2 { background: url(../images/portal/images/bmwactcon2.jpg) center; background-size: cover; height: 1294px; }
+.bmwact-content .bmwprice { width: 1000px; margin: 0 auto; }
+.bmwact-content .bmwprice .bmwplink { position: relative; }
+.bmwact-content .bmwprice img { margin: 380px 0 0 650px; }
+.bmwact-content .bmwprice a { display: block; position: absolute; bottom: 0; width: 290px; height: 58px; right: 58px; }
+.bmwact-content .bmwaty { width: 700px; margin: 0 auto; }
+.bmwact-content .bmwaty .actcon { position: relative; top: -280px; }
+.bmwact-content .big-tt { color: #fff; font-size: 26px; height: 26px; line-height: 26px; }
+.bmwact-content .big-tt span { background: url(../images/portal/images/bmwlist.png); height: 4px; width: 38%; display: inline-block; vertical-align: middle; }
+.bmwact-content .big-tt strong { font-weight: normal; margin: 0 20px; font-size: 26px; }
+.bmwact-content .bmwaty ul { margin-top: 45px; }
+.bmwact-content .bmwaty ul li { line-height: 40px; color: #999; font-size: 17px; }
+.bmwact-content .bmwaty ul .anndif { color: #ff3300; font-weight: 600; }
+.bmwact-content .pcs { width: 700px; margin: 0 auto; position: relative; top: -200px; }
+.bmwact-content .pcs .pcs-list { margin: 36px 0 0 28px; }
+.bmwact-content .pcs .list-box { width: 72px; float: left; }
+.bmwact-content .pcs .list-box .img { height: 52px; }
+.bmwact-content .pcs .list-box img { display: block; margin: 0 auto; }
+.bmwact-content .pcs .list-box .tt { font-size: 12px; color: #fff; background: #353841; height: 20px; line-height: 20px; text-align: center; width: 68px; vertical-align: middle; margin-top: 15px; }
+.bmwact-content .pcs .list-box .info { font-size: 12px; color: #999; text-align: center; }
+.bmwact-content .pcs .list-box .mt20 { margin-top: 18px; }
+.bmwact-content .pcs .arrow { float: left; padding-top: 60px; margin: 0 48px; }
+/*------------------------------------------smart专题页----------------------------------------*/
+.clear:after { clear: both; display: block; visibility: hidden; height: 0; content: "." }
+.smart-banner a { display: block; background: url(../images/portal/smart/smartban.jpg) center; height: 437px; }
+.smart-content { background: #fff; width: 100%; padding-top: 80px; overflow: hidden; }
+.smart-content .smcon-view1 { margin: 0 auto; width: 1000px; }
+.smart-content .smcon-view1 img { margin-left: -183px; }
+.smart-content .smcon-view2 { margin: 50px auto 0; width: 1000px; }
+.smart-content .smcon-view2 img { margin-left: -183px; }
+.smart-content .smcon-free { margin: 110px auto 0; width: 565px; }
+.smart-content .smcon-look { margin: 60px auto 0; width: 350px; }
+.smcon-down { margin: 44px auto 0; }
+.smcon-down { background: url(../images/portal/smart/smartdown.jpg) center; height: 368px; }
+.smart-content .smwaty { width: 810px; margin: 50px auto 0; }
+.smart-content .smwaty .big-tt { background: url(../images/portal/smart/smartact.png) center; height: 30px; }
+.smart-content .smwaty ul { margin: 45px 0 0 28px; }
+.smart-content .smwaty ul li { line-height: 26px; color: #666; font-size: 14px; }
+.smart-content .pcs { width: 810px; margin: 50px auto 0; padding-bottom: 72px; }
+.smart-content .pcs .big-tt { background: url(../images/portal/smart/smartpc.png) center; height: 30px; }
+.smart-content .pcs .pcs-list { margin: 36px 0 0 85px; }
+.smart-content .pcs .list-box { width: 72px; float: left; margin: 0 48px; }
+.smart-content .pcs .list-box .img { height: 52px; }
+.smart-content .pcs .list-box img { display: block; margin: 0 auto; }
+.smart-content .pcs .list-box .tt { font-size: 12px; color: #fff; background: #353841; height: 20px; line-height: 20px; text-align: center; width: 68px; vertical-align: middle; margin-top: 15px; }
+.smart-content .pcs .list-box .info { font-size: 12px; color: #999; text-align: center; }
+.smart-content .pcs .list-box .mt20 { margin-top: 18px; }
+.smart-content .pcs .arrow { float: left; padding-top: 60px; }
+
+
+
+
+/*---------------------------------------------风格专题页--------------------------------------*/
+.zstyle-banner { background: url(../images/portal/sytlezty/stylebanner.jpg) no-repeat center; height: 484px; }
+.zstyle-banner a { margin: 0 auto; width: 1000px; }
+
+.zsty-content img { display: block; }
+.sty-main { margin: 0 auto; width: 1000px; position: relative; }
+.sty-top { height: 160px; background: #790865; color: #fff; }
+.sty-top .sty-title { padding-left: 115px; height: 160px; float: left; }
+.sty-top h3 { font-size: 44px; font-weight: bold; padding-top: 34px; }
+.sty-top p { font-size: 17px; line-height: 36px; }
+.sty-top .sty-price { float: right; background: url(../images/portal/sytlezty/styico.png) no-repeat right center; height: 160px; margin-right: 48px; padding-right: 68px; }
+.sty-top .sty-price a { color: #fff; display: block; }
+.sty-top .sty-price span { font-size: 14px; padding-top: 50px; display: block; }
+.sty-top .sty-price span strong { font-size: 40px; font-weight: bold; }
+.styimg { padding: 35px; }
+.styts .sty-main,.styyage .sty-main,.stysnt .sty-main{ padding-top: 30px;}
+/*雪铁龙*/
+.styxtl { background: url(../images/portal/sytlezty/stybgxtl.jpg) no-repeat center; height: 730px; }
+.styxtl .sty-title { background: url(../images/portal/sytlezty/styxtl.png) no-repeat 30px center;} 
+.styxtl .styxtl-all { background: url(../images/portal/sytlezty/styxtlall.jpg); height: 570px;}
+.styxtl .xtldecorate { position: absolute; left: -163px; top: 50px; }
+.styxtl .styxtl-all .stycar { position: absolute; right: -68px; bottom: -30px; }
+/*速腾*/
+.styts { background: url(../images/portal/sytlezty/stybgts.jpg) no-repeat center; height: 755px; }
+.styts .sty-top { background: #096eb4; }
+.styts .sty-title { background: url(../images/portal/sytlezty/styts.png) no-repeat 30px center; }
+.styts .styts-all { background: url(../images/portal/sytlezty/stytsall.jpg); height: 565px; }
+.styts .styimg { float: right; }
+.styts .styts-all .stycar { position: absolute; left: -164px; bottom: -20px; }
+.styts .tsdecorate { position: absolute; right: -212px; top: 45px; }
+.styts .tsdoc { position: absolute; right: 295px; top: 0; }
+/*雅阁*/
+.styyage { background: url(../images/portal/sytlezty/stybgyage.jpg) no-repeat center; height: 760px; }
+.styyage .sty-top { background: #ab8a4a; }
+.styyage .sty-title { background: url(../images/portal/sytlezty/styyage.png) no-repeat 30px center; }
+.styyage .styyage-all { background: url(../images/portal/sytlezty/styyageall.jpg); height: 570px; }
+.styyage .styyage-all .stycar { position: absolute; right: -35px; bottom: -60px; }  
+/*索纳塔*/
+.stysnt { background: url(../images/portal/sytlezty/stybgsnt.jpg) no-repeat center; height: 879px; }
+.stysnt .sty-top { background: #096eb4; }
+.stysnt .sty-title { background: url(../images/portal/sytlezty/xd.png) no-repeat 30px center; }
+.stysnt .stysnt-all { background: url(../images/portal/sytlezty/stysntall.jpg); height: 565px; }
+.stysnt .stysnt-all .styimg { padding: 35px; float: right; }
+.stysnt .stysnt-all .stycar { position: absolute; left: -164px; bottom: -56px; }
+.stysnt .tsdecorate { position: absolute; right: -212px; top: 45px; }
+.stysnt .tsdoc { position: absolute; right: 295px; top: 0; }
+.sty-act { text-align: center; background-color: #f1f1f1; max-width: 1920px; margin: 0 auto; }
+.sty-act img { width: 999px; margin: 0 auto; }
+
+/*---------------------------------------------mini专题页--------------------------------------*/
+.mini-banner { width: 100%; background: url(../images/portal/mini/minibanner.jpg) center; height: 731px; }
+.mini-banner a { display: block; height: 731px; }
+.mini-content { width: 100%; background: #000; }
+.minicon1 { width: 100%; background: url(../images/portal/mini/minicon1.jpg) center; height: 848px; }
+.minicon2 img, .minicon4 img { margin: 0 auto; display: block; width: 1000px; }
+.minicon3 { width: 100%; background: url(../images/portal/mini/minicon3.jpg) center; height: 932px; }
+.miniact img { margin: 0 auto; display: block; width: 1074px; }
+
+/*------------------------------------------回家专题页-----------------------------------------*/
+.home-banner{ position: relative; background: url(../images/portal/hj/banner.jpg) center; height:613px; }
+.home-banner img{  width: 100%;}
+.home-banner .hengfu{ position: absolute; bottom: -75px; z-index: 9; height: 175px; background: url(../images/portal/hj/tf.png) center;}
+.home-content{background: url(../images/portal/hj/bj.jpg)  top center no-repeat; padding-bottom: 15px; position: relative; margin-bottom: -32px; padding-bottom: 32px;}
+.home-content{background: url(../images/portal/hj/bj.jpg)  top center no-repeat;}
+.home-content .hm-port{ text-align: center;}
+.home-content .hm-port.cq{ position: relative; z-index:99; top: 48px; left: -6px; }
+.home-content .hm-port1{padding-top: 20px; position: relative; z-index: 100;}
+.home-content .hm-port3{margin-top: -30px;}
+.hm-port4{margin-top: -60px;}
+.hm-port5{margin-top: -40px;}
+/*-------------------------------------------喝酒不开车专题页------------------------------------*/
+.nodrink-content{background-color: #f1f1f1;padding-top: 14px;}
+.nodrink-content .drink-port{ width: 1076px; margin: 0 auto; }
+.nodrink-content .drink-port.port-1 img{ position: relative; left: -320px;}
+.nodrink-content .drink-port.port-3 img{ position: relative; left: -320px;}
+
+/*-------------------------------------------野马美式怪兽出没专题页------------------------------------*/
+.yema-content{max-width: 1920px;margin: 0 auto;}
+.yema-content .yema-banner{background: url(../images/yema/yema-banner.jpg) center; height: 724px;}
+.yema-content .yema-port1{background-color: #000; height: 787px;text-align: center;}
+.yema-content .yema-port2{background: url(../images/yema/port2-bg.jpg) center; height: 910px;text-align: center;}
+.yema-content .yema-port3{background: url(../images/yema/port3-bg.jpg) center; height: 1381px;text-align: center;}
+.yema-content .yema-port4{background: url(../images/yema/port4-bg.jpg) center; height: 2146px;text-align: center;}
+.yema-content .yema-port5{background: url(../images/yema/port5-bg.jpg) center; height: 808px;text-align: center;}
+.yema-content .yema-port6{background: url(../images/yema/port6-bg.jpg) center; height: 744px;text-align: center;}
+.yema-content a{cursor: default;}
+.yema-content .yema-car{position: relative; left: 0px; top: 90px; cursor: pointer;}
+

@@ -1,0 +1,376 @@
+*{
+    margin:0;
+    padding:0;
+    word-wrap: break-word;
+    font-family: "Microsoft Yahei", "微软雅黑" , Arial , "宋体" , Tahoma , sans-serif;
+    -webkit-text-size-adjust:none;
+}
+html{
+    color: #333333;
+    font-family: "Microsoft Yahei" , Arial , "宋体" , Tahoma , sans-serif;
+    font-size: 13px/1.5;
+    padding:0;
+    margin:0;
+    -webkit-text-size-adjust:none;
+}
+body{
+    margin:0;
+    padding:0;
+    background:#fff;
+    font-family: "Microsoft Yahei" , Arial , "宋体" , Tahoma , sans-serif;
+    -webkit-text-size-adjust:none;
+}
+ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+select,input,button {
+    line-height:1;
+    font-family: "Microsoft Yahei" , Arial , "宋体" , Tahoma , sans-serif;
+}
+.clear{
+    clear:both;
+}
+.clear:after {
+    height:0;
+    content:".";
+    clear:both;
+    display:block;
+    visibility:hidden;
+}
+a{
+    color:#2E5DAC;
+    text-decoration:none;
+    outline:none;
+    blr:expression(this.onFocus=this.blur());
+}
+form {
+    margin: 0;
+    padding: 0;
+}
+.form-container{
+    padding: 10px;
+}
+.form-container h2 {
+    font-size: 14px;
+    color: #999;
+}
+.form-container .form-block p{
+    line-height: 24px;
+    font-size: 14px;
+    color: #666;
+}
+.form-container .form-block p.field-body {
+    padding-bottom: 12px;
+}
+select.select{
+    width: 99%;
+    max-width: 350px;
+    padding: 2px 2px 2px 5px;
+    border: 1px solid #ccc;
+}
+input.input {
+    width: 99%;
+    max-width: 350px;
+    padding: 7px 2px 5px 5px;
+    border: 1px solid #ccc;
+}
+button.btn-submit {
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-left: 0;
+    background: none repeat scroll 0 0 #658db3;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    transition: all 0.1s ease-in 0s;
+    height: 26px;
+    line-height: 1;
+    width: 80px;
+}
+button.btn-submit-red{
+    background:#933;
+}
+.list{
+    padding: 10px 0;
+}
+.list .empty{
+    font-size: 13px;
+    color: #833;
+}
+.list .list-p{
+    line-height: 24px;
+    font-size: 13px;
+    border-bottom: 1px dashed #ccc;
+    color: #555;
+}
+.list .list-p a{
+    font-size: 13px;
+}
+.page-bar{
+    padding-top:10px;
+    font-size: 12px;
+    color: #666;
+}
+.page-bar select{
+    width:50px;
+    height:22px;
+    font-size:10px;
+    border: 1px solid #ccc;
+    padding: 2px;
+}
+
+.common-pyh{
+    font-size: 12px;
+    color: #555;
+    display: block;
+    float: left;
+    margin: 0 3px;
+    width: 12px;
+    text-transform:uppercase;
+    text-align: center;
+    line-height: normal;
+    border-bottom: 2px solid transparent;
+}
+.common-pyh-active, .common-pyh:hover{
+    color: #933;
+    background: #f0f0f0;
+    border-bottom: 2px solid #933;
+}
+
+.textarea{
+    width: 98%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 3px;
+    line-height: 22px;
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.legend{
+    font-size: 12px;
+    color: #666;
+}
+
+.dialog-tab-wrapper{
+    background: #464950;
+    width:100%;
+    position: relative;
+    margin: 0;
+}
+.dialog-tab {
+    padding: 5px 0px 0 0px;
+    margin: 0;
+}
+.dialog-tab .btn-close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #fff;
+    font-size: 36px;
+    cursor: pointer;
+    font-weight: normal;
+}
+.dialog-tab .btn-close:hover{
+    color: #E84D18;
+}
+.dialog-tab-wrapper .dialog-tab .tab-btn {
+    display: block;
+    width: 40%;
+    float: left;
+    color: #f0f0f0;
+    overflow: hidden;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 18px;
+}
+.dialog-tab-wrapper .dialog-tab .tab-btn-active {
+    background: #fff;
+    color: #353535;
+}
+.dialog-tab-wrapper .dialog-tab .tab-btn-active i {
+    color: #E84D18;
+}
+.dialog-tab-wrapper .dialog-tab .tab-btn i {
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+.form {
+    padding: 20px 30px;
+}
+.form-row {
+    margin: 15px 0;
+    position: relative;
+}
+.form-row i {
+    position: absolute;
+    right: 60px;
+    top: 10px;
+    font-size: 24px;
+    color: #787878;
+}
+.form-row input {
+    border: 1px solid #989898;
+    padding: 7px 15px;
+    line-height: 24px;
+    height: 26px;
+    width: 300px;
+    background: #F7F7F7;
+    color: #555;
+}
+.form-row b {
+    color: #FF2526;
+}
+.form-row input.verify{
+    width: 120px;
+}
+.form-row input.verify-img{
+    width: 100px;
+}
+.form-row #verify-image{
+    width: 105px;
+    position: absolute;
+    top: 0px;
+}
+
+.form-row .get-sms-verify{
+    display: block;
+    left: 178px;
+    padding: 10px 12px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 147px;
+    background: #e94c18;
+    color: #fff;
+    text-align: center;
+    height: 22px;
+}
+.form-row .get-img-verify{
+    color:#FF8238;
+    position: absolute;
+    top: 10px;
+    left: 270px;
+}
+.form-row .form-btn {
+    display: block;
+    background: #25262A;
+    color: #fff;
+    text-align: center;
+    padding: 10px 12px;
+    width: 308px;
+    border-radius: 3px;
+    font-size: 24px;
+}
+.dialog-tab-wrapper .grab-title .tab-btn {
+    display: block;
+    float: none;
+    padding:10px 0 12px 50px;
+    text-align: left;
+    width: 68%;
+}
+.grab-icon {
+    display: block;
+    background-image: url(../images/grab_bg.png);
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 34px;
+}
+.grab-icon-date0 {
+    background-position: -86px 0;
+    position: absolute;
+    left: 15px;
+    height: 25px;
+}
+.grab-icon-date1 {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 20px;
+    color: #999;
+    width: 20px;
+}
+.grab-icon-date2 {
+    background-position: -142px 0;
+    height: 21px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    cursor: pointer;
+}
+.grab-icon-light {
+    background-position: 0 0;
+    color: #999;
+    font-size: 20px;
+    left: 16px;
+    position: absolute;
+    top: 9px;
+    width: 24px;
+}
+.grab-icon-arrow {
+    background-position: -30px 0;
+    color: #999;
+    font-size: 20px;
+    height: 27px;
+    left: 16px;
+    position: absolute;
+    top: 5px;
+    width: 27px;
+}
+.grab-icon-phone {
+    background-position: -59px 0;
+    color: #999;
+    font-size: 20px;
+    height: 20px;
+    width: 19px;
+    float: left;
+    margin-top: 2px;
+}
+#apptime-list {
+    display: none;
+    position: absolute;
+    width: 330px;
+    z-index: 999;
+    border: 1px solid #989898;
+    background: #f7f7f7;
+    left: 60px;
+    top: 128px;
+    top: 127px\9;
+}
+#apptime-list li {
+    font-size: 13px;
+    padding: 5px 15px;
+    border-bottom: 1px dashed #ccc;
+    color: #353535;
+    cursor: pointer;
+}
+#apptime-list li:hover {
+    background: #888;
+    color: #fff;
+}
+.pay-icons{
+    width:120px;
+    height:40px;
+    display:block;
+    margin:10px;
+    border: 2px solid #f0f0f0;
+    cursor: pointer;
+    float: left;
+}
+.pay-icons-active {
+    border: 2px solid red;
+}
+.common-btn-close{
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    color: #fff;
+    font-size: 36px;
+    cursor: pointer;
+    font-weight: normal;
+    color: #333;
+}

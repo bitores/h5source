@@ -1,0 +1,1343 @@
+@charset "utf-8";
+
+/**********************************************************************/
+/*会员中心首页*/
+.user-left ul li a i.myorder,.user-left ul li a i.mygroup,.user-left ul li a i.myfocus
+,.user-left ul li a i.mysafety,.user-right h2 span,.comment-con h3:after,.buy-model p b:after
+{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.user-bg{
+	background: url(../images/user-bg_02.jpg) center top no-repeat;
+}
+.user-cont{
+	width: 1010px;
+	margin: 0 auto;
+	padding: 23px 0;
+}
+.user-left{
+	width: 134px;
+	float: left;
+	background: #363636;
+	padding: 23px;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+}
+.user-left h4{
+	font-size: 14px;
+	color: #fff;
+	font-weight: normal;
+	padding-bottom: 15px;
+}
+.user-left h4 span{
+	color: #ff3300;
+}
+.user-left ul li{
+	height: 39px;
+	line-height: 39px;
+	border-bottom:1px #434343 solid;
+	text-align: center;
+}
+.user-left ul li a{
+	width:100%;
+	color: #fff;
+	display: inline-block;
+	font-size: 13px;
+}
+.user-left ul li a i{
+	margin-right: 10px;
+}
+.user-left ul li a i.myorder{
+	width:15px;
+	height: 18px;
+	background-position: -173px -456px;
+}
+.user-left ul li a.active i.myorder{
+	background-position: -280px -496px;
+}
+.user-left ul li a.active i.mygroup{
+	width:16px;
+	height: 17px;
+	background-position: -271px -455px;
+}
+.user-left ul li a i.myfocus{
+	width:20px;
+	height: 19px;
+	background-position: -243px -451px;
+}
+.user-left ul li a.active i.myfocus{
+	background-position: -328px -494px;
+}
+.user-left ul li a i.mysafety{
+	width:17px;
+	height: 17px;
+	background-position: -220px -452px;
+}
+.user-left ul li a.active i.mysafety{
+	background-position: -354px -497px;
+}
+.user-left ul li a.active {
+	color: #ff4e00;
+}
+.user-right{
+	width:775px;
+	float: right;
+	background: #fff;
+	padding: 30px 0px 0px 35px;
+	display: inline;
+    margin-bottom: 35px;
+}
+.user-right h2{
+	font-size: 16px;
+	font-weight: normal;
+}
+.user-right h2 span{
+	width:23px;
+	height: 24px;
+	background-position:-192px -454px; 
+	margin-right: 15px;
+}
+.user-car-list{
+	margin-top: 30px;
+}
+.user-car-list img{
+	float: left;
+	margin-right: 25px;
+	display: inline;
+}
+.contro-info{
+	width:270px;
+	float: left;
+}
+.user-car-list h4{
+	font-weight: normal;
+	font-size: 16px;
+	color:#000;
+}
+.user-car-list p{
+	width:202px;
+	height:30px;
+	background: #f1f1f1;
+	line-height: 30px;
+	padding-left: 10px;
+	margin: 15px 0;
+}
+.user-car-list a{
+	width:100px;
+	height: 30px;
+	background: #ff3300;
+	border-radius: 4px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	display: block;
+}
+#page{
+	padding-top: 40px;
+}
+.user-car-list a.btn-grey{
+	background: #ccc;
+	position: relative;
+}
+.user-car-list a.btn-grey:after{
+	content: "团购尚未开始，无法评价";
+}
+.user-car-list a.btn-grey:after,.user-car-list a.btn-grey-socred:after{
+	position: absolute;
+	top:0px;
+	right: -145px;
+	color: #ccc;
+}
+.user-car-list a.btn-grey-socred:after{
+	content: "已经评价过，无法再次评价";
+}
+/*发表评论弹层*/
+.pop-layer{
+	width:100%;
+	height: 100%;
+	background: rgba(0,0,0,.7);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	display: none;
+}
+.comment-con{
+	width: 600px;
+	height: 590px;
+	background: #fff;
+	padding: 30px 20px;
+	margin: 0 auto;
+}
+.comment-con h3{
+	font-size:18px;
+	font-weight: normal;
+	position: relative;
+	margin-bottom: 20px;
+	margin-left: 28px;
+}
+.comment-con h3:after{
+	content: '';
+	width:23px;
+	height: 24px;
+	display: inline-block;
+	position: absolute;
+	left: -30px;
+	top: 0;
+	background-position: -293px -451px;
+}
+.buy-model p {
+	line-height: 30px;
+	height: 30px;
+	margin-top: 20px;
+}
+.buy-model p span{
+	width:70px;
+	float: left;
+	color:#999;
+	font-size:14px;
+	display: block;
+	text-align: right;
+	margin-right: 10px;
+}
+.buy-model p b{
+	width:120px;
+	font-size: 14px;
+	font-weight: normal;
+	float: left;
+	border-bottom:1px #ccc solid;
+	margin-right:15px;
+	padding-left: 8px;
+	position: relative;
+	cursor: pointer;
+}
+.buy-model p b:after{
+	width:12px;
+	height: 8px;
+	content: '';
+	background-position: -432px -29px;
+	position: absolute;
+	right: 10px;
+	top:12px;
+}
+.buy-model p b.sel-car-style{
+	width:270px;
+}
+.buy-model p b.address{
+	width: 140px;
+}
+.buy-model p i{
+	font-size:14px;
+	font-weight: normal;
+	font-style:normal;
+	color: #ff0000;
+	line-height: 35px;
+	cursor: pointer;
+}
+.buy-model p.height-change{
+	height:127px;
+	margin-bottom: 30px;
+}
+#score {
+	padding: 25px 0;
+	padding-bottom: 10px;
+}
+#score span{
+	width:70px;
+	float: left;
+	display: block;
+	text-align:right;
+	font-size: 14px;
+	color: #999;
+}
+#score i{
+	font-style: normal;
+	color: #ff3300;
+	margin-left: 20px;
+}
+#score #default{
+	float: left;
+	margin-left: 12px;
+}
+div#results{
+	height:;
+	float: left;
+}
+.buy-model p span{
+	float: left;
+}
+.textarea{
+	width:385px;
+	height:125px;
+	resize:none;
+	overflow: hidden;
+	outline: none;
+	text-indent: 2em;
+	line-height: 22px;
+}
+.text-area p span{
+	width:70px;
+	margin-right: 10px;
+	color:#999;
+	font-size:14px;
+	float: left;
+}
+.text-area .photoShow{
+	width:180px;
+	height:120px;
+	float: left;
+	margin-right:10px;
+	overflow: hidden;
+}
+.hide{display: none;}
+.uploadBtn{
+	width:180px;
+	height:120px;
+	background: url(../images/addimg_03.jpg) no-repeat;
+	display: block;
+	float: left;
+}
+.text-area a{
+	width:130px;
+	height: 40px;
+	background-color: #ff3300;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 40px;
+	color:#fff;
+	display: block;
+	font-size:16px;
+	margin: 20px 0 0 80px;
+}
+/********************************************************************/
+/*支付流程--提交订单*/
+.crumbs ul li span,.crumbs ul li i,.buycar-infor h5:before,.transport-infor h5:before,
+.city-add ul li:after,.city-add p:before{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.order-main{
+	width:1010px;
+	margin:20px auto;
+	background-color: #fff;
+	padding-bottom: 30px;
+}
+.crumbs,.car-information{
+	width:900px;
+	margin:0 auto;
+	margin-bottom: 20px;
+	padding-left: 35px;
+	border-bottom: 1px #efefef solid;
+}
+.car-information{
+	padding-bottom: 30px;
+}
+.crumbs ul li{
+	float: left;
+	margin:25px 10px;
+	font-size: 14px;
+}
+.crumbs ul li span{
+	width:20px;
+	height: 20px;
+	background-position: -60px -497px;
+	text-align: center;
+	color: #fff;
+	margin-right: 12px;
+}
+.crumbs ul li i{
+	width:9px;
+	height: 15px;
+	background-position: -43px -499px;
+}
+.crumbs ul li.active-v span{
+	background-position: -85px -497px;
+}
+.crumbs ul li a{color: #ccc;}
+.crumbs ul li.active-v a{
+	color: #ff3300;
+}
+.controduction {
+	float: left;
+	margin-left: 45px;
+    display: block;
+}
+.car-information img{
+	float: left;
+    margin-top: 10px;
+    width: 253px;
+    height: 168px;
+}
+.controduction h4{
+	font-size:16px;
+	font-weight: normal;
+	padding-bottom: 10px;
+}
+.controduction ul li{
+	color:#999;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+}
+.controduction ul li span{
+	width:20px;
+	height: 20px;
+	background-color: #abcdef;
+	border-radius:50%;
+	display: inline-block;
+	vertical-align: middle;
+	margin:0 15px 0 10px;
+}
+.controduction p{
+	line-height: 30px;
+	color: #999;
+}
+.controduction p b{
+	color:#000;
+	margin-right: 14px;
+}
+.controduction p span{
+	color:#ff3300;
+	font-size:16px;
+}
+.buycar-infor{
+	width:725px;
+	margin: 0 auto;
+}
+.buycar-infor h5,.transport-infor h5{
+	font-size:16px;
+	font-weight: normal;
+	position: relative;
+	margin: 20px 0;
+	padding-left: 14px;
+
+}
+.buycar-infor h5:before{
+	content: '';
+	width: 17px;
+	height: 17px;
+	background-position:-14px -500px; 
+	position: absolute;
+	left: -17px;
+	top:3px;
+}
+.buycar-infor p{
+	margin-bottom: 10px;
+	line-height: 30px;
+}
+.buycar-infor input{
+	width:200px;
+	height: 30px;
+	line-height: 30px\9;
+	color: #999;
+	font-size:12px;
+	border-bottom:1px #ccc solid;
+	text-indent: 1em;
+}
+.buycar-infor h5 span{
+	font-size: 14px;
+	color:#999;
+	margin-left: 10px;
+}
+.buycar-infor h4{
+	font-size: 14px;
+	font-weight: normal;
+}
+.download-file{
+	padding:10px 0px;
+}
+.download-file img{
+	float: left;
+	margin-right: 10px;
+}
+.download-file p{
+	color:#333;
+}
+.buycar-infor p em{
+	font-style: normal;
+	color:#ff3300;
+}
+.transport-infor,.city-add,.address-menu{
+	width: 725px;
+	margin:0 auto;
+}
+.transport-infor h5:before{
+	content: '';
+	width: 15px;
+	height: 21px;
+	background-position:-178px -499px; 
+	position: absolute;
+	left: -17px;
+	top:3px;
+}
+.infor-style p{
+	height:30px;
+	line-height: 30px;
+}
+.infor-style ul {
+	padding: 15px;
+}
+.infor-style ul  li{
+	float: left;
+	margin-right: 30px;
+}
+.infor-style ul  li a{
+	padding:8px 13px;
+	border-radius: 4px;
+	text-align: center;
+}
+.infor-style ul  li.select a{
+	color:#fff;
+	background-color: #ff3300;
+}
+.city-add ul{margin-bottom: 14px}
+.city-add ul li{
+	float: left;
+	width: 120px;
+	margin-right:25px;
+	border-bottom:1px #999 solid;
+	height:30px;
+	line-height: 30px;
+	color: #999;
+	position: relative;
+	cursor: pointer;
+	padding-left: 2px;
+}
+.city-add ul li:after{
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 6px;
+	background-position: -156px -506px;
+	right:8px;
+	top:50%;
+	margin-top: -3px;
+}
+.city-add p{
+	color: #333;
+	cursor: pointer;
+    position: relative;
+    padding: 5px 0;
+    line-height: 30px;
+    margin: 12px 0;
+}
+.city-add p:before{
+	content: '';
+	width:15px;
+	height: 15px;
+	background-position: -134px -501px;
+	margin-right: 10px;
+}
+.city-add p.active-bg:before{
+	background-position: -113px -500px;
+}
+.city-add p b{
+	width:40%;
+    top: 0;
+    left: 24px;
+	display: block;
+    position: absolute;
+    line-height: normal;
+}
+.city-add p span{
+    left: 44%;
+    top: 0;
+    width: 59%;
+    position: absolute;
+    line-height: normal;
+    display: block;
+}
+.address-menu p{
+	line-height: 30px;
+	height: 30px;
+	color:#999;
+	margin: 15px 0;
+}
+.address-menu p span{
+	color:#ff3300;
+	font-size:16px;
+	font-weight: bold;
+}
+.city-add input{
+	width: 222px;
+	height: 30px;
+	border:1px #999 solid;
+	padding-left:10px;
+	color:#999;
+	line-height: 30px\9;
+}
+.address-menu .submit-btn{
+	width:220px;
+	height: 50px;
+	border-radius: 5px;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	display: block;
+	background-color: #ff3300;
+	margin:50px auto;
+	font-size: 18px;
+}
+/*************************************************************************/
+/*支付流程--确认订单*/
+.confirm-infor h5:before{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.confirm-mian{
+	width:1010px;
+	margin: 0 auto;
+	background-color: #fff;
+	margin-top: 20px;
+}
+.confirm-infor h5{
+	font-size: 16px;
+	font-weight: normal;
+	margin: 20px 0;
+	padding-left: 14px;
+	position: relative;
+}
+.confirm-infor h5:before{
+	content: '';
+	width: 17px;
+	height: 17px;
+	background-position: -200px -498px;
+	position: absolute;
+	left: -17px;
+	top: 3px;
+}
+.confirm-form{
+	width:840px;
+	margin: 0 auto;
+	border-collapse: collapse;
+	border:none;
+	margin-bottom: 25px;
+}
+.confirm-form tr td{
+	height: 43px;
+	line-height: 43px;
+	background-color: #f1f1f1;
+	border:none;
+	color: #000;
+	padding-left: 15px;
+}
+.confirm-form tr{
+	border-top:1px #fff solid;
+	border-bottom:1px #fff solid;
+}
+.confirm-form tr td span{
+	color:#999;
+}
+.confirm-infor{
+	width:808px;
+	margin: 0 auto;
+}
+#confirm .controduction p{
+	line-height: 25px;
+	height: 25px;
+}
+#confirm .controduction a{
+	text-decoration: underline;
+}
+#confirm .controduction .pay-btn{
+	width:130px;
+	height:40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	font-size:16px;
+	background-color: #ff3300;
+	display: inline-block;
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-right: 30px;
+	text-decoration: none;
+}
+/****************************************************************/
+/*支付流程--支付方式*/
+.pay-type a:before{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.pay-main{
+	width:1010px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding-bottom: 200px;
+	margin-bottom: 30px;
+}
+.pay-type {
+	width:750px;
+	margin: 0 auto;
+}
+.pay-type p {
+	height: 30px;
+	line-height: 30px;
+	margin: 10px 0;
+	margin-bottom: 30px;
+	color: #999;
+}
+.pay-type p span{
+	color:#ff3300;
+}
+.pay-type a{
+	float: left;
+	margin-right: 30px;
+	display: block;
+	/*margin-left:270px;*/
+}
+.pay-type a:before{
+	content: '';
+	width: 15px;
+	height: 15px;
+	background-position: -134px -501px;
+	margin-right: 10px;
+}
+.pay-type a.active-bg:before{
+	background-position: -113px -500px;
+}
+.pay-type-btn{
+	width: 480px;
+	line-height: 40px;
+	text-align:center;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+.pay-type-btn a{
+	color:#fff;
+	font-size: 16px;
+	background-color: #ff3300;
+	display: inline-block;
+    padding: 1px 15px;
+	border-radius: 5px;
+    margin-right: 20px;
+}
+.pay-popup{
+	width:460px;
+	height: 230px;
+	background-color: #fff;
+	border:1px #ccc solid;
+	position: relative;
+}
+.popup-middle{
+	width:300px;
+	margin: 0 auto;
+}
+.remind{
+	margin: 60px auto 30px auto;
+	color:#999;
+}
+.remind i{
+	width:44px;
+	height: 45px;
+	background: url(../images/new_index.png) -66px -556px no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	margin-right: 20px;
+}
+.remind h2{
+	font-size:22px;
+	color:#ff3300;
+	padding-bottom: 5px;
+}
+.popup-btn a{
+	width: 130px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+	color:#fff;
+	text-align: center; 
+	background-color: #ccc;
+	display: inline-block;
+	margin-left: 12px;
+	font-size:15px;
+}
+.popup-btn a.active{
+	background-color: #ff3300;
+}
+/************************************************************/
+/*支付流程--支付成功*/
+.success{
+	width:380px;
+	margin: 0 auto;
+	padding-top: 80px;xx
+}
+.success img{
+	float: left;
+}
+.success .succe-r{
+	float: right;
+}
+.success .succe-r h2{
+	font-size:22px;
+	color: #333;
+	font-weight: normal;
+}
+.success .succe-r h2 a{
+	color:#ff3300;
+	font-size:12px;
+	font-weight: normal;
+	text-decoration: underline;
+}
+.success .succe-r p{
+	padding: 10px 0;
+	color:#999;
+	font-size:14px;
+}
+/********************************************************************/
+/*线下支付*/
+.payment-cont h3:before{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.payment-main{
+	width:1010px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.payment-cont{
+	padding:30px 0 0px 50px;
+}
+.payment-cont h3{
+	font-size: 18px;
+	font-weight: normal;
+	padding-bottom: 25px;
+	width:90%;
+	border-bottom: 1px #ccc solid;
+	padding-left: 20px;
+}
+.payment-cont h3:before{
+	width:21px;
+	height: 24px;
+	background-position: -226px -495px;
+	content: '';
+	margin-right: 10px;
+}
+.payment-cont  p{
+	color: #999;
+	line-height: 22px;
+	font-size: 14px;
+	width:528px;
+	margin: 33px 0;
+}
+.payment-cont p span{
+	color:#ff3300;
+}
+
+.user-bank{
+	width:550px;
+	border-collapse: collapse;
+}
+.bg_img.sel{ 
+	 
+    background: url(../images/sel.png) no-repeat;
+    background-size: 20px 20px;
+    background-position: 150px center;
+}
+.bg_img.seld{ 
+	 
+    background: url(../images/seld.png) no-repeat;
+    background-size: 20px 20px;
+    background-position: 150px center;
+}
+
+.user-bank tr td{
+	height: 40px;
+	background-color: #f1f1f1;
+	color: #333;
+	padding-left: 30px;
+	border-bottom:1px #d6d6d6 dashed;
+	font-size:14px;
+}
+ 
+.user-bank tr.last-tr td{border:none;}
+.user-bank tr td span{color:#999;}
+.payment-text input{
+	width:353px;
+	height: 39px;
+	border:1px #ccc solid;
+	border-radius: 5px;
+	padding-left: 10px;
+	color: #999;
+	line-height: 39px\9;
+	margin-right: 20px;
+}
+.payment-text a{
+	width:74px;
+	height:40px;
+	border-radius: 4px;
+	background-color:#ff3300;
+	display: inline-block;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	font-size: 14px;
+}
+/************************************************************************/
+/*申请退款*/
+.user-right h4:before{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.user-left ul li a i.mygroup{
+	width:16px;
+	height:17px;
+	background-position: -304px -496px;
+}
+.user-right h4{
+	font-size: 18px;
+	font-weight: normal;
+	color:#333;
+}
+.user-right h4:before{
+	width:22px;
+	height: 25px;
+	content: '';
+	background-position: -252px -495px;
+	margin-right: 15px;
+}
+.user-right h2{
+	font-size:22px;
+	color: #000;
+}
+.order-detail{
+	width:560px;
+	padding: 15px 0;
+	border-bottom: 1px #ccc solid;
+	border-top: 1px #ccc solid;
+}
+.order-detail p{
+	height: 35px;
+	line-height: 35px;
+	color: #999
+}
+.order-detail p i{
+	width:17px;
+	height: 17px;
+	display: inline-block;
+	margin-right: 30px;
+	margin-left: 10px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.order-detail p i.color-a{
+	background: #ffff00;
+}
+.order-detail p i.color-b{
+	background: #cccccc;
+}
+.order-detail p span{
+	color:#343434;
+	margin-right: 30px;
+}
+.refund-bottom{
+	padding: 20px 0 40px 0;
+}
+.refund-bottom p{
+	height: 35px;
+	line-height: 35px;
+}
+.refund-bottom p span{
+	color:#ff3300;
+	font-size:20px;
+}
+.refund-bottom p em{
+	color:#ff3300;
+	font-style: normal;
+}
+.refund-bottom i{
+	padding: 3px 15px;
+	background-color: #ccc;
+	display: inline-block;
+	color: #fff;
+	text-align:center; 
+	border-radius: 5px;
+	height: 20px;
+	line-height: 20px;
+	font-style: normal;
+	margin-left: 60px;
+}
+.refund-btn{
+	padding-bottom: 60px;
+}
+.refund-btn a.confirm-refund-btn{
+	height: 40px;
+	width:130px;
+	background-color: #ff3300;
+	display: inline-block;
+	text-align: center;
+	line-height: 40px;
+	color:#fff;
+	font-size:16px;
+	border-radius: 5px;
+}
+.refund-btn a.no-refund{
+	text-decoration: underline;
+	margin-left: 20px;
+	color: #999;
+}
+.refund-bg{
+	background: url(../images/user-bg_02.jpg) center top no-repeat;
+}
+/**********************************************************************/
+/*申请退款--转到银行卡*/
+.return h3:before,.bank h3:before,.return h3.active-bg:before{
+	background: url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.refund-bank p{
+	line-height: 35px;
+	height: 35px;
+	color: #999;
+}
+.refund-bank p span{
+	color: #ff3300;
+	font-size:22px;
+}
+.refund-type{
+	padding: 15px 0 25px 0;
+}
+.refund-type em{
+	width:70px;
+	float: left;
+	color:#999;
+	font-style: normal;
+}
+.type-one{float: left;}
+.return span{color:#ff3300;}
+.return h3:before,.bank h3:before{
+	content: '';
+	width: 15px;
+	height: 15px;
+	background-position: -134px -501px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.return h3.active-bg:before,.bank h3.active-bg:before{
+	background-position: -113px -500px;
+}
+.form-write{
+	width:435px;
+}
+.form-write p{
+	color: #ff3300;
+	line-height: 20px;
+	margin: 10px 0;
+}
+.input-infor-left{
+	width:195px;
+	float: left;
+}
+.input-infor-left input,.input-infor-right input{
+	width:195px;
+	height:35px;
+	line-height: 35px\9;
+	border-bottom:1px #ccc solid;
+	margin-top: 5px;
+	font-size:12px;
+}
+.input-infor-right{
+	width:195px;
+	float: right;
+}
+/*****************************************************************************/
+/*账户安全*/
+.user-right h5:before {
+  background: url(../images/new_index.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+.user-right h5{
+	font-size: 18px;
+	font-weight: normal;
+	color: #333;
+}
+.user-right h5:before{
+	width: 29px;
+	height: 29px;
+	content: '';
+	background-position: -8px -524px;
+	margin-right: 15px;
+}
+.modify-con{
+	height: 320px;
+}
+.alter-pw{
+	padding: 35px 0 0px 0;
+}
+.alter-pw p span{
+	color:#999;
+}
+.alter-pw p a{
+	text-decoration: underline;
+	color: #999;
+	margin-left: 50px;
+}
+.alter-pw b{
+	text-decoration: underline;
+	color: #ff3300;
+	cursor: pointer;
+	margin-bottom: 10px;
+	display: inline-block;
+	margin-top: 30px;
+}
+.modify {
+	padding-bottom: 50px;
+}
+.modify p input{
+	color:#999;
+	height:25px;
+	margin-top: 5px;
+	line-height: 25px\9;
+	border-bottom:1px #e1e1e1 solid;
+	padding-left: 10px;
+	width: 160px;
+	font-size:12px;
+}
+.modify a {
+	width:170px;
+	height: 35px;
+	background-color: #ff3300;
+	font-size: 14px;
+	color: #fff;
+	text-decoration: none;
+	line-height: 35px;
+	text-align: center;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 30px 0;
+}
+/**********************************************************************/
+.progress-middle p:before{
+	background:url(../images/new_index.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+/*退款进度*/
+.refund-progress{
+	position: relative;
+	margin-bottom: 50px;
+}
+.refund-progress a{
+	position: absolute;
+	top:10px;
+	right: 60px;
+	color: #999;
+	text-decoration: underline;
+}
+.progress-top{
+	width:567px;
+	border-bottom:1px #ccc solid;
+	padding:10px 0 25px 0; 
+	margin-bottom:25px;
+}
+.progress-top p{
+	color:#999;
+}
+.progress-top p span{
+	color:#ff3300;
+	font-size:24px;
+	margin-right: 50px;
+}
+.progress-top p b{
+	font-weight: normal;
+	color: #333;
+}
+.progress-middle p{
+	color:#333;
+}
+.progress-middle p em{
+	color:#ff3300;
+	font-style:normal;
+}
+.progress-middle p:before{
+	width:18px;
+	height: 19px;
+	background-position: -380px -496px;
+	content: '';
+	margin-right: 8px;
+}
+.progress-bar {
+	width:620px;
+	border-collapse: collapse;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.progress-bar tr td{
+	height: 40px;
+	text-align: center;
+	line-height: 20px;
+}
+.progress-bar tr td span{
+	display:block;
+}
+.progress-middle i{
+	width:567px;
+	height:1px;
+	background-color: #ccc;
+	display: block;
+}
+.progress-bottom{
+	margin: 30px 0;
+}
+.progress-bottom h3{
+	font-size:17px;
+	color:#333;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+.refund-help{
+	width:620px;
+	height: 245px;
+	background-color: #f1f1f1;
+	padding:15px; 
+	margin-bottom: 50px;
+}
+.refund-help h6{
+	padding: 15px 0;
+	color:#333;
+	font-size:14px;
+}
+.refund-help p{
+	color:#999;
+	line-height: 20px;
+}
+/***********************************************************************/
+.date-header{
+	width:730px;
+	height: 24px;
+	background-color: #333;
+	color:#fff;
+	line-height: 24px;
+	margin:15px 0;
+}
+.date-header b{
+	padding-left: 20px;
+}
+.date-header span{
+	color:#999;
+	margin-left: 50px;
+}
+.order-img{
+	width:230px;
+	float: left;
+	margin-top: 30px;
+	margin-right:25px;
+}
+.order-details{
+	float: left;
+}
+.details-top h6{
+	font-size:16px;
+	font-weight: normal;
+}
+.details-top ul li{
+	color: #999;
+	height: 35px;
+	line-height: 35px;
+	float: left;
+	overflow: hidden;
+}
+.details-top ul li span {
+	width: 20px;
+	height: 20px;
+	background-color: #abcdef;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 15px 0 10px;
+}
+.details-top p{
+	height:30px;
+	line-height: 30px;
+	color: #999;
+}
+.details-top p span{
+	margin-right: 50px;
+	color:#333;
+}
+.details-top p b{
+	color:#ff3300;
+	font-size:20px;
+	font-weight: normal;
+}
+.details-bottom{
+	width:295px;
+	background-color: #f1f1f1;
+	padding-left: 10px;
+	padding-top: 10px;
+	margin: 10px 0 5px 0;
+	padding-bottom: 25px;
+}
+.details-bottom p.car-status{
+	color:#ff3300;
+	line-height: 20px;
+}
+.details-bottom p.car-status span{
+	height: 50px;
+	float: left;
+	display: block;
+	color: #999;
+}
+.details-bottom p{
+	line-height: 26px;
+	color: #999;
+}
+.details-bottom p span{
+	color:#333;
+	font-size: 13px;
+}
+.order-pay-btn{
+	width:100px; 
+	float: left;
+	margin-left: 35px;
+	text-align: center;
+	margin-top: 30px;
+}
+.order-pay-btn p{
+	color:#999;
+	padding:8px 0;
+}
+.order-pay-btn a{
+	text-decoration:underline;
+}
+.order-pay-btn p a{
+	width:100px;
+	height: 30px;
+	background-color: #ff3300;
+	text-align: center;
+	line-height: 30px;
+	color:#fff;
+	border-radius: 5px;
+	display: block;
+	text-decoration: none;
+}
+.order-pay-btn p a.grey-btn{
+	color:#ccc;
+	background-color: #ccc;
+	color:#fff;
+}
+.myorder-main{
+	padding-bottom: 50px;
+	background-color: #fff;
+}
+.reupload_btn {
+    position: absolute;
+    padding:3px 0;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background:#333;
+    color:#fff;
+    left: 0;
+}

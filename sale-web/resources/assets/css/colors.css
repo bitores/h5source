@@ -1,0 +1,231 @@
+.car-color ul li a.cc_color {
+    background-image: url(../images/colors.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    overflow:hidden;
+    text-indent: -9999px;
+    /*border:2px solid transparent;*/
+}
+.car-color ul li.cc_color_disabled {
+}
+.car-color ul li.color_li {
+    position: relative;
+}
+.car-color ul li.color_li b {
+    display: none;
+    position: absolute;
+    background-image: url(../images/colors.png);
+    background-position: -258px -180px;
+    width:26px;
+    height:26px;
+    left: 2px;
+    top: -1px;
+}
+.car-color ul li.color_li_active .cc_color
+{
+	border:2px solid rgb(233,70,20);
+}
+/*.car-color ul li.color_li_active b{
+    display: block;
+}*/
+.cc_color0_1 {
+    background-position: 0 0;
+}
+.cc_color0_2 {
+    background-position: 0 -26px;
+}
+.cc_color0_3 {
+    background-position: 0 -52px;
+}
+.cc_color0_4 {
+    background-position: 0 -78px;
+}
+.cc_color0_5 {
+    background-position: 0 -105px;
+}
+.cc_color0_6 {
+    background-position: 0 -130px;
+}
+.cc_color0_7 {
+    background-position: 0 -156px;
+}
+.cc_color0_8 {
+    background-position: 0 -182px;
+}
+.cc_color0_9 {
+    background-position: 0 -208px;
+}
+.cc_color0_10 {
+    background-position: 0 -233px;
+}
+.cc_color0_11 {
+    background-position: -23px 0;
+}
+.cc_color0_12 {
+    background-position: -23px -26px;
+}
+.cc_color0_13 {
+    background-position: -23px -52px;
+}
+.cc_color0_14 {
+    background-position: -23px -78px;
+}
+.cc_color0_15 {
+    background-position: -23px -104px;
+}
+.cc_color0_16 {
+    background-position: -23px -130px;
+}
+.cc_color0_17 {
+    background-position: -23px -156px;
+}
+.cc_color0_18 {
+    background-position: -23px -182px;
+}
+.cc_color0_19 {
+    background-position: -23px -208px;
+}
+.cc_color0_20 {
+    background-position: -23px -234px;
+}
+.cc_color0_21 {
+    background-position: -46px 0;
+}
+.cc_color0_22 {
+    background-position: -46px -26px;
+}
+.cc_color0_23 {
+    background-position: -46px -52px;
+}
+.cc_color0_24 {
+    background-position: -46px -78px;
+}
+.cc_color0_25 {
+    background-position: -46px -104px;
+}
+.cc_color0_26 {
+    background-position: -46px -130px;
+}
+.cc_color0_27 {
+    background-position: -46px -156px;
+}
+.cc_color0_28 {
+    background-position: -46px -182px;
+}
+.cc_color0_29 {
+    background-position: -46px -208px;
+}
+.cc_color0_30 {
+    background-position: -46px -234px;
+}
+.cc_color0_31 {
+    background-position: -69px 0;
+}
+.cc_color0_32 {
+    background-position: -69px -26px;
+}
+.cc_color0_33 {
+    background-position: -69px -52px;
+}
+.cc_color0_34 {
+    background-position: -69px -78px;
+}
+.cc_color0_35 {
+    background-position: -69px -104px;
+}
+.cc_color0_36 {
+    background-position: -69px -130px;
+}
+.cc_color0_37 {
+    background-position: -69px -156px;
+}
+.cc_color0_38 {
+    background-position: -69px -182px;
+}
+.cc_color0_39 {
+    background-position: -69px -208px;
+}
+.cc_color0_40 {
+    background-position: -69px -234px;
+}
+.cc_color0_41 {
+    background-position: -92px 0;
+}
+.cc_color0_42 {
+    background-position: -92px -26px;
+}
+.cc_color0_43 {
+    background-position: -92px -52px;
+}
+.cc_color0_44 {
+    background-position: -92px -78px;
+}
+.cc_color0_45 {
+    background-position: -92px -104px;
+}
+
+
+.cc_color1_1 {
+    background-position: -93px -130px;
+}
+.cc_color1_2 {
+    background-position: -93px -156px;
+}
+.cc_color1_3 {
+    background-position: -93px -182px;
+}
+.cc_color1_4 {
+    background-position: -93px -208px;
+}
+.cc_color1_5 {
+    background-position: -93px -234px;
+}
+.cc_color1_6 {
+    background-position: -116px 0;
+}
+.cc_color1_7 {
+    background-position: -116px -26px;
+}
+.cc_color1_8 {
+    background-position: -116px -52px;
+}
+.cc_color1_9 {
+    background-position: -116px -78px;
+}
+.cc_color1_10 {
+    background-position: -116px -104px;
+}
+.cc_color1_11 {
+    background-position: -116px -130px;
+}
+.cc_color1_12 {
+    background-position: -116px -156px;
+}
+
+.common_select_ul {
+    position: absolute;
+    width: 378px;
+    background: #fff;
+    z-index: 99;
+    border: 1px solid #eee;
+    padding: 5px 10px;
+    display: none;
+}
+.common_select_ul li {
+    line-height: 26px;
+    padding:0;
+    margin:0;
+}
+.common_select_ul li:hover {
+    background:#ccc;
+    cursor: pointer;
+}
+.common_select_ul li em {
+    float: right;
+    margin-right:10px;
+    font-size:13px;
+    font-style: normal;
+
+}
