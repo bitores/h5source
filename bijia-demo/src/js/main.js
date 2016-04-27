@@ -1,3 +1,4 @@
+//https://github.com/kenkozheng/HTML5_research/tree/master/AngularRequireJS
 console.log("require main.js")
 var baseUrl = document.getElementById('main').getAttribute('data-baseurl');
 // require config
