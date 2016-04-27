@@ -1,8 +1,9 @@
 //http://www.tuicool.com/articles/zeiy6ff
 //https://github.com/angular-ui/ui-router
-define(["app"],function(app){
+define(['angular','angular-ui-router','angular-resource','angular-animate','angular-messages','angular-cookies','angular-sanitize'],
+    function(angular){
     console.log('router...',app);
-    return
+    var app = angular.module('app', ['ui.router','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
     app.run(['$rootScope','$state','$stateParams',
         function ($rootScope, $state, $stateParams) {
             console.log('app run ...');
@@ -63,4 +64,7 @@ define(["app"],function(app){
         //开启HTML5链接 
         $locationProvider.html5Mode(true);                      
     })
+
+
+    angular.bootstrap(document, ['app']);
 });

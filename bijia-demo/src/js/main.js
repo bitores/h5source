@@ -1,9 +1,10 @@
 console.log("require main.js")
+var baseUrl = document.getElementById('main').getAttribute('data-baseurl');
 // require config
-require.config({
-
+var config = {
+    "baseUrl": baseUrl,//依赖相对路径
 	 //配置angular的路径
-    paths:{
+    "paths":{
     	// 一些库文件
         "angular":"/pkg/angular", 
         "angular-animate":"/pkg/angular-animate",
@@ -19,12 +20,13 @@ require.config({
         'bootstrap': "/src/js/bootstrap",
         'app': "/src/js/app",
         'router': "/src/js/router",
+        'router2': "/src/js/router2",
         'init':"/src/js/init"
         //.....以及其他的js文件，这里省略
         
     },
     //这个配置是你在引入依赖的时候的包名
-    shim:{
+    "shim":{
         "angular":{
             exports:"angular"
         },
@@ -63,21 +65,23 @@ require.config({
 			exports:"zepto"
         },
     },
-    deps:['init','bootstrap'],//先加载
+    deps:['init'],//先加载
     urlArgs: "bust=" + (new Date()).getTime(),  //防止读取缓存，调试用
     waitSeconds:0
-});
+};
+
+require.config(config);
 
 // require run
 //应用配置
-require(['app','angular-ui-router','router'
+require(['router2'
 	// ,
     //Filters
     //Direetives
     //Services
     //TopController
     //Controller
-], function (app,angular_ui_router,router
+], function (router2
 	// ,
 	//
     ) {
