@@ -8,7 +8,7 @@ define([],function(){
 			'restrict': 'AE',
 			'template': template,
 			'replace': true,
-			// 'transclue': true,//定义父级元素容器，并使用属性 ng-transclude 作为其它元素占位符
+			'transclue': true,//定义父级元素容器，并使用属性 ng-transclude 作为其它元素占位符
 			'scope':{
 				'title':'=',// 双向绑定
 				'newFunc':'&',// 函数
@@ -27,7 +27,7 @@ define([],function(){
 				})
 			},
 			'controller': function(){
-				
+
 			}
 		}
 	}

@@ -1,8 +1,21 @@
+<style type="text/css">
+.animate-enter, .animate-leave {
+transition: 3000ms ease-in all;
+position: relative;
+display: block;
+} 
+.animate-enter.animate-enter-active, .animate-leave {
+left: 0;
+}
+.animate-leave.animate-leave-active, .animate-enter {
+left: 500px;
+}
+</style>
 <div>
      <div>
      	<h1>{{tile|Int}}</h1>
      	<h1>{{tile|Float}}</h1>
-     	<alert title='title' new-func="newFunc()" info="afffffs"></alert>
-        <h1>Page 3 content goes here...</h1>
+     	<alert title='title' new-func="newFunc()" info="afffffs" >dddd</alert>
+        <h1 ng-animate="animate">Page 3 content goes here...</h1>
      </div>
 </div>

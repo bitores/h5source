@@ -26,13 +26,39 @@ define(['angular','angular-ui-router','angular-resource','angular-animate','angu
     console.log('router...',app);
     var app = angular.module('app', ['ui.router','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
 
+    //动画
+    app.animation('.fadeOut', function(){
+        return {
+            // 'enter':function(ele,parentEle,afterEle,donecallback){console.log('enter');},
+            // 'leave':function(ele,donecallback){console.log('leave');},
+            // 'move':function(ele,parentEle,afterEle,donecallback){console.log('move');},
+            // 'addClass':function(ele,className,donecallback){console.log('addClass');},
+            // 'removeClass':function(ele,className,donecallback){console.log('removeClass');}
+
+            enter: function(element, done) {
+                console.log("enter.......");
+                element.css({
+                    opacity: 0.5,
+                    position: "relative",
+                    top: "10px",
+                    left: "20px"
+                  })
+                  .animate({
+                    top: 0,
+                    left: 0,
+                    opacity: 1
+                    }, 1000, done);
+            }
+        }
+    })
+
      //绑定Filters
     app.filter("Int",math.Int);              //取整
     app.filter("Float",math.Fraction);              //取整
     
     // 定义指令
     app.directive('alert',alert);
-    
+
     /*---------- 通用配置 ---------- */
     app.constant("WEB_CODE",'20160428');
 
