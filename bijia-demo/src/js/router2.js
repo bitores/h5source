@@ -4,6 +4,7 @@ define(['angular','angular-ui-router','angular-resource','angular-animate','angu
     //Filters
     'math',
     //Direetives
+    'alert',
     //Services
     'info',
     //TopController
@@ -14,6 +15,7 @@ define(['angular','angular-ui-router','angular-resource','angular-animate','angu
     //Filters
     math,
     //Direetives
+    alert,
     //Services
     info,
     //TopController
@@ -27,6 +29,9 @@ define(['angular','angular-ui-router','angular-resource','angular-animate','angu
      //绑定Filters
     app.filter("Int",math.Int);              //取整
     app.filter("Float",math.Fraction);              //取整
+    
+    // 定义指令
+    app.directive('alert',alert);
     
     /*---------- 通用配置 ---------- */
     app.constant("WEB_CODE",'20160428');

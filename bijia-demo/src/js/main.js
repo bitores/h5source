@@ -26,7 +26,8 @@ var config = {
         //.....以及其他的js文件，这里省略
         'math':"/src/js/filter/math",
         'info':"/src/js/service/info",
-        'indexCtr':"/src/js/controller/indexCtr"
+        'indexCtr':"/src/js/controller/indexCtr",
+        'alert':"/src/js/directives/alert"
         
     },
     //这个配置是你在引入依赖的时候的包名
@@ -83,6 +84,7 @@ require(['router2',
     //Filters
     'math',
     //Direetives
+    'alert',
     //Services
     'info',
     //TopController
