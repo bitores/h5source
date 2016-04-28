@@ -22,8 +22,11 @@ var config = {
         'app': "/src/js/app",
         'router': "/src/js/router",
         'router2': "/src/js/router2",
-        'init':"/src/js/init"
+        'init':"/src/js/init",
         //.....以及其他的js文件，这里省略
+        'math':"/src/js/filter/math",
+        'info':"/src/js/service/info",
+        'indexCtr':"/src/js/controller/indexCtr"
         
     },
     //这个配置是你在引入依赖的时候的包名
@@ -75,13 +78,16 @@ require.config(config);
 
 // require run
 //应用配置
-require(['router2'
+require(['router2',
 	// ,
     //Filters
+    'math',
     //Direetives
     //Services
+    'info',
     //TopController
     //Controller
+    'indexCtr'
 ], function (router2
 	// ,
 	//
