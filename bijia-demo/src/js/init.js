@@ -1,1 +1,1 @@
-console.log("app init...");
+console.log("项目初始化变量app init...");

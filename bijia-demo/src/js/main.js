@@ -21,7 +21,6 @@ var config = {
         'bootstrap': "/src/js/bootstrap",
         'app': "/src/js/app",
         'router': "/src/js/router",
-        'router2': "/src/js/router2",
         'init':"/src/js/init",
         //.....以及其他的js文件，这里省略
         'math':"/src/js/filter/math",
@@ -79,17 +78,12 @@ require.config(config);
 
 // require run
 //应用配置
-require(['router2',
-	// ,
+require(['bootstrap',
     //Filters
-    'math',
     //Direetives
-    'alert',
     //Services
-    'info',
     //TopController
     //Controller
-    'indexCtr'
 ], function (router2
 	// ,
 	//
