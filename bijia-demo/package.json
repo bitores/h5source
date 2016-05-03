@@ -27,5 +27,6 @@
     "fis-preprocessor-annotate": "*"
   },
   "devDependencies": {
+    "fis3-hook-amd": "^0.1.15"
   }
 }
