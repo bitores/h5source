@@ -1,0 +1,121 @@
+/*提车日记（首页）*/
+    .m-news{
+            border-top:1px solid #ededed;border-bottom:1px solid #ededed;font-size:1rem;background:#fff;
+            .u-title_word{font-weight:normal;color:#5f5f5f;font-size:0.875rem;height:1.3rem;line-height:1.4rem;padding-left:1.6rem;}
+            .u-title_link{font-size:0.75rem;padding-right:.65rem;height:1.3rem;line-height:1.3rem;}
+            .title{
+                width:100%;border-bottom:1px solid #ededed;padding:.5rem 10px;
+                .u-title_word{background:url("/img/index/index_tcrjIcon.png") no-repeat left center;background-size: 20px 20px;}
+                .u-title_link{color:#a0a0a0;background:url("/img/index/more_arrow.png") no-repeat 100% 50%;background-size:.6rem;}
+            }
+        .list{
+            width:100%;padding:15px .75rem 7px .75rem;
+                li{
+                 margin-bottom:12px;
+                 a{ display: block; width: 100%;}
+                .img{
+                     display: block;width:42%;overflow:hidden;margin-right:4%; float: left;
+                     img{width:100%;}
+                     }
+                    .text{
+                            width:52%;
+                            dt{color:#434343;font-size:.8rem;font-weight:normal;height:2.3rem;text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+                            dd{color:#a0a0a0;font-size:.72rem;margin-top:1rem;text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+                    }
+                }
+
+       }
+       @media screen and (min-width: 320px) {
+            min-height:16.1rem;
+       }
+       @media screen and (min-width: 375px) {
+            min-height:16.1rem;
+       }
+       @media screen and (min-width: 414px) {
+            min-height:15.9rem;
+       }
+    }
+/*品质保证（首页）*/
+.m-promise{
+    border-top:1px solid #ededed;border-bottom:1px solid #ededed;font-size:1rem;background:#fff;
+    margin-top:10px;
+
+    padding:15px 0;
+    .list{
+        list-style:none;width:90%;margin:0 auto;
+        li{
+            width:25%;
+            i,strong{display:block;margin:0 auto;text-align:center;}
+            img{display:inline-block;width:90%;}
+            i{width:3rem;height:3rem;line-height:3rem;}
+            strong{font-weight:normal;font-size:.8rem;color:#5f5f5f;margin-top:10px;}
+        }
+        }
+        @media screen and (min-width: 320px) {
+            min-height:6.75rem;
+        }
+        @media screen and (min-width: 375px) {
+            min-height:6.6rem;
+        }
+        @media screen and (min-width: 414px) {
+           min-height:6.3rem;
+        }
+}
+/*问题回馈（首页）*/
+.m-question{
+    border-top:1px solid #ededed;border-bottom:1px solid #ededed;font-size:1rem;background:#fff;
+    .u-title_word{font-weight:normal;color:#5f5f5f;font-size:0.875rem;height:1.3rem;line-height:1.4rem;padding-left:1.6rem;}
+    .u-title_link{font-size:0.75rem;padding-right:.8rem;height:1.3rem;line-height:1.3rem;}
+    margin-top:10px;
+    .title{
+        padding:.5rem 10px;
+        .u-title_word{background:url("/img/index/index_question_icon.png") no-repeat left center;background-size:1.4rem;}
+        .u-title_link{background:url("/img/index/index_question_arrow.png") no-repeat right center;background-size:.55rem;width:1rem;}
+    }
+
+}
+/*关注微信（首页）*/
+.m-weixin{
+    width: 100%;
+    padding: 1.0625rem 0 3.8125rem;
+    color: #9b9b9b;
+    font-size: .875rem;
+    line-height: 1.375rem;
+    background: #eee;
+    p{
+        float: left;
+        span{ display: block;}
+        &.text{ 
+            position: relative;
+            padding-top: .3125rem;
+            margin: .875rem 0 0 13%;
+            border-top: 1px solid #e0e0e0;
+            b{
+                position: absolute;
+                top: -2px;
+                left: 0;
+                width: 14%;
+                height: 2px;
+                background: #ec6238;
+            }
+        }
+        &.code{ 
+            float: right; 
+            margin: 0 13% 0 4.53%; 
+            padding-bottom: .25rem;
+            width: 26.4%; 
+            text-align: center;
+            background: #fff;
+            strong{
+                display: block;
+                padding-left: 20%;
+                line-height: 1rem;
+                font-weight: normal;
+                font-size: .75rem;
+                background: url(/img/index/weixin_icon.png) 15% 50% no-repeat;
+                background-size: 1.125rem;
+            }
+        }
+        img{ width: 100%;}
+    }
+}

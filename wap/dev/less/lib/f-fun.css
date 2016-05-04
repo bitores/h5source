@@ -1,0 +1,203 @@
+/* 网站公用功能 */
+/* 功能 */
+/* 功能可根据出现频率调整  可出现在特殊CSS中 */
+.f-cb:after,
+.f-cbli li:after {
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  content: ".";
+}
+.f-cb,
+.f-cbli li {
+  zoom: 1;
+  display: block;
+}
+.f-ib {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.f-dn {
+  display: none;
+}
+.f-db {
+  display: block;
+}
+.f-fl {
+  float: left;
+}
+.f-fr {
+  float: right;
+}
+.f-pr {
+  position: relative;
+}
+/*.f-prz{position:relative;zoom:1;}*/
+.f-oh {
+  overflow: hidden;
+}
+.f-prr1 {
+  padding-right: 1rem;
+}
+.f-pr10 {
+  padding-right: 10px;
+}
+.f-pr20 {
+  padding-right: 20px;
+}
+.f-pl10 {
+  padding-left: 10px;
+}
+.f-pl20 {
+  padding-left: 20px;
+}
+.f-pt15 {
+  padding-top: 15px;
+}
+.f-pb20 {
+  padding-bottom: 20px;
+}
+.f-mt10 {
+  margin-top: 10px;
+}
+.f-mt20 {
+  margin-top: 20px;
+}
+.f-mt30 {
+  margin-top: 30px;
+}
+.f-mb10 {
+  margin-bottom: 10px;
+}
+.f-mb20 {
+  margin-bottom: 20px;
+}
+.f-mb30 {
+  margin-bottom: 30px;
+}
+.f-mr10 {
+  margin-right: 10px;
+}
+/* 字体样式定义 */
+.f-ff0 {
+  font-family: Arial, sans-serif;
+}
+.f-ff1 {
+  font-family: "Microsoft YaHei", "宋体";
+}
+.f-fs1 {
+  font-size: 12px;
+}
+.f-fwn {
+  font-weight: normal;
+}
+.f-fwb {
+  font-weight: bold;
+}
+.f-tal {
+  text-align: left;
+}
+.f-tac {
+  text-align: center;
+}
+.f-tar {
+  text-align: right;
+}
+.f-taj {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+.f-vam,
+.f-vama * {
+  vertical-align: middle;
+}
+.f-wsn {
+  -ms-word-wrap: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+}
+/* 禁用换行 */
+.f-pre {
+  overflow: hidden;
+  text-align: left;
+  white-space: pre-wrap;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+}
+/* 模拟PER标签 */
+.f-wwb {
+  white-space: normal;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+}
+/* 换行（英文或符号状态） */
+.f-ti {
+  overflow: hidden;
+  text-indent: -30000px;
+}
+.f-ti2 {
+  text-indent: 2em;
+}
+.f-lhn {
+  line-height: normal;
+}
+.f-tdu,
+.f-tdu:hover {
+  text-decoration: underline;
+}
+.f-tdn,
+.f-tdn:hover {
+  text-decoration: none;
+}
+.f-toe {
+  overflow: hidden;
+  -ms-word-wrap: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+/* 手型 */
+.f-csp {
+  cursor: pointer;
+}
+/* 普通 */
+.f-csd {
+  cursor: default;
+}
+/* 帮助 */
+.f-csh {
+  cursor: help;
+}
+/* 可移动 */
+.f-csm {
+  cursor: move;
+}
+.f-usn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+/* border none */
+.f-bln {
+  border-left: none;
+}
+.f-brn {
+  border-right: none;
+}
+.f-btn {
+  border-top: none;
+}
+.f-bbn {
+  border-bottom: none;
+}

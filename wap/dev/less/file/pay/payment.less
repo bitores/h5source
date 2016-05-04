@@ -1,0 +1,95 @@
+//支付信息
+.m-pay{
+    .m-order-info{
+        width: 100%;
+        padding: 0;
+        ul{
+             padding: 0 3.73%;
+        }
+        p{
+            width: 100%;
+            padding: .5625rem 10%;
+            text-align: center;
+            color: @font-color2;
+            line-height: 1.25rem;
+            font-size: .875rem;
+            background-color: @box-bg;
+            i{ color: #ec6238;}
+        }
+    }
+}
+
+//支付方式
+.m-pay-payment{
+    margin-top: .5rem;
+    border: 1px solid @border-color1;
+    .head{
+        width: 100%;
+        padding-left: 2rem;
+        font-size: .875rem;
+        color: @font-color3;
+        line-height: 2.375rem;
+        background-color: #f9f6f5;
+        background: url(/img/icon/pay_icon1.png) .5rem 50% no-repeat;
+        background-size: 1.3125rem;
+        border-bottom: 1px solid @border-color1 ;
+    }
+    ul{
+        width: 100%;
+        background-color: @box-bg;
+        li{
+            float: left;
+            width: 100%;
+            padding: .875rem 0;
+            border-bottom: 1px solid @border-color1;
+            background: url(/img/icon/pay_icon3.png) 91.73% 50% no-repeat;
+            background-size: 1.0625rem; 
+            &.cut{ 
+                background: url(/img/icon/pay_icon2.png) 91.73% 50% no-repeat;
+                background-size: 1.0625rem; 
+            } 
+           
+            &:last-child{ border: 0;}
+            img{
+                display: block;
+                margin: 0 3.466%;
+                width: 11.066%;
+                padding: 1.33%;
+                float: left;
+                background-color: #f9f6f5;
+                border-radius: 6px;
+            }
+            p{
+                float: left;
+                width: 82.002%;
+                strong{
+                    display: block;
+                    font-weight: inherit;
+                    font-size: .875rem;
+                    color: @font-color3;
+                    line-height: 1.375rem;
+                }
+                span{
+                    display: block;
+                    font-size: .625rem;
+                    color: @font-color2;
+                    line-height: 1.25rem;
+                }
+            }
+        }
+    }
+    .button{
+        width: 100%;
+        padding: 1.8125rem .875rem;
+        a{
+            display: block;
+            width: 100%;
+            font-size: 1.125rem;
+            color: #fff;
+            text-align: center;
+            line-height: 2.5rem;
+            background-color: #ec6238;
+            border-radius: 4px;
+        }
+    }
+}

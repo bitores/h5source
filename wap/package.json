@@ -1,0 +1,36 @@
+{
+  "name": "bijia-wap",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "maintainers":[
+    {
+      "name":"linruilin",
+      "email":"limitlin@outlook.com",
+      "web":""
+    }
+  ],
+  "author":"linruilin <limitlin@outlook.com>",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "request": "~2.14.0",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "bower": "~1.7.9",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "grunt":"^0.4.5",
+    "grunt-contrib-uglify":"^1.0.1",
+    "grunt-contrib-qunit":"^1.2.0",
+    "grunt-contrib-concat":"^1.0.1",
+    "grunt-contrib-jshint":"^1.0.0",
+    "grunt-contrib-copy":"^1.0.0",
+    "grunt-contrib-cssmin":"^0.14.0",
+    "grunt-contrib-less":"^1.3.0",
+    "grunt-contrib-watch":"^1.0.0"
+  }
+}

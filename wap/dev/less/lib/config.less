@@ -1,0 +1,68 @@
+//根据网站自定义配置文件
+
+@body-bg: #f5f5f5;
+@box-bg: #fff;
+
+@border-color1: #ededed;
+@border-color2: #f6f6f6;
+
+@font-color1: #e5e5e5;
+@font-color2: #a0a0a0;
+@font-color3: #5f5f5f;
+@font-color4: #434343;
+
+@search-bg: #f9f6f5;
+
+
+@font-size1: 16px;
+@font-size2: 18px;
+@font-size3: 20px;
+@font-size4: 32px;
+@font-size5: 43px;
+@font-size6: 86px;
+
+@media screen and (min-width: 320px) {
+    html{
+        font-size: @font-size1;
+    }
+}
+@media screen and (min-width: 375px) {
+    html{
+        font-size: @font-size2;
+    }
+}
+@media screen and (min-width: 414px) {
+    html{
+        font-size: @font-size3;
+    }
+}
+@media screen and (min-width: 750px) {
+    html{
+        font-size: @font-size4;
+    }
+}
+@media screen and (min-width: 1024px) {
+    html{
+        font-size: @font-size5;
+    }
+}
+@media screen and (min-width: 2048px) {
+    html{
+        font-size: @font-size6;
+    }
+    //限制最大宽度
+    .m-index,.contact,.m_floor_price_cnt,.m_brSearch,.m-Product,.u-popup-page,.m-feedback,.m-pay-Info,.m-msg,.comm_view,.m-order-box{ 
+        width: 2048px !important;
+    }
+    .m-popup .box{
+        left: 60px !important;
+        width: 1928px !important;
+    }
+}
+
+
+
+
+
+
+

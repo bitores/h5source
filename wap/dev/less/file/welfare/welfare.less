@@ -1,0 +1,159 @@
+//折扣车型
+.m-welfare{
+    img{ width: 100%;}
+}
+
+//申请贷款
+.m-applyLoan{
+    width: 90.66%;
+    margin: 2rem auto;
+    padding-bottom: 1.125rem;
+    border: 1px solid @border-color1;
+    border-radius: 4px;
+    background: #fff;
+    p{
+        color: #ec6238;
+        font-size: 1.125rem;
+        text-align: center;
+        line-height: 3.875rem;
+        font-weight: bold;
+    }
+    form{
+        width: 100%;
+        padding: 0 6%;
+        .input{
+            position: relative;
+            display: block;
+            width: 100%;
+            padding-left: 2.125rem;
+            line-height: 2.125rem;
+            font-size: .875rem;
+            border: 1px solid @border-color1;
+            border-radius: 4px;
+            &.car{ margin-bottom: .8125rem;}
+            span{
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 2.125rem;
+                width: 2.125rem;
+            }
+            &.car{
+                span{
+                    background: url(/img/icon/applyLoan_icon1.png) 50% 50% no-repeat #bfc0c0;
+                    background-size: auto 1.1875rem ;
+                }
+            }
+            &.mobile{
+                span{
+                    background: url(/img/icon/applyLoan_icon2.png) 50% 50% no-repeat #bfc0c0;
+                    background-size: auto 1.1875rem ;
+                }
+            }
+            input{ 
+                width: 100%; 
+                padding-left: 5%;
+                color: #9b9b9b;
+                background: #f2f2f2;
+                &::-webKit-input-placeholder{
+                    color: #9b9b9b;
+                }
+            }
+        }
+        .u-submit{ background: #ec6238;}
+    }
+}
+//申请贷款底部
+.m-applyLoan_footer{
+    img{ width: 100%;}
+    p{
+        height: 2.75rem;
+        line-height: 2.75rem;
+        span{
+            display: block;
+            float: left;
+            width: 71.66%;
+            text-indent: -999em;
+            background: url(/img/icon/applyLoan_mobile.png) 1.125rem 50% no-repeat #fff;
+            background-size: 60%;
+        }
+        a{
+            display: block;
+            float: left;
+            width: 28.34%;
+            text-align: center;
+            color: #fff;
+            background: #ec6238;
+        }
+    }
+}
+//申请贷款弹窗
+.m-applyLoan-popup{
+    padding: 1.875rem 0;
+    p{ line-height: 2.5625rem; font-size: 1.125rem;}
+    .msgIcon{ width: 14.7%; text-align: center;}
+    form{
+        width: 100%;
+        padding: 0 6%;
+        div{ 
+            width: 100%; 
+            line-height: 2.125rem;
+            input{
+                display: block;
+                float: left;
+                width: 73.77%;
+                padding-left: 5%;
+                &::-webKit-input-placeholder{
+                    color: #9b9b9b;
+                }
+                border: 1px solid #ec6238;
+                border-radius: 4px;
+            }
+            span{
+                display: block;
+                float: left;
+                width: 26.23%;
+                font-size: .75rem;
+                text-align: center;
+                border: 1px solid #fff;
+            }
+        } 
+    }
+}
+//图形验证码
+.m-applyLoan-graph-popup{
+    padding: 1.875rem 0;
+    .msgIcon{
+        width: 14.7%;
+        text-align: center;
+    }
+    p{
+        color: #333;
+        line-height: 2.5625rem;
+        font-size: 1.125rem;
+    }
+    form{
+        width: 100%;
+        padding: 0 6%;
+        .graphBox{
+            width: 100%;
+            margin: 0 auto;
+            line-height: 2.125rem;
+            font-size: .875rem;
+            input{
+                display: block;
+                float: left;
+                width: 59.66%;
+                padding-left: 11%;
+                border: 1px solid #ec6238;
+                border-radius: 4px;
+            }
+            img{
+                display: block;
+                float: right;
+                width: 37.33%;
+                height: 2.125rem;
+            }
+        }
+    }
+}

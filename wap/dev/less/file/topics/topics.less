@@ -1,0 +1,74 @@
+//专题头部
+.m-topics-head{
+    height: 38px;
+    line-height: 38px;
+    background-color: @box-bg;
+    border: 1px solid @border-color1;
+    .goHome{
+        display: block;
+        float: left;
+        width: 18px;
+        height: 18px;
+        margin-left: 12px;
+        img{ width: 100%;}
+    }
+    .skipBtn{
+        float: right;
+        padding-left: 6px;
+        a{
+            padding: 0 11px;
+            color: @font-color2;
+            line-height: 14px;
+            font-size: 14px;
+            &.choose{
+                border-right: 1px solid @font-color2;
+            }
+        }
+    }
+}
+//专题列表
+.m-topics-list{
+    background-color: #f2f2f2;
+    .m_topics_box{
+         position: relative;
+         display: block;
+         margin-bottom: 5px;
+         img{ width: 100%; height: 160px;}
+     }
+     p{
+         position: absolute;
+         bottom: 0;
+         z-index: 100;
+         width: 100%;
+         height: 30px;
+         line-height: 30px;
+         text-align: center;
+         background: rgba(0,0,0,.5);
+         strong{ color: #fff; font-size: 14px; font-weight: normal;}
+         em{ padding-left: 7px; color: #b03d1b;}
+         span{ font-size: 18px;}
+     }
+}
+
+//专题详情
+.m-topics-details{
+    background-color: #f2f2f2;
+    .imgList{
+        width: 100%;
+        img{ width: 100%;}
+    }
+}
+
+.m-topics-details-cnt{
+    p{ 
+        position: relative;
+        img{ width: 100%;}
+        a{ 
+            position: absolute; 
+            top: 0; 
+            display: block;
+            height: 100%;
+        }
+        
+    }
+}
