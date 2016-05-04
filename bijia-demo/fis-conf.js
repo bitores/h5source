@@ -4,11 +4,87 @@ fis.set('project.files', ['bower_components/**/*','src/**','lib', 'common', 'map
 // fis.set('project.files', '*.html');
 // default settings. fis3 release
 
+//http://cache.baiducontent.com/c?m=9d78d513d9971aee4fece4690d61c067690edd3e65c3975521dbc90ed5264c40347bfee47a74575a84846b6776f3140abda8776537747df7ced5ca198ce2c17d7895736f311d9141648944f2925125b77fcd0caef14e&p=8772c315d9c342a51fbe9b7c544781&newp=9b61c54ad6c04bf512b18f2d0214cf231610db2151ddda4f358888&user=baidu&fm=sc&query=fis%2Ehook&qid=8b8a09d40007724b&p1=1
 // npm install -g fis3-hook-amd
 // 解析 amd 依赖
 // https://github.com/fex-team/fis3-hook-amd
+// amd,moudle,closure,'',false 对isMod:true模块进行amd/cmd/closure包裹或不包裹
+// npm install fis3-hook-module
+// npm install fis3-hook-amd
+// npm install fis3-hook-cmd
+// npm install fis3-hook-commonjs
 fis.hook('amd', {
+  //mode: 'mod'// mode 默认 auto 根据文件内容自动判断是 commonJs 还是 amd。不准确，建议设置其中一种
   // 配置项
+  // "baseUrl": baseUrl,//依赖相对路径
+   //配置angular的路径
+    // "paths":{
+    //   // 一些库文件
+    //     "angular":"/pkg/angular", 
+    //     "angular-animate":"/pkg/angular-animate",
+    //     "angular-cookies":"/pkg/angular-cookies",
+    //     "angular-messages":"/pkg/angular-messages",
+    //     "angular-resource":"/pkg/angular-resource",
+    //     "angular-route":"/pkg/angular-route",
+    //     "angular-ui-router":"/pkg/angular-ui-router",
+    //     "angular-sanitize":"/pkg/angular-sanitize",
+    //     "swiper":"/lib/swiper.min",
+    //     "zepto":"/lib/zepto.min",
+    //     //js文件
+    //     'bootstrap': "/src/js/bootstrap",
+    //     'app': "/src/js/app",
+    //     'router': "/src/js/router",
+    //     'init':"/src/js/init",
+    //     //.....以及其他的js文件，这里省略
+    //     'math':"/src/js/filter/math",
+    //     'info':"/src/js/service/info",
+    //     'indexCtr':"/src/js/controller/indexCtr",
+    //     'alert':"/src/js/directives/alert"
+        
+    // },
+    // //这个配置是你在引入依赖的时候的包名
+    // "shim":{
+    //     "angular":{
+    //         exports:"angular"
+    //     },
+    // "angular-animate": {
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-animate"
+    //     },
+    // "angular-cookies":  {
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-cookies"
+    //     },
+    // "angular-messages":  {
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-messages"
+    //     },
+    // "angular-resource":  {
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-resource"
+    //     },
+    //     "angular-route":{
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-route"
+    //     },
+    //     "angular-ui-router":{
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-ui-router"
+    //     },
+    // "angular-sanitize":  {
+    //       deps: ['angular'],   //依赖什么模块
+    //         exports:"angular-sanitize"
+    //     },
+    // "swiper":  {
+    //   exports:"swiper"
+    //     },
+    // "zepto":  {
+    //   exports:"zepto"
+    //     },
+    // },
+    // deps:['init'],//先加载
+    // urlArgs: "bust=" + (new Date()).getTime(),  //防止读取缓存，调试用
+    // waitSeconds:0
 });
 
 fis.match('*.{js,css}', {
@@ -19,9 +95,15 @@ fis.match('::image', {
   useHash: true
 });
 
-fis.match('/src/*.js', {
+fis.match('/src/(**).js', {
   isMod:true,
+  moduleId: '$1',
   optimizer: fis.plugin('uglify-js')
+});
+
+fis.match('/lib/(**).js', {
+  useHash: false,
+  optimizer: null
 });
 
 

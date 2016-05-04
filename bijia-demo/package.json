@@ -21,12 +21,11 @@
   },
   "homepage": "https://github.com/fis-scaffold/default",
   "dependencies": {
-    "fis3-hook-module": "*",
-    "fis3-postpackager-loader": "*",
+    "fis-optimizer-html-minifier": "0.0.9",
     "fis-parser-less": "*",
-    "fis-preprocessor-annotate": "*"
-  },
-  "devDependencies": {
-    "fis3-hook-amd": "^0.1.15"
+    "fis-preprocessor-annotate": "*",
+    "fis3-hook-amd": "^0.1.15",
+    "fis3-hook-module": "*",
+    "fis3-postpackager-loader": "*"
   }
 }
