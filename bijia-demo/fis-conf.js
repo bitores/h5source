@@ -14,8 +14,9 @@ fis.set('project.files', ['bower_components/**/*','src/**','lib', 'common', 'map
 // npm install fis3-hook-cmd
 // npm install fis3-hook-commonjs
 // http://www.tuicool.com/articles/qa2IB3q
+// https://github.com/fex-team/fis3-hook-amd/blob/master/README.md
 fis.hook('amd', {
-  //mode: 'mod'// mode 默认 auto 根据文件内容自动判断是 commonJs 还是 amd。不准确，建议设置其中一种
+  // mode: 'amd',// mode 默认 auto 根据文件内容自动判断是 commonJs 还是 amd。不准确，建议设置其中一种
   // 配置项
   // "baseUrl": baseUrl,//依赖相对路径
    //配置angular的路径
@@ -45,10 +46,10 @@ fis.hook('amd', {
     },
     //这个配置是你在引入依赖的时候的包名
     "shim":{
-        "angular":{
+        "/bower_components/angular/angular":{
             exports:"angular"
         },
-    "angular-animate": {
+    "bower_components/angular-animate/angular-animate": {
           deps: ['angular'],   //依赖什么模块
             exports:"angular-animate"
         },
