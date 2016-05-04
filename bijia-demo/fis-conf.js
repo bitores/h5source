@@ -13,75 +13,76 @@ fis.set('project.files', ['bower_components/**/*','src/**','lib', 'common', 'map
 // npm install fis3-hook-amd
 // npm install fis3-hook-cmd
 // npm install fis3-hook-commonjs
+// http://www.tuicool.com/articles/qa2IB3q
 fis.hook('amd', {
   //mode: 'mod'// mode 默认 auto 根据文件内容自动判断是 commonJs 还是 amd。不准确，建议设置其中一种
   // 配置项
   // "baseUrl": baseUrl,//依赖相对路径
    //配置angular的路径
-    // "paths":{
-    //   // 一些库文件
-    //     "angular":"/pkg/angular", 
-    //     "angular-animate":"/pkg/angular-animate",
-    //     "angular-cookies":"/pkg/angular-cookies",
-    //     "angular-messages":"/pkg/angular-messages",
-    //     "angular-resource":"/pkg/angular-resource",
-    //     "angular-route":"/pkg/angular-route",
-    //     "angular-ui-router":"/pkg/angular-ui-router",
-    //     "angular-sanitize":"/pkg/angular-sanitize",
-    //     "swiper":"/lib/swiper.min",
-    //     "zepto":"/lib/zepto.min",
-    //     //js文件
-    //     'bootstrap': "/src/js/bootstrap",
-    //     'app': "/src/js/app",
-    //     'router': "/src/js/router",
-    //     'init':"/src/js/init",
-    //     //.....以及其他的js文件，这里省略
-    //     'math':"/src/js/filter/math",
-    //     'info':"/src/js/service/info",
-    //     'indexCtr':"/src/js/controller/indexCtr",
-    //     'alert':"/src/js/directives/alert"
+    "paths":{
+      // 一些库文件
+        "angular":"/bower_components/angular/angular", 
+        "angular-animate":"/bower_components/angular-animate/angular-animate",
+        "angular-cookies":"/bower_components/angular-cookies/angular-cookies",
+        "angular-messages":"/bower_components/angular-messages/angular-messages",
+        "angular-resource":"/bower_components/angular-resource/angular-resource",
+        "angular-route":"/bower_components/angular-route/angular-route",
+        "angular-ui-router":"/bower_components/angular-ui-router/angular-ui-router",
+        "angular-sanitize":"/bower_components/angular-sanitize/angular-sanitize",
+        "swiper":"/lib/swiper.min",
+        "zepto":"/lib/zepto.min",
+        //js文件
+        'bootstrap': "/src/js/bootstrap",
+        'app': "/src/js/app",
+        'router': "/src/js/router",
+        'init':"/src/js/init",
+        //.....以及其他的js文件，这里省略
+        'math':"/src/js/filter/math",
+        'info':"/src/js/service/info",
+        'indexCtr':"/src/js/controller/indexCtr",
+        'alert':"/src/js/directives/alert"
         
-    // },
-    // //这个配置是你在引入依赖的时候的包名
-    // "shim":{
-    //     "angular":{
-    //         exports:"angular"
-    //     },
-    // "angular-animate": {
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-animate"
-    //     },
-    // "angular-cookies":  {
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-cookies"
-    //     },
-    // "angular-messages":  {
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-messages"
-    //     },
-    // "angular-resource":  {
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-resource"
-    //     },
-    //     "angular-route":{
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-route"
-    //     },
-    //     "angular-ui-router":{
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-ui-router"
-    //     },
-    // "angular-sanitize":  {
-    //       deps: ['angular'],   //依赖什么模块
-    //         exports:"angular-sanitize"
-    //     },
-    // "swiper":  {
-    //   exports:"swiper"
-    //     },
-    // "zepto":  {
-    //   exports:"zepto"
-    //     },
-    // },
+    },
+    //这个配置是你在引入依赖的时候的包名
+    "shim":{
+        "angular":{
+            exports:"angular"
+        },
+    "angular-animate": {
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-animate"
+        },
+    "angular-cookies":  {
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-cookies"
+        },
+    "angular-messages":  {
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-messages"
+        },
+    "angular-resource":  {
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-resource"
+        },
+        "angular-route":{
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-route"
+        },
+        "angular-ui-router":{
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-ui-router"
+        },
+    "angular-sanitize":  {
+          deps: ['angular'],   //依赖什么模块
+            exports:"angular-sanitize"
+        },
+    "swiper":  {
+      exports:"swiper"
+        },
+    "zepto":  {
+      exports:"zepto"
+        },
+    },
     // deps:['init'],//先加载
     // urlArgs: "bust=" + (new Date()).getTime(),  //防止读取缓存，调试用
     // waitSeconds:0
@@ -170,7 +171,14 @@ fis.match("bower_components/**/(*).css", {
     packTo: "/pkg/$1.css"
 });
 
-
+/*模块化加载器配置*/
+fis.match('::package', {  
+  postpackager: fis.plugin('loader', {
+    allInOne: true, //js&css打包成一个文件
+    sourceMap: true, //是否生成依赖map文件
+    useInlineMap: true //是否将sourcemap作为内嵌脚本输出
+  })
+})
 
 // Global end
 

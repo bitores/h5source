@@ -74,7 +74,7 @@ var config = {
     waitSeconds:0
 };
 
-require.config(config);
+// require.config(config);
 
 // require run
 //应用配置

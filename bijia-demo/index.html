@@ -10,5 +10,8 @@
 		<div ui-view></div>
 		<!-- data-baseurl是额外加入的属性，主要好处是可以轻松在html（0缓存）中对js的url进行修改。 -->
 		<script data-baseurl='./' src="/lib/require.js" defer async="true" data-main="/src/js/main.js" id='main' charset="utf-8"></script>
+		<script type="text/javascript">  
+		require(['/src/main']);//异步加载index.js模块  
+		</script>
 	</body>
 </html>
