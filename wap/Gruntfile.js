@@ -39,7 +39,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd:"dev/js/",
                     src: '**',
-                    dest: 'public/js/',
+                    dest: 'public/js/'
                 }],
             },
             img:{
@@ -50,6 +50,17 @@ module.exports = function(grunt) {
                     dest: 'public/img/'
                    
                 }],
+            },
+            bower:{
+                files:[{
+                    expand: true, // 启用动态扩展
+                    cwd:"bower_components/", // 源文件匹配都相对此目录
+                    src: '**/*.min.js', // 匹配模式
+                    dest: 'public/js/lib', // 目标路径前缀
+                    ext: '.min.js', // 目标文件路径中文件的扩展名
+                    makeBase:true,
+                     extDot: 'first' // 扩展名始于文件名的第一个点号
+                }]
             }
         },
         uglify:{

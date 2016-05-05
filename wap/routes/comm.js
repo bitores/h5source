@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 router.all('*', function(req, res, next){
-    res.status(404).render('404');
-    res.status(503).render('503');
+    // res.status(404).render('404');
+    // res.status(503).render('503');
+    res.status(404).json({code:404,txt:404})
 });
 
 // router.use(function(req, res, next) {
