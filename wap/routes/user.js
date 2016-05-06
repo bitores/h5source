@@ -3,13 +3,17 @@ var router = express.Router();
 
 
 router.get('/', function(req, res, next) {
-	res.render('user', { title: 'appname' });
+	res.render('index');
 });
 
 
-//user  req.params.id == 用户ID
-router.get('/:user_id', function(req, res, next) {
-	res.json({ user: req.params.user_id ,title: 'appname'});
+router.get('/name', function(req, res, next) {
+	res.render('index');
 });
+
+router.get('/avatar', function(req, res, next) {
+	res.render('index');
+});
+
 
 module.exports = router;

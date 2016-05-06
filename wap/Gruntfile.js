@@ -47,7 +47,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd:"dev/img/",
                     src: '**',
-                    dest: 'public/img/'
+                    dest: 'public/images/'
                    
                 }],
             }
@@ -82,9 +82,19 @@ module.exports = function(grunt) {
         //     }
         // },
         watch: {
-            files: ['dev/js/**','dev/img/**','resources/assets/less/kqcwap.less'],
-            // files: ['resources/assets/js/**/*.js','resources/assets/js/*.js','resources/assets/img/**','resources/assets/less/kqcwap.less'],
-            tasks: ['copy','less']
+            scripts:{
+                files: ['dev/js/**/*.js'],
+                tasks: ['copy']
+            },
+            img:{
+                files: ['dev/img/**'],
+                tasks: ['copy']
+               
+            },
+            less:{
+                files: ['dev/less/**/*.less'],
+                tasks: ['less']
+            }
         }
     });
 
@@ -92,12 +102,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     
-    grunt.registerTask('watch', ['watch']);
+    grunt.event.on('watch', function(action, filepath, target) {
+          grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+    });
     grunt.registerTask('default', ['copy','uglify:buildall','less']);
 };
