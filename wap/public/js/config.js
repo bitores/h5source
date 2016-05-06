@@ -1,0 +1,1 @@
+var IMG_ADDRESS="",WAP_ADDRESS="http://m.bijia.kuaiqiangche.dev",API_ADDRESS="http://new_api.kuaiqiangche.cc";API_ADDRESS="http://api.sale.kuaiqiangche.com",IMG_URL="http://7xthug.com1.z0.glb.clouddn.com";

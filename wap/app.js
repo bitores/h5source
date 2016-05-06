@@ -6,21 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 
+//定义通用状态返回页面
+var comm_routes = require('./routes/comm');
 
 //定义API route
 var api = require('./routes/api/api');
 
 //定义页面route
 var index = require('./routes/index');
-var car = require('./routes/car');
-var collection = require('./routes/collection');
-var feedback = require('./routes/feedback');
-var inquiry = require('./routes/inquiry');
-var user = require('./routes/user');
-// var bargain = require('./routes/help');
+var error = require('./routes/error');
 
-//定义通用状态返回页面
-var comm_routes = require('./routes/comm');
+
 
 var app = express();
 
@@ -56,14 +52,7 @@ app.use('*', comm_routes);
 app.use('/api', api);
 //挂载页面route到APP
 app.use('/', index);
-app.use('/s', car);
-app.use('/collection', collection);
-app.use('/', feedback);
-app.use('/', inquiry);
-app.use('/u', user);
-// app.use('/', bargain);
-
-
+app.use('/error', error);
 
 
 // catch 404 and forward to error handler

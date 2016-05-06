@@ -1,8 +1,7 @@
 extends layout/layout
 
 block append head
-	script(src='/vendor/jquery.js')
-	script(src='/vendor/caustic232.js')
+	script(src='/requirejs/require.js' defer async="true" data-main='/js/wap.js')
 
 block content
 	h1= title

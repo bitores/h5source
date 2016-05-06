@@ -7,11 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/index', function(req, res, next) {
-	res.render('index');
+	res.render('index', { title: 'appname' ,"errors": false,"books": ["A", "B", "C"], name: "Bob", "book": {"name": "Hello", "price": 12.99}, namets: "Hello <em>World</em>","type": "text"});
 });
 
 router.get('/index.html', function(req, res, next) {
-	res.render('index');
+	res.render('index', { title: 'appname' ,"errors": false,"books": ["A", "B", "C"], name: "Bob", "book": {"name": "Hello", "price": 12.99}, namets: "Hello <em>World</em>","type": "text"});
 });
 
 

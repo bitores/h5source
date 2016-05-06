@@ -6,12 +6,12 @@ module.exports = function(grunt) {
         less: {
             compilation: {
                 files: {
-                    'dev/css/bijiawap.css': 'dev/less/bijiawap.less'
+                    'dev/css/wap.css': 'dev/less/wap.less'
                 }
             },
             zip: {
                 files: {
-                    'public/css/bijiawap.css': 'dev/css/bijiawap.css'
+                    'public/css/wap.css': 'dev/css/wap.css'
                 },
                 options: {
                     compress: true,
@@ -21,13 +21,13 @@ module.exports = function(grunt) {
         },
         jshint:{
             files: [
-                'resources/assets/js/**/*.js',
-                'resources/assets/js/controller/*.js',
-                'resources/assets/js/Demo/*.js',
-                'resources/assets/js/direetives/*.js',
-                'resources/assets/js/filters/*.js',
-                'resources/assets/js/services/*.js'
-                // 'resources/assets/js/*.js'
+                'dev/js/**/*.js',
+                'dev/js/controller/*.js',
+                'dev/js/Demo/*.js',
+                'dev/js/direetives/*.js',
+                'dev/js/filters/*.js',
+                'dev/js/services/*.js'
+                // 'dev/js/*.js'
             ],
             options:{
                 
