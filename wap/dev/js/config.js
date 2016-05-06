@@ -1,6 +1,6 @@
 //本地
 var IMG_ADDRESS ="",
-    WAP_ADDRESS ="http://m.bijia.kuaiqiangche.dev",
+    WAP_ADDRESS ="http://localhost",
     API_ADDRESS ="http://localhost/api";
     
 // //cc
