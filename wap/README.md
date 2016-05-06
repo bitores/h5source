@@ -42,3 +42,8 @@ router.get('/index')  --> $routerProvide.when('/index')
 
 定义service
 app.service注册后，在Angular函数中直接注入
+
+添加angular 注意base的引入
+
+3///
+require define  顺序。。。

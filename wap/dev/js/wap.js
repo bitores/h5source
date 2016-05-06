@@ -1,5 +1,5 @@
 (function(){
-var Require_Config={
+var Config={
     "baseUrl": './',//依赖相对路径
      //配置angular的路径
     "paths":{
@@ -65,7 +65,7 @@ var Require_Config={
     urlArgs: "debug=" + (new Date()).getTime(),
     waitSeconds:0
 }
-require.config(Require_Config);
+require.config(Config);
 //应用配置
 require(['zepto','angular','angular-route','angular-resource',"angular-animate", "angular-messages", "angular-cookies", 
     // filter
@@ -83,7 +83,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     Car,
     IndexController
     ) {
-    console.log('加载bijiawap.js  Require_Config');
+    console.log('加载wap.js  Config');
     
     //创建应用与依赖组件
     var app = angular.module('app', ['ngRoute', "ngResource", "ngAnimate", "ngMessages", "ngCookies"]);
@@ -91,39 +91,8 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     // app.animation(".comm_view", function($rootScope) {
     //     return {
     //         enter: function(element, done) {
-    //             element.css({
-    //                 position: "absolute",
-    //                 top: 0,
-    //                 left: "100%",
-    //                 "z-index": 100,
-    //                 width: "100%",
-    //                 "min-height": "100%",
-    //                 opacity: 0
-    //             }),
-    //             $(element).animate({
-    //                 left: 0,
-    //                 opacity: 1
-    //             }, 500)
     //         },
     //         leave: function(element, done) {
-    //             element.css({
-    //                 position: "absolute",
-    //                 top: 0,
-    //                 left: 0,
-    //                 "z-index": 99,
-    //                 "min-height": "100%",
-    //                 width: "100%",
-    //                 opacity: 1
-    //             }),
-    //             $(element).animate({
-    //                 left: "-100%",
-    //                 opacity: 0
-    //             }, {
-    //                 duration: 400,
-    //                 complete: function() {
-    //                     $rootScope.commimglodas.run()
-    //                 }
-    //             })
     //         }
     //     }
     // });
@@ -131,7 +100,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     app.filter("xx",Filters);  
 
     // //构造函数
-    app.service("Api",Log);
+    app.service("Api",Api);
     app.service("Log",Log);
     app.service("Car",Car);
         
@@ -151,7 +120,6 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     })
     app.config(function($provide,$routeProvider,$locationProvider,$httpProvider) {
         console.log('route config ...');
-    //     console.log($routeProvider);
         $routeProvider.
         //首页
         when('/', { controller: 'IndexController', templateUrl: '/index/V' ,resolve:{
@@ -171,25 +139,6 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
             }
         }}).
         // car
-        // when('/s', { controller: 'BrandController', templateUrl: '/s/brand/V' ,resolve:{
-        //     init:function($rootScope){
-        //         console.log(1);
-        //         $rootScope.footer = true;
-                
-        //     }
-        // }}).
-        // when('/s/b:id', { controller: 'BrandController', templateUrl: '/s/brand/V' ,resolve:{
-        //     init:function($rootScope){
-        //         console.log(1);
-        //         $rootScope.footer = true;
-                
-        //     }
-        // }}).
-        // when('/s/b:id/s:id', { controller: 'ModelController', templateUrl: '/s/model/V' ,resolve:{
-        //     init:function($rootScope){
-        //         $rootScope.footer = true;
-        //     }
-        // }}).
         // when('/s/b:id/s:id/t:id', { controller: 'ModelController', templateUrl: '/s/model/V' ,resolve:{
         //     init:function($rootScope){
         //     }

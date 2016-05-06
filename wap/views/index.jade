@@ -4,6 +4,7 @@ block append head
 	script(src='/requirejs/require.js' defer async="true" data-main='/js/wap.js')
 
 block content
+	div(ng-view)
 	h1= title
 	//- span asodkoasd
 	p Welcome to #{title}

@@ -16,7 +16,7 @@ router.get('/index.html', function(req, res, next) {
 
 
 router.get('/index/V', function(req, res, next) {
-	res.render('home/kbj');
+	res.render('home/home');
 });
 
 module.exports = router;

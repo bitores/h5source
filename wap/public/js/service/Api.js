@@ -18,7 +18,7 @@ define(['angular'],function(angular){
 			})
 		}
 
-		this.get = function(){
+		this.get = function(data){
 			return $http({
 				'method':"GET",
 				'url':API_ADDRESS,
