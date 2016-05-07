@@ -15,15 +15,15 @@ router.get('/index.html', function(req, res, next) {
 });
 
 
-router.get('/index/V', function(req, res, next) {
-	res.render('home/home');
+router.get('/index1/V', function(req, res, next) {
+	res.render('home/home1');
 });
 
 router.get('/index2/V', function(req, res, next) {
 	res.render('home/home2');
 });
 
-router.get('/index2/V', function(req, res, next) {
+router.get('/index3/V', function(req, res, next) {
 	res.render('home/home3');
 });
 

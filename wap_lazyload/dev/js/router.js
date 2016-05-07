@@ -3,21 +3,21 @@ define([], function(){
         defaultRoutePath: '/',
         routes: {
             '/': {
-                templateUrl: '/index/V',
+                templateUrl: '/index1/V',
                 dependencies: [
-                    'js/controller/indexCtrl'
+                    'js/controller/indexCtr1'
                 ]
             },
             '/index': {
                 templateUrl: '/index2/V',
                 dependencies: [
-                    'js/controller/indexCtrl2'
+                    'js/controller/indexCtr2'
                 ]
             },
             '/index.html': {
                 templateUrl: '/index3/V',
                 dependencies: [
-                    'js/controller/indexCtrl3'
+                    'js/controller/indexCtr3'
                 ]
             },
 

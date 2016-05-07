@@ -1,5 +1,6 @@
-define(['angular'],function(angular){
-	return function($http, $q){
+define(['app'],function(app){
+
+	app.service('Api',function($http, $q){
 
 		this.post = function(data){
 			return $http({
@@ -35,5 +36,5 @@ define(['angular'],function(angular){
 			})
 		}
 		
-	}
+	})
 });

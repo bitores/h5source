@@ -1,4 +1,4 @@
-define(['angular'],function(angular){
+define(['app'],function(app){
 	var Toast = function(context) {
 		this.context = !!context ? context : document.body;
 		this.toastTimer = null;
@@ -50,9 +50,9 @@ define(['angular'],function(angular){
 	};
 	var log = new Toast();
 
-	return function(){
+	app.service("Log",function(){
 		this.show = function(msg, interval){
 			return log.show(msg, interval);
 		}
-	}
+	})
 })

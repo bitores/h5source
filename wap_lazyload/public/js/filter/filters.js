@@ -1,7 +1,8 @@
-define(['angular'],function(angular){
-	return function(){
+define(['app'],function(app){
+
+	app.filter("filters",function(){
 		return function(input){
 			return 1;
 		}
-	}
+	}) 
 })
