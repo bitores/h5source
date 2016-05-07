@@ -1,0 +1,32 @@
+{
+  "name": "bijia-wap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "authors": [
+    "h <h@outlook.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "AMD"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs":"~2.2.0",
+    "zepto":"~1.1.6",
+    "angular":"~1.5.5",
+    "angular-route":"~1.5.5",
+    "angular-cookies":"~1.5.5",
+    "angular-messages":"~1.5.5",
+    "angular-animate":"~1.5.5",
+    "angular-resource":"~1.5.5",
+    "angular-touch":"~1.5.5"
+  }
+}

@@ -1,0 +1,136 @@
+//登录
+.m-popup{
+    .m-login-popup{
+        top: 15%;
+        border-radius: 4px;
+        title{
+            display: block;
+            padding-top: .5rem;
+            font-size: 1.375rem;
+            line-height: 5.125rem;
+            color: #9b9b9b;
+        }
+        form{
+            width: 87.72%;
+            margin: 0 auto;
+            .input{
+                position: relative;
+                display: block;
+                width: 100%;
+                padding-left: 11%;
+                line-height: 2.125rem;
+                font-size: .875rem;
+                border: 1px solid @border-color1;
+                border-radius: 4px;
+                span{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 2.125rem;
+                    width: 11%;
+                    background: url(/img/icon/login_icon2.png) 50% 50% no-repeat;
+                    background-size: auto 1.1875rem ;
+                }
+                input{ 
+                    width: 100%; 
+                    color: #9b9b9b;
+                    &::-webKit-input-placeholder{
+                        color: #9b9b9b;
+                    }
+                }
+                .mobile{ width: 64%; }
+                .captchaBtn{
+                    display: block;
+                    width: 36%;
+                    text-align: center;
+                    color: #ec6238;
+                }
+            }
+            
+            .f-cb{
+                span{
+                    background: url(/img/icon/login_icon1.png) 50% 50% no-repeat;
+                    background-size: auto 1.1875rem ;
+                }
+            }
+            label{
+                display: block;
+                margin: 0;
+                color: #9b9b9b;
+                font-weight: normal;
+                font-size: .75rem;
+                line-height: 2rem;
+                text-align: right;
+                a{ color: #ec6238;}
+            }
+            p{
+                width: 100%;
+                padding-bottom: 1rem;
+                text-align: center;
+                color: #9b9b9b;
+                font-size: .75rem;
+                line-height: 2.375rem;
+                a{ color: #ec6238;}
+            }
+            .special_top{ margin-top: .43rem;}
+        }
+    }
+}
+//图形验证码
+.m-graph-popup{
+    top: 15% !important;
+    width: 92%;
+    padding: 0 6%;
+    border-radius: 4px;
+    title{
+        display: block;
+        padding-top: .5rem;
+        font-size: 1.375rem;
+        line-height: 5.125rem;
+        color: #9b9b9b;
+    }
+    .graphBox{
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 1.921rem;
+        line-height: 2.125rem;
+        font-size: .875rem;
+        input{
+            display: block;
+            float: left;
+            width: 59.66%;
+            padding-left: 11%;
+            border: 1px solid #ec6238;
+            border-radius: 4px;
+        }
+        img{
+            display: block;
+            float: right;
+            width: 37.33%;
+            height: 2.125rem;
+        }
+    }
+    label{
+        display: block;
+        padding-bottom: 1.124rem;
+        margin: 0;
+        color: #9b9b9b;
+        font-weight: normal;
+        font-size: .625rem;
+        line-height: 2rem;
+        text-align: left;
+        a{ 
+            color: #ec6238;
+            &.vague{ float: right;}
+        }
+    }
+    p{
+        width: 100%;
+        padding-bottom: 1rem;
+        text-align: center;
+        color: #9b9b9b;
+        font-size: .75rem;
+        line-height: 2.375rem;
+        a{ color: #ec6238;}
+    }
+}
