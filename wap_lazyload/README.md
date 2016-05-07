@@ -55,3 +55,4 @@ $location.path('/index');
 首次加载慢的问题--按需加载
 
 此版本已解决首次加载慢的问题
+1、controller/service...等在模块中直接定义在app上，而不是定义函数
