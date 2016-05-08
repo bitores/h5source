@@ -1,5 +1,6 @@
 //由于使用了bower，有很多非必须资源。通过set project.files对象指定需要编译的文件夹和引用的资源
-fis.set('project.files', ['bower_components/**/*','src/**','lib', 'common', 'map.json','index.html']);
+// 对于文件夹，要写入//**
+fis.set('project.files', ['bower_components/**/*','src/**','lib/**', 'common/**', 'map.json','index.html']);
 // 配置按需编译：设置编译范围为 html 文件，不过 html 文件中使用到的资源也会参与编译。
 // fis.set('project.files', '*.html');
 // default settings. fis3 release
@@ -16,77 +17,83 @@ fis.set('project.files', ['bower_components/**/*','src/**','lib', 'common', 'map
 // http://www.tuicool.com/articles/qa2IB3q
 // https://github.com/fex-team/fis3-hook-amd/blob/master/README.md
 fis.hook('amd', {
-  // mode: 'amd',// mode 默认 auto 根据文件内容自动判断是 commonJs 还是 amd。不准确，建议设置其中一种
+  // "mode": 'amd',// mode 默认 auto 根据文件内容自动判断是 commonJs 还是 amd。不准确，建议设置其中一种
   // 配置项
-  // "baseUrl": baseUrl,//依赖相对路径
+  // "baseUrl": './js',//依赖相对路径
    //配置angular的路径
-    "paths":{
-      // 一些库文件
-        "angular":"/bower_components/angular/angular", 
-        "angular-animate":"/bower_components/angular-animate/angular-animate",
-        "angular-cookies":"/bower_components/angular-cookies/angular-cookies",
-        "angular-messages":"/bower_components/angular-messages/angular-messages",
-        "angular-resource":"/bower_components/angular-resource/angular-resource",
-        "angular-route":"/bower_components/angular-route/angular-route",
-        "angular-ui-router":"/bower_components/angular-ui-router/angular-ui-router",
-        "angular-sanitize":"/bower_components/angular-sanitize/angular-sanitize",
-        "swiper":"/lib/swiper.min",
-        "zepto":"/lib/zepto.min",
-        //js文件
-        'bootstrap': "/src/js/bootstrap",
-        'app': "/src/js/app",
-        'router': "/src/js/router",
-        'init':"/src/js/init",
-        //.....以及其他的js文件，这里省略
-        'math':"/src/js/filter/math",
-        'info':"/src/js/service/info",
-        'indexCtr':"/src/js/controller/indexCtr",
-        'alert':"/src/js/directives/alert"
-        
-    },
-    //这个配置是你在引入依赖的时候的包名
-    "shim":{
-        "/bower_components/angular/angular":{
-            exports:"angular"
-        },
-    "bower_components/angular-animate/angular-animate": {
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-animate"
-        },
-    "angular-cookies":  {
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-cookies"
-        },
-    "angular-messages":  {
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-messages"
-        },
-    "angular-resource":  {
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-resource"
-        },
-        "angular-route":{
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-route"
-        },
-        "angular-ui-router":{
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-ui-router"
-        },
-    "angular-sanitize":  {
-          deps: ['angular'],   //依赖什么模块
-            exports:"angular-sanitize"
-        },
-    "swiper":  {
-      exports:"swiper"
-        },
-    "zepto":  {
-      exports:"zepto"
-        },
-    },
-    // deps:['init'],//先加载
-    // urlArgs: "bust=" + (new Date()).getTime(),  //防止读取缓存，调试用
-    // waitSeconds:0
+  // packages: [{
+  //           name: 'dojo',
+  //           location: 'dojo/1.7.1',
+  //           main:'main'
+  // }],
+  // "paths":{
+    // 一些库文件
+      // "angular":"/bower_components/angular/angular", 
+      // "angular-animate":"/bower_components/angular-animate/angular-animate",
+      // "angular-cookies":"/bower_components/angular-cookies/angular-cookies",
+      // "angular-messages":"/bower_components/angular-messages/angular-messages",
+      // "angular-resource":"/bower_components/angular-resource/angular-resource",
+      // "angular-route":"/bower_components/angular-route/angular-route",
+      // "angular-ui-router":"/bower_components/angular-ui-router/angular-ui-router",
+      // "angular-sanitize":"/bower_components/angular-sanitize/angular-sanitize",
+      // "swiper":"/lib/swiper.min",
+      // "zepto":"/lib/zepto.min",
+      //js文件
+      // 'bootstrap': ["/src/js/bootstrap1","/src/js/bootstrap2"],
+      // 'app': "/src/js/app",
+      // 'router': "/src/js/router",
+      // 'init':"/src/js/init",
+      // //.....以及其他的js文件，这里省略
+      // 'math':"/src/js/filter/math",
+      // 'info':"/src/js/service/info",
+      // 'indexCtr':"/src/js/controller/indexCtr",
+      // 'alert':"/src/js/directives/alert"
+      
+  // },
+  // forwardDeclaration: false,
+  // skipBuiltinModules: true,
+  //这个配置是你在引入依赖的时候的包名
+  // "shim":{
+  //   "angular":{
+  //     exports:"angular"
+  //   }
+    // ,
+    // "angular-animate": {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-animate"
+    // },
+    // "angular-cookies":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-cookies"
+    // },
+    // "angular-messages":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-messages"
+    // },
+    // "angular-resource":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-resource"
+    // },
+    // "angular-route":{
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-route"
+    // },
+    // "angular-ui-router":{
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-ui-router"
+    // },
+    // "angular-sanitize":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-sanitize"
+    // },
+    // "swiper":  {
+    //   exports:"swiper"
+    // },
+    // "zepto":  {
+    //   exports:"zepto"
+    // }
+  // },
+  // deps:['init']
 });
 
 fis.match('*.{js,css}', {
@@ -97,16 +104,16 @@ fis.match('::image', {
   useHash: true
 });
 
-fis.match('/src/(**).js', {
-  isMod:true,
-  moduleId: '$1',
-  optimizer: fis.plugin('uglify-js')
-});
+// fis.match('/src/(**).js', {
+//   isMod:true,
+//   moduleId: '$1',
+//   optimizer: fis.plugin('uglify-js')
+// });
 
-fis.match('/lib/(**).js', {
-  useHash: false,
-  optimizer: null
-});
+// fis.match('/lib/(**).js', {
+  // useHash: false,
+  // optimizer: null
+// });
 
 
 fis.match('*.png', {
