@@ -187,6 +187,7 @@ fis.match("bower_components/**/(*).css", {
 /*模块化加载器配置*/
 fis.match('::package', {  
   postpackager: fis.plugin('loader', {
+    resourceType: 'amd',
     allInOne: true, //js&css打包成一个文件
     sourceMap: true, //是否生成依赖map文件
     useInlineMap: true //是否将sourcemap作为内嵌脚本输出
