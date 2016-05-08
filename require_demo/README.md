@@ -3,18 +3,25 @@ require知识汇总
 1、require版本 - require功能
 
 2、require配置
-	require.config
-		config:
-		paths:
-		deps:[]
-		shim:{
-			deps:[]
-			exports:'',
-			init:function(){
+require.config
 
-			}
-		}	
-		...
+	config:
+
+	paths:
+
+	deps:[]
+
+	shim:{
+
+		deps:[]
+
+		exports:'',
+
+		init:function(){
+
+		}
+	}	
+	...
 
 
 3、require([],callback,errcallback);
