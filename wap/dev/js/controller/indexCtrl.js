@@ -1,8 +1,8 @@
 define(['angular'],function(angular){
-	return function($scope, $http, Log, Car){
+	return function($scope, $http, Log, Data){
 		Log.show('加载首页');
-		debugger;
-		Car.test({}).then(function(res){
+
+		Data.getBrandList().then(function(res){
 			console.log('Api post  .. Car post');
 		});
 	}

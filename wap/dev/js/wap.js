@@ -20,7 +20,7 @@ var Config={
         // service
         "Api":"/js/service/Api",
         "Log":"/js/service/Log",
-        "Car":"/js/service/Car",
+        "Data":"/js/service/Data",
         
         //controller
         "IndexController":"/js/controller/indexCtrl"
@@ -73,14 +73,14 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     // service
     "Api",
     "Log",
-    "Car",
+    "Data",
     //controller
     'IndexController'
     ], function (nnd,angular,angular_route,angular_resource,angular_animate, angular_messages, angular_cookies, 
     Filters,
     Api,
     Log,
-    Car,
+    Data,
     IndexController
     ) {
     console.log('加载wap.js  Config');
@@ -102,7 +102,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     // //构造函数
     app.service("Api",Api);
     app.service("Log",Log);
-    app.service("Car",Car);
+    app.service("Data",Data);
         
     // /*---------- 绑定Controller ----------*/
     // //首页
