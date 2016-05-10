@@ -21,6 +21,7 @@ var Config={
         "Api":"/js/service/Api",
         "Log":"/js/service/Log",
         "Data":"/js/service/Data",
+        "loading":"/js/interceptor/loading",
         
         //controller
         "IndexController":"/js/controller/indexCtrl"
@@ -74,6 +75,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     "Api",
     "Log",
     "Data",
+    "loading",
     //controller
     'IndexController'
     ], function (nnd,angular,angular_route,angular_resource,angular_animate, angular_messages, angular_cookies, 
@@ -81,6 +83,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     Api,
     Log,
     Data,
+    loading,
     IndexController
     ) {
     console.log('加载wap.js  Config');
@@ -103,7 +106,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     app.service("Api",Api);
     app.service("Log",Log);
     app.service("Data",Data);
-        
+    app.factory("loading",loading);    
     // /*---------- 绑定Controller ----------*/
     // //首页
     app.controller("IndexController",IndexController);
@@ -159,6 +162,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
         $httpProvider.defaults.headers.common["Accept"] = "version=1.0.1&client_type=wap";
         //开启HTML5链接 
         $locationProvider.html5Mode(true);
+        $httpProvider.interceptors.push('loading');
     })
     
     //手动启动mobule 
