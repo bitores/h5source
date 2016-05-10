@@ -4,6 +4,10 @@ block append head
 	script(src='/requirejs/require.js' defer async="true" data-main='/js/wap.js')
 
 block content
+	p
+		a(href='/') 首页
+		a(href='/index') 第二页
+		a(href='/index.html') 第三页
 	div(ng-view)
 	h1= title
 	//- span asodkoasd

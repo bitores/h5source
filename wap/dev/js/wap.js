@@ -18,7 +18,7 @@ var Config={
         // filter
         "Filters":"/js/filter/filters",
         // service
-        "Api":"/js/service/Api",
+        "API":"/js/service/API",
         "Log":"/js/service/Log",
         "Data":"/js/service/Data",
         "loading":"/js/interceptor/loading",
@@ -72,7 +72,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     // filter
     "Filters",
     // service
-    "Api",
+    "API",
     "Log",
     "Data",
     "loading",
@@ -80,7 +80,7 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     'IndexController'
     ], function (nnd,angular,angular_route,angular_resource,angular_animate, angular_messages, angular_cookies, 
     Filters,
-    Api,
+    API,
     Log,
     Data,
     loading,
@@ -103,10 +103,10 @@ require(['zepto','angular','angular-route','angular-resource',"angular-animate",
     app.filter("xx",Filters);  
 
     // //构造函数
-    app.service("Api",Api);
+    app.service("API",API);
     app.service("Log",Log);
     app.service("Data",Data);
-    app.factory("loading",loading);    
+    app.service("loading",loading);    
     // /*---------- 绑定Controller ----------*/
     // //首页
     app.controller("IndexController",IndexController);

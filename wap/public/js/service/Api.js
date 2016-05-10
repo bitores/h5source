@@ -1,39 +1,34 @@
 define(['angular'],function(angular){
-	return function($http, $q){
 
-		this.post = function(data){
+	function Api($http,$q){
+
+		this.post = function(url,data){
 			return $http({
-				'method':"POST",
-				'url':API_ADDRESS,
+				'method':'POST',
+				'url':API_ADDRESS+'/'+url,
 				'data':data
 			}).then(function(res){
-				//success
-				$q.resolve(res);
+				return $q.when(res.data);
 			},function(res){
-				// reject
-				$q.reject(res);
-			},function(res){
-				// error
-				$q.error(res);
+				return $q.reject(res.data);
+			},function(){
+				return false
 			})
 		}
 
-		this.get = function(data){
+		this.get = function(url){
 			return $http({
-				'method':"GET",
-				'url':API_ADDRESS,
-				'data':data
+				'method':'GET',
+				'url':API_ADDRESS+'/'+url
 			}).then(function(res){
-				//success
-				$q.resolve(res);
+				return $q.when(res.data);
 			},function(res){
-				// reject
-				$q.reject(res);
-			},function(res){
-				// error
-				$q.error(res);
+				return $q.reject(res.data);
+			},function(){
+				return false
 			})
 		}
-		
 	}
-});
+
+	return Api;	
+})

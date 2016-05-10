@@ -1,4 +1,4 @@
-define(['app'],function(app){
+define(['angular'],function(angular){
 // angularJs提供四种拦截器，
 // 其中两种成功拦截器（request、response），
 // 两种失败拦截器（requestError、responseError）。
@@ -32,6 +32,7 @@ define(['app'],function(app){
             // 时间戳(请求和响应拦截器)
             request:function(config){
                 // config.requestTimestamp 请求开始时间戳
+                console.log("--------loading----------");
                 config.requestTimestamp = new Date().getTime();
                 return config;
 
@@ -47,7 +48,7 @@ define(['app'],function(app){
             },
             // 请求恢复 (请求异常拦截)
             requestError: function(rejectReason){
-                
+                console.log("--------loading  request error------");
                 if (rejectReason === 'requestRejector') {
                     // Recover the request
                     return {
@@ -64,13 +65,19 @@ define(['app'],function(app){
                 }
             },
             responce:function(responce){
+                console.log("--------loading  response------");
                 // response.config.responseTimestamp 请求响应时间戳
                 response.config.responseTimestamp = new Date().getTime();
+                var time = response.config.responseTimestamp - response.config.requestTimestamp;
+                console.log('The request took ' + (time / 1000) + ' seconds.');
                 return response;
             },
             
             responceError: function(responce){
-                 
+                console.log("--------loading  request error------");
+                 response.config.responseTimestamp = new Date().getTime();
+                var time = response.config.responseTimestamp - response.config.requestTimestamp;
+                console.log('The request took ' + (time / 1000) + ' seconds.');
                 if (response.status == 419){ // 拦截419
                     //如果Session过期
                     //Session 恢复 (响应异常拦截器)
@@ -95,7 +102,7 @@ define(['app'],function(app){
                   rootScope.$state.go("login"); 
                   return $q.reject(response); 
                 } else if (response.status === 404) { // 拦截404
-
+                    console.log('loading:',404);
                   return $q.reject(response); 
                 } 
             }

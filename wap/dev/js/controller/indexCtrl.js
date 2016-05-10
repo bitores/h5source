@@ -4,6 +4,8 @@ define(['angular'],function(angular){
 
 		Data.getBrandList().then(function(res){
 			console.log('Api post  .. Car post');
+		},function(res){
+			console.log(res);
 		});
 	}
 })

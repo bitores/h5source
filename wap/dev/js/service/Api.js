@@ -2,10 +2,10 @@ define(['angular'],function(angular){
 
 	function Api($http,$q){
 
-		this.post = function(data){
+		this.post = function(url,data){
 			return $http({
 				'method':'POST',
-				'url':API_ADDRESS,
+				'url':API_ADDRESS+'/'+url,
 				'data':data
 			}).then(function(res){
 				return $q.when(res.data);
