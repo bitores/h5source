@@ -1,0 +1,1 @@
+apidoc -i example/ -o doc/
