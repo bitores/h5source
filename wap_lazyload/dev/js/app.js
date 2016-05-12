@@ -22,7 +22,7 @@ define(['router','loading'], function (router,loading) {
     // console.log(Filters);
     app.service('loading',loading);
 
-    app.config(function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
+    app.config(function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider) {
         app.controller = $controllerProvider.register;
         app.directive  = $compileProvider.directive;
         app.filter     = $filterProvider.register;
@@ -40,6 +40,8 @@ define(['router','loading'], function (router,loading) {
         if(router.defaultRoutePaths !== undefined) {
             $routeProvider.otherwise({redirectTo:router.defaultRoutePaths});
         }
+
+        $httpProvider.interceptors.push('loading')
     });
 
    return app;
