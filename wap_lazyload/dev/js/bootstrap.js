@@ -21,7 +21,9 @@ var Config={
         // service
         "Api":"/js/service/Api",
         "Log":"/js/service/Log",
-        "Car":"/js/service/Car"
+        "Car":"/js/service/Car",
+        // interceptor -- 过滤器
+        "loading":"/js/interceptor/loading"
     },
     //这个配置是你在引入依赖的时候的包名
     "shim":{
@@ -68,8 +70,8 @@ require.config(Config);
 require(["app"], function (app) {
     console.log('加载bootstrap.js ');
     
-    
+    // $httpprovider.interceptors.push('loading')
     //手动启动mobule 
-    angular.bootstrap($("html")[0],["app"]); 
+    angular.bootstrap(document,["app"]); 
 });
 })();

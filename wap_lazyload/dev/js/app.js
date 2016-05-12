@@ -1,4 +1,4 @@
-define(['router'], function (router) {
+define(['router','loading'], function (router,loading) {
     function dependencyResolverFor(dependencies) {
         var definition = {
             resolver: ['$q','$rootScope', function($q, $rootScope) {
@@ -20,6 +20,7 @@ define(['router'], function (router) {
     var app = angular.module('app', ['ngRoute', "ngResource", "ngAnimate", "ngMessages", "ngCookies"]);
 
     // console.log(Filters);
+    app.service('loading',loading);
 
     app.config(function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
         app.controller = $controllerProvider.register;
