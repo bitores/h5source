@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>URL Check</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function isUrl(url) {
+
+		var regurl = /^http(s)?:\/\//gi;
+		var ret = url.match(regurl);
+		if(ret!=null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	var str = "http://192.168.1.101/ten_template/20He_split/images/xiaoqian01.jpg";
+	console.log(str,isUrl(str));
+	str = "https://192.168.1.101/ten_template/20He_split/images/xiaoqian01.jpg";
+	console.log(str,isUrl(str));
+	str = "htt://192.168.1.101/ten_template/20He_split/images/xiaoqian01.jpg";
+	console.log(str,isUrl(str));
+	str = "shttp://192.168.1.101/ten_template/20He_split/images/xiaoqian01.jpg";
+	console.log(str,isUrl(str));
+	str = "../20He_split/images/xiaoqian01.jpg";
+	console.log(str,isUrl(str));
+	</script>
+</body>
+</html>

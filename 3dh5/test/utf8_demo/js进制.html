@@ -1,0 +1,78 @@
+<html >       
+<head>
+                <title>进制转换</title>
+                <script language="javascript" type="text/javascript">
+                        var htmer=function(s){
+                                var str = s.toString(16);//将十六进制数值转换为字符串形式
+                                //alert(str.length);
+                                //alert(str);
+                                var num = parseInt(str,16);//将十六进制转换为十进制数值
+                                var res = num.toString(2);//将十进制数值转换为二进制
+                                var sub = res.substr(8,23);//拆分出后23位二进制数为科学计数法的尾数位
+                                var sub1 = res.substr(0,8);//拆分第二位到第九位的八位二进制数为指数位
+                                //alert(sub1);
+                                var num2 = parseInt(sub1,2);//将二进制指数转换为十进制
+                                num2 = num2 - 127;//求出指数用转换的十进制数减去127就可以得到
+                                //alert(num2);
+                                //alert(sub);
+                                var arr = new Array();//定义数组用来存放字符串方便后期插入标点
+                                
+                                //此循环用来去掉二进制字符串尾部0
+                                for (var i = sub.length - 1; i >= 0; i--) {
+                                        //alert(sub.substr(i,1));
+                                        if (sub.substr(i,1)==0){
+                                                //采用截取方式删除
+                                                sub = sub.substr(0,i);
+
+                                                //alert(sub.length);
+                                        }else{
+                                                break;
+                                        }
+                                };
+                                //科学计数法的尾数位前加1得到结果值的二进制数
+                                sub = 1+sub;
+                                //alert(sub);
+                                //遍历字符串传入到数组中
+                                for (var i = 0; i <= sub.length; i++) {
+                                        arr = sub.substr(i,1);
+                                        //alert(arr);
+                                };
+                                //alert(num2);
+                                arr[num2]=arr[num2]+".";
+                                //alert(arr);
+                                //alert(arr.join(""));
+                                //alert(sub);
+                                //alert(sub);
+                                //将数组转换为字符串
+                                sub = arr.join("");
+                                var tt = change(sub,num2);
+                                document.write('<br />'+tt);
+                                };   
+                                //定义方法来进行浮点数二进制转换为十进制（str为传入的二进制字符串，sn为字符串的位置）
+                        var change = function turn(str,sn){
+                                        var r=0.00;
+                                        var k=1;
+                                        for(var i=0; i<sn+1;i++){
+                                                //alert(sn);
+                                                //alert(str.substr(i,1));
+                                                //alert(2^i);
+                                                r = r + parseFloat(str.substr(i,1))*Math.pow(2,i);
+                                        }
+                                        for(var j=sn+2; j<=str.length-1;j++){
+                                                //alert(j);
+                                                //alert(parseInt(str.substr(j,1))*(1/(Math.round(Math.pow(2,j)))));
+                                                //alert(r);
+                                                //alert(parseFloat(str.substr(j,1)));
+                                                //alert(Math.pow(2,k));
+                                                r = r + parseFloat(str.substr(j,1))*(1/(Math.pow(2,k)));
+                                                k++;
+                                        }
+                                        k=1;
+                                        return r;
+                        }
+                        htmer(0x40490fd0);
+                </script>
+        </head>
+        <body>
+        </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>加载btx</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		匹配规则：
+			1、" = "
+			2、" "
+			3、"texture.width "
+			4、
+	*/
+	var UVSParse = function(){
+		this.src = "";
+		this.assetNameKey = "texture";
+		this.imgUVSKey = "images";
+		this.mUVSFloatRectMap = {};
+	}
+
+	UVSParse.prototype = {
+		constructor: UVSParse,
+
+		load: function(scope){
+			loadbtx(this.src, this.parseScript, this);
+		},
+
+		parseScript: function(content, scope){
+			var all = content.split("\r\n");
+			var tmp_image = "";
+			var texture_width = -1;
+			var texture_height = -1;
+			for(var key = 0; key < all.length; ){
+				var subAll = all[key];
+				if(subAll.length !== 0){
+					var subAllArray = subAll.split(" = ");
+					console.log(subAllArray);
+
+
+					switch(subAllArray[0]){
+						case "texture.assetname":{
+							scope.assetNameKey = subAllArray[1];
+						}
+						break;
+						case "texture.width ":{
+							texture_width = parseFloat(subAllArray[1]);
+						}
+						break;
+						case "texture.height":{
+							texture_height = parseFloat(subAllArray[1]);
+						}
+						break;
+						case "image.assetname":{
+							tmp_image = subAllArray[1];
+						}
+						break;
+						case "image.uvs":{
+							
+							var uvs = subAllArray[1];
+							var uvsArray = uvs.split(" ");
+							for (var i = uvsArray.length - 1; i >= 0; i--) {
+								uvsArray[i] = parseFloat(uvsArray[i]);
+							};
+							var rect = {
+								left: uvsArray[0],
+					            right: uvsArray[4],
+					            top: 1.0 - uvsArray[1],
+					            bottom: 1.0 - uvsArray[5]
+							};
+							console.log(tmp_image,rect);
+
+							scope.mUVSFloatRectMap[tmp_image] = rect;
+						}
+						break;
+						case "image.rotated":{
+
+						}
+						break;
+						case "image.trimmed":{
+
+						}
+						break;
+						case "image.origsize":{
+
+						}
+						break;
+						case "image.offset":{
+
+						}
+						break;
+						case "image.trimmedsize":{
+
+						}
+						break;
+						default:{
+							console.info("Warnning: Maybe error");
+						}
+					}
+
+					key++;
+				}else{
+					all.splice(key,1);
+				}
+			}
+			console.log(all);
+
+
+
+
+
+		}
+	}
+
+
+	</script>
+	<script type="text/javascript">
+	function loadbtx(url, callback, scope){
+		var request = new XMLHttpRequest();
+		request.open("GET", url); 
+		request.withCredentials = true;
+		// Hack to pass bytes through unprocessed.
+		request.overrideMimeType('text/plain; charset=x-user-defined');
+
+
+		request.onreadystatechange=function(){
+			if(request.readyState==4)
+			{
+				
+				callback(request.responseText, scope);
+			}
+		}
+		request.send();
+	}
+
+	</script>
+	<script type="text/javascript">
+	var uvs = new UVSParse();
+	uvs.src = "hqyq_mix.btx";
+	uvs.load(uvs);
+	</script>
+</body>
+</html>

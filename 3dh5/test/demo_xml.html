@@ -1,0 +1,104 @@
+<html>
+	<head></head>
+	<body>
+		<script type="text/javascript">
+			var URL = "Scene.xml";
+			var xmlDoc = null;
+			
+
+			function getValue(){
+				var nodes=xmlDoc.documentElement.childNodes; 
+				var now=new Date(); 
+				for(i=0;i<nodes.length;i++){ 
+					var value=nodes.item(i).childNodes.item(0).text ; 
+					console.log(nodes.item(i).childNodes.item(1).text); 
+					console.log(nodes.item(i).childNodes.item(2).text); 
+				}
+			}
+
+			function getValueFF(){
+				var cCode=xmlDoc.getElementsByTagName("Scene"); 
+				var now = new Date(); 
+				var nowvalue=now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日'; 
+				for(i=0;i<cCode.length;i++) 
+				{ 
+					console.log(xmlDoc.getElementsByTagName("imgsrc")[i].childNodes[0].nodeValue); 
+					console.log(xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue); 
+					console.log(xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue);
+				}
+			}
+
+			function getXmlDoc(url){
+				var xmlDoc = null;
+				//支持IE浏览器
+				if(!window.DOMParser && window.ActiveXObject)
+				{
+					var xmlDomVersions = ['MSXML.2.DOMDocument.6.0','MSXML.2.DOMDocument.3.0','Microsoft.XMLDOM'];
+		            for(var i=0;i<xmlDomVersions.length;i++){
+		                try{
+		                    xmlDoc = new ActiveXObject(xmlDomVersions[i]);
+		              
+		                    break;
+		                }catch(e){
+		                	console.log("ActiveXObject error");
+							return null;
+		                }
+		            }
+					console.log("xmlDoc Microsoft.XMLDOM");
+				}
+				// else if(window.DOMParser){
+				// 	try{
+				// 		 DOMParser 对象解析 XML 文本并返回一个 XML Document 对象。
+		  //                * 要使用 DOMParser，使用不带参数的构造函数来实例化它，然后调用其 parseFromString() 方法
+		  //                * parseFromString(text, contentType) 参数text:要解析的 XML 标记 参数contentType文本的内容类型
+		  //                * 可能是 "text/xml" 、"application/xml" 或 "application/xhtml+xml" 中的一个。注意，不支持 "text/html"。
+		                 
+				// 		domParser = new  DOMParser();
+    //             		xmlDoc = domParser.parseFromString(xmlString, 'text/xml');
+				// 	}catch(err){
+				// 		console.log("DOMParser error");
+				// 		return null;
+				// 	}
+				// }
+				//支持Mozilla浏览器
+				else if(document.implementation && document.implementation.createDocument){
+					try{
+						xmlDoc=document.implementation.createDocument("", "root", null);
+					}catch(error){
+						console.log("document.implementation");
+						return null;
+					}
+				}
+
+				if(xmlDoc!=null){
+					xmlDoc.async = "false";//取消异步加载
+					xmlDoc.load(url);//loadXML方法载入xml字符串
+				}
+
+				return xmlDoc;
+			}
+
+
+			
+
+			
+			xmlDoc = getXmlDoc("scene.xml");
+			xmlDoc.onload = function(){
+				document.write(xmlDoc.getElementsByTagName("Scene"));
+			}
+			
+
+		</script>
+		<script type="text/javascript">
+
+		</script>
+	</body>
+</html>
+
+<!--
+
+用了两种方法，第一种是通过网上google的例子依赖于selectSingleNode和selectNodes方法，
+个人觉得通用性很难实现，如果实现的话，需要的是封装路径，而且事先要知道整个xml文件的完整结构。
+第二种方法，是我从w3school上学到的，在被xmlDoc加载之后，xml部分应该就具备了页面元素的特性，所以通过getElementsXX等方法就可以去做，在w3school上学到的窍门，拿到firstChild之后后面的元素就用nextsibling，当然需要加判断的，测试的关系没有加。
+这次发现，对与html没有足够充分的了解而去研究js框架是比较困难的，所以w3school继续学习中。
+-->

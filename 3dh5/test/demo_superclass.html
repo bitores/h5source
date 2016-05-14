@@ -1,0 +1,74 @@
+<html>
+<head>
+	<script type="text/javascript">
+function extend(subClass,superClass){
+	var F = function(){};
+	F.prototype = superClass.prototype;
+	subClass.prototype = new F();
+	subClass.prototype.constructor = subClass;
+	subClass.superclass = superClass.prototype; //加多了个属性指向父类本身以便调用父类函数
+	if(superClass.prototype.constructor == Object.prototype.constructor){
+	superClass.prototype.constructor = superClass;
+	}
+};
+	</script>
+</head>
+	<body>
+		<script type="text/javascript">
+		var p = function(){
+			this.name = "p";
+		};
+
+		p.prototype = {
+			constructor: p,
+
+			getName: function(){
+				return this.name;
+			},
+			getType: function(){
+				return "PT";
+			},
+			info: function(){
+
+			}
+
+		};
+
+		var c = function(){
+			p.call(this);
+			this.type = "cT";
+		};
+
+		extend(c,p);
+
+		c.prototype.getType = function(){
+			return "cT"
+		};
+
+		var d = function(){
+			c.call(this);
+			this.type = "dT"
+		};
+		extend(d,c);
+
+		d.prototype.getType = function(){
+			return "dT";
+		};
+
+		d.prototype.info = function(){
+			console.log("me:",this.getType());
+			console.log("c:",this.constructor.superclass.getType(),this.constructor.superclass);
+			console.log("p:",this.constructor.superclass.constructor.superclass.getType(),this.constructor.superclass.constructor.superclass);
+		};
+
+
+
+
+
+		var ll = new d();
+		console.log(ll);
+		ll.info();
+		</script>
+	</body>
+
+</html>

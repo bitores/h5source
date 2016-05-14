@@ -1,0 +1,142 @@
+<html>
+	<head>
+	<script src="EMeshParse.js"></script>
+		<script type="text/javascript">
+		var parse = new EMeshParse();
+		parse.loadUTF8("TEXT.pod.xml.emesh",function(){
+			console.log("ok");
+		});
+
+		function _to16(num){ //十六进制单位转换
+		  switch(num){
+		  case 0 : return "0"
+		  case 1 : return "1"
+		  case 2 : return "2"
+		  case 3 : return "3"
+		  case 4 : return "4"
+		  case 5 : return "5"
+		  case 6 : return "6"
+		  case 7 : return "7"
+		  case 8 : return "8"
+		  case 9 : return "9"
+		  case 10 : return "A"
+		  case 11 : return "B"
+		  case 12 : return "C"
+		  case 13 : return "D"
+		  case 14 : return "E"
+		  case 15 : return "F"
+		  }
+		}
+
+		function to16(num){   //十进制  转十六进制
+		  	var num=num;
+		  	if(!isNaN(num)){
+		    	var result="";
+			    while(num>=16){  //循环求余后反向连接字符串
+				   result=_to16(num%16)+result;
+				   num=parseInt(num/16);
+			    }
+			    result=_to16(num%16)+result;
+			    return result;
+		  	}else
+		  		return "It's Not A Number!"
+		}
+
+		// function hex(a){for(s="";a;a=a/16|0)s="0123456789ABCDEF".charAt(a%16)+s;return s};
+		// var ll = -1055988041;
+		// console.log(hex(ll));
+		console.log(parseInt('193',10).toString(16));
+
+
+	// 	function DecToBinTail(dec, pad) 
+	// 	{ 
+	// 		var bin = ""; 
+	// 		var i; 
+	// 		for (i = 0; i < pad; i++) 
+	// 		{ 
+	// 			dec *= 2; 
+	// 			if (dec>= 1) 
+	// 			{ 
+	// 				dec -= 1; 
+	// 				bin += "1"; 
+	// 			} 
+	// 			else 
+	// 			{ 
+	// 				bin += "0"; 
+	// 			} 
+	// 		} 
+	// 		return bin; 
+	// 	} 
+
+	// 	function DecToBinHead(dec,pad) 
+	// 	{ 
+	// 		var bin=""; 
+	// 		var i; 
+	// 		for (i = 0; i < pad; i++) 
+	// 		{ 
+	// 			bin = (parseInt(dec % 2).toString()) + bin; 
+	// 			dec /= 2; 
+	// 		} 
+	// 		return bin; 
+	// 	} 
+
+	// function get_float_hex(decString) 
+	// { 
+	// 	var dec = decString; 
+	// 	var sign; 
+	// 	var signString; 
+	// 	var decValue = parseFloat(Math.abs(decString)); 
+	// 	if (decString.toString().charAt(0) == '-') 
+	// 	{ 
+	// 		sign = 1; 
+	// 		signString = "1"; 
+	// 	}else{ 
+	// 		sign = 0; 
+	// 		signString = "0"; 
+	// 	} 
+	// 	if (decValue==0) 
+	// 	{ 
+	// 		fraction = 0; 
+	// 		exponent = 0; 
+	// 	}else{ 
+	// 		var exponent = 127; 
+	// 		if (decValue>=2) 
+	// 		{ 
+	// 			while (decValue>=2) 
+	// 			{ 
+	// 				exponent++; 
+	// 				decValue /= 2; 
+	// 			} 
+	// 		}else if (decValue<1){ 
+	// 			while (decValue < 1) 
+	// 			{ 
+	// 				exponent--; 
+	// 				decValue *= 2; 
+	// 				if (exponent ==0) 
+	// 				break; 
+	// 			} 
+	// 		} 
+			
+	// 		if (exponent!=0) 
+	// 			decValue-=1; 
+	// 		else 
+	// 			decValue /= 2; 
+
+	// 		} 
+
+	// 		var fractionString = DecToBinTail(decValue, 23); 
+	// 		var exponentString = DecToBinHead(exponent, 8); 
+	// 		return Math.right('00000000'+parseInt(signString + exponentString + fractionString, 2).toString(16),8); 
+
+
+
+	// }
+
+	// console.log(get_float_hex(123.456));
+		</script>
+	</head>
+	<body></body>
+</html>
+
+
+<!-- -8.931327 -8.931327 0.000000 0.000000 0.000000 1.000000 0.001988 0.001992 8.931327 -8.931327 0.000000 0.000000 0.000000 1.000000 0.329191 0.001992 -8.931327 8.931327 0.000000 0.000000 0.000000 1.000000 0.001988 0.329195 8.931327 8.931327 0.000000 0.000000 0.000000 1.000000 0.329191 0.329195 -->

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LocaleCompare</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// function localeCompareSupportsLocales() {
+	//   try {
+	// 	"a".localeCompare("b","i");
+	//   } catch (e) {
+	// 	return e.name === "RangeError";
+	//   }
+	//   return false;
+	// }
+
+	// alert(localeCompareSupportsLocales());
+// document.write('" a".LocaleCompare("e") = ' +("a".localeCompare("e")));
+
+// var oStringObject = new String("yellow");
+// alert(oStringObject.localeCompare("brick"));     //outputs "1"
+// alert(oStringObject.localeCompare("yellow"));    //outputs "0"
+// alert(oStringObject.localeCompare ("zoo"));     //outputs "-1"
+
+var obj = {"a":1,"e":2,"y":3};
+var ll = {"c":"e","e0":5,"w":8};
+for(var k in obj) {
+	if(ll.c.localeCompare(k)==0)
+		alert(obj[0]);
+}
+// for(var k in obj) {
+// 	alert(k.localeCompare("a"));
+	// pc:0 1 1
+	// phone: 0 4 24
+// }
+
+// var name = 'a ';
+// for(var k in obj) {
+// 	alert(k.localeCompare(name.toString()));
+// 	// pc:0 1 1
+// 	// phone: 0 4 24
+// }
+
+// in German, ä has a as the base letter
+// alert('ä'.localeCompare('a', 'de', { sensitivity: 'base' })); // 0
+
+// in Swedish, ä and a are separate base letters
+// alert('ä'.localeCompare('a', 'sv', { sensitivity: 'base' })); // a positive value
+// var arr = ["ä", "ad", "af", "a"];
+// document.write(arr[0].localeCompare(arr[1], "de-DE-u-co-phonebk"));  // Returns 1
+// document.write (arr[0].localeCompare(arr[2], "de-DE-u-co-phonebk"));  // Returns -1
+// document.write (arr[0].localeCompare(arr[3], "de-DE-u-co-phonebk"));  // Returns 1
+
+// document.write (arr[0].localeCompare(arr[1], "de-DE"));  // Returns -1
+// document.write (arr[0].localeCompare(arr[2], "de-DE"));  // Returns -1
+// document.write (arr[0].localeCompare(arr[3], "de-DE"));  // Returns 1
+
+	</script>
+</body>
+
+</html>

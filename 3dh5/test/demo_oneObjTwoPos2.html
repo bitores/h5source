@@ -1,0 +1,121 @@
+<html>
+	<script type="text/javascript">
+	var str = "     0.0 0.0 0.0; 1.0 1.0 0.0        ;      0.0    2.0 0.0; -1.0 1.0 0.0; -0.5 0.3 0.0 ; 0.0 0.0 0.0 ";
+
+//删除字符串两侧的空白字符。 
+ function trim(str){ 
+  return str.replace(/^\s+|\s+$/g,''); 
+ } 
+ //删除字符串左侧的空白字符。 
+ function ltrim(str){ 
+  return str.replace(/^\s+/g,''); 
+ } 
+ //删除字符串右侧的空白字符。 
+ function rtrim(str){ 
+  return str.replace(/\s+$/g,''); 
+ } 
+
+
+
+	str = trim(str);
+	console.log(str);
+
+	var array = str.split(/[ ;]+/);
+	console.log(array);
+
+
+
+	str = "     0.0     0.0 0.0    ";
+	console.log(":"+str+":");
+	str = trim(str);
+	console.log(":"+str+":");
+	str = str.replace(/[ ;]+/,' ');
+	console.log(":"+str+":");
+
+	function handleTrim(str)
+	{
+		str = str.replace(/^\s+|\s+$/g,'');
+		str = str.replace(/[ ;]+/,' ');
+		return str;
+	}
+
+	str = "     0.0     0.0 0.0    ";
+	console.log(str);
+	console.log(handleTrim(str));
+	</script>
+	<script type="text/javascript"> 
+	var ss = " true";
+	console.log("true"==ss);
+
+
+	var nm = "  0.25  ";
+	console.log(parseFloat(nm));
+
+
+	function no_return(){
+		var nm = "sdf";
+	}
+
+	var aa = null;
+	aa = no_return();
+	console.log(aa);//null->undefine
+
+
+	// var obj = {
+	// 	"0": 0,
+	// 	"0.5": 0.7071067811865475,
+	// 	"0.7071067811865476": 0.49999999999999994,
+	// 	"0.20710678118654752": 0.49999999999999994,
+	// 	"1": 0.7071067811865475
+	// };
+	var obj = {};
+	obj["_0"] = 0;
+	obj["_0.5"] = 0.7071067811865475;
+	obj["_0.7071067811865476"] = 0.49999999999999994;
+	obj["_0.20710678118654752"] = 0.49999999999999994;
+	obj["_1"] = 0.7071067811865475;
+	console.log(obj);
+	for(var key in obj){
+		var first = parseFloat(key);
+		console.log(key,obj[key],first);
+	}
+
+	var ss = "albijjelioaiehhaoqophjhth";
+	console.log(ss.substr(5));
+
+
+
+	console.log("Array()...");
+	var bb = new Array();
+	var cc = [];
+	var dd= {};
+	function aabb(ret1,ret2,ret3){
+		ret1.push(11);
+		ret1.push(22);
+		ret2.push(11);
+		ret2.push(22);
+		ret3 = [];
+		ret3.push(11);
+		ret3.push(22);
+	}
+
+	aabb(bb,cc,dd);
+	console.log(bb,cc,dd);
+
+
+	//
+	var subdd = null;
+	// var subdd = function(){}
+	// subdd();
+	function subdd(){}
+	try
+	{
+		subdd();
+		subdd();
+	}catch(err){
+		console.log(err,err.message);
+	}
+	
+
+ </script>
+</html>

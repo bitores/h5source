@@ -1,0 +1,240 @@
+<html>
+	<head>
+		<script type="text/javascript">
+
+
+
+
+		function loadUTF8(url,onload){
+			var req = new XMLHttpRequest();
+			req.open('GET', url, true);
+			 
+			// Hack to pass bytes through unprocessed.
+			req.overrideMimeType('text/plain; charset=x-user-defined');
+			 
+			req.onreadystatechange = function(e) {
+			   if(this.readyState == 4 && this.status == 200) {
+			    	onload(this.responseText,e);
+			    }
+			};
+ 
+			req.send();
+		}
+
+
+		function Read32(str,offset){
+			var	flag1 = str.charCodeAt(0+offset) & 0xff,
+				flag2 = str.charCodeAt(1+offset) & 0xff,
+				flag3 = str.charCodeAt(2+offset) & 0xff,
+				flag4 = str.charCodeAt(3+offset) & 0xff;
+				// console.log(flag1,flag2,flag3,flag4);
+	
+			var ret = flag4 << 24 | flag3 << 16 | flag2 << 8 | flag1;
+			return ret;
+		}
+
+		function ReadMark(str,offset,nName,nLen){
+			var name = nName;
+			var len = nLen;
+
+			name = ReadName(str,offset,name);
+			len = ReadLen(str,offset+4,len);
+
+			return [name,len,offset+8];
+		}
+
+		function ReadName(str,offset,nName){
+			var name = nName ;
+			name = Read32(str,offset);
+
+			return name;
+		}
+
+		function ReadLen(str,offset,nLen){
+			var len = nLen;
+			len = Read32(str,offset);
+
+			return len;
+		}
+
+		function ReadContent(str,offset,len,content){
+			var content = content || "";
+			var code;
+			var offset = offset;
+			var ch;
+			if(len<=0)
+				return null;
+
+			for(var i=0; i<len; i++)
+			{
+	            code = str.charAt(offset+i);
+	            content += code;
+			}
+
+			return content;
+		}
+
+
+		function parePodTree(str,offset){
+			var ret = ReadMark(str,offset);
+			var content = "";
+			var flag = true;
+			
+			if(flag)
+				console.log("name:",ret[0]);
+			else
+				flag = true;
+			if(ret[0] == 2012){
+			}else if(ret[0] == 2012){
+			}
+			if(ret[1]>0){
+				content = ReadContent(str,offset+8,ret[1]);
+				console.log("content:",content);
+				arguments.callee(str,offset+8+ret[1]);
+			}else if(ret[1] === 0){
+				arguments.callee(str,offset+8);
+				// console.log("parePodTree");
+			}else{
+				throw new Error("parePod error");
+			}
+		}
+
+//meth...
+		function read32(str,offset){
+			if(str.length < (3 + offset[0]))
+				return null;
+			// var	flag1 = str.charCodeAt(0+offset) & 0xff,
+			// 	flag2 = str.charCodeAt(1+offset) & 0xff,
+			// 	flag3 = str.charCodeAt(2+offset) & 0xff,
+			// 	flag4 = str.charCodeAt(3+offset) & 0xff;
+			var	flag1 = str.charCodeAt(offset[0]++) & 0xff,
+				flag2 = str.charCodeAt(offset[0]++) & 0xff,
+				flag3 = str.charCodeAt(offset[0]++) & 0xff,
+				flag4 = str.charCodeAt(offset[0]++) & 0xff;
+	
+			var ret = flag4 << 24 | flag3 << 16 | flag2 << 8 | flag1;
+			return ret;
+		}
+		function readName(str,offset){
+			return read32(str,offset);
+		}
+
+		function readLen(str,offset){
+			return read32(str,offset);
+		}
+		function readMark(str,offset,nName,nLen){
+			if(!(nName = readName(str,offset))){
+				return false;
+			}
+			if(!(nLen = readLen(str,offset)))
+				return false;
+
+			console.log(nName,nLen);
+
+			return true;
+		}
+
+		function readNumbers(str,offset,len,ret){
+			var content,code;
+			if(len<=0 || str.length < (offset + len)) return false;
+			for(var i=0; i<len; i++)
+			{
+	            code = str.charAt(offset+i);
+	            content += code;
+			}
+
+			var tmp = content.split(" ");
+			ret = [];
+			for(var i=0; i<tmp.length; i++)
+			{
+				ret.push(parseFloat(tmp[i]));
+			}
+
+			return true;
+		}
+
+		function readMesh(str,offset,nLen){
+			var nName,nLen;
+			var meshName;
+			while(readMark(str,offset,nName,nLen)){
+				switch(nName){
+					case ePODFileMesh:{
+
+					};break;
+					case ePODFileMeshName:{
+						// readNumbers(str,offset,nLen,);
+						if(!readName(str,offset,meshName))
+							return false;
+					};break;
+					case ePODFileMeshBounds:{
+						var box = [];
+						readNumbers(str,offset,nLen,box);
+
+					};break;
+					case ePODFileMeshNumVtx:{
+
+					};break;
+					case ePODFileMeshNumFaces:{
+
+					};break;
+					case ePODFileMeshNumUVW:{
+
+					};break;
+					case ePODFileMeshFaces:{
+
+					};break;
+					default:{
+						flag = false;
+						//skip();
+						// offset += 8;
+					}
+				}
+			}
+			
+		}
+
+
+
+		function exportPodMesh(str){
+			var nName,nLen;
+			var offset = [0];
+
+			while(readMark(str,offset,nName,nLen)){
+				console.log(nName);
+				switch(nName){
+					case ePODFileScene:;break;
+					case ePODFileMesh:{
+						if(!readMesh(str,offset,nLen)){
+
+						}
+					};break;
+					default:{
+						//skip
+						// offset +=;
+					}
+				}
+			}
+
+			console.log("end..");
+		}
+
+
+		loadUTF8("TEXT.pod.xml.emesh",function(str,e){
+			// var ret = ReadMark(str,24);
+			// var content = ReadContent(str,ret[2],ret[1]);
+			// console.log(ret);
+			// ret = ReadMark(str,ret[1]+ret[2]+8);
+			// content = ReadContent(str,ret[2],ret[1]);
+			// console.log(ret,ret[2],content);
+
+			// parePodTree(str,0);
+
+			exportPodMesh(str);
+		});
+
+
+
+		</script>
+	</head>
+	<body></body>
+</html>

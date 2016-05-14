@@ -1,0 +1,61 @@
+
+
+particle_system fGoldCoin_FingerParticle
+{
+	material 					fGoldCoin_material_finger_particle
+	particle_width_factor		0.1
+	aspect_ratio 				1
+	quota						600
+	stacks						1
+	slices						4
+	always_generate_particle    yes
+	has_touch_event				yes
+	is_emitting					false
+	for_var					1 0.1
+
+    emitter Point FingerParticleEmitter
+    {
+    	name					FingerParticleEmitter
+        angle           		180
+        emission_rate   		30
+		position_x_factor		-0.5
+		position_y_factor		-0.5
+		velocity				500
+		time_to_live_min		0.5
+		time_to_live_max		0.9
+        colour_range_start  	1 1 1 0
+        colour_range_end   		1 1 1 0
+        direction       		1 0 0
+		min_tex_coord_index		0
+		max_tex_coord_index		3
+    }
+    
+    
+    affector ColourInterpolator
+    {
+        time0                   0
+        colour0                 1 1 1 1
+        time1                   0.1
+        colour1                 1 1 1 1
+        time2                   0.9
+        colour2                 1 1 1 1
+        time3					1
+        colour3					1 1 1 0
+    }
+	
+	affector LinearForce
+	{
+		force_vector			0 2000 0
+		force_application		add
+	}
+	
+	affector Rotator
+	{
+		rotation_range_start    		-180
+		rotation_range_end      		180
+		rotation_speed_range_start      0
+		rotation_speed_range_end      	180
+	}
+}
+
+

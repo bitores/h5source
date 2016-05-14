@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<script type="text/javascript">
+function extend(subClass,superClass){
+	var F = function(){};
+	F.prototype = superClass.prototype;
+	subClass.prototype = new F();
+	subClass.prototype.constructor = subClass;
+	subClass.superclass = superClass.prototype; //加多了个属性指向父类本身以便调用父类函数
+	if(superClass.prototype.constructor == Object.prototype.constructor){
+	superClass.prototype.constructor = superClass;
+	}
+};
+
+
+function extendMul(subClass,superClasses){
+	subClass.prototype.constructor = subClass;
+	subClass.superclass = {};
+	for(var k in superClasses)
+	{
+		subClass.superclass[k] = superClasses[k];
+		var superClass = superClasses[k];
+		for(var j in superClass.prototype)
+		{
+			subClass.prototype[j] = superClass.prototype[j];
+		}
+	}	
+};
+	</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		var a = function(){
+			this.name = "a";
+		};
+
+		a.prototype = {
+			constructor:a,
+			getName: function(){
+				return this.name;
+			}		
+		};
+
+		var b = function(){
+			this.type = "bT";
+		};
+
+		b.prototype = {
+			constructor: b,
+			getType: function(){
+				return this.type;
+			}
+		};
+
+		var c = function(){
+			a.call(this);
+			b.call(this);
+		};
+		extendMul(c,[a,b]);
+		// extend(c,b);
+
+		c.prototype.getType = function(){
+			return "CTTT";
+		}
+
+		var t = new c();
+		console.log(t);
+
+		console.log(t.getName(),t.getType());
+		console.log(t.constructor);
+		</script>
+	</body>
+</html>

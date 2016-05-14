@@ -1,0 +1,2313 @@
+<html>
+<head>
+	<title></title>
+</head>
+	<body>
+
+
+		<script type="text/javascript">
+var JSONJS = function(){};
+
+JSONJS.apply = function(o, c, defaults) {
+    if (defaults) {
+        // no"this"reference for friendly out of scope calls
+        JSONJS.apply(o, defaults);
+    }
+    if (o && c && typeof c == 'object') {
+        for (var p in c) {
+            o[p] = c[p];
+        }
+    }
+    return o;
+};
+
+JSONJS.apply(JSONJS, {
+    docObjs: new Array,
+
+
+   getAttributeNodeValue: function(doc_el, attributeName) {
+        var nodevalue = "";
+        var attributes = null;
+        if (doc_el != null) {
+            attributes = doc_el["@attributes"];
+        }
+
+        if(attributes!==null)
+        	nodevalue = attributes[attributeName];
+
+        if(nodevalue!=null)
+            return nodevalue.replace(/^\s+|\s+$/g,'').replace(/[ ]+/,' ');
+
+        return nodevalue;
+    },
+
+    getJSONChildNodes: function(root){
+    	var itemNodes = [];
+
+    	for(var k in root)
+    	{
+    		itemNodes.push(k);
+    	}
+
+    	return itemNodes;
+    },
+
+    getJSONChildNode: function(doc_el, nodeName) {
+        var element = doc_el[nodeName]
+
+        if(element)
+        	return element;
+        return null;
+    },
+
+
+    /**
+     * 解析xml
+     */
+    parseJSON: function(jsonContent) {
+        var docObj = JSON.parse(jsonContent);
+        
+        if(docObj)
+        	return docObj;
+        return null;
+    }
+});
+
+function DEBUG(){
+    var ON = 1;
+    if(ON){
+        console.log(arguments);
+    }
+}
+
+// #defined DEBUG console.log
+
+var SceneJsonParse = function(){
+
+};
+
+SceneJsonParse.prototype = {
+	constructor: SceneJsonParse,
+
+
+	parseScript: function(jsonContent,scope){
+		var root = JSONJS.parseJSON(jsonContent,scope);
+
+		var scene = JSONJS.getJSONChildNode(root,"Scene");
+
+		if(scene){
+			scope.SceneNodeParse(scene,scope);
+		}
+
+		// JSONJS.getAttributeNodeValue(scene,"");
+	},
+
+	RootNodeParse: function(root, scope){
+
+	},
+
+	SceneNodeParse: function(scene, scope){
+		var name = JSONJS.getAttributeNodeValue(scene,"name");
+        var isAutoSort = JSONJS.getAttributeNodeValue(scene,"isAutoSort");
+        var groupIdsToSort = JSONJS.getAttributeNodeValue(scene,"groupIdsToSort");
+        var clear_depth = JSONJS.getAttributeNodeValue(scene,"clear_depth");
+        DEBUG("clear_depth:",clear_depth,name,isAutoSort,groupIdsToSort);
+
+        var childNodes = JSONJS.getJSONChildNodes(scene);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            DEBUG(childNodes[i].nodeName);
+            var tagname = childNodes[i];
+            var node = JSONJS.getJSONChildNode(scene,tagname);
+            // childNodes[i];
+            // var tagname = node.nodeName;
+            if(tagname =="Camera")
+            {
+                
+                scope.CameraNodeParse(node,scope);
+            }else if(tagname == "RenderTarget"){
+
+                scope.RenderTargetNodeParse(node,scope);
+            }else if(tagname == "Programs"){
+
+                scope.ProgramsNodeParse(node,scope);
+            }else if(tagname == "Material"){
+
+                scope.MaterialNodeParse(node,scope);
+            }else if(tagname == "eRect"){
+
+                scope.eRectNodeParse(node,scope);
+            }else if(tagname == "eMesh"){
+
+                scope.eMeshNodeParse(node,scope);
+            }else if(tagname == "GameObject"){
+
+                scope.GameObjectNodeParse(node,scope);
+            }else if(tagname == "ParticleSystem"){
+
+                scope.ParticleSystemNodeParse(node, scope);
+            }else if(tagname == "AnimationSet"){
+
+                scope.AnimationSetNodeParse(node,scope);
+            }else if(tagname =="TranslateAnimation"){
+
+                scope.TranslateAnimationNodeParse(node,scope);
+            }else if(tagname =="RotateAnimation"){
+
+                scope.RotateAnimationNodeParse(node,scope);
+            }else if(tagname =="ScaleAnimation"){
+
+                scope.ScaleAnimationNodeParse(node,scope);
+            }else if(tagname =="TexAlphaModifierAnimation"){
+
+                scope.TexAlphaModifierAnimationNodeParse(node,scope);
+            }else if(tagname =="TexCoordModifierAnimation"){
+
+                scope.TexCoordModifierAnimationNodeParse(node,scope);
+            }else if(tagname =="TexCoordSetAnimation"){
+
+                scope.TranslateAnimationNodeParse(node,scope);
+            }else if(tagname =="PathAnimation"){
+
+                scope.PathAnimationNodeParse(node,scope);
+            }else if(tagname =="SequenceFrameAnimation"){
+
+                scope.SequenceFrameAnimationNodeParse(node,scope);
+            }else if(tagname =="KeyFramesTranslateAnimation"){
+
+                scope.KeyFramesTranslateAnimationNodeParse(node,scope);
+            }else if(tagname =="KeyFramesRotateAnimation"){
+
+                scope.KeyFramesRotateAnimationNodeParse(node,scope);
+            }else if(tagname =="KeyFramesScaleAnimation"){
+                
+                scope.KeyFramesScaleAnimationNodeParse(node,scope);
+            }else if(tagname =="PathSpline"){
+
+                scope.PathSplineNodeParse(node,scope);
+            }else if(tagname =="PathBrokenLine"){
+
+                scope.PathBrokenLineNodeParse(node,scope);
+            }else if(tagname =="PathSimpleBezier"){
+
+                scope.PathSimpleBezier(node,scope);
+            }else{
+                DEBUG("No Node Parse....");
+            }
+
+
+        }
+
+        mRoot.state = 2;
+
+        DEBUG("mRoot.state = 2;");
+	},
+
+	 CameraNodeParse: function(camera,scope){
+        var name = JSONJS.getAttributeNodeValue(camera,"name");
+        var width = JSONJS.getAttributeNodeValue(camera,"width");
+        var height = JSONJS.getAttributeNodeValue(camera,"height");
+        var position = JSONJS.getAttributeNodeValue(camera,"position");
+        var lookat = JSONJS.getAttributeNodeValue(camera,"lookat");
+        var fovy = JSONJS.getAttributeNodeValue(camera,"fovy");
+        var direction = JSONJS.getAttributeNodeValue(camera,"direction");
+        var orientation = JSONJS.getAttributeNodeValue(camera,"orientation");
+        var axies = JSONJS.getAttributeNodeValue(camera,"axies");
+        var eulerRotation = JSONJS.getAttributeNodeValue(camera,"eulerRotation");
+        var rotate = JSONJS.getAttributeNodeValue(camera,"rotate");
+        var rotate_x = JSONJS.getAttributeNodeValue(camera,"rotate_x");
+        var rotate_z = JSONJS.getAttributeNodeValue(camera,"rotate_z");
+        var auto_screen_size = JSONJS.getAttributeNodeValue(camera,"auto_screen_size");
+        var quaternion = JSONJS.getAttributeNodeValue(camera,"quaternion");
+
+
+        DEBUG(name,width,height,position,lookat,fovy,direction,orientation,axies,eulerRotation,rotate,rotate_x,rotate_z,auto_screen_size,quaternion);
+
+        if(name){
+            mRoot.mCamera.name = name;
+        }
+        if(auto_screen_size){
+            auto_screen_size = scope.parseBool(auto_screen_size);
+            mRoot.mCamera.auto_screen_size = auto_screen_size;
+        }
+        if(width){
+            width = parseFloat(width);
+        }
+        if(height){
+            height = parseFloat(height);
+        }
+        if(position && auto_screen_size == false){
+            position = scope.parseVec3(position);
+            mRoot.mCamera.mPosition.copy(position);
+        }
+        if(lookat && auto_screen_size == false){
+            lookat = scope.parseVec3(lookat);
+        }
+        if(fovy && auto_screen_size == false){
+            mRoot.mCamera.fov = parseFloat(fovy);
+        }else{
+            mRoot.mCamera.fov = 45;
+        }
+        if(direction){
+            direction = scope.parseVec3(direction);
+        }
+        if(orientation){
+            // orientation = scope.
+        }
+        if(axies){
+            axies = scope.parseVec3(axies);
+        }
+        if(eulerRotation){
+            // eulerRotation = 
+        }
+        if(rotate){
+            rotate = parseFloat(rotate);
+        }
+        if(rotate_x){
+            rotate_x = parseFloat(rotate_x);
+        }
+        if(rotate_z){
+            rotate_z = parseFloat(rotate_z);
+        }
+        if(quaternion){
+            // quaternion = 
+        }
+
+
+        console.log("auto_screen_size:",auto_screen_size);
+        mRoot.mCamera.reSize(mRoot.mPhoneWidth,mRoot.mPhoneHeight);
+
+     },
+     
+     RenderTargetNodeParse: function(rendertarget, scope){
+        var name = JSONJS.getAttributeNodeValue(rendertarget,"name");
+        var width = JSONJS.getAttributeNodeValue(rendertarget,"width");
+        var height = JSONJS.getAttributeNodeValue(rendertarget,"height");
+        var target_texture = JSONJS.getAttributeNodeValue(rendertarget,"target_texture");
+        DEBUG(name,width,height,target_texture);
+
+        if(name){
+
+        }
+        if(width){
+            width = parseFloat(width);
+            mRoot.mRenderTarget.width = width;
+        }
+        if(height){
+            height = parseFloat(height);
+            mRoot.mRenderTarget.height = height;
+
+        }
+        if(target_texture){
+            // target_texture = 
+        }
+
+        var childNodes = JSONJS.getJSONChildNodes(rendertarget);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            if(tagname =="Viewport")
+            {
+                scope.ViewPortNodeParse(node,scope);
+            }
+        }
+     },
+
+     ViewPortNodeParse: function(viewport,scope){
+        var name = JSONJS.getAttributeNodeValue(viewport,"name");
+        var camera = JSONJS.getAttributeNodeValue(viewport,"camera");
+        var background_color = JSONJS.getAttributeNodeValue(viewport,"background_color");
+        var left = JSONJS.getAttributeNodeValue(viewport,"left");
+        var top = JSONJS.getAttributeNodeValue(viewport,"top");
+        var width = JSONJS.getAttributeNodeValue(viewport,"width");
+        var height = JSONJS.getAttributeNodeValue(viewport,"height");
+        var clear = JSONJS.getAttributeNodeValue(viewport,"clear");
+
+        DEBUG(name,camera,background_color,left,top,width,height,clear);
+
+        if(name){
+            mRoot.mViewport.name = name;
+        }
+        if(camera){
+            mRoot.mViewport.camera = camera;
+        }
+        if(background_color){
+            var arary = scope.parseArray(background_color);
+            mRoot.mViewport.background_color.push(arary[0],arary[1],arary[2],arary[3]);
+        }
+        if(left){
+            left = parseFloat(left);
+            mRoot.mViewport.left = left;
+        }
+        if(top){
+            top = parseFloat(top);
+            mRoot.mViewport.top = top;
+        }
+        if(width){
+            width = parseFloat(width);
+            mRoot.mViewport.width = width;
+        }
+        if(height){
+            height = parseFloat(height);
+            mRoot.mViewport.height = height;
+        }
+        if(clear){
+            //  = 
+        }
+     },
+
+     ProgramsNodeParse: function(program,scope){
+        var name = JSONJS.getAttributeNodeValue(program,"name");
+        var groupname = JSONJS.getAttributeNodeValue(program,"groupname");
+        var source = JSONJS.getAttributeNodeValue(program,"source");
+        DEBUG(name,groupname,source);
+
+        var childNodes = JSONJS.getJSONChildNodes(program);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var tagname = childNodes[i];
+            var node = JSONJS.getJSONChildNode(scene,tagname);
+            if(tagname =="vertex_program")
+            {
+                scope.VertexProgramNodeParse(node,scope);
+            }else if(tagname =="fragment_program"){
+
+                scope.FragmentProgramNodeParse(node,scope);
+            }
+        }
+
+     },
+
+     VertexProgramNodeParse: function(vertexprogram, scope){
+        var name = JSONJS.getAttributeNodeValue(vertexprogram,"name");
+        var source = JSONJS.getAttributeNodeValue(vertexprogram,"source");
+        DEBUG(name,source);
+
+        var OV = new Program(VERTEX_SHADER);
+        if(name){
+            OV.name = name;
+        }
+        if(source){
+            OV.src = source;
+        }
+        OV.load();
+        mRoot.mVertexProgram.push(OV);
+
+        var childNodes = JSONJS.getJSONChildNodes(vertexprogram);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var tagname = childNodes[i];
+            var node = JSONJS.getJSONChildNode(scene,tagname);
+            if(tagname =="default_params")
+            {
+                scope.DefaultProgramNodeParse(node,OV);
+            }
+        }
+     },
+
+     FragmentProgramNodeParse: function(fragmentprogram, scope){
+        var name = JSONJS.getAttributeNodeValue(fragmentprogram,"name");
+        var source = JSONJS.getAttributeNodeValue(fragmentprogram,"source");
+        DEBUG(name,source);
+
+        var OF = new Program(FRAGMENT_SHADER);
+        if(name){
+            OF.name = name;
+        }
+        if(source){
+            OF.src = source;
+        }
+        OF.load();
+        mRoot.mFragmentProgram.push(OF);
+
+        var childNodes = JSONJS.getJSONChildNodes(fragmentprogram);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var tagname = childNodes[i];
+            var node = JSONJS.getJSONChildNode(scene,tagname);
+            if(tagname =="default_params")
+            {
+                scope.DefaultProgramNodeParse(node,OF);
+            }
+        }
+     },
+     
+     DefaultProgramNodeParse: function(defaultprogram,scope){
+        var name = JSONJS.getAttributeNodeValue(defaultprogram,"name");
+        var value = JSONJS.getAttributeNodeValue(defaultprogram,"value");
+        var pn_type = JSONJS.getAttributeNodeValue(defaultprogram,"pn_type");
+        DEBUG(name,value,pn_type);
+
+        var od = new Default_param();
+        if(name){
+            od.name = name;
+        }
+        if(value){
+            od.value = value;
+        }
+        if(pn_type){
+            od.pn_type = pn_type;
+        }
+        scope.default_params.push(od);
+     },
+
+     MaterialNodeParse: function(material, scope){
+        var name = JSONJS.getAttributeNodeValue(material,"name");
+        var groupname = JSONJS.getAttributeNodeValue(material,"groupname");
+        DEBUG(name,groupname);
+
+        var passNode = JSONJS.getJSONChildNodes(material)[0];
+
+        var vertex_program_ref = JSONJS.getAttributeNodeValue(passNode,"vertex_program_ref");
+        var fragment_program_ref = JSONJS.getAttributeNodeValue(passNode,"fragment_program_ref");
+
+
+        var type = JSONJS.getAttributeNodeValue(passNode,"type");
+        var surface = JSONJS.getAttributeNodeValue(passNode,"surface");
+        var surface_shader = JSONJS.getAttributeNodeValue(passNode,"surface_shader");
+        var phong = JSONJS.getAttributeNodeValue(passNode,"phong");
+        var gouraud = JSONJS.getAttributeNodeValue(passNode,"gouraud");
+        var lambert = JSONJS.getAttributeNodeValue(passNode,"lambert");
+        var blinn = JSONJS.getAttributeNodeValue(passNode,"blinn");
+        var texture = JSONJS.getAttributeNodeValue(passNode,"texture");
+        var transparency = JSONJS.getAttributeNodeValue(passNode,"transparency");
+        var ambient = JSONJS.getAttributeNodeValue(passNode,"ambient");
+        var diffuse = JSONJS.getAttributeNodeValue(passNode,"diffuse");
+        var emissive = JSONJS.getAttributeNodeValue(passNode,"emissive");
+        var specular = JSONJS.getAttributeNodeValue(passNode,"specular");
+        var shininess = JSONJS.getAttributeNodeValue(passNode,"shininess");
+        var depth_check = JSONJS.getAttributeNodeValue(passNode,"depth_check");
+        var depth_write = JSONJS.getAttributeNodeValue(passNode,"depth_write");
+        var use_vertex_color = JSONJS.getAttributeNodeValue(passNode,"use_vertex_color");
+        var uv_ani = JSONJS.getAttributeNodeValue(passNode,"uv_ani");
+        var alpha_ani = JSONJS.getAttributeNodeValue(passNode,"alpha_ani");
+        var culling_mode = JSONJS.getAttributeNodeValue(passNode,"culling_mode");
+        var scene_blend = JSONJS.getAttributeNodeValue(passNode,"scene_blend");
+        var texture_address_mode = JSONJS.getAttributeNodeValue(passNode,"texture_address_mode");
+        var texture_filter = JSONJS.getAttributeNodeValue(passNode,"texture_filter");
+        var precision_int = JSONJS.getAttributeNodeValue(passNode,"precision_int");
+        var precision_float = JSONJS.getAttributeNodeValue(passNode,"precision_float");
+        var defer_loading = JSONJS.getAttributeNodeValue(passNode,"defer_loading");
+
+        DEBUG(type,surface,surface_shader,phong,gouraud,lambert,blinn,texture,transparency,ambient,diffuse,emissive,specular,shininess,depth_check,depth_write,use_vertex_color,uv_ani,alpha_ani,culling_mode,scene_blend,texture_address_mode,texture_filter,precision_int,precision_float,defer_loading);
+
+        var textureUnitNode = JSONJS.getJSONChildNodes(passNode)[0];
+        var texture = JSONJS.getAttributeNodeValue(textureUnitNode,"texture");
+        DEBUG(texture);
+
+
+        var OM = new Material();
+        if(name){
+            OM.name = name;
+        }
+        if(groupname){
+
+        }
+        if(vertex_program_ref){
+            OM.Pass.vertex_program_ref = vertex_program_ref;
+        }
+        if(fragment_program_ref){
+            OM.Pass.fragment_program_ref = fragment_program_ref;
+        }
+        if(type){
+
+        }
+        if(surface){
+
+        }
+        if(surface_shader){
+
+        }
+        if(phong){
+
+        }
+        if(gouraud){
+
+        }
+        if(lambert){
+
+        } 
+        if(blinn){
+
+        } 
+        if(texture){
+            OM.Pass.TextureUnitState.texture.filename = texture;
+        } 
+        if(transparency){
+
+        } 
+        if(ambient){
+
+        } 
+        if(diffuse){
+
+        } 
+        if(emissive){
+
+        }
+        if(specular){
+
+        } 
+        if(shininess){
+
+        } 
+        if(depth_check){
+
+        } 
+        if(depth_write){
+
+        } 
+        if(use_vertex_color){
+
+        } 
+        if(uv_ani){
+
+        } 
+        if(alpha_ani){
+
+        } 
+        if(culling_mode){
+
+        } 
+        if(scene_blend){
+
+        }  
+        if(texture_address_mode){
+
+        } 
+        if(texture_filter){
+
+        } 
+        if(precision_int){
+
+        } 
+        if(precision_float){
+
+        } 
+        if(defer_loading){
+
+        }
+
+        OM.load();
+        mRoot.mMaterial.push(OM);
+     },
+
+     eMeshNodeParse: function(emesh, scope){
+        var src = JSONJS.getAttributeNodeValue(emesh,"src");
+        if(src){
+            DEBUG("加载eMesh");
+
+            var parse = new EMeshParse();
+            parse.src = src;
+            parse.load();
+        }
+
+     },
+
+     eRectNodeParse: function(erect, scope){
+        var name = JSONJS.getAttributeNodeValue(erect,"name");
+        var width = JSONJS.getAttributeNodeValue(erect,"width");
+        var height = JSONJS.getAttributeNodeValue(erect,"height");
+        var depth = JSONJS.getAttributeNodeValue(erect,"depth");
+        var anchor = JSONJS.getAttributeNodeValue(erect,"anchor");
+
+        var customize_anchor = JSONJS.getAttributeNodeValue(erect,"customize_anchor");
+        var stack_slice_set = JSONJS.getAttributeNodeValue(erect,"stack_slice_set");
+        var stack_slice_set_flip = JSONJS.getAttributeNodeValue(erect,"stack_slice_set_flip");
+        var scale = JSONJS.getAttributeNodeValue(erect,"scale");
+        var uvs = JSONJS.getAttributeNodeValue(erect,"uvs");
+        var uvs_name = JSONJS.getAttributeNodeValue(erect,"uvs_name");
+
+
+        DEBUG(name,width,height,depth,anchor,customize_anchor,stack_slice_set,stack_slice_set_flip,scale,uvs,uvs_name);
+
+        var eR_o = new eRect();
+
+        if(name)
+        {
+            eR_o.name = name;
+        }
+        if(width){
+            eR_o.width = parseFloat(width);
+        }
+        if(height){
+
+        }
+        if(depth){
+
+        }
+        if(anchor){
+            if(anchor.toLowerCase()=="top_left")
+            {
+                eR_o.mAnchor = TOP_LEFT;
+            }else if(anchor.toLowerCase()=="top_right"){
+                eR_o.mAnchor = TOP_RIGHT;
+            }else if(anchor.toLowerCase()=="bottom_left"){
+                eR_o.mAnchor = BOTTOM_LEFT;
+            }else if(anchor.toLowerCase()=="bottom_right"){
+                eR_o.mAnchor = BOTTOM_RIGHT;
+            }else if(anchor.toLowerCase()=="center"){
+                eR_o.mAnchor = CENTER;
+            }else if(anchor.toLowerCase()=="customize"){
+                // eR_o.mAnchor = CUSTOMIZE;
+                
+            }else{
+                eR_o.mAnchor = TOP_LEFT;
+            }
+        }
+        if(customize_anchor){
+            var tmp = scope.parseVec3(customize_anchor);
+            eR_o.setCustomizeAnchor(tmp.x,tmp.y,true);
+        }
+        if(stack_slice_set){
+            eR_o.longUpdate = true;
+            var vecparams = stack_slice_set.split(" ");
+            if(vecparams.length < 2)
+            {
+                return;
+            }
+            var stacks = parseInt(vecparams[0]);
+            var slices = parseInt(vecparams[1]);
+            var frame =parseInt(vecparams[2]);
+
+            var mSplit = new TextureSplit();
+            mSplit.setTextureStacksAndSlices(stacks, slices, true);
+            eR_o.setTextureCoord(mSplit.getTextureCoord(frame));
+        }
+        if(stack_slice_set_flip){
+
+        }
+        if(scale){
+            var sVec3 = scope.parseVec3(scale);
+            eR_o.width =  mRoot.mPhoneWidth * sVec3.x;
+            eR_o.height = mRoot.mPhoneHeight * sVec3.y;
+        }
+        if(uvs){
+
+        }
+        if(uvs_name){
+
+        }
+
+        mRoot.eRects.push(eR_o);
+     },
+
+     GameObjectNodeParse: function(gameObject,scope,parent){
+        var name = JSONJS.getAttributeNodeValue(gameObject,"name");
+        var visible = JSONJS.getAttributeNodeValue(gameObject,"visible");
+        var pickable = JSONJS.getAttributeNodeValue(gameObject,"pickable");
+        var composite = JSONJS.getAttributeNodeValue(gameObject,"composite");
+        var isFixDepth = JSONJS.getAttributeNodeValue(gameObject,"isFixDepth");
+        var fixDepth = JSONJS.getAttributeNodeValue(gameObject,"fixDepth");
+        var renderQueueGroupId = JSONJS.getAttributeNodeValue(gameObject,"renderQueueGroupId");
+        var isEnalbeSortCenter = JSONJS.getAttributeNodeValue(gameObject,"isEnalbeSortCenter");
+        var sortCenter = JSONJS.getAttributeNodeValue(gameObject,"sortCenter");
+
+        DEBUG(name,visible,pickable,composite,isFixDepth,fixDepth,renderQueueGroupId,isEnalbeSortCenter,sortCenter);
+
+        var o = mRoot.mSceneManager.createGameObject(name);
+
+        if(parent)
+        {
+            o.parent = parent;
+            o.Transform.mParent = parent.Transform;
+            parent.children.push(o);
+            parent.Transform.mChildren.push(o.Transform);
+        }else{
+            o.parent = null;
+            o.Transform.mParent = null;
+        }
+        
+        mRoot.mSceneManager.add(o);
+
+        var childNodes = JSONJS.getJSONChildNodes(gameObject);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var tagname = childNodes[i];
+            var node = JSONJS.getJSONChildNode(scene,tagname);
+            DEBUG(tagname);
+            if(tagname =="Transform")
+            {
+                var position  = JSONJS.getAttributeNodeValue(node,"position");
+                var scale = JSONJS.getAttributeNodeValue(node,"scale");
+                var eulerRotation = JSONJS.getAttributeNodeValue(node,"eulerRotation");
+
+                DEBUG(position,scale,eulerRotation);
+
+                if(position){
+                    position = position.split(" ");
+                    o.Transform.mPosition = new Vector3(parseFloat(position[0]) * mRoot.mPhoneWidth,parseFloat(position[1]) * mRoot.mPhoneHeight,parseFloat(position[2]));
+                }
+                if(scale){
+                    scale = scale.split(" ");
+                    o.Transform.mScale = new Vector3(parseFloat(scale[0]),parseFloat(scale[1]),parseFloat(scale[2]));
+                }
+                if(eulerRotation){
+                    eulerRotation = eulerRotation.split(" ");
+                    o.Transform.mOrientation = new Quaternion(parseFloat(eulerRotation[0]),parseFloat(eulerRotation[1]),parseFloat(eulerRotation[2]),parseFloat(eulerRotation[3]));
+                    console.log(o.Transform.mOrientation);
+                }
+                
+            }else if(tagname =="Renderer"){
+                var material  = JSONJS.getAttributeNodeValue(node,"material");
+
+                DEBUG(material);
+                if(material){
+                    o.Renderer.material = material;
+                }
+
+            }else if(tagname =="MeshFilter"){
+                var mesh  = JSONJS.getAttributeNodeValue(node,"mesh");
+
+                DEBUG(mesh);
+                if(mesh){
+                    o.MeshFilter.mesh = mesh;
+                    o.onSize();
+                }
+            }else if(tagname =="ParticleSystem"){
+
+                scope.ParticleSystemNodeParse(node, scope);
+            }else if(tagname =="GameObject"){
+
+                arguments.callee(node, scope,o);
+            }
+        }
+
+        
+     },
+
+     ParticleSystemNodeParse: function(particlesystem, scope){
+        var name  = JSONJS.getAttributeNodeValue(particlesystem,"name");
+        var src  = JSONJS.getAttributeNodeValue(particlesystem,"src");
+        DEBUG(name,src);
+
+        
+        // if(src)
+        // {
+        //     if(!name)
+        //     {
+        //         name = src;
+        //     }
+
+        //     var pgo = mRoot.mSceneManager.createGameObject(name);
+
+        //     var particleParse = new ParticleSystemParse(pgo);
+        //     particleParse.src = src;
+        //     particleParse.load();
+        // }
+
+     },
+
+     AnimationSetNodeParse: function(animationset,scope){
+        var name  = JSONJS.getAttributeNodeValue(animationset,"name");
+        var interpolator  = JSONJS.getAttributeNodeValue(animationset,"interpolator");
+        var shareInterpolator  = JSONJS.getAttributeNodeValue(animationset,"shareInterpolator");
+        var repeatCount  = JSONJS.getAttributeNodeValue(animationset,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(animationset,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(animationset,"canstop");
+        var start  = JSONJS.getAttributeNodeValue(animationset,"start");
+        var version  = JSONJS.getAttributeNodeValue(animationset,"version");
+
+        DEBUG(name,interpolator,shareInterpolator,repeatCount,repeatMode,canstop,start,version);
+
+        var setObj = new AnimationSet();
+        var isStart = true;
+        var version = 1;
+        if(name)
+        {
+            setObj.setName(name);
+        }
+        if(interpolator)
+        {
+            interpolator = InterpolatorSet.getInterpolatorInstance(interpolator);
+            setObj.setInterpolator(interpolator);
+        }
+        if(repeatCount)
+        {
+            repeatCount = parseInt(repeatCount);
+            setObj.setRepeatCount(repeatCount);
+        }
+        if(repeatMode)
+        {
+            setObj.setRepeatMode(repeatMode);
+        }
+        if(canstop)
+        {
+            setObj.mCanStop = scope.parseBool(canstop);
+        }
+        if(start)
+        {
+            isStart = scope.parseBool(start);
+        }
+        if(version)
+        {
+            mVersion = parseInt(version);
+        }
+        setObj.setVersion(mVersion);
+
+
+        var childNodes = JSONJS.getJSONChildNodes(animationset);
+        DEBUG(childNodes.length);
+
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var tagname = childNodes[i];
+            var node = JSONJS.getJSONChildNode(scene,tagname);
+            DEBUG(tagname);
+            if(tagname =="TranslateAnimation")
+            {
+                scope.TranslateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="RotateAnimation"){
+
+                scope.RotateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="ScaleAnimation"){
+
+                scope.ScaleAnimationNodeParse(node,scope);
+            }else if(tagname =="TexAlphaModifierAnimation"){
+
+                scope.TexAlphaModifierAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="TexCoordModifierAnimation"){
+
+                scope.TexCoordModifierAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="TexCoordSetAnimation"){
+
+                scope.TranslateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="PathAnimation"){
+
+                scope.PathAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="SequenceFrameAnimation"){
+
+                scope.SequenceFrameAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="KeyFramesTranslateAnimation"){
+
+                scope.KeyFramesTranslateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="KeyFramesRotateAnimation"){
+
+                scope.KeyFramesRotateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="KeyFramesScaleAnimation"){
+
+                scope.KeyFramesScaleAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="PathSpline"){
+
+                scope.PathSplineNodeParse(node,scope,setObj);
+            }else if(tagname =="PathBrokenLine"){
+
+                scope.PathBrokenLineNodeParse(node,scope,setObj);
+            }else if(tagname =="PathSimpleBezier"){
+
+                scope.PathSimpleBezier(node,scope,setObj);
+            }
+
+        }
+     },
+
+     findTransformByName: function(name){
+        var gameObject ;
+        DEBUG("findTransformByName",mRoot.mSceneManager);
+
+        for(var k in mRoot.mSceneManager._objAdded)
+        {
+            //console.log("!!!!!!!!!!!!!!!!!++++++++++++++===========",k);
+            gameObject = mRoot.mSceneManager._objAdded[k];
+            if(name.localeCompare(gameObject.name) == 0)
+            {
+                return gameObject;
+
+            }
+        }
+        return null;
+     },
+
+     TranslateAnimationNodeParse: function(translateanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(translateanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(translateanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(translateanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(translateanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(translateanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(translateanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(translateanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(translateanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(translateanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(translateanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(translateanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(translateanimation,"version");
+        var TransformSpace  = JSONJS.getAttributeNodeValue(translateanimation,"TransformSpace");
+         var isCoordinateRelativeToScreen  = JSONJS.getAttributeNodeValue(translateanimation,"isCoordinateRelativeToScreen");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version,TransformSpace,isCoordinateRelativeToScreen);
+
+        var relative  = JSONJS.getAttributeNodeValue(translateanimation,"relative");
+        var mFromXDelta  = JSONJS.getAttributeNodeValue(translateanimation,"mFromXDelta");
+        var mToXDelta  = JSONJS.getAttributeNodeValue(translateanimation,"mToXDelta");
+        var mFromYDelta  = JSONJS.getAttributeNodeValue(translateanimation,"mFromYDelta"); 
+        var mToYDelta  = JSONJS.getAttributeNodeValue(translateanimation,"mToYDelta");
+        var mFromZDelta  = JSONJS.getAttributeNodeValue(translateanimation,"mFromZDelta");
+        var mToZDelta  = JSONJS.getAttributeNodeValue(translateanimation,"mToZDelta");
+
+
+        DEBUG(relative,mFromXDelta,mToXDelta,mFromYDelta,mToYDelta,mFromZDelta,mToZDelta);
+
+
+        var tani = new TranslateAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            tani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                tani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            tani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            tani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            tani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            tani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            tani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            tani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            tani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            tani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            tani.setTransformSpace(TransformSpace);
+        }
+        if(isCoordinateRelativeToScreen){
+            var isCoord = scope.parseBool(isCoordinateRelativeToScreen);
+            tani.setIsCoordinateRelativeToScreen(isCoord);
+        }
+
+        if(relative){
+            relative = scope.parseBool(relative);
+            tani.setRelavie(relative);
+        }
+        if(mFromXDelta){
+            var fromXDelta = parseFloat(mFromXDelta);
+            tani.setFromXDelta(fromXDelta);
+        }
+        if(mToXDelta){
+            var toXDelta = parseFloat(mToXDelta);
+            tani.setToXDelta(toXDelta);
+        }
+        if(mFromYDelta){
+            var fromYDelta = parseFloat(mFromYDelta);
+            tani.setFromYDelta(fromYDelta);
+        }
+        if(mToYDelta){
+            var toYDelta = parseFloat(mToYDelta);
+            tani.setToYDelta(toYDelta);
+        }
+        if(mFromZDelta){
+            var fromZDelta = parseFloat(mFromZDelta);
+            tani.setFromZDelta(fromZDelta);
+        }
+        if(mToZDelta){
+            var toZDelta = parseFloat(mToZDelta);
+            tani.setToZDelta(toZDelta);
+        } 
+
+        tani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                tani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(tani);
+        }else{
+            animationSet.addAnimation(tani);
+        }
+
+        
+
+        return tani;      
+     },
+
+     RotateAnimationNodeParse: function(rotateanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(rotateanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(rotateanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(rotateanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(rotateanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(rotateanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(rotateanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(rotateanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(rotateanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(rotateanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(rotateanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(rotateanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(rotateanimation,"version");
+        var TransformSpace  = JSONJS.getAttributeNodeValue(rotateanimation,"TransformSpace");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version,TransformSpace);
+
+        var relative  = JSONJS.getAttributeNodeValue(rotateanimation,"relative");
+        var fromDegrees  = JSONJS.getAttributeNodeValue(rotateanimation,"fromDegrees");
+        var toDegrees  = JSONJS.getAttributeNodeValue(rotateanimation,"toDegrees");
+        var DegreeOffset  = JSONJS.getAttributeNodeValue(rotateanimation,"DegreeOffset");
+        var rotateMode  = JSONJS.getAttributeNodeValue(rotateanimation,"rotateMode");
+        var velocity  = JSONJS.getAttributeNodeValue(rotateanimation,"velocity");
+        var axis  = JSONJS.getAttributeNodeValue(rotateanimation,"axis");
+        var ignorefirst  = JSONJS.getAttributeNodeValue(rotateanimation,"ignorefirst");
+        var resetMode  = JSONJS.getAttributeNodeValue(rotateanimation,"resetMode");
+
+        DEBUG(relative,fromDegrees,toDegrees,rotateMode,velocity,axis,ignorefirst,resetMode);
+
+        var rani = new RotateAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            rani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                rani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            rani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            rani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            rani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            rani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            rani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            rani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            rani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            rani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            rani.setTransformSpace(TransformSpace);
+        }
+            
+        if(relative){
+            relative = parseBool(relative);
+        }
+        if(fromDegrees){
+            fromDegrees = parseFloat(fromDegrees);
+            rani.setFromDegrees(fromDegrees);
+        }
+        if(toDegrees){
+            toDegrees = parseFloat(toDegrees);
+            rani.setToDegrees(toDegrees);
+        }
+        if(DegreeOffset){
+            DegreeOffset = parseFloat(DegreeOffset);
+            rani.setDegreesOffset(DegreeOffset);
+        }
+        if(rotateMode){
+            rani.setAniMode(rotateMode);
+        }
+        if(velocity){
+            rani.setVelocity(velocity);
+        }
+        if(axis){
+            var axis;
+            if("pitch".localeCompare(axis)==0) {
+                axis = Vector3.UNIT_X;
+            }else if("roll".localeCompare(axis)==0) {
+                axis = Vector3.UNIT_Z;
+            }else if("yaw".localeCompare(axis)==0) {
+                axis = Vector3.UNIT_Y;
+            }else {
+                var value = axis.split(" ");
+                axis = new Vector3(parseFloat(value[0]),parseFloat(value[1]),parseFloat(value[2]));
+            }
+            rani.setAxis(axis);
+        }
+        if(ignorefirst){
+            ignorefirst = parseBool(ignorefirst);
+            rani.setIgnoreFirst(ignorefirst);
+        }
+        if(resetMode){
+            if(resetMode=="NONE"){
+                rani.setResetMode(Animation.RESETMODE_NONE);
+            }else if(resetMode=="ORIGINAL"){
+                rani.setResetMode(Animation.RESETMODE_ORIGINAL);
+            }else if(resetMode=="UNIT"){
+                rani.setResetMode(Animation.RESETMODE_UNIT);
+            }
+        }
+
+        rani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                rani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(rani);
+        }else{
+            animationSet.addAnimation(rani);
+        }
+
+        
+
+        return rani;
+     },
+
+     ScaleAnimationNodeParse: function(scaleanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(scaleanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(scaleanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(scaleanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(scaleanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(scaleanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(scaleanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(scaleanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(scaleanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(scaleanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(scaleanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(scaleanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(scaleanimation,"version");
+        var TransformSpace  = JSONJS.getAttributeNodeValue(scaleanimation,"TransformSpace");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version,TransformSpace);
+
+        var relative  = JSONJS.getAttributeNodeValue(scaleanimation,"relative");
+        var mFromXDelta  = JSONJS.getAttributeNodeValue(scaleanimation,"mFromXDelta");
+        var mToXDelta  = JSONJS.getAttributeNodeValue(scaleanimation,"mToXDelta");
+        var mFromYDelta  = JSONJS.getAttributeNodeValue(scaleanimation,"mFromYDelta"); 
+        var mToYDelta  = JSONJS.getAttributeNodeValue(scaleanimation,"mToYDelta");
+        var mFromZDelta  = JSONJS.getAttributeNodeValue(scaleanimation,"mFromZDelta");
+        var mToZDelta  = JSONJS.getAttributeNodeValue(scaleanimation,"mToZDelta");
+        
+
+        DEBUG(relative,mFromXDelta,mToXDelta,mFromYDelta,mToYDelta,mFromZDelta,mToZDelta);
+
+        var sani = new ScaleAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            sani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                sani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            sani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            sani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            sani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            sani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            sani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            sani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            sani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            sani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            sani.setTransformSpace(TransformSpace);
+        }
+            
+        if(relative){
+            relative = scope.parseBool(relative);
+            sani.setRelavie(relative);
+        }
+        if(mFromXDelta){
+            var fromXDelta = parseFloat(mFromXDelta);
+            sani.setFromXDelta(fromXDelta); 
+        }
+        if(mToXDelta){
+            var toXDelta = parseFloat(mToXDelta);
+            sani.setToXDelta(toXDelta);
+        }
+        if(mFromYDelta){
+            var fromYDelta = parseFloat(mFromYDelta);
+            sani.setFromYDelta(fromYDelta);
+        }
+        if(mToYDelta){
+            var toYDelta = parseFloat(mToYDelta);
+            sani.setToYDelta(toYDelta);
+        }
+        if(mFromZDelta){
+            var fromZDelta = parseFloat(mFromZDelta);
+            sani.setFromZDelta(fromZDelta);
+        }
+        if(mToZDelta){
+            var toZDelta = parseFloat(mToZDelta);
+            sani.setToZDelta(toZDelta);
+        }
+
+        sani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                sani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(sani);
+        }else{
+            animationSet.addAnimation(sani);
+        }
+
+        
+
+        return sani;
+     },
+
+     TexAlphaModifierAnimationNodeParse: function(texalphamodifieranimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+
+        var mFromAlpha  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"mFromAlpha");
+        var mToAlpha  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"mToAlpha");
+        var relative  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"relative");
+        var TransformSpace  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"TransformSpace");
+
+        DEBUG(mFromAlpha,mToAlpha,relative,TransformSpace);
+
+        var texalphamodifierani = new TexAlphaModifierAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            texalphamodifierani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                texalphamodifierani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            texalphamodifierani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            texalphamodifierani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            texalphamodifierani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            texalphamodifierani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            texalphamodifierani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            texalphamodifierani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            texalphamodifierani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            texalphamodifierani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            texalphamodifierani.setTransformSpace(TransformSpace);
+        }
+            
+        if(mFromAlpha){
+            var fromAlpha = parseFloat(mFromAlpha);
+            texalphamodifierani.setFromAlpha(fromAlpha);
+        }
+        if(mToAlpha){
+            var toAlpha = parseFloat(mToAlpha);
+            texalphamodifierani.setToAlpha(toAlpha);
+        }
+        if(relative){
+            relative = scope.parseBool(relative);            
+            texalphamodifierani.setRelavie(relative);
+        }
+
+        texalphamodifierani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                texalphamodifierani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(texalphamodifierani);
+        }else{
+            animationSet.addAnimation(texalphamodifierani);
+        }
+
+        
+
+        return texalphamodifierani;
+     },
+
+     TexCoordModifierAnimationNodeParse: function(texcoordmodifieranimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var mFromScaleU  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromScaleU");
+        var mToScaleU  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mToScaleU");
+        var mFromScaleV  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromScaleV");
+        var mToScaleV  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mToScaleV");
+        var mFromTranslateU  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromTranslateU");
+        var mToTranslateU  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mToTranslateU");
+        var mFromTranslateV  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromTranslateV");
+        var mToTranslateV  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mToTranslateV");
+        var mFrameStart  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFrameStart");
+        var mFrameEnd  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFrameEnd");
+        var mStack  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mStack");
+        var mSlice  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mSlice");
+        var uvMoveSortMode  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"uvMoveSortMode");
+        var mFromRotate  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromRotate");
+        var mToRotate  = JSONJS.getAttributeNodeValue(texcoordmodifieranimation,"mToRotate");
+  
+        DEBUG(mFromScaleU,mToScaleU,mFromScaleV,mToScaleV,mFromTranslateU,mToTranslateU,mFromTranslateV,mToTranslateV,mFrameStart,mFrameEnd,mStack,mSlice,uvMoveSortMode,mFromRotate,mToRotate);
+
+        var texcoordmodifierani = new TexCoordModifierAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            texcoordmodifierani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                texcoordmodifierani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            texcoordmodifierani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            texcoordmodifierani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            texcoordmodifierani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            texcoordmodifierani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            texcoordmodifierani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            texcoordmodifierani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            texcoordmodifierani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            texcoordmodifierani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            texcoordmodifierani.setTransformSpace(TransformSpace);
+        }
+            
+        if(mFromScaleU){
+            var fromXDelta = parseFloat(mFromScaleU);
+            texcoordmodifierani.setFromScaleU(fromXDelta);
+        }
+        if(mToScaleU){
+            var toXDelta = parseFloat(mToScaleU);
+            texcoordmodifierani.setToScaleU(toXDelta);
+        }
+        if(mFromScaleV){
+            var fromYDelta = parseFloat(mFromScaleV);
+            texcoordmodifierani.setFromScaleV(fromYDelta);
+        }
+        if(mToScaleV){
+            var toYDelta = parseFloat(mToScaleV);
+            texcoordmodifierani.setToScaleV(toYDelta);
+        }
+        if(mFromTranslateU){
+            var fromZDelta = parseFloat(mFromTranslateU);
+            texcoordmodifierani.setFromTranslateU(fromZDelta);
+        }
+        if(mToTranslateU){
+            var toZDelta = parseFloat(mToTranslateU);
+            texcoordmodifierani.setToTranslateU(toZDelta);
+        }
+        if(mFromTranslateV){
+            var fromZDelta = parseFloat(mFromTranslateV);
+            texcoordmodifierani.setFromTranslateV(fromZDelta);
+        }
+        if(mToTranslateV){
+            var toZDelta = parseFloat(mToTranslateV);
+            texcoordmodifierani.setToTranslateV(toZDelta);
+        }
+        if(mFrameStart){
+            var frame = parseInt(mFrameStart);
+            texcoordmodifierani.setStartFrame(frame);
+        }
+        if(mFrameEnd){
+            var frame = parseInt(mFrameEnd);
+            texcoordmodifierani.setEndFrame(frame);
+        }
+        if(mStack){
+            var frame = parseInt(mStack);
+            texcoordmodifierani.setStack(frame);
+        }
+        if(mSlice){
+            var frame = parseInt(mSlice);
+            texcoordmodifierani.setSlice(frame);
+        }
+        if(uvMoveSortMode){
+            var mode = parseInt(mSlice);
+            texcoordmodifierani.setUVMoveSortMode(mode);
+        }
+        if(mFromRotate){
+            var rotate = parseFloat(mFromRotate);
+            texcoordmodifierani.setFromRotate(rotate);
+        }
+        if(mToRotate){
+            var rotate = parseFloat(mToRotate);
+            texcoordmodifierani.setToRotate(rotate);
+        }
+
+        texcoordmodifierani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                texcoordmodifierani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(texcoordmodifierani);
+        }else{
+            animationSet.addAnimation(texcoordmodifierani);
+        }
+
+        
+
+        return texcoordmodifierani;
+
+     },
+
+     TexCoordSetAnimationNodeParse: function(texcoordsetanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var relative  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"relative");
+        var stack_slice_set  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"stack_slice_set");
+        var uvs_set  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"uvs_set");
+        var uvs_name_set  = JSONJS.getAttributeNodeValue(texalphamodifieranimation,"uvs_name_set");
+
+        DEBUG(relative,stack_slice_set,uvs_set,uvs_name_set);
+
+        var texcoordsetani = new TexCoordSetAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            texcoordsetani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                texcoordsetani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            texcoordsetani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            texcoordsetani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            texcoordsetani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            texcoordsetani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            texcoordsetani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            texcoordsetani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            texcoordsetani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            texcoordsetani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            texcoordsetani.setTransformSpace(TransformSpace);
+        }
+            
+        if(relative){
+            relative = scope.parseBool(relative);
+            texcoordsetani.setRelavie(relative);
+        }
+        if(stack_slice_set){
+            var vecparams = texCoordSetNode.stack_slice_set.split(" ");
+            if(vecparams.length < 2)
+            {
+                return;
+            }
+            var stacks = parseInt(vecparams[0]);
+            var slices = parseInt(vecparams[1]);
+
+            var mSplit = new TextureSplit();
+            mSplit.setTextureStacksAndSlices(stacks, slices, true);
+
+            if(vecparams.length < 3)
+            {
+                texcoordsetani.setTextureCoordSets(mSplit.getTextureCoords());
+            }else{
+                var mTextureCoords = [];
+                for(var tidx = 2; tidx<vecparams.length; tidx++)
+                {
+                    var frame = parseInt(vecparams[tidx]);
+                    mTextureCoords.push(mSplit.getTextureCoord(frame));
+                }
+                texcoordsetani.setTextureCoordSets(mTextureCoords);// 
+            }
+        }
+        if(uvs_set){
+            uvs_set = texCoordSetNode.uvs_set.split(";");
+            var mTextureCoords = [];
+            for(var i=0;i<uvs_set.length;i++)
+            {
+                var vecuvs = uvs_set[i].split(" ");//need check
+                if(vecuvs.length == 8) {
+                    var rec = new TRect();
+                    
+                    var left=parseFloat(vecuvs[0]);
+                    var right=parseFloat(vecuvs[4]);
+                    var top=1-parseFloat(vecuvs[1]);
+                    var bottom=1-parseFloat(vecuvs[5]);
+            
+                    rec.left=left;
+                    rec.right=right;
+                    rec.top=top;
+                    rec.bottom=bottom;
+                    mTextureCoords.push(rec);
+                }           
+            }
+            texcoordsetani.setTextureCoordSets(mTextureCoords);
+        }
+        if(uvs_name_set){
+            var uvs_set = texCoordSetNode.uvs_name_set.split(" ");
+            var mTextureCoords = [];// new TRect();
+            for(var i=0; i < uvs_set.length; i++)
+            {
+                    // UVSParser *uvsParser=mRoot->getUVSFileParser();
+                    // StringUtil::trim(uvs_set[i]);
+                    // FloatRect* rec=uvsParser->getUVSRect(uvs_set[i]);
+                    // mTextureCoords.push(rec);        
+            }
+            texcoordsetani.setTextureCoordSets(mTextureCoords);
+        }
+
+        texcoordsetani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                texcoordsetani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(texcoordsetani);
+        }else{
+            animationSet.addAnimation(texcoordsetani);
+        }
+
+
+        return texcoordsetani;
+     },
+
+
+     PathSplineNodeParse: function(pathspline,scope){
+        var name  = JSONJS.getAttributeNodeValue(pathspline,"name");
+        // var target  = JSONJS.getAttributeNodeValue(translateanimation,"target");
+        var pathControlPoints  = JSONJS.getAttributeNodeValue(pathspline,"pathControlPoints");
+
+        DEBUG(name,pathControlPoints);
+
+
+        var path = null;
+
+        var pathMgr = mRoot.getPathManager();
+
+        if(name)
+        {
+            path = pathMgr.createPath( name,"Spline")
+        }
+        if(pathControlPoints)
+        {
+
+            var points = pathControlPoints.split(/[ ;]+/);
+            for(var i=0; i<points.length; i+=3)
+            {
+                var point = new Vector3(parseFloat(points[i]),parseFloat(points[i+1]),parseFloat(points[i+2]));
+                path.addControlPoint(point);
+            }
+
+            path.generatePath();
+        }
+        if(path!=null)
+        {
+            return path;
+        }
+        return null;
+     },
+
+     PathBrokenLineNodeParse: function(pathbrokenline,scope){
+        var name  = JSONJS.getAttributeNodeValue(pathbrokenline,"name");
+        // var target  = JSONJS.getAttributeNodeValue(translateanimation,"target");
+        var pathControlPoints  = JSONJS.getAttributeNodeValue(pathbrokenline,"pathControlPoints");
+
+        DEBUG(name,pathControlPoints);
+        
+        var path = null;
+
+        var pathMgr = mRoot.getPathManager();
+
+        if(name)
+        {
+            path = pathMgr.createPath( name,"BrokenLine")
+        }
+        if(pathControlPoints)
+        {
+
+            var points = pathControlPoints.split(/[ ;]+/);
+            for(var i=0; i<points.length; i+=3)
+            {
+                var point = new Vector3(parseFloat(points[i]),parseFloat(points[i+1]),parseFloat(points[i+2]));
+                path.addControlPoint(point);
+            }
+
+            path.generatePath();
+        }
+        if(path!=null)
+        {
+            return path;
+        }
+        return null;
+
+     },
+
+     PathSimpleBezier: function(pathsimplebezier,scope){
+        var name  = JSONJS.getAttributeNodeValue(pathsimplebezier,"name");
+        // var target  = JSONJS.getAttributeNodeValue(translateanimation,"target");
+        var pathControlPoints  = JSONJS.getAttributeNodeValue(pathsimplebezier,"pathControlPoints");
+
+        DEBUG(name,pathControlPoints);
+        var path = null;
+
+        var pathMgr = mRoot.getPathManager();
+
+        if(name)
+        {
+            path = pathMgr.createPath( name,"SimpleBezier")
+        }
+        if(pathControlPoints)
+        {
+
+            var points = pathControlPoints.split(/[ ;]+/);
+            for(var i=0; i<points.length; i+=3)
+            {
+                var point = new Vector3(parseFloat(points[i]),parseFloat(points[i+1]),parseFloat(points[i+2]));
+                path.addControlPoint(point);
+            }
+
+            path.generatePath();
+        }
+        if(path!=null)
+        {
+            return path;
+        }
+        return null;
+
+     },
+
+     PathAnimationNodeParse: function(pathanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(pathanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(pathanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(pathanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(pathanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(pathanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(pathanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(pathanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(pathanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(pathanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(pathanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(pathanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(pathanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+
+        var path  = JSONJS.getAttributeNodeValue(pathanimation,"path");
+        var isAutoRot  = JSONJS.getAttributeNodeValue(pathanimation,"isAutoRot");
+        var headDirection  = JSONJS.getAttributeNodeValue(pathanimation,"headDirection");
+
+        var pani = new PathAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            pani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                pani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            pani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            pani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            pani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            pani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            pani.mCanStop = scope.parseBool(canstop);
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            pani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            pani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            pani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        // if(TransformSpace){
+        //     pani.setTransformSpace(TransformSpace);
+        // }
+            
+        if(path){
+            path = mRoot.getPathManager().findPath(path);
+            var ret = pani.setPath(path);
+            if(!ret)
+            {
+                DEBUG("Cannot find the path.");
+            }
+        }
+        if(isAutoRot){
+            pani.setRotAuto(isAutoRot=="true");
+        }
+        if(headDirection){
+            var vec3 = scope.parseVec3(headDirection);
+            pani.setHeadDirection(vec3);
+        }
+
+        pani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                pani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(pani);
+        }else{
+            animationSet.addAnimation(pani);
+        }
+
+        
+        return pani;
+     },
+
+     SequenceFrameAnimationNodeParse: function(sequenceframeanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+
+        var relative  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"relative");
+        var path  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"path");
+        var isAutoRot  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"isAutoRot");
+        var headDirection  = JSONJS.getAttributeNodeValue(sequenceframeanimation,"headDirection");
+
+
+        DEBUG(relative,path,isAutoRot,headDirection);
+
+        var pani = new PathAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            pani.setName(name);
+        }
+        if(target)
+        {
+            var gameObject = scope.findTransformByName(target);
+            if(gameObject!=null){
+                pani.mTarget = gameObject.Transform;
+            }
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            pani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            pani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            pani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            pani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            pani.mCanStop = canstop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            pani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            pani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            pani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            pani.setTransformSpace(TransformSpace);
+        }
+            
+        // if(relative){}
+        // if(path){}
+        // if(isAutoRot){}
+        // if(headDirection){}
+
+        pani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                pani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(pani);
+        }else{
+            animationSet.addAnimation(pani);
+        }
+
+        
+        return pani;
+     },
+
+     KeyFramesTranslateAnimationNodeParse: function(kftranslateanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(kftranslateanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(kftranslateanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(kftranslateanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(kftranslateanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(kftranslateanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(kftranslateanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(kftranslateanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(kftranslateanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(kftranslateanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(kftranslateanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(kftranslateanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(kftranslateanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var TransformSpace  = JSONJS.getAttributeNodeValue(kftranslateanimation,"TransformSpace");
+        var isCoordinateRelativeToScreen  = JSONJS.getAttributeNodeValue(kftranslateanimation,"isCoordinateRelativeToScreen");
+        var relative  = JSONJS.getAttributeNodeValue(kftranslateanimation,"relative");
+        var numFrames  = JSONJS.getAttributeNodeValue(kftranslateanimation,"numFrames");
+        var kfsName  = JSONJS.getAttributeNodeValue(kftranslateanimation,"kfsName");
+
+        DEBUG(relative,TransformSpace,isCoordinateRelativeToScreen,numFrames,kfsName);
+
+        if(name){}
+        if(target){}
+        if(interpolator){}
+        if(duration){}
+        if(repeatCount){}
+        if(repeatMode){}
+        if(canstop){}
+        if(startOffset){}
+        if(fillEnabled){}
+        if(fillBefore){}
+        if(start){}
+        if(version){}
+            
+        if(TransformSpace){}
+        if(isCoordinateRelativeToScreen){}
+        if(relative){}
+        if(numFrames){}
+        if(kfsName){}
+     },
+
+     KeyFramesRotateAnimationNodeParse: function(kfrotateanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(kfrotateanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(kfrotateanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(kfrotateanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(kfrotateanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(kfrotateanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(kfrotateanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(kfrotateanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(kfrotateanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(kfrotateanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(kfrotateanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(kfrotateanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(kfrotateanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var TransformSpace  = JSONJS.getAttributeNodeValue(kfrotateanimation,"TransformSpace");
+        var isCoordinateRelativeToScreen  = JSONJS.getAttributeNodeValue(kfrotateanimation,"isCoordinateRelativeToScreen");
+        var relative  = JSONJS.getAttributeNodeValue(kfrotateanimation,"relative");
+        var numFrames  = JSONJS.getAttributeNodeValue(kfrotateanimation,"numFrames");
+        var kfsName  = JSONJS.getAttributeNodeValue(kfrotateanimation,"kfsName");
+
+        DEBUG(TransformSpace,isCoordinateRelativeToScreen,relative,numFrames,kfsName);
+
+        if(name){}
+        if(target){}
+        if(interpolator){}
+        if(duration){}
+        if(repeatCount){}
+        if(repeatMode){}
+        if(canstop){}
+        if(startOffset){}
+        if(fillEnabled){}
+        if(fillBefore){}
+        if(start){}
+        if(version){}
+            
+        if(TransformSpace){}
+        if(isCoordinateRelativeToScreen){}
+        if(relative){}
+        if(numFrames){}
+        if(kfsName){}
+     },
+
+     KeyFramesScaleAnimationNodeParse: function(kfscaleanimation,scope,animationSet){
+        var name  = JSONJS.getAttributeNodeValue(kfscaleanimation,"name");
+        var target  = JSONJS.getAttributeNodeValue(kfscaleanimation,"target");
+        var interpolator  = JSONJS.getAttributeNodeValue(kfscaleanimation,"interpolator");
+        var duration  = JSONJS.getAttributeNodeValue(kfscaleanimation,"duration");
+        var repeatCount  = JSONJS.getAttributeNodeValue(kfscaleanimation,"repeatCount");
+        var repeatMode  = JSONJS.getAttributeNodeValue(kfscaleanimation,"repeatMode");
+        var canstop  = JSONJS.getAttributeNodeValue(kfscaleanimation,"canstop");
+        var startOffset  = JSONJS.getAttributeNodeValue(kfscaleanimation,"startOffset");
+        var fillEnabled  = JSONJS.getAttributeNodeValue(kfscaleanimation,"fillEnabled");
+        var fillBefore  = JSONJS.getAttributeNodeValue(kfscaleanimation,"fillBefore");
+        var start  = JSONJS.getAttributeNodeValue(kfscaleanimation,"start");
+        var version  = JSONJS.getAttributeNodeValue(kfscaleanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var TransformSpace  = JSONJS.getAttributeNodeValue(kfscaleanimation,"TransformSpace");
+        var isCoordinateRelativeToScreen  = JSONJS.getAttributeNodeValue(kfscaleanimation,"isCoordinateRelativeToScreen");
+        var relative  = JSONJS.getAttributeNodeValue(kfscaleanimation,"relative");
+        var numFrames  = JSONJS.getAttributeNodeValue(kfscaleanimation,"numFrames");
+        var kfsName  = JSONJS.getAttributeNodeValue(kfscaleanimation,"kfsName");
+
+        DEBUG(TransformSpace,isCoordinateRelativeToScreen,relative,numFrames,kfsName);
+
+        if(name){}
+        if(target){}
+        if(interpolator){}
+        if(duration){}
+        if(repeatCount){}
+        if(repeatMode){}
+        if(canstop){}
+        if(startOffset){}
+        if(fillEnabled){}
+        if(fillBefore){}
+        if(start){}
+        if(version){}
+            
+        if(TransformSpace){}
+        if(isCoordinateRelativeToScreen){}
+        if(relative){}
+        if(numFrames){}
+        if(kfsName){}
+     }
+
+
+
+}
+
+
+
+
+		</script>
+
+<script type="text/javascript">
+window.onload =function(){
+    var LoadJSON = function(filename, callback,scope) {
+        var request=new XMLHttpRequest();
+        var url = filename;
+        DEBUG("text:"+url);
+        request.open("GET",url); 
+
+        request.onreadystatechange=function()
+        {
+            if(request.readyState==4)
+            {
+                callback(request.responseText,scope);
+                DEBUG(request.responseText);
+            }
+        }
+        request.send();
+    };
+
+    var SceneNode = new SceneJsonParse();
+
+    LoadJSON("scene.json",SceneNode.parseScript,SceneNode);
+}
+</script>
+	</body>
+</html>

@@ -1,0 +1,215 @@
+{
+    "Scene": {
+        "@attributes": {
+            "clear_depth": "1.0"
+        },
+        "Camera": {
+            "@attributes": {
+                "name": "main_camera",
+                "width": "1",
+                "height": "1",
+                "auto_screen_size": "true"
+            }
+        },
+        "RenderTarget": {
+            "@attributes": {
+                "width": "1",
+                "height": "1"
+            },
+            "Viewport": {
+                "@attributes": {
+                    "name": "main_viewport",
+                    "camera": "main_camera",
+                    "background_color": "0.2 0.3 0.4 1",
+                    "left": "0",
+                    "top": "0",
+                    "width": "1",
+                    "height": "1"
+                }
+            }
+        },
+        "Programs": {
+            "vertex_program": {
+                "@attributes": {
+                    "name": "texture.vert",
+                    "source": "texture.vert"
+                },
+                "default_params": [
+                    {
+                        "@attributes": {
+                            "pn_type": "param_named_auto",
+                            "name": "worldViewProj",
+                            "value": "worldviewproj_matrix"
+                        }
+                    },
+                    {
+                        "@attributes": {
+                            "pn_type": "param_named_auto",
+                            "name": "textureMatrix",
+                            "value": "texture_matrix"
+                        }
+                    }
+                ]
+            },
+            "fragment_program": {
+                "@attributes": {
+                    "name": "texture.frag",
+                    "source": "texture.frag"
+                }
+            }
+        },
+
+        
+        "Material": [
+        {
+            "@attributes": {
+                "name": "mat_background"
+            },
+            "Pass": {
+                "@attributes": {
+                    "vertex_program_ref": "texture.vert",
+                    "fragment_program_ref": "texture.frag"
+                },
+                "TextureUnit": {
+                    "@attributes": {
+                        "texture": "bg.jpg"
+                    }
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "name": "mat_background2"
+            },
+            "Pass": {
+                "@attributes": {
+                    "vertex_program_ref": "texture.vert",
+                    "fragment_program_ref": "texture.frag"
+                },
+                "TextureUnit": {
+                    "@attributes": {
+                        "texture": "bg2.jpg"
+                    }
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "name": "mat_background3"
+            },
+            "Pass": {
+                "@attributes": {
+                    "vertex_program_ref": "texture.vert",
+                    "fragment_program_ref": "texture.frag"
+                },
+                "TextureUnit": {
+                    "@attributes": {
+                        "texture": "motl.png"
+                    }
+                }
+            }
+        }
+        ],
+        "eRect": [
+        {
+            "@attributes": {
+                "name": "bg_rect",
+                "width": "320",
+                "height": "480",
+                "anchor": "top_left"
+            }
+        },
+        {
+            "@attributes": {
+                "name": "bg2_rect",
+                "width": "256",
+                "height": "256",
+                "anchor": "top_left"
+            }
+        },
+        {
+            "@attributes": {
+                "name": "bg3_rect",
+                "width": "64",
+                "height": "64",
+                "anchor": "top_left"
+            }
+        }
+        ],
+        "GameObject": {
+            "@attributes": {
+                "name": "container"
+            },
+            "Transform": {
+                "@attributes": {
+                    "position": "0.0 0.0 0.0 1"
+                }
+            },
+            "GameObject": [
+            {
+                "@attributes": {
+                    "name": "background"
+                },
+                "Transform": {
+                    "@attributes": {
+                        "position": "0.1 0.2 0.0 2",
+                        "scale": "1.0 1.0 0.0"
+                    }
+                },
+                "Renderer": {
+                    "@attributes": {
+                        "material": "mat_background"
+                    }
+                },
+                "MeshFilter": {
+                    "@attributes": {
+                        "mesh": "bg_rect"
+                    }
+                }
+            },
+            {
+                "@attributes": {
+                    "name": "background2"
+                },
+                "Transform": {
+                    "@attributes": {
+                        "position": "0.1 0.2 0.0 2",
+                        "scale": "1.0 1.0 0.0"
+                    }
+                },
+                "Renderer": {
+                    "@attributes": {
+                        "material": "mat_background2"
+                    }
+                },
+                "MeshFilter": {
+                    "@attributes": {
+                        "mesh": "bg_rect"
+                    }
+                }
+            },
+            {
+                "@attributes": {
+                    "name": "background3"
+                },
+                "Transform": {
+                    "@attributes": {
+                        "position": "0.1 0.2 0.0 2",
+                        "scale": "1.0 1.0 0.0"
+                    }
+                },
+                "Renderer": {
+                    "@attributes": {
+                        "material": "mat_background3"
+                    }
+                },
+                "MeshFilter": {
+                    "@attributes": {
+                        "mesh": "bg3_rect"
+                    }
+                }
+            }
+            ]
+        }
+    }
+}

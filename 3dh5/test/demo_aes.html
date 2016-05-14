@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html encoding="utf-8">
+<head>
+	<title></title>
+<script type="text/javascript" src="core-min.js"></script>
+<script type="text/javascript" src="aes.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+
+var password = '1234567890abcdef';
+var plaintext = '843390444';
+
+  
+
+  var mi=CryptoJS.AES.encrypt("843390444",password);
+
+  document.write("Hello , Welcome to AES ... ----ciphertext:"+mi+"<br/>");
+
+
+  var result=CryptoJS.AES.decrypt(mi,password).toString(CryptoJS.enc.Utf8);
+
+  
+
+  document.write("Result: "+result);
+
+  
+
+</script>
+</body>
+</html>

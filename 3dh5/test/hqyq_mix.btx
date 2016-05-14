@@ -1,0 +1,60 @@
+btx = 1.0
+texture.assetname = mix.png
+texture.width  = 1024
+texture.height = 1024
+
+image.assetname = flower.png
+
+image.uvs = 0.001953125 0.001953125 0.2783203125 0.001953125 0.2783203125 0.685546875 0.001953125 0.685546875
+image.rotated = false
+image.trimmed = false
+image.origsize = 283 700
+image.offset = 0 0
+image.trimmedsize = 283 700
+
+image.assetname = flower1.png
+
+image.uvs = 0.4560546875 0.001953125 0.7412109375 0.001953125 0.7412109375 0.5361328125 0.4560546875 0.5361328125
+image.rotated = false
+image.trimmed = false
+image.origsize = 292 547
+image.offset = 0 0
+image.trimmedsize = 292 547
+
+image.assetname = flower2.png
+
+image.uvs = 0.4560546875 0.5380859375 0.5615234375 0.5380859375 0.5615234375 0.9365234375 0.4560546875 0.9365234375
+image.rotated = false
+image.trimmed = false
+image.origsize = 108 408
+image.offset = 0 0
+image.trimmedsize = 108 408
+
+image.assetname = sun.png
+
+image.uvs = 0.001953125 0.6875 0.15625 0.6875 0.15625 0.822265625 0.001953125 0.822265625
+image.rotated = false
+image.trimmed = false
+image.origsize = 158 138
+image.offset = 0 0
+image.trimmedsize = 158 138
+
+image.assetname = word.png
+
+image.uvs = 0.001953125 0.82421875 0.4541015625 0.82421875 0.4541015625 0.88671875 0.001953125 0.88671875
+image.rotated = false
+image.trimmed = false
+image.origsize = 463 64
+image.offset = 0 0
+image.trimmedsize = 463 64
+
+image.assetname = word1.png
+
+image.uvs = 0.001953125 0.888671875 0.34375 0.888671875 0.34375 0.94140625 0.001953125 0.94140625
+image.rotated = false
+image.trimmed = false
+image.origsize = 350 54
+image.offset = 0 0
+image.trimmedsize = 350 54
+
+

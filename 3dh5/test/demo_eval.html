@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	// function func(arg){
+	// 	console.log(arg);
+	// }
+
+	// console.log(typeof func);
+
+	function JSZip(data, options) {
+	    // if this constructor is used without `new`, it adds `new` before itself:
+	    if(!(this instanceof JSZip)) return new JSZip(data, options);
+
+	    
+	}
+
+	JSZip.prototype.print = function(){
+	    	console.log("Hello JSZip");
+	    }
+	    
+JSZip.prototype.print1 = function(){
+	    	console.log("Hello JSZip 2");
+	    }
+	// var zip = (new JSZip());
+	(new JSZip());
+	//.print();
+</script>
+</body>
+</html>

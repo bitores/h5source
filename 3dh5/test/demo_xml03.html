@@ -1,0 +1,2389 @@
+<html>
+<head></head>
+<body>
+<script type="text/javascript">
+// http://www.thinksaas.cn/group/topic/287168/
+var XMLJS = function() {};
+
+XMLJS.apply = function(o, c, defaults) {
+    if (defaults) {
+        // no"this"reference for friendly out of scope calls
+        XMLJS.apply(o, defaults);
+    }
+    if (o && c && typeof c == 'object') {
+        for (var p in c) {
+            o[p] = c[p];
+        }
+    }
+    return o;
+};
+
+XMLJS.apply(XMLJS, {
+    docObjs: new Array,
+    /**
+     * 初始化xml对象文件连接池
+     */
+    initDocs: function(count) {
+        if (count == null) count = 3;
+
+        for (var i = 0; i < count; i++) {
+            XMLJS.docObjs[i] = new Object;
+            //把浏览器判断换成代码判断，而且把标准代码先判断执行，更加合适和具有兼容性
+            //由于直接执行不兼容的代码会报错，所以采用try catch解决
+            try {
+                XMLJS.docObjs[i].doc = new DOMParser();
+                XMLJS.docObjs[i].doc.async = false;
+                XMLJS.docObjs[i].free = true;
+            } catch (e) {
+                XMLJS.docObjs[i].doc = new ActiveXObject('Microsoft.XMLDOM');
+                XMLJS.docObjs[i].doc.async = false;
+                XMLJS.docObjs[i].free = true;
+            }
+
+        }
+    },
+
+    /**
+     * 获得空闲xml文件docObj对象
+     */
+    getFreeDocObj: function() {
+        var docObj = null;
+
+        for (var i = 0; i < XMLJS.docObjs.length; i++) {
+            if (XMLJS.docObjs[i].free) {
+                XMLJS.docObjs[i].free = false;
+                docObj = XMLJS.docObjs[i];
+                break;
+            }
+        }
+
+        return docObj;
+    },
+
+    /**
+     * 解析xml
+     */
+    parseXML: function(xmlContent) {
+        var docObj = XMLJS.getFreeDocObj();
+        try {
+            var XmlDom = docObj.doc.parseFromString(xmlContent, "text/xml");
+            docObj.free = true;
+            return XmlDom;
+        } catch (e) {
+            docObj.doc.loadXML(xmlContent); //解析字符串不能用load必须用loadXML.(load解析载入文档的)
+            var doc = docObj.doc;
+            docObj.free = true;
+            return doc;
+        }
+    },
+
+    /**
+     * 解析xml
+     */
+    parseXML2: function(xmlContent) {
+        var xmlDoc;
+        try {
+            xmlDoc = new DOMParser();
+            var XmlDom = xmlDoc.parseFromString(xmlContent, "text/xml");
+            return XmlDom;
+        } catch (e) {
+            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+            xmlDoc.async = false;
+            xmlDoc.loadXML(xmlContent);
+            return xmlDoc;
+        }
+    },
+
+    /**
+     * 获取xml子节点
+     * @param{domNode}dom节点
+     * @param{subNodeName}子节点名称
+     */
+    getXMLSubNodes: function(domNode, subNodeName) {
+        var subNodes = [];
+
+        var currentNode = domNode;
+        var childNodes = null;
+
+        var paths = subNodeName.split("/");
+
+        for (var i = 0; paths != null && i < paths.length - 1; i++) {
+            if (paths[i] == "") continue;
+
+            childNodes = currentNode.childNodes;
+
+            for (var j = 0; childNodes != null && j < childNodes.length; j++) {
+                if (childNodes[j].nodeName.toLowerCase() == paths[i].toLowerCase()) {
+                    currentNode = childNodes[j];
+                    break;
+                }
+            }
+        }
+
+        childNodes = currentNode.childNodes;
+
+        for (var i = 0; i < childNodes.length; i++) {
+            if (childNodes[i].nodeName.toLowerCase() == paths[paths.length - 1].toLowerCase()) subNodes.push(childNodes[i]);
+        }
+
+        return subNodes;
+    },
+
+    /**
+     * 获取xml根节点
+     * @param{doc}xml对象
+     */
+    getXMLRootNode: function(doc) {
+        if (doc == null) return null;
+
+        return doc.documentElement;
+    },
+
+    getXMLChildNodes: function(root) {
+        var itemNodes = [];
+        var nodes = root.childNodes;
+
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodeType == 1) {
+                itemNodes.push(nodes[i]);
+            }
+            // alert(nodes[i].nodeName + nodes[i].nodeType);
+        }
+
+        return itemNodes;
+    },
+
+    getXMLChildNode: function(doc_el, nodeName) {
+        var element = doc_el.getElementsByTagName(nodeName);
+        return element.documentElement;
+    },
+
+    /**
+     * 获取xml节点的值
+     * @param{doc}xml对象
+     * @param{NodeName}节点名称
+     */
+    getXMLNodeValue: function(doc, nodeName) {
+        if (doc == null) {
+            return null;
+        }
+        return XMLJS.getXMLSingleNodeValue(doc.documentElement, nodeName);
+    },
+
+    /**
+     * 简化 DOM 访问的函数
+     * @param{doc_el} req.responseXML.documentElement
+     * @param{name} getElementsByTagName("name"), element name
+     * @param{idx} element index,exp:elements[0].firstChild.data
+     * @return nodevalue
+     *
+     */
+    getXMLSingleNodeValue: function(doc_el, nodeName) {
+        var element = doc_el.getElementsByTagName(nodeName);
+        var nodevalue = "";
+        if (element[0]!=null && element[0].firstChild != null) {
+            nodevalue = element[0].firstChild.nodeValue;
+        }
+
+        if(nodevalue!=null)
+            return nodevalue.replace(/^\s+|\s+$/g,'').replace(/[ ]+/,' ');
+        return nodevalue;
+    },
+
+    /**
+     * 获取xml节点的值
+     * @param{doc}xml对象
+     * @param{NodeName}节点名称
+     */
+    getAttributeNodeValues: function(doc_el, nodeName, attributeName) {
+        if (doc_el == null) {
+            return null;
+        }
+        var values = [];
+        var len = doc_el.length;
+        var value = "";
+        for (var i = 0; i < len; i++) {
+            if (doc_el[i].nodeName == nodeName) {
+                value = doc_el[i].getAttribute(attributeName);
+                values.push(value);
+            }
+        }
+        return values;
+    },
+
+    /**
+     * 获取节点属性值的方法
+     * @param{doc_el} req.responseXML.documentElement
+     * @param{attributeName} node Attribute name
+     * @return nodevalue
+     *
+     */
+    getAttributeNodeValue: function(doc_el, attributeName) {
+        var nodevalue = "";
+        if (doc_el != null) {
+            nodevalue = doc_el.getAttribute(attributeName);
+        }
+
+        if(nodevalue!=null)
+            return nodevalue.replace(/^\s+|\s+$/g,'').replace(/[ ]+/,' ');
+        return nodevalue;
+    },
+
+     /**
+     * 获取节点名称
+     * @param{doc_el} req.responseXML.documentElement
+     * @return nodevalue
+     *
+     */
+    getNodeName: function(doc_el){
+        var nodeName = null;
+        if (doc_el != null) {
+            nodevalue = doc_el.nodeName;
+        }
+
+        if(nodevalue!=null)
+            return nodevalue.replace(/^\s+|\s+$/g,'').replace(/[ ]+/,' ');
+        return nodevalue;
+    }
+
+
+});
+/**
+ * @deprecated 调用初始化xml文件对象方法,必须在定义后才能调用
+ *
+ */
+XMLJS.initDocs();
+			
+
+</script>
+<script type="text/javascript">
+function DEBUG(){
+    var ON = 1;
+    if(ON){
+        console.log(arguments);
+    }
+}
+
+var SceneXMLParse = function(){
+}
+
+SceneXMLParse.prototype = {
+    constructor: SceneXMLParse,
+
+
+    parseVec3: function(str){
+        var tm = str.split(" ");
+        return new Vector3(parseFloat(tm[0]),parseFloat(tm[1]),parseFloat(tm[2]));
+    },
+
+
+    parseArray: function(str){
+        var tm = str.split(" ");
+        var array = new Array();
+        for(var i=0; i<tm.length; i++)
+        {
+            array.push(parseFloat(tm[i]));
+        }
+
+        return array;
+    },
+
+     /**
+     *把"true"解析成true,类似于parseInt | parseFloat
+    */
+
+    parseBool: function( str ){
+
+        return str.toLowerCase() == "true";
+    },
+
+    /**
+     *把"     0.0     0.0 0.0    "处理成标准字符串"0.0 0.0 0.0"
+    */
+
+    parsePath: function( str){
+        str = str.replace(/^\s+|\s+$/g,'');
+        str = str.replace(/[ ;]+/,' ');
+        return str;
+    },
+
+     parseScript: function(xmlContent,scope){
+        // document.write("<pre>"+xmlContent+"</pre>");
+        var doc = XMLJS.parseXML(xmlContent);
+        var root = XMLJS.getXMLRootNode(doc);
+
+
+        /**
+         * 解析以Scene为根节点的场景xml文件
+         * @param{xmlContent} 
+         * @return null
+         *
+         */
+        if(root.nodeName.toLowerCase() == "scene")
+        {
+            var sceneNode = root;
+            scope.SceneNodeParse(sceneNode,scope);
+        }
+
+        /**
+         * 解析以Root为根节点的场景xml文件
+         * @param{xmlContent} 
+         * @return null
+         *
+         */
+
+        else if(root.nodeName.toLowerCase() == "root"){
+            var rootNode = root;
+            scope.RootNodeParse(rootNode,scope);
+        }
+        
+         
+        
+     },
+
+     RootNodeParse: function(root,scope){
+        // var name = XMLJS.getAttributeNodeValue(root,"name");
+        // var isAutoSort = XMLJS.getAttributeNodeValue(root,"isAutoSort");
+        // var groupIdsToSort = XMLJS.getAttributeNodeValue(root,"groupIdsToSort");
+        // var clear_depth = XMLJS.getAttributeNodeValue(root,"clear_depth");
+        // DEBUG("clear_depth:",clear_depth,name,isAutoSort,groupIdsToSort);
+
+        // var childNodes = XMLJS.getXMLChildNodes(root);
+        // DEBUG(childNodes.length);
+        // for(var i=0; i<childNodes.length; i++)
+        // {
+        //     DEBUG(childNodes[i].nodeName);
+        //     var node = childNodes[i];
+        //     var tagname = node.nodeName;
+        //     if(tagname =="Camera")
+        //     {
+                
+        //         scope.CameraNodeParse(node,scope);
+        //     }else if(tagname == "RenderTarget"){
+
+        //         scope.RenderTargetNodeParse(node,scope);
+        //     }else if(tagname == "Programs"){
+
+        //         scope.ProgramsNodeParse(node,scope);
+        //     }else if(tagname == "Material"){
+
+        //         scope.MaterialNodeParse(node,scope);
+        //     }else if(tagname == "eRect"){
+
+        //         scope.eRectNodeParse(node,scope);
+        //     }else if(tagname == "GameObject"){
+
+        //         scope.GameObjectNodeParse(node,scope);
+        //     }else if(tagname == "ParticleSystem"){
+
+        //         var name  = XMLJS.getAttributeNodeValue(node,"name");
+        //         var src  = XMLJS.getAttributeNodeValue(node,"src");
+        //         DEBUG(name,src);
+        //     }else if(tagname == "AnimationSet"){
+
+        //         scope.AnimationSetNodeParse(node,scope);
+        //     }else if(tagname =="TranslateAnimation"){
+
+        //         scope.TranslateAnimationNodeParse(node,scope);
+        //     }else if(tagname =="RotateAnimation"){
+
+        //         scope.RotateAnimationNodeParse(node,scope);
+        //     }else if(tagname =="ScaleAnimation"){
+
+        //         scope.ScaleAnimationNodeParse(node,scope);
+        //     }else if(tagname =="TexAlphaModifierAnimation"){
+
+        //         scope.TexAlphaModifierAnimationNodeParse(node,scope);
+        //     }else if(tagname =="TexCoordModifierAnimation"){
+
+        //         scope.TexCoordModifierAnimationNodeParse(node,scope);
+        //     }else if(tagname =="TexCoordSetAnimation"){
+
+        //         scope.TranslateAnimationNodeParse(node,scope);
+        //     }else if(tagname =="PathAnimation"){
+
+        //         scope.PathAnimationNodeParse(node,scope);
+        //     }else if(tagname =="SequenceFrameAnimation"){
+
+        //         scope.SequenceFrameAnimationNodeParse(node,scope);
+        //     }else if(tagname =="KeyFramesTranslateAnimation"){
+
+        //         scope.KeyFramesTranslateAnimationNodeParse(node,scope);
+        //     }else if(tagname =="KeyFramesRotateAnimation"){
+
+        //         scope.KeyFramesRotateAnimationNodeParse(node,scope);
+        //     }else if(tagname =="KeyFramesScaleAnimation"){
+                
+        //         scope.KeyFramesScaleAnimationNodeParse(node,scope);
+        //     }
+     },
+
+     SceneNodeParse: function(scene,scope){
+
+        var name = XMLJS.getAttributeNodeValue(scene,"name");
+        var isAutoSort = XMLJS.getAttributeNodeValue(scene,"isAutoSort");
+        var groupIdsToSort = XMLJS.getAttributeNodeValue(scene,"groupIdsToSort");
+        var clear_depth = XMLJS.getAttributeNodeValue(scene,"clear_depth");
+        DEBUG("clear_depth:",clear_depth,name,isAutoSort,groupIdsToSort);
+
+        var childNodes = XMLJS.getXMLChildNodes(scene);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            DEBUG(childNodes[i].nodeName);
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            if(tagname =="Camera")
+            {
+                
+                scope.CameraNodeParse(node,scope);
+            }else if(tagname == "RenderTarget"){
+
+                scope.RenderTargetNodeParse(node,scope);
+            }else if(tagname == "Programs"){
+
+                scope.ProgramsNodeParse(node,scope);
+            }else if(tagname == "Material"){
+
+                scope.MaterialNodeParse(node,scope);
+            }else if(tagname == "eRect"){
+
+                scope.eRectNodeParse(node,scope);
+            }else if(tagname == "GameObject"){
+
+                scope.GameObjectNodeParse(node,scope);
+            }else if(tagname == "ParticleSystem"){
+
+                var name  = XMLJS.getAttributeNodeValue(node,"name");
+                var src  = XMLJS.getAttributeNodeValue(node,"src");
+                DEBUG(name,src);
+            }else if(tagname == "AnimationSet"){
+
+                scope.AnimationSetNodeParse(node,scope);
+            }else if(tagname =="TranslateAnimation"){
+
+                scope.TranslateAnimationNodeParse(node,scope);
+            }else if(tagname =="RotateAnimation"){
+
+                scope.RotateAnimationNodeParse(node,scope);
+            }else if(tagname =="ScaleAnimation"){
+
+                scope.ScaleAnimationNodeParse(node,scope);
+            }else if(tagname =="TexAlphaModifierAnimation"){
+
+                scope.TexAlphaModifierAnimationNodeParse(node,scope);
+            }else if(tagname =="TexCoordModifierAnimation"){
+
+                scope.TexCoordModifierAnimationNodeParse(node,scope);
+            }else if(tagname =="TexCoordSetAnimation"){
+
+                scope.TranslateAnimationNodeParse(node,scope);
+            }else if(tagname =="PathAnimation"){
+
+                scope.PathAnimationNodeParse(node,scope);
+            }else if(tagname =="SequenceFrameAnimation"){
+
+                scope.SequenceFrameAnimationNodeParse(node,scope);
+            }else if(tagname =="KeyFramesTranslateAnimation"){
+
+                scope.KeyFramesTranslateAnimationNodeParse(node,scope);
+            }else if(tagname =="KeyFramesRotateAnimation"){
+
+                scope.KeyFramesRotateAnimationNodeParse(node,scope);
+            }else if(tagname =="KeyFramesScaleAnimation"){
+                
+                scope.KeyFramesScaleAnimationNodeParse(node,scope);
+            }else if(tagname =="PathSpline"){
+
+                scope.PathSplineNodeParse(node,scope);
+            }else if(tagname =="PathBrokenLine"){
+
+                scope.PathBrokenLineNodeParse(node,scope);
+            }else if(tagname =="PathSimpleBezier"){
+
+                scope.PathSimpleBezier(node,scope);
+            }
+
+
+        }
+
+        // var cameraNode = XMLJS.getXMLChildNode(scene, "Camera");
+        // DEBUG(scene,cameraNode);
+
+     },
+
+     CameraNodeParse: function(camera,scope){
+        var name = XMLJS.getAttributeNodeValue(camera,"name");
+        var width = XMLJS.getAttributeNodeValue(camera,"width");
+        var height = XMLJS.getAttributeNodeValue(camera,"height");
+        var position = XMLJS.getAttributeNodeValue(camera,"position");
+        var lookat = XMLJS.getAttributeNodeValue(camera,"lookat");
+        var fovy = XMLJS.getAttributeNodeValue(camera,"fovy");
+        var direction = XMLJS.getAttributeNodeValue(camera,"direction");
+        var orientation = XMLJS.getAttributeNodeValue(camera,"orientation");
+        var axies = XMLJS.getAttributeNodeValue(camera,"axies");
+        var eulerRotation = XMLJS.getAttributeNodeValue(camera,"eulerRotation");
+        var rotate = XMLJS.getAttributeNodeValue(camera,"rotate");
+        var rotate_x = XMLJS.getAttributeNodeValue(camera,"rotate_x");
+        var rotate_z = XMLJS.getAttributeNodeValue(camera,"rotate_z");
+        var auto_screen_size = XMLJS.getAttributeNodeValue(camera,"auto_screen_size");
+        var quaternion = XMLJS.getAttributeNodeValue(camera,"quaternion");
+
+
+        DEBUG(name,width,height,position,lookat,fovy,direction,orientation,axies,eulerRotation,rotate,rotate_x,rotate_z,auto_screen_size,quaternion);
+
+        if(name){
+
+        }
+        if(width){
+            width = parseFloat(width);
+        }
+        if(height){
+            height = parseFloat(height);
+        }
+        if(position){
+            position = scope.parseVec3(position);
+        }
+        if(lookat){
+            lookat = scope.parseVec3(lookat);
+        }
+        if(fovy){
+            fovy = parseFloat(fovy);
+        }
+        if(direction){
+            direction = scope.parseVec3(direction);
+        }
+        if(orientation){
+            // orientation = scope.
+        }
+        if(axies){
+            axies = scope.parseVec3(axies);
+        }
+        if(eulerRotation){
+            // eulerRotation = 
+        }
+        if(rotate){
+            rotate = parseFloat(rotate);
+        }
+        if(rotate_x){
+            rotate_x = parseFloat(rotate_x);
+        }
+        if(rotate_z){
+            rotate_z = parseFloat(rotate_z);
+        }
+        if(auto_screen_size){
+            auto_screen_size = scope.parseBool(auto_screen_size);
+        }
+        if(quaternion){
+            // quaternion = 
+        }
+
+     },
+     
+     RenderTargetNodeParse: function(rendertarget, scope){
+        var name = XMLJS.getAttributeNodeValue(rendertarget,"name");
+        var width = XMLJS.getAttributeNodeValue(rendertarget,"width");
+        var height = XMLJS.getAttributeNodeValue(rendertarget,"height");
+        var target_texture = XMLJS.getAttributeNodeValue(rendertarget,"target_texture");
+        DEBUG(name,width,height,target_texture);
+
+        if(name){
+
+        }
+        if(width){
+            width = parseFloat(width);
+        }
+        if(height){
+            height = parseFloat(height);
+        }
+        if(target_texture){
+            // target_texture = 
+        }
+
+        var childNodes = XMLJS.getXMLChildNodes(rendertarget);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            if(tagname =="Viewport")
+            {
+                scope.ViewPortNodeParse(node,scope);
+            }
+        }
+     },
+
+     ViewPortNodeParse: function(viewport,scope){
+        var name = XMLJS.getAttributeNodeValue(viewport,"name");
+        var camera = XMLJS.getAttributeNodeValue(viewport,"camera");
+        var background_color = XMLJS.getAttributeNodeValue(viewport,"background_color");
+        var left = XMLJS.getAttributeNodeValue(viewport,"left");
+        var top = XMLJS.getAttributeNodeValue(viewport,"top");
+        var width = XMLJS.getAttributeNodeValue(viewport,"width");
+        var height = XMLJS.getAttributeNodeValue(viewport,"height");
+        var clear = XMLJS.getAttributeNodeValue(viewport,"clear");
+
+        DEBUG(name,camera,background_color,left,top,width,height,clear);
+
+        if(name){
+
+        }
+        if(camera){
+
+        }
+        if(background_color){
+
+        }
+        if(left){
+            left = parseFloat(left);
+        }
+        if(top){
+            top = parseFloat(top);
+        }
+        if(width){
+            width = parseFloat(width);
+        }
+        if(height){
+            height = parseFloat(height);
+        }
+        if(clear){
+            //  = 
+        }
+     },
+
+     ProgramsNodeParse: function(program,scope){
+        var name = XMLJS.getAttributeNodeValue(program,"name");
+        var groupname = XMLJS.getAttributeNodeValue(program,"groupname");
+        var source = XMLJS.getAttributeNodeValue(program,"source");
+        DEBUG(name,groupname,source);
+
+        var childNodes = XMLJS.getXMLChildNodes(program);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            if(tagname =="vertex_program")
+            {
+                scope.VertexProgramNodeParse(node,scope);
+            }else if(tagname =="fragment_program"){
+
+                scope.FragmentProgramNodeParse(node,scope);
+            }
+        }
+
+     },
+
+     VertexProgramNodeParse: function(vertexprogram, scope){
+        var name = XMLJS.getAttributeNodeValue(vertexprogram,"name");
+        var source = XMLJS.getAttributeNodeValue(vertexprogram,"source");
+        DEBUG(name,source);
+
+        if(name){
+
+        }
+        if(source){
+
+        }
+
+        var childNodes = XMLJS.getXMLChildNodes(vertexprogram);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            if(tagname =="default_params")
+            {
+                scope.DefaultProgramNodeParse(node,scope);
+            }
+        }
+     },
+
+     FragmentProgramNodeParse: function(fragmentprogram, scope){
+        var name = XMLJS.getAttributeNodeValue(fragmentprogram,"name");
+        var source = XMLJS.getAttributeNodeValue(fragmentprogram,"source");
+        DEBUG(name,source);
+
+        if(name){
+            
+        }
+        if(source){
+            
+        }
+     },
+     
+     DefaultProgramNodeParse: function(defaultprogram,scope){
+        var name = XMLJS.getAttributeNodeValue(defaultprogram,"name");
+        var value = XMLJS.getAttributeNodeValue(defaultprogram,"value");
+        var pn_type = XMLJS.getAttributeNodeValue(defaultprogram,"pn_type");
+        DEBUG(name,value,pn_type);
+
+        if(name){
+            
+        }
+        if(value){
+            
+        }
+        if(pn_type){
+
+        }
+     },
+
+     MaterialNodeParse: function(material, scope){
+        var name = XMLJS.getAttributeNodeValue(material,"name");
+        var groupname = XMLJS.getAttributeNodeValue(material,"groupname");
+        DEBUG(name,groupname);
+
+        var passNode = XMLJS.getXMLChildNodes(material)[0];
+        var type = XMLJS.getAttributeNodeValue(passNode,"type");
+        var surface = XMLJS.getAttributeNodeValue(passNode,"surface");
+        var surface_shader = XMLJS.getAttributeNodeValue(passNode,"surface_shader");
+        var phong = XMLJS.getAttributeNodeValue(passNode,"phong");
+        var gouraud = XMLJS.getAttributeNodeValue(passNode,"gouraud");
+        var lambert = XMLJS.getAttributeNodeValue(passNode,"lambert");
+        var blinn = XMLJS.getAttributeNodeValue(passNode,"blinn");
+        var texture = XMLJS.getAttributeNodeValue(passNode,"texture");
+        var transparency = XMLJS.getAttributeNodeValue(passNode,"transparency");
+        var ambient = XMLJS.getAttributeNodeValue(passNode,"ambient");
+        var diffuse = XMLJS.getAttributeNodeValue(passNode,"diffuse");
+        var emissive = XMLJS.getAttributeNodeValue(passNode,"emissive");
+        var specular = XMLJS.getAttributeNodeValue(passNode,"specular");
+        var shininess = XMLJS.getAttributeNodeValue(passNode,"shininess");
+        var depth_check = XMLJS.getAttributeNodeValue(passNode,"depth_check");
+        var depth_write = XMLJS.getAttributeNodeValue(passNode,"depth_write");
+        var use_vertex_color = XMLJS.getAttributeNodeValue(passNode,"use_vertex_color");
+        var uv_ani = XMLJS.getAttributeNodeValue(passNode,"uv_ani");
+        var alpha_ani = XMLJS.getAttributeNodeValue(passNode,"alpha_ani");
+        var culling_mode = XMLJS.getAttributeNodeValue(passNode,"culling_mode");
+        var scene_blend = XMLJS.getAttributeNodeValue(passNode,"scene_blend");
+        var texture_address_mode = XMLJS.getAttributeNodeValue(passNode,"texture_address_mode");
+        var texture_filter = XMLJS.getAttributeNodeValue(passNode,"texture_filter");
+        var precision_int = XMLJS.getAttributeNodeValue(passNode,"precision_int");
+        var precision_float = XMLJS.getAttributeNodeValue(passNode,"precision_float");
+        var defer_loading = XMLJS.getAttributeNodeValue(passNode,"defer_loading");
+
+        DEBUG(type,surface,surface_shader,phong,gouraud,lambert,blinn,texture,transparency,ambient,diffuse,emissive,specular,shininess,depth_check,depth_write,use_vertex_color,uv_ani,alpha_ani,culling_mode,scene_blend,texture_address_mode,texture_filter,precision_int,precision_float,defer_loading);
+
+        var textureUnitNode = XMLJS.getXMLChildNodes(passNode)[0];
+        var texture = XMLJS.getAttributeNodeValue(textureUnitNode,"texture");
+        DEBUG(texture);
+
+
+
+        if(name){
+
+        }
+        if(groupname){
+
+        }
+        if(type){
+
+        }
+        if(surface){
+
+        }
+        if(surface_shader){
+
+        }
+        if(phong){
+
+        }
+        if(gouraud){
+
+        }
+        if(lambert){
+
+        } 
+        if(blinn){
+
+        } 
+        if(texture){
+
+        } 
+        if(transparency){
+
+        } 
+        if(ambient){
+
+        } 
+        if(diffuse){
+
+        } 
+        if(emissive){
+
+        }
+        if(specular){
+
+        } 
+        if(shininess){
+
+        } 
+        if(depth_check){
+
+        } 
+        if(depth_write){
+
+        } 
+        if(use_vertex_color){
+
+        } 
+        if(uv_ani){
+
+        } 
+        if(alpha_ani){
+
+        } 
+        if(culling_mode){
+
+        } 
+        if(scene_blend){
+
+        }  
+        if(texture_address_mode){
+
+        } 
+        if(texture_filter){
+
+        } 
+        if(precision_int){
+
+        } 
+        if(precision_float){
+
+        } 
+        if(defer_loading){
+
+        }
+     },
+
+     eRectNodeParse: function(erect, scope){
+        var name = XMLJS.getAttributeNodeValue(erect,"name");
+        var width = XMLJS.getAttributeNodeValue(erect,"width");
+        var height = XMLJS.getAttributeNodeValue(erect,"height");
+        var depth = XMLJS.getAttributeNodeValue(erect,"depth");
+        var anchor = XMLJS.getAttributeNodeValue(erect,"anchor");
+
+        var customize_anchor = XMLJS.getAttributeNodeValue(erect,"customize_anchor");
+        var stack_slice_set = XMLJS.getAttributeNodeValue(erect,"stack_slice_set");
+        var stack_slice_set_flip = XMLJS.getAttributeNodeValue(erect,"stack_slice_set_flip");
+        var scale = XMLJS.getAttributeNodeValue(erect,"scale");
+        var uvs = XMLJS.getAttributeNodeValue(erect,"uvs");
+        var uvs_name = XMLJS.getAttributeNodeValue(erect,"uvs_name");
+
+
+        DEBUG(name,width,height,depth,anchor,customize_anchor,stack_slice_set,stack_slice_set_flip,scale,uvs,uvs_name);
+
+        if(name)
+        {
+
+        }
+        if(width){
+
+        }
+        if(height){
+
+        }
+        if(depth){
+
+        }
+        if(anchor){
+
+        }
+        if(customize_anchor){
+
+        }
+        if(stack_slice_set){
+
+        }
+        if(stack_slice_set_flip){
+
+        }
+        if(scale){
+
+        }
+        if(uvs){
+
+        }
+        if(uvs_name){
+
+        }
+     },
+
+     GameObjectNodeParse: function(gameObject,scope){
+        var name = XMLJS.getAttributeNodeValue(gameObject,"name");
+        var visible = XMLJS.getAttributeNodeValue(gameObject,"visible");
+        var pickable = XMLJS.getAttributeNodeValue(gameObject,"pickable");
+        var composite = XMLJS.getAttributeNodeValue(gameObject,"composite");
+        var isFixDepth = XMLJS.getAttributeNodeValue(gameObject,"isFixDepth");
+        var fixDepth = XMLJS.getAttributeNodeValue(gameObject,"fixDepth");
+        var renderQueueGroupId = XMLJS.getAttributeNodeValue(gameObject,"renderQueueGroupId");
+        var isEnalbeSortCenter = XMLJS.getAttributeNodeValue(gameObject,"isEnalbeSortCenter");
+        var sortCenter = XMLJS.getAttributeNodeValue(gameObject,"sortCenter");
+
+        DEBUG(name,visible,pickable,composite,isFixDepth,fixDepth,renderQueueGroupId,isEnalbeSortCenter,sortCenter);
+
+        var childNodes = XMLJS.getXMLChildNodes(gameObject);
+        DEBUG(childNodes.length);
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            DEBUG(tagname);
+            if(tagname =="Transform")
+            {
+                var position  = XMLJS.getAttributeNodeValue(node,"position");
+                var scale = XMLJS.getAttributeNodeValue(node,"scale");
+                var eulerRotation = XMLJS.getAttributeNodeValue(node,"eulerRotation");
+
+                DEBUG(position,scale,eulerRotation);
+            }else if(tagname =="Renderer"){
+                var material  = XMLJS.getAttributeNodeValue(node,"material");
+
+                DEBUG(material);
+            }else if(tagname =="MeshFilter"){
+                var mesh  = XMLJS.getAttributeNodeValue(node,"mesh");
+
+                DEBUG(mesh);
+            }else if(tagname =="ParticleSystem"){
+                var name  = XMLJS.getAttributeNodeValue(node,"name");
+                var src  = XMLJS.getAttributeNodeValue(node,"src");
+                DEBUG(name,src);
+
+                // arguments.callee(node, scope);
+            }else if(tagname =="GameObject"){
+
+                arguments.callee(node, scope);
+            }
+        }
+
+
+     },
+
+     AnimationSetNodeParse: function(animationset,scope){
+        var name  = XMLJS.getAttributeNodeValue(animationset,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(animationset,"interpolator");
+        var shareInterpolator  = XMLJS.getAttributeNodeValue(animationset,"shareInterpolator");
+        var repeatCount  = XMLJS.getAttributeNodeValue(animationset,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(animationset,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(animationset,"canstop");
+        var start  = XMLJS.getAttributeNodeValue(animationset,"start");
+        var version  = XMLJS.getAttributeNodeValue(animationset,"version");
+
+        DEBUG(name,interpolator,shareInterpolator,repeatCount,repeatMode,canstop,start,version);
+
+        var setObj = new AnimationSet();
+        var isStart = true;
+        var version = 1;
+        var aniSetNode = aniSet["@attributes"];
+        if(name)
+        {
+            setObj.setName(name);
+        }
+        if(interpolator)
+        {
+            interpolator = InterpolatorSet.getInterpolatorInstance(interpolator);
+            setObj.setInterpolator(interpolator);
+        }
+        if(repeatCount)
+        {
+            repeatCount = parseInt(repeatCount);
+            setObj.setRepeatCount(repeatCount);
+        }
+        if(repeatMode)
+        {
+            setObj.setRepeatMode(repeatMode);
+        }
+        if(canstop)
+        {
+            setObj.mCanStop = scope.parseBool(canstop);
+        }
+        if(start)
+        {
+            isStart = scope.parseBool(start);
+        }
+        if(version)
+        {
+            mVersion = parseInt(version);
+        }
+        setObj.setVersion(mVersion);
+
+
+        var childNodes = XMLJS.getXMLChildNodes(animationset);
+        DEBUG(childNodes.length);
+
+        for(var i=0; i<childNodes.length; i++)
+        {
+            var node = childNodes[i];
+            var tagname = node.nodeName;
+            DEBUG(tagname);
+            if(tagname =="TranslateAnimation")
+            {
+                scope.TranslateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="RotateAnimation"){
+
+                scope.RotateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="ScaleAnimation"){
+
+                scope.ScaleAnimationNodeParse(node,scope);
+            }else if(tagname =="TexAlphaModifierAnimation"){
+
+                scope.TexAlphaModifierAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="TexCoordModifierAnimation"){
+
+                scope.TexCoordModifierAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="TexCoordSetAnimation"){
+
+                scope.TranslateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="PathAnimation"){
+
+                scope.PathAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="SequenceFrameAnimation"){
+
+                scope.SequenceFrameAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="KeyFramesTranslateAnimation"){
+
+                scope.KeyFramesTranslateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="KeyFramesRotateAnimation"){
+
+                scope.KeyFramesRotateAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="KeyFramesScaleAnimation"){
+
+                scope.KeyFramesScaleAnimationNodeParse(node,scope,setObj);
+            }else if(tagname =="PathSpline"){
+
+                scope.PathSplineNodeParse(node,scope,setObj);
+            }else if(tagname =="PathBrokenLine"){
+
+                scope.PathBrokenLineNodeParse(node,scope,setObj);
+            }else if(tagname =="PathSimpleBezier"){
+
+                scope.PathSimpleBezier(node,scope,setObj);
+            }
+
+        }
+     },
+
+     TranslateAnimationNodeParse: function(translateanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(translateanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(translateanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(translateanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(translateanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(translateanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(translateanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(translateanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(translateanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(translateanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(translateanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(translateanimation,"version");
+        var TransformSpace  = XMLJS.getAttributeNodeValue(translateanimation,"TransformSpace");
+         var isCoordinateRelativeToScreen  = XMLJS.getAttributeNodeValue(translateanimation,"isCoordinateRelativeToScreen");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version,TransformSpace,isCoordinateRelativeToScreen);
+
+        var relative  = XMLJS.getAttributeNodeValue(translateanimation,"relative");
+        var mFromXDelta  = XMLJS.getAttributeNodeValue(translateanimation,"mFromXDelta");
+        var mToXDelta  = XMLJS.getAttributeNodeValue(translateanimation,"mToXDelta");
+        var mFromYDelta  = XMLJS.getAttributeNodeValue(translateanimation,"mFromYDelta"); 
+        var mToYDelta  = XMLJS.getAttributeNodeValue(translateanimation,"mToYDelta");
+        var mFromZDelta  = XMLJS.getAttributeNodeValue(translateanimation,"mFromZDelta");
+        var mToZDelta  = XMLJS.getAttributeNodeValue(translateanimation,"mToZDelta");
+
+
+        DEBUG(relative,mFromXDelta,mToXDelta,mFromYDelta,mToYDelta,mFromZDelta,mToZDelta);
+
+
+        var tani = new TranslateAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            tani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            tani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            tani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            tani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            tani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            tani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            tani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            tani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            tani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            tani.setTransformSpace(TransformSpace);
+        }
+        if(isCoordinateRelativeToScreen){
+            var isCoord = scope.parseBool(isCoordinateRelativeToScreen);
+            tani.setIsCoordinateRelativeToScreen(isCoord);
+        }
+
+        if(relative){
+            relative = scope.parseBool(relative);
+            tani.setRelavie(relative);
+        }
+        if(mFromXDelta){
+            var fromXDelta = parseFloat(mFromXDelta);
+            tani.setFromXDelta(fromXDelta);
+        }
+        if(mToXDelta){
+            var toXDelta = parseFloat(mToXDelta);
+            tani.setToXDelta(toXDelta);
+        }
+        if(mFromYDelta){
+            var fromYDelta = parseFloat(mFromYDelta);
+            tani.setFromYDelta(fromYDelta);
+        }
+        if(mToYDelta){
+            var toYDelta = parseFloat(mToYDelta);
+            tani.setToYDelta(toYDelta);
+        }
+        if(mFromZDelta){
+            var fromZDelta = parseFloat(mFromZDelta);
+            tani.setFromZDelta(fromZDelta);
+        }
+        if(mToZDelta){
+            var toZDelta = parseFloat(mToZDelta);
+            tani.setToZDelta(toZDelta);
+        } 
+
+        tani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                tani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(tani);
+        }else{
+            animationSet.addAnimation(tani);
+        }
+
+        
+
+        return tani;      
+     },
+
+     RotateAnimationNodeParse: function(rotateanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(rotateanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(rotateanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(rotateanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(rotateanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(rotateanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(rotateanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(rotateanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(rotateanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(rotateanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(rotateanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(rotateanimation,"version");
+        var TransformSpace  = XMLJS.getAttributeNodeValue(rotateanimation,"TransformSpace");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version,TransformSpace);
+
+        var relative  = XMLJS.getAttributeNodeValue(rotateanimation,"relative");
+        var fromDegrees  = XMLJS.getAttributeNodeValue(rotateanimation,"fromDegrees");
+        var toDegrees  = XMLJS.getAttributeNodeValue(rotateanimation,"toDegrees");
+        var DegreeOffset  = XMLJS.getAttributeNodeValue(rotateanimation,"DegreeOffset");
+        var rotateMode  = XMLJS.getAttributeNodeValue(rotateanimation,"rotateMode");
+        var velocity  = XMLJS.getAttributeNodeValue(rotateanimation,"velocity");
+        var axis  = XMLJS.getAttributeNodeValue(rotateanimation,"axis");
+        var ignorefirst  = XMLJS.getAttributeNodeValue(rotateanimation,"ignorefirst");
+        var resetMode  = XMLJS.getAttributeNodeValue(rotateanimation,"resetMode");
+
+        DEBUG(relative,fromDegrees,toDegrees,rotateMode,velocity,axis,ignorefirst,resetMode);
+
+        var rani = new RotateAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            rani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            rani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            rani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            rani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            rani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            rani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            rani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            rani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            rani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            rani.setTransformSpace(TransformSpace);
+        }
+            
+        if(relative){
+            relative = parseBool(relative);
+        }
+        if(fromDegrees){
+            fromDegrees = parseFloat(rotateNode.fromDegrees);
+            rani.setFromDegrees(fromDegrees);
+        }
+        if(toDegrees){
+            toDegrees = parseFloat(rotateNode.toDegrees);
+            rani.setToDegrees(toDegrees);
+        }
+        if(DegreeOffset){
+            DegreeOffset = parseFloat(rotateNode.DegreeOffset);
+            rani.setDegreesOffset(DegreeOffset);
+        }
+        if(rotateMode){
+            rani.setAniMode(rotateMode);
+        }
+        if(velocity){
+            rani.setVelocity(velocity);
+        }
+        if(axis){
+            var axis;
+            if("pitch".localeCompare(axis)==0) {
+                axis = new Vector3(1,0,0);
+            }else if("roll".localeCompare(axis)==0) {
+                axis = new Vector3(0,0,1);
+            }else if("yaw".localeCompare(axis)==0) {
+                axis = new Vector3(0,1,0);
+            }else {
+                var value = axis.split(" ");
+                axis = new Vector3(parseFloat(value[0]),parseFloat(value[1]),parseFloat(value[2]));
+            }
+            rani.setAxis(axis);
+        }
+        if(ignorefirst){
+            ignorefirst = parseBool(ignorefirst);
+            rani.setIgnoreFirst(ignorefirst);
+        }
+        if(resetMode){
+            if(resetMode=="NONE"){
+                rani.setResetMode(Animation.RESETMODE_NONE);
+            }else if(resetMode=="ORIGINAL"){
+                rani.setResetMode(Animation.RESETMODE_ORIGINAL);
+            }else if(resetMode=="UNIT"){
+                rani.setResetMode(Animation.RESETMODE_UNIT);
+            }
+        }
+
+        rani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                rani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(rani);
+        }else{
+            animationSet.addAnimation(rani);
+        }
+
+        
+
+        return rani;
+     },
+
+     ScaleAnimationNodeParse: function(scaleanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(scaleanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(scaleanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(scaleanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(scaleanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(scaleanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(scaleanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(scaleanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(scaleanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(scaleanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(scaleanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(scaleanimation,"version");
+        var TransformSpace  = XMLJS.getAttributeNodeValue(scaleanimation,"TransformSpace");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version,TransformSpace);
+
+        var relative  = XMLJS.getAttributeNodeValue(scaleanimation,"relative");
+        var mFromXDelta  = XMLJS.getAttributeNodeValue(scaleanimation,"mFromXDelta");
+        var mToXDelta  = XMLJS.getAttributeNodeValue(scaleanimation,"mToXDelta");
+        var mFromYDelta  = XMLJS.getAttributeNodeValue(scaleanimation,"mFromYDelta"); 
+        var mToYDelta  = XMLJS.getAttributeNodeValue(scaleanimation,"mToYDelta");
+        var mFromZDelta  = XMLJS.getAttributeNodeValue(scaleanimation,"mFromZDelta");
+        var mToZDelta  = XMLJS.getAttributeNodeValue(scaleanimation,"mToZDelta");
+        
+
+        DEBUG(relative,mFromXDelta,mToXDelta,mFromYDelta,mToYDelta,mFromZDelta,mToZDelta);
+
+        var sani = new ScaleAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            sani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            sani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            sani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            sani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            sani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            sani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            sani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            sani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            sani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            sani.setTransformSpace(TransformSpace);
+        }
+            
+        if(relative){
+            relative = scope.parseBool(relative);
+            sani.setRelavie(relative);
+        }
+        if(mFromXDelta){
+            var fromXDelta = parseFloat(mFromXDelta);
+            sani.setFromXDelta(fromXDelta); 
+        }
+        if(mToXDelta){
+            var toXDelta = parseFloat(mToXDelta);
+            sani.setToXDelta(toXDelta);
+        }
+        if(mFromYDelta){
+            var fromYDelta = parseFloat(mFromYDelta);
+            sani.setFromYDelta(fromYDelta);
+        }
+        if(mToYDelta){
+            var toYDelta = parseFloat(mToYDelta);
+            sani.setToYDelta(toYDelta);
+        }
+        if(mFromZDelta){
+            var fromZDelta = parseFloat(mFromZDelta);
+            sani.setFromZDelta(fromZDelta);
+        }
+        if(mToZDelta){
+            var toZDelta = parseFloat(mToZDelta);
+            sani.setToZDelta(toZDelta);
+        }
+
+        sani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                sani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(sani);
+        }else{
+            animationSet.addAnimation(sani);
+        }
+
+        
+
+        return sani;
+     },
+
+     TexAlphaModifierAnimationNodeParse: function(texalphamodifieranimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+
+        var mFromAlpha  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"mFromAlpha");
+        var mToAlpha  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"mToAlpha");
+        var relative  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"relative");
+        var TransformSpace  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"TransformSpace");
+
+        DEBUG(mFromAlpha,mToAlpha,relative,TransformSpace);
+
+        var texalphamodifierani = new TexAlphaModifierAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            texalphamodifierani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            texalphamodifierani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            texalphamodifierani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            texalphamodifierani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            texalphamodifierani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            texalphamodifierani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            texalphamodifierani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            texalphamodifierani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            texalphamodifierani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            texalphamodifierani.setTransformSpace(TransformSpace);
+        }
+            
+        if(mFromAlpha){
+            var fromAlpha = parseFloat(mFromAlpha);
+            texalphamodifierani.setFromAlpha(fromAlpha);
+        }
+        if(mToAlpha){
+            var toAlpha = parseFloat(mToAlpha);
+            texalphamodifierani.setToAlpha(toAlpha);
+        }
+        if(relative){
+            relative = scope.parseBool(relative);            
+            texalphamodifierani.setRelavie(relative);
+        }
+
+        texalphamodifierani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                texalphamodifierani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(texalphamodifierani);
+        }else{
+            animationSet.addAnimation(texalphamodifierani);
+        }
+
+        
+
+        return texalphamodifierani;
+     },
+
+     TexCoordModifierAnimationNodeParse: function(texcoordmodifieranimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var mFromScaleU  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromScaleU");
+        var mToScaleU  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mToScaleU");
+        var mFromScaleV  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromScaleV");
+        var mToScaleV  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mToScaleV");
+        var mFromTranslateU  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromTranslateU");
+        var mToTranslateU  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mToTranslateU");
+        var mFromTranslateV  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromTranslateV");
+        var mToTranslateV  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mToTranslateV");
+        var mFrameStart  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFrameStart");
+        var mFrameEnd  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFrameEnd");
+        var mStack  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mStack");
+        var mSlice  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mSlice");
+        var uvMoveSortMode  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"uvMoveSortMode");
+        var mFromRotate  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mFromRotate");
+        var mToRotate  = XMLJS.getAttributeNodeValue(texcoordmodifieranimation,"mToRotate");
+  
+        DEBUG(mFromScaleU,mToScaleU,mFromScaleV,mToScaleV,mFromTranslateU,mToTranslateU,mFromTranslateV,mToTranslateV,mFrameStart,mFrameEnd,mStack,mSlice,uvMoveSortMode,mFromRotate,mToRotate);
+
+        var texcoordmodifierani = new TexCoordModifierAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            texcoordmodifierani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            texcoordmodifierani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            texcoordmodifierani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            texcoordmodifierani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            texcoordmodifierani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            texcoordmodifierani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            texcoordmodifierani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            texcoordmodifierani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            texcoordmodifierani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            texcoordmodifierani.setTransformSpace(TransformSpace);
+        }
+            
+        if(mFromScaleU){
+            var fromXDelta = parseFloat(mFromScaleU);
+            texcoordmodifierani.setFromScaleU(fromXDelta);
+        }
+        if(mToScaleU){
+            var toXDelta = parseFloat(mToScaleU);
+            texcoordmodifierani.setToScaleU(toXDelta);
+        }
+        if(mFromScaleV){
+            var fromYDelta = parseFloat(mFromScaleV);
+            texcoordmodifierani.setFromScaleV(fromYDelta);
+        }
+        if(mToScaleV){
+            var toYDelta = parseFloat(mToScaleV);
+            texcoordmodifierani.setToScaleV(toYDelta);
+        }
+        if(mFromTranslateU){
+            var fromZDelta = parseFloat(mFromTranslateU);
+            texcoordmodifierani.setFromTranslateU(fromZDelta);
+        }
+        if(mToTranslateU){
+            var toZDelta = parseFloat(mToTranslateU);
+            texcoordmodifierani.setToTranslateU(toZDelta);
+        }
+        if(mFromTranslateV){
+            var fromZDelta = parseFloat(mFromTranslateV);
+            texcoordmodifierani.setFromTranslateV(fromZDelta);
+        }
+        if(mToTranslateV){
+            var toZDelta = parseFloat(mToTranslateV);
+            texcoordmodifierani.setToTranslateV(toZDelta);
+        }
+        if(mFrameStart){
+            var frame = parseInt(mFrameStart);
+            texcoordmodifierani.setStartFrame(frame);
+        }
+        if(mFrameEnd){
+            var frame = parseInt(mFrameEnd);
+            texcoordmodifierani.setEndFrame(frame);
+        }
+        if(mStack){
+            var frame = parseInt(mStack);
+            texcoordmodifierani.setStack(frame);
+        }
+        if(mSlice){
+            var frame = parseInt(mSlice);
+            texcoordmodifierani.setSlice(frame);
+        }
+        if(uvMoveSortMode){
+            var mode = parseInt(mSlice);
+            texcoordmodifierani.setUVMoveSortMode(mode);
+        }
+        if(mFromRotate){
+            var rotate = parseFloat(mFromRotate);
+            texcoordmodifierani.setFromRotate(rotate);
+        }
+        if(mToRotate){
+            var rotate = parseFloat(mToRotate);
+            texcoordmodifierani.setToRotate(rotate);
+        }
+
+        texcoordmodifierani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                texcoordmodifierani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(texcoordmodifierani);
+        }else{
+            animationSet.addAnimation(texcoordmodifierani);
+        }
+
+        
+
+        return texcoordmodifierani;
+
+     },
+
+     TexCoordSetAnimationNodeParse: function(texcoordsetanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var relative  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"relative");
+        var stack_slice_set  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"stack_slice_set");
+        var uvs_set  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"uvs_set");
+        var uvs_name_set  = XMLJS.getAttributeNodeValue(texalphamodifieranimation,"uvs_name_set");
+
+        DEBUG(relative,stack_slice_set,uvs_set,uvs_name_set);
+
+        var texcoordsetani = new TexCoordSetAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            texcoordsetani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            texcoordsetani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            texcoordsetani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            texcoordsetani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            texcoordsetani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            texcoordsetani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            texcoordsetani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            texcoordsetani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            texcoordsetani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            texcoordsetani.setTransformSpace(TransformSpace);
+        }
+            
+        if(relative){
+            relative = scope.parseBool(relative);
+            texcoordsetani.setRelavie(relative);
+        }
+        if(stack_slice_set){
+            var vecparams = texCoordSetNode.stack_slice_set.split(" ");
+            if(vecparams.length < 2)
+            {
+                return;
+            }
+            var stacks = parseInt(vecparams[0]);
+            var slices = parseInt(vecparams[1]);
+
+            var mSplit = new TextureSplit();
+            mSplit.setTextureStacksAndSlices(stacks, slices, true);
+
+            if(vecparams.length < 3)
+            {
+                texcoordsetani.setTextureCoordSets(mSplit.getTextureCoords());
+            }else{
+                var mTextureCoords = [];
+                for(var tidx = 2; tidx<vecparams.length; tidx++)
+                {
+                    var frame = parseInt(vecparams[tidx]);
+                    mTextureCoords.push(mSplit.getTextureCoord(frame));
+                }
+                texcoordsetani.setTextureCoordSets(mTextureCoords);// 
+            }
+        }
+        if(uvs_set){
+            uvs_set = texCoordSetNode.uvs_set.split(";");
+            var mTextureCoords = [];
+            for(var i=0;i<uvs_set.length;i++)
+            {
+                var vecuvs = uvs_set[i].split(" ");//need check
+                if(vecuvs.length == 8) {
+                    var rec = new TRect();
+                    
+                    var left=parseFloat(vecuvs[0]);
+                    var right=parseFloat(vecuvs[4]);
+                    var top=1-parseFloat(vecuvs[1]);
+                    var bottom=1-parseFloat(vecuvs[5]);
+            
+                    rec.left=left;
+                    rec.right=right;
+                    rec.top=top;
+                    rec.bottom=bottom;
+                    mTextureCoords.push(rec);
+                }           
+            }
+            texcoordsetani.setTextureCoordSets(mTextureCoords);
+        }
+        if(uvs_name_set){
+            var uvs_set = texCoordSetNode.uvs_name_set.split(" ");
+            var mTextureCoords = [];// new TRect();
+            for(var i=0; i < uvs_set.length; i++)
+            {
+                    // UVSParser *uvsParser=mRoot->getUVSFileParser();
+                    // StringUtil::trim(uvs_set[i]);
+                    // FloatRect* rec=uvsParser->getUVSRect(uvs_set[i]);
+                    // mTextureCoords.push(rec);        
+            }
+            texcoordsetani.setTextureCoordSets(mTextureCoords);
+        }
+
+        texcoordsetani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                texcoordsetani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(texcoordsetani);
+        }else{
+            animationSet.addAnimation(texcoordsetani);
+        }
+
+
+        return texcoordsetani;
+     },
+
+
+     PathSplineNodeParse: function(pathspline,scope){
+        var name  = XMLJS.getAttributeNodeValue(pathspline,"name");
+        var pathControlPoints  = XMLJS.getAttributeNodeValue(pathspline,"pathControlPoints");
+
+        DEBUG(name,pathControlPoints);
+
+
+        var path = null;
+
+        var pathMgr = mRoot.getPathManager();
+
+        if(name)
+        {
+            path = pathMgr.createPath( name,"Spline")
+        }
+        if(pathControlPoints)
+        {
+
+            var points = pathControlPoints.split(/[ ;]+/);
+            for(var i=0; i<points; i+=3)
+            {
+                var point = new Vector3(parseFloat(points[i]),parseFloat(points[i+1]),parseFloat(points[i+2]));
+                path.addControlPoint(point);
+            }
+
+            path.generatePath();
+        }
+        if(path!=null)
+        {
+            return path;
+        }
+        return null;
+     },
+
+     PathBrokenLineNodeParse: function(pathbrokenline,scope){
+        var name  = XMLJS.getAttributeNodeValue(pathbrokenline,"name");
+        var pathControlPoints  = XMLJS.getAttributeNodeValue(pathbrokenline,"pathControlPoints");
+
+        DEBUG(name,pathControlPoints);
+        
+        var path = null;
+
+        var pathMgr = mRoot.getPathManager();
+
+        if(name)
+        {
+            path = pathMgr.createPath( name,"BrokenLine")
+        }
+        if(pathControlPoints)
+        {
+
+            var points = pathControlPoints.split(/[ ;]+/);
+            for(var i=0; i<points; i+=3)
+            {
+                var point = new Vector3(parseFloat(points[i]),parseFloat(points[i+1]),parseFloat(points[i+2]));
+                path.addControlPoint(point);
+            }
+
+            path.generatePath();
+        }
+        if(path!=null)
+        {
+            return path;
+        }
+        return null;
+
+     },
+
+     PathSimpleBezier: function(pathsimplebezier,scope){
+        var name  = XMLJS.getAttributeNodeValue(pathsimplebezier,"name");
+        var pathControlPoints  = XMLJS.getAttributeNodeValue(pathsimplebezier,"pathControlPoints");
+
+        DEBUG(name,pathControlPoints);
+        var path = null;
+
+        var pathMgr = mRoot.getPathManager();
+
+        if(name)
+        {
+            path = pathMgr.createPath( name,"SimpleBezier")
+        }
+        if(pathControlPoints)
+        {
+
+            var points = pathControlPoints.split(/[ ;]+/);
+            for(var i=0; i<points; i+=3)
+            {
+                var point = new Vector3(parseFloat(points[i]),parseFloat(points[i+1]),parseFloat(points[i+2]));
+                path.addControlPoint(point);
+            }
+
+            path.generatePath();
+        }
+        if(path!=null)
+        {
+            return path;
+        }
+        return null;
+
+     },
+
+     PathAnimationNodeParse: function(pathanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(pathanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(pathanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(pathanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(pathanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(pathanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(pathanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(pathanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(pathanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(pathanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(pathanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(pathanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+
+        var path  = XMLJS.getAttributeNodeValue(pathanimation,"path");
+        var isAutoRot  = XMLJS.getAttributeNodeValue(pathanimation,"isAutoRot");
+        var headDirection  = XMLJS.getAttributeNodeValue(pathanimation,"headDirection");
+
+        var pani = new PathAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            pani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            pani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            pani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            pani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            pani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            pani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            pani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            pani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            pani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            pani.setTransformSpace(TransformSpace);
+        }
+            
+        if(path){
+            path = mRoot.getPathManager().findPath(path);
+            var ret = pani.setPath(path);
+            if(!ret)
+            {
+                DEBUG("Cannot find the path.");
+            }
+        }
+        if(isAutoRot){
+            pani.setRotAuto(isAutoRot=="true");
+        }
+        if(headDirection){
+            var vec3 = scope.parseVec3(headDirection);
+            pani.setHeadDirection(vec3);
+        }
+
+        pani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                pani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(pani);
+        }else{
+            animationSet.addAnimation(pani);
+        }
+
+        
+        return pani;
+     },
+
+     SequenceFrameAnimationNodeParse: function(sequenceframeanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+
+        var relative  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"relative");
+        var path  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"path");
+        var isAutoRot  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"isAutoRot");
+        var headDirection  = XMLJS.getAttributeNodeValue(sequenceframeanimation,"headDirection");
+
+
+        DEBUG(relative,path,isAutoRot,headDirection);
+
+        var pani = new PathAnimation();
+        var isStart = true;
+        var mVersion = 1;
+        if(name){
+            pani.setName(name);
+        }
+        if(interpolator){
+            var vec = interpolator.split(" ");
+            var interpolator;
+            if(vec.length ==2)
+            {
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0],parseFloat(vec[1]));
+            }else{
+                interpolator = InterpolatorSet.getInterpolatorInstance(vec[0]);
+            }
+            pani.setInterpolator(interpolator);
+        }
+        if(duration){
+            duration = parseInt(duration);
+            pani.setDuration(duration);
+        }
+        if(repeatCount){
+            repeatCount = parseInt(repeatCount);
+            pani.setRepeatCount(repeatCount);
+        }
+        if(repeatMode){
+            pani.setRepeatMode(repeatMode);
+        }
+        if(canstop){
+            canstop = scope.parseBool(canstop);
+            pani.mCanStop = canStop;
+        }
+        if(startOffset){
+            startOffset = parseInt(startOffset);
+            pani.setStartOffset(startOffset);
+        }
+        if(fillEnabled){
+            fillEnabled = scope.parseBool(fillEnabled);            
+            pani.setFillEnabled(fillEnabled);
+        }
+        if(fillBefore){
+            fillBefore = scope.parseBool(fillBefore); 
+            pani.setFillBefore(fillBefore);
+        }
+        if(start){
+            isStart = scope.parseBool(start);
+        }
+        if(version){
+            mVersion = parseInt(version);
+        }
+        if(TransformSpace){
+            pani.setTransformSpace(TransformSpace);
+        }
+            
+        // if(relative){}
+        // if(path){}
+        // if(isAutoRot){}
+        // if(headDirection){}
+
+        pani.setVersion(mVersion);
+
+        if(animationSet === undefined || animationSet == null)
+        {
+            if(isStart)
+            {
+                pani.startAnimation();
+                DEBUG("translate started")
+            }
+            mRoot.mAnimationManager.registerAnimation(pani);
+        }else{
+            animationSet.addAnimation(pani);
+        }
+
+        
+        return pani;
+     },
+
+     KeyFramesTranslateAnimationNodeParse: function(kftranslateanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(kftranslateanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(kftranslateanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(kftranslateanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(kftranslateanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(kftranslateanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(kftranslateanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(kftranslateanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(kftranslateanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(kftranslateanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(kftranslateanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(kftranslateanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var TransformSpace  = XMLJS.getAttributeNodeValue(kftranslateanimation,"TransformSpace");
+        var isCoordinateRelativeToScreen  = XMLJS.getAttributeNodeValue(kftranslateanimation,"isCoordinateRelativeToScreen");
+        var relative  = XMLJS.getAttributeNodeValue(kftranslateanimation,"relative");
+        var numFrames  = XMLJS.getAttributeNodeValue(kftranslateanimation,"numFrames");
+        var kfsName  = XMLJS.getAttributeNodeValue(kftranslateanimation,"kfsName");
+
+        DEBUG(relative,TransformSpace,isCoordinateRelativeToScreen,numFrames,kfsName);
+
+        if(name){}
+        if(interpolator){}
+        if(duration){}
+        if(repeatCount){}
+        if(repeatMode){}
+        if(canstop){}
+        if(startOffset){}
+        if(fillEnabled){}
+        if(fillBefore){}
+        if(start){}
+        if(version){}
+            
+        if(TransformSpace){}
+        if(isCoordinateRelativeToScreen){}
+        if(relative){}
+        if(numFrames){}
+        if(kfsName){}
+     },
+
+     KeyFramesRotateAnimationNodeParse: function(kfrotateanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(kfrotateanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(kfrotateanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(kfrotateanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(kfrotateanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(kfrotateanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(kfrotateanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(kfrotateanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(kfrotateanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(kfrotateanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(kfrotateanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(kfrotateanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var TransformSpace  = XMLJS.getAttributeNodeValue(kfrotateanimation,"TransformSpace");
+        var isCoordinateRelativeToScreen  = XMLJS.getAttributeNodeValue(kfrotateanimation,"isCoordinateRelativeToScreen");
+        var relative  = XMLJS.getAttributeNodeValue(kfrotateanimation,"relative");
+        var numFrames  = XMLJS.getAttributeNodeValue(kfrotateanimation,"numFrames");
+        var kfsName  = XMLJS.getAttributeNodeValue(kfrotateanimation,"kfsName");
+
+        DEBUG(TransformSpace,isCoordinateRelativeToScreen,relative,numFrames,kfsName);
+
+        if(name){}
+        if(interpolator){}
+        if(duration){}
+        if(repeatCount){}
+        if(repeatMode){}
+        if(canstop){}
+        if(startOffset){}
+        if(fillEnabled){}
+        if(fillBefore){}
+        if(start){}
+        if(version){}
+            
+        if(TransformSpace){}
+        if(isCoordinateRelativeToScreen){}
+        if(relative){}
+        if(numFrames){}
+        if(kfsName){}
+     },
+
+     KeyFramesScaleAnimationNodeParse: function(kfscaleanimation,scope,animationSet){
+        var name  = XMLJS.getAttributeNodeValue(kfscaleanimation,"name");
+        var interpolator  = XMLJS.getAttributeNodeValue(kfscaleanimation,"interpolator");
+        var duration  = XMLJS.getAttributeNodeValue(kfscaleanimation,"duration");
+        var repeatCount  = XMLJS.getAttributeNodeValue(kfscaleanimation,"repeatCount");
+        var repeatMode  = XMLJS.getAttributeNodeValue(kfscaleanimation,"repeatMode");
+        var canstop  = XMLJS.getAttributeNodeValue(kfscaleanimation,"canstop");
+        var startOffset  = XMLJS.getAttributeNodeValue(kfscaleanimation,"startOffset");
+        var fillEnabled  = XMLJS.getAttributeNodeValue(kfscaleanimation,"fillEnabled");
+        var fillBefore  = XMLJS.getAttributeNodeValue(kfscaleanimation,"fillBefore");
+        var start  = XMLJS.getAttributeNodeValue(kfscaleanimation,"start");
+        var version  = XMLJS.getAttributeNodeValue(kfscaleanimation,"version");
+
+        DEBUG(name,interpolator,duration,repeatCount,repeatMode,canstop,startOffset,fillEnabled,fillBefore,start,version);
+        var TransformSpace  = XMLJS.getAttributeNodeValue(kfscaleanimation,"TransformSpace");
+        var isCoordinateRelativeToScreen  = XMLJS.getAttributeNodeValue(kfscaleanimation,"isCoordinateRelativeToScreen");
+        var relative  = XMLJS.getAttributeNodeValue(kfscaleanimation,"relative");
+        var numFrames  = XMLJS.getAttributeNodeValue(kfscaleanimation,"numFrames");
+        var kfsName  = XMLJS.getAttributeNodeValue(kfscaleanimation,"kfsName");
+
+        DEBUG(TransformSpace,isCoordinateRelativeToScreen,relative,numFrames,kfsName);
+
+        if(name){}
+        if(interpolator){}
+        if(duration){}
+        if(repeatCount){}
+        if(repeatMode){}
+        if(canstop){}
+        if(startOffset){}
+        if(fillEnabled){}
+        if(fillBefore){}
+        if(start){}
+        if(version){}
+            
+        if(TransformSpace){}
+        if(isCoordinateRelativeToScreen){}
+        if(relative){}
+        if(numFrames){}
+        if(kfsName){}
+     }
+
+    }
+</script>
+<script type="text/javascript">
+window.onload =function(){
+        var LoadXML = function(filename, callback,scope) {
+            var request=new XMLHttpRequest();
+            var url = filename;
+            DEBUG("text:"+url);
+            request.open("GET",url); 
+
+            request.onreadystatechange=function()
+            {
+                if(request.readyState==4)
+                {
+                    callback(request.responseText,scope);
+                    // DEBUG(request.responseText);
+                }
+            }
+            request.send();
+        };
+
+        var SceneNode = new SceneXMLParse();
+
+        LoadXML("scene.xml",SceneNode.parseScript,SceneNode);
+}
+</script>
+</body>
+</html>
+
+<!---
+getXMLAttributeNodeValue()
+getXMLAttributeNodeValues()
+getXMLChildNodes();
+getXMLChildNode();
+getXMLSingleNodeValue()
+
+
+
+
+
+
+注意事项：
+xml文件中不能有注释符
+->
+

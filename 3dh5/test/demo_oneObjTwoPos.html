@@ -1,0 +1,69 @@
+<html>
+	<head></head>
+	<body>
+		<script type="text/javascript">
+		//
+
+		var o1 = {"d":12};
+		var o2 = o1;
+		console.log(o1,o2);
+		o1 = null;
+		console.log(o1,o2);
+
+		var o3 = o2;
+		console.log(o2,o3);
+		o2.d= 45;
+		console.log(o2,o3);
+
+		var b = function(){this.b = "s"};
+		b.prototype = {
+			constructor: b,
+
+			getb: function(){
+				return this.b;
+			}
+		};
+		var d1 = new b();
+		var d2 = d1;
+		console.log(d1,d2);
+		d1.b = "e";
+		console.log(d1,d2);
+
+
+
+		var obj= {};
+		obj.name = "ha";
+		var a = [];
+		var b = [];
+		a.push(obj);
+		
+		b.push(a[a.length-1]);
+		console.log(a,b);
+		delete b[0];
+		console.log(a,b);
+
+
+		var map = {"k1":4,"k2":5};
+		var arr = [1,5,8];
+
+		for(var k in map)
+			console.log(k);
+		for(var k in arr)
+			console.log(k);
+
+		var len = 0;
+
+		len+=10;
+		len++;
+		console.log("len:",len);
+
+
+		var AA = function(){
+
+		};
+		AA.prototype.clone
+
+		//
+		</script>
+	</body>
+</html>

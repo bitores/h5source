@@ -1,0 +1,3356 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Scene clear_depth="1.0" >
+	<Camera name="main_camera" width="1" height="1" auto_screen_size="true" />
+	<RenderTarget width="1" height="1" >
+		<Viewport name="main_viewport" camera="main_camera" background_color="0.2 0.3 0.4 1" left="0" top="0" width="1" height="1" />
+	</RenderTarget>
+
+	
+<Programs>
+	  <vertex_program name="texture.vert" source="texture.vert">
+	  <default_params pn_type="param_named_auto" name="worldViewProj" value="worldviewproj_matrix" /> 
+	  <default_params pn_type="param_named_auto" name="textureMatrix" value="texture_matrix" />
+	  </vertex_program>
+	  <fragment_program name="texture.frag" source="texture.frag" /> 
+ </Programs>
+  
+ <Programs>
+	<vertex_program name="texture_alpha.vert" source="texture_alpha.vert" >
+		<default_params pn_type="param_named_auto" name="worldViewProj" value="worldviewproj_matrix" />
+		<default_params pn_type="param_named_auto" name="textureMatrix" value="texture_matrix" />
+	</vertex_program>
+	<fragment_program name="texture_alpha.frag" source="texture_alpha.frag" >
+	    <default_params pn_type="param_named_auto" name="uAlpha" value="surface_shininess"/>
+	</fragment_program>
+	
+	<vertex_program name="texture_incolor.vert" source="texture_incolor.vert" >
+		<default_params pn_type="param_named_auto" name="worldViewProj" value="worldviewproj_matrix" />
+		<default_params pn_type="param_named_auto" name="textureMatrix" value="texture_matrix" />
+	</vertex_program>
+	<fragment_program name="texture_incolor.frag" source="texture_incolor.frag" />
+ </Programs>
+
+<Material name="bg_material" >
+		<Pass
+	        vertex_program_ref="texture.vert" 
+	        fragment_program_ref="texture.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" >
+	        <TextureUnit texture="bg.jpg"/>
+	    </Pass>
+	</Material>
+	
+	<Material name="pic1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+		<Material name="pic3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+	
+	<Material name="pic5_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="sky_rotate_animation_material" >
+		<Pass
+	        vertex_program_ref="texture.vert" 
+	        fragment_program_ref="texture.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="sky_rotate_animation.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="bird_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="bird.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="pic1_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="pic1_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="pic2_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="pic2_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="pic3_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="pic3_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="pic3_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+	
+    <Material name="pic4_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+		
+    <Material name="pic4_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+		
+    <Material name="pic4_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+	
+    <Material name="pic5_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="pic5_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="pic5_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="pic5_obj4_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+	
+    	<Material name="cp_sky_rotate_animation_material" >
+		<Pass
+	        vertex_program_ref="texture.vert" 
+	        fragment_program_ref="texture.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="sky_rotate_animation.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp_bird_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="bird.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp_pic1_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp_pic1_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp_pic2_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="cp_pic2_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp_pic3_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="cp_pic3_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="cp_pic3_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+	
+   	
+   		<Material name="cp2_pic1_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp2_pic1_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp2_pic2_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="cp2_pic2_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="cp2_pic3_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="cp2_pic3_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="cp2_pic3_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+  
+	
+    <Material name="cp_pic4_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+		
+    <Material name="cp_pic4_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+		
+    <Material name="cp_pic4_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+	
+    <Material name="cp_pic5_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="cp_pic5_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="cp_pic5_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="cp_pic5_obj4_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+	
+    	<Material name="th_sky_rotate_animation_material" >
+		<Pass
+	        vertex_program_ref="texture.vert" 
+	        fragment_program_ref="texture.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="sky_rotate_animation.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="th_bird_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="bird.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="th_pic1_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="th_pic1_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic1.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="th_pic2_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="th_pic2_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic2.png" />
+	    </Pass>
+	</Material>
+	
+   	<Material name="th_pic3_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="th_pic3_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+		
+   	<Material name="th_pic3_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic3.png" />
+	    </Pass>
+	</Material>
+	
+    <Material name="th_pic4_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+		
+    <Material name="th_pic4_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+		
+    <Material name="th_pic4_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic4.png" />
+	    </Pass>
+	</Material>
+	
+    <Material name="th_pic5_obj1_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="th_pic5_obj2_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="th_pic5_obj3_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+		
+    <Material name="th_pic5_obj4_material" >
+		<Pass
+	        vertex_program_ref="texture_alpha.vert" 
+	        fragment_program_ref="texture_alpha.frag"
+	        culling_mode="anticlockwise"
+	        depth_check = "false"
+	        depth_write="false" 
+	        scene_blend="src_alpha one_minus_src_alpha">
+	        <TextureUnit texture="pic5.png" />
+	    </Pass>
+	</Material> 
+	
+
+	<eRect name="bg_rect"  anchor="center" scale="1.0 1.0 0.0 2"/>
+	<eRect name="sky_rotate_animation_rect" anchor="center"  scale="1.631067961165049 1.02040008163265306 0.0 1"/>
+	<eRect name="bird_rect" anchor="center" scale="0.3744798890429958 0.5555555555555556 0.0 1"  stack_slice_set="1 3 0"/>
+	<eRect name="pic1_obj1_rect" anchor="center" scale="0.0648266296809986 1.0 0.0 1" stack_slice_set="1 2 0"/>	
+	<eRect name="pic1_obj2_rect" anchor="center" scale="0.0948266296809986 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="pic2_obj1_rect" anchor="center" scale="0.2235228848821082 1.0 0.0 1" stack_slice_set="1 2 0"/>
+	<eRect name="pic2_obj2_rect" anchor="center" scale="0.1535228848821082 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="pic3_obj1_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="pic3_obj2_rect" anchor="center" scale="0.0575312066574202 1.0 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="pic3_obj3_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 2"/>
+	<eRect name="pic4_obj1_rect" anchor="center" scale="0.6 0.9552238805970149 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="pic4_obj2_rect" anchor="center" scale="0.4 0.9552238805970149 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="pic4_obj3_rect" anchor="center" scale="0.32 0.9552238805970149 0.0 1" stack_slice_set="1 3 2"/>
+	<eRect name="pic5_obj1_rect" anchor="center" scale="0.1247850208044383 0.7 0.0 1" stack_slice_set="1 4 0"/>
+	<eRect name="pic5_obj2_rect" anchor="center" scale="0.1247850208044383 0.7 0.0 1" stack_slice_set="1 4 1"/>
+	<eRect name="pic5_obj3_rect" anchor="center" scale="0.1547850208044383 0.7 0.0 1" stack_slice_set="1 4 2"/>
+	<eRect name="pic5_obj4_rect" anchor="center" scale="0.1047850208044383 0.7 0.0 1" stack_slice_set="1 4 3"/> 
+	
+	<eRect name="cp_sky_rotate_animation_rect" anchor="center" scale="1.631067961165049 1.02040008163265306 0.0 1"/>
+	<eRect name="cp_bird_rect" anchor="center" scale="0.3744798890429958 0.5555555555555556 0.0 1"  stack_slice_set="1 3 0"/>
+	<eRect name="cp_pic1_obj1_rect" anchor="center" scale="0.0648266296809986 1.0 0.0 1" stack_slice_set="1 2 0"/>	
+	<eRect name="cp_pic1_obj2_rect" anchor="center" scale="0.0948266296809986 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="cp_pic2_obj1_rect" anchor="center" scale="0.2235228848821082 1.0 0.0 1" stack_slice_set="1 2 0"/>
+	<eRect name="cp_pic2_obj2_rect" anchor="center" scale="0.1535228848821082 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="cp_pic3_obj1_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="cp_pic3_obj2_rect" anchor="center" scale="0.0575312066574202 1.0 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="cp_pic3_obj3_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 2"/>
+	<eRect name="cp_pic4_obj1_rect" anchor="center" scale="0.6 0.9552238805970149 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="cp_pic4_obj2_rect" anchor="center" scale="0.4 0.9552238805970149 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="cp_pic4_obj3_rect" anchor="center" scale="0.32 0.9552238805970149 0.0 1" stack_slice_set="1 3 2"/>
+	<eRect name="cp_pic5_obj1_rect" anchor="center" scale="0.1247850208044383 0.7 0.0 1" stack_slice_set="1 4 0"/>
+	<eRect name="cp_pic5_obj2_rect" anchor="center" scale="0.1247850208044383 0.7 0.0 1" stack_slice_set="1 4 1"/>
+	<eRect name="cp_pic5_obj3_rect" anchor="center" scale="0.1547850208044383 0.7 0.0 1" stack_slice_set="1 4 2"/>
+	<eRect name="cp_pic5_obj4_rect" anchor="center" scale="0.1047850208044383 0.7 0.0 1" stack_slice_set="1 4 3"/>
+
+	<eRect name="cp2_pic1_obj1_rect" anchor="center" scale="0.1648266296809986 1.0 0.0 1" stack_slice_set="1 2 0"/>	
+	<eRect name="cp2_pic1_obj2_rect" anchor="center" scale="0.1948266296809986 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="cp2_pic2_obj1_rect" anchor="center" scale="0.1235228848821082 1.0 0.0 1" stack_slice_set="1 2 0"/>
+	<eRect name="cp2_pic2_obj2_rect" anchor="center" scale="0.2035228848821082 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="cp2_pic3_obj1_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="cp2_pic3_obj2_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="cp2_pic3_obj3_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 2"/>
+	
+	 <eRect name="th_sky_rotate_animation_rect" anchor="center"  scale="1.631067961165049 1.02040008163265306 0.0 1"/>
+	<eRect name="th_bird_rect" anchor="center" scale="0.3744798890429958 0.5555555555555556 0.0 1"  stack_slice_set="1 3 0"/>
+	<eRect name="th_pic1_obj1_rect" anchor="center" scale="0.0648266296809986 1.0 0.0 1" stack_slice_set="1 2 0"/>	
+	<eRect name="th_pic1_obj2_rect" anchor="center" scale="0.0948266296809986 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="th_pic2_obj1_rect" anchor="center" scale="0.2235228848821082 1.0 0.0 1" stack_slice_set="1 2 0"/>
+	<eRect name="th_pic2_obj2_rect" anchor="center" scale="0.1535228848821082 1.0 0.0 1" stack_slice_set="1 2 1"/>
+	<eRect name="th_pic3_obj1_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="th_pic3_obj2_rect" anchor="center" scale="0.0575312066574202 1.0 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="th_pic3_obj3_rect" anchor="center" scale="0.1575312066574202 1.0 0.0 1" stack_slice_set="1 3 2"/>
+	<eRect name="th_pic4_obj1_rect" anchor="center" scale="0.6 0.9552238805970149 0.0 1" stack_slice_set="1 3 0"/>
+	<eRect name="th_pic4_obj2_rect" anchor="center" scale="0.4 0.9552238805970149 0.0 1" stack_slice_set="1 3 1"/>
+	<eRect name="th_pic4_obj3_rect" anchor="center" scale="0.32 0.9552238805970149 0.0 1" stack_slice_set="1 3 2"/>
+	<eRect name="th_pic5_obj1_rect" anchor="center" scale="0.1247850208044383 0.7 0.0 1" stack_slice_set="1 4 0"/>
+	<eRect name="th_pic5_obj2_rect" anchor="center" scale="0.1247850208044383 0.7 0.0 1" stack_slice_set="1 4 1"/>
+	<eRect name="th_pic5_obj3_rect" anchor="center" scale="0.1547850208044383 0.7 0.0 1" stack_slice_set="1 4 2"/>
+	<eRect name="th_pic5_obj4_rect" anchor="center" scale="0.1047850208044383 0.7 0.0 1" stack_slice_set="1 4 3"/> 
+	
+	<GameObject name="   bg  " >
+			<Transform position="0.5 0.5 0.0 1"/>
+			<Renderer material="bg_material" />
+			<MeshFilter mesh="bg_rect" />
+	</GameObject> 	
+	<GameObject name="part1" visible="false">
+		<GameObject name="sky_rotate_animation">
+			   	<Transform position="0.55 0.3 0.0 1"/>
+				<Renderer material="sky_rotate_animation_material" />                                 
+				<MeshFilter mesh="sky_rotate_animation_rect" />
+					<GameObject name="bird" >
+						<Transform position="0.8 0.1 0.0 1"/>
+						<Renderer material="bird_material" />
+						<MeshFilter mesh="bird_rect" />
+					</GameObject>
+					<GameObject name="pic1_obj1" >
+						<Transform position="-0.8 -0.19 0.0 1"/>
+						<Renderer material="pic1_obj1_material" />
+						<MeshFilter mesh="pic1_obj1_rect" />
+					</GameObject> 	
+					<GameObject name="pic1_obj2" >
+						<Transform position="0.8 -0.41 0.0 1"/>
+						<Renderer material="pic1_obj2_material" />
+						<MeshFilter mesh="pic1_obj2_rect" />
+					</GameObject> 
+					<GameObject name="pic2_obj1" >
+						<Transform position="0.8 0.3 0.0 1"/>
+						<Renderer material="pic2_obj1_material" />
+						<MeshFilter mesh="pic2_obj1_rect" />
+					</GameObject> 	
+					<GameObject name="pic2_obj2" >
+						<Transform position="0.8 -0.22 0.0 1"/>
+						<Renderer material="pic2_obj2_material" />
+						<MeshFilter mesh="pic2_obj2_rect" />
+					</GameObject> 
+					<GameObject name="pic3_obj1" >
+						<Transform position="-0.8 0.7 0.0 1"/>
+						<Renderer material="pic3_obj1_material" />
+						<MeshFilter mesh="pic3_obj1_rect" />
+					</GameObject> 
+					<GameObject name="pic3_obj2" >
+						<Transform position="0.8 -0.25 0.0 1"/>
+						<Renderer material="pic3_obj2_material" />
+						<MeshFilter mesh="pic3_obj2_rect" />
+					</GameObject> 	
+					<GameObject name="pic3_obj3" >
+						<Transform position="-0.8 -0.1 0.0 1"/>
+						<Renderer material="pic3_obj3_material" />
+						<MeshFilter mesh="pic3_obj3_rect" />
+					</GameObject>
+						<GameObject name="pic4_obj1">
+						<Transform position="0 0.8 0.0 1"/>
+						<Renderer material="pic4_obj1_material" />
+						<MeshFilter mesh="pic4_obj1_rect" />
+					</GameObject> 	
+					<GameObject name="pic4_obj2">
+						<Transform position="-0.5 0.8 0.0 1"/>
+						<Renderer material="pic4_obj2_material" />
+						<MeshFilter mesh="pic4_obj2_rect" />
+					</GameObject> 	
+					<GameObject name="pic4_obj3">
+						<Transform position="-0.8 0.3 0.0 1"/>
+						<Renderer material="pic4_obj3_material" />
+						<MeshFilter mesh="pic4_obj3_rect" />
+					</GameObject> 
+					<GameObject name="pic5_obj1" >
+						<Transform position="0.8 -0.08 0.0 1"/>
+						<Renderer material="pic5_obj1_material" />
+						<MeshFilter mesh="pic5_obj1_rect" />
+					</GameObject> 	
+					<GameObject name="pic5_obj2" >
+						<Transform position="-0.35 -0.8 0.0 1"/>
+						<Renderer material="pic5_obj2_material" />
+						<MeshFilter mesh="pic5_obj2_rect" />
+					</GameObject> 	
+					<GameObject name="pic5_obj3" >
+						<Transform position="-0.8 -0.1 0.0 1"/>
+						<Renderer material="pic5_obj3_material" />
+						<MeshFilter mesh="pic5_obj3_rect" />
+					</GameObject> 	
+					<GameObject name="pic5_obj4" >
+						<Transform position="-0.8 -0.2 0.0 1"/>
+						<Renderer material="pic5_obj4_material" />
+						<MeshFilter mesh="pic5_obj4_rect" />
+					</GameObject> 
+			</GameObject> 
+		</GameObject> 
+<GameObject name="part2" visible="false" >
+	<GameObject name="cp_sky_rotate_animation">
+		   	<Transform position="0.55 0.3 0.0 1"/>
+			<Renderer material="cp_sky_rotate_animation_material" />    	
+			<MeshFilter mesh="cp_sky_rotate_animation_rect" />
+				<GameObject name="cp_bird" >
+					<Transform position="0.2595918367346939 -0.1658333333333333 0.0 1"/>
+					<Renderer material="cp_bird_material" />
+					<MeshFilter mesh="cp_bird_rect" />
+				</GameObject>
+				<GameObject name="cp_pic1_obj1" >
+					<Transform position="-0.4283018867924528 -0.2507251908396947 0.0 1"/>
+					<Renderer material="cp_pic1_obj1_material" />
+					<MeshFilter mesh="cp_pic1_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic1_obj2" >
+					<Transform position="0.0120748299319728 -0.23203125 0.0 1"/>
+					<Renderer material="cp_pic1_obj2_material" />
+					<MeshFilter mesh="cp_pic1_obj2_rect" />
+				</GameObject> 
+				<GameObject name="cp_pic2_obj1" >
+					<Transform position="0.5152658662092624 0.2093511450381679 0.0 1"/>
+					<Renderer material="cp_pic2_obj1_material" />
+					<MeshFilter mesh="cp_pic2_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic2_obj2" >
+					<Transform position="0.2853125 0.0770833333333333 0.0 1"/>
+					<Renderer material="cp_pic2_obj2_material" />
+					<MeshFilter mesh="cp_pic2_obj2_rect" />
+				</GameObject> 
+				<GameObject name="cp_pic3_obj1" >
+					<Transform position="-0.2046875 0.2958333333333333 0.0 1"/>
+					<Renderer material="cp_pic3_obj1_material" />
+					<MeshFilter mesh="cp_pic3_obj1_rect" />
+				</GameObject> 
+				<GameObject name="cp_pic3_obj2" >
+					<Transform position="0.0578125 -0.11875 0.0 1"/>
+					<Renderer material="cp_pic3_obj2_material" />
+					<MeshFilter mesh="cp_pic3_obj2_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic3_obj3" >
+					<Transform position="-0.396875 -0.078125 0.0 1"/>
+					<Renderer material="cp_pic3_obj3_material" />
+					<MeshFilter mesh="cp_pic3_obj3_rect" />
+				</GameObject>
+
+				<GameObject name="cp2_pic1_obj1" >
+					<Transform position="-0.6 -0.3 0.0 1"/>
+					<Renderer material="cp2_pic1_obj1_material" />
+					<MeshFilter mesh="cp2_pic1_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="cp2_pic1_obj2" >
+					<Transform position="0 -0.5 0.0 1"/>
+					<Renderer material="cp2_pic1_obj2_material" />
+					<MeshFilter mesh="cp2_pic1_obj2_rect" />
+				</GameObject> 
+				<GameObject name="cp2_pic2_obj1" >
+					<Transform position="0.5 0.5 0.0 1"/>
+					<Renderer material="cp2_pic2_obj1_material" />
+					<MeshFilter mesh="cp2_pic2_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="cp2_pic2_obj2" >
+					<Transform position="0.5 0.8 0.0 1"/>
+					<Renderer material="cp2_pic2_obj2_material" />
+					<MeshFilter mesh="cp2_pic2_obj2_rect" />
+				</GameObject> 
+				<GameObject name="cp2_pic3_obj1" >
+					<Transform position="-0.8 0.4 0.0 1"/>
+					<Renderer material="cp2_pic3_obj1_material" />
+					<MeshFilter mesh="cp2_pic3_obj1_rect" />
+				</GameObject> 
+				<GameObject name="cp2_pic3_obj2" >
+					<Transform position="0 -1.0 0.0 1"/>
+					<Renderer material="cp2_pic3_obj2_material" />
+					<MeshFilter mesh="cp2_pic3_obj2_rect" />
+				</GameObject> 	
+				<GameObject name="cp2_pic3_obj3" >
+					<Transform position="-0.3 -0.6 0.0 1"/>
+					<Renderer material="cp2_pic3_obj3_material" />
+					<MeshFilter mesh="cp2_pic3_obj3_rect" />
+				</GameObject>
+
+					<GameObject name="cp_pic4_obj1">
+					<Transform position="0.0169764216366158 0.278125 0.0 1"/>
+					<Renderer material="cp_pic4_obj1_material" />
+					<MeshFilter mesh="cp_pic4_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic4_obj2">
+					<Transform position="-0.353125 0.5208333333333333 0.0 1"/>
+					<Renderer material="cp_pic4_obj2_material" />
+					<MeshFilter mesh="cp_pic4_obj2_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic4_obj3">
+					<Transform position="-0.48125 0.1616666666666667 0.0 1"/>
+					<Renderer material="cp_pic4_obj3_material" />
+					<MeshFilter mesh="cp_pic4_obj3_rect" />
+				</GameObject> 
+				<GameObject name="cp_pic5_obj1" >
+					<Transform position="0.1553125 -0.0049166666666667 0.0 1"/>
+					<Renderer material="cp_pic5_obj1_material" />
+					<MeshFilter mesh="cp_pic5_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic5_obj2" >
+					<Transform position="-0.2703125 -0.2052083333333333 0.0 1"/>
+					<Renderer material="cp_pic5_obj2_material" />
+					<MeshFilter mesh="cp_pic5_obj2_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic5_obj3" >
+					<Transform position="-0.225 0.01875 0.0 1"/>
+					<Renderer material="cp_pic5_obj3_material" />
+					<MeshFilter mesh="cp_pic5_obj3_rect" />
+				</GameObject> 	
+				<GameObject name="cp_pic5_obj4" >
+					<Transform position="-0.1875 -0.115625 0.0 1"/>
+					<Renderer material="cp_pic5_obj4_material" />
+					<MeshFilter mesh="cp_pic5_obj4_rect" />
+				</GameObject> 
+		</GameObject> 
+	 </GameObject>
+ <GameObject name="part3" visible="true" >
+	<GameObject name="th_sky_rotate_animation">
+		   	<Transform position="0.55 0.3 0.0 1"/>
+			<Renderer material="th_sky_rotate_animation_material" />                                                                                                                             cxz		
+			<MeshFilter mesh="th_sky_rotate_animation_rect" />
+				<GameObject name="th_bird" >
+					<Transform position="0.2595918367346939 -0.1658333333333333 0.0 1"/>
+					<Renderer material="th_bird_material" />
+					<MeshFilter mesh="th_bird_rect" />
+				</GameObject>
+				<GameObject name="th_pic1_obj1" >
+					<Transform position="-0.4283018867924528 -0.2507251908396947 0.0 1"/>
+					<Renderer material="th_pic1_obj1_material" />
+					<MeshFilter mesh="th_pic1_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic1_obj2" >
+					<Transform position="0.0120748299319728 -0.23203125 0.0 1"/>
+					<Renderer material="th_pic1_obj2_material" />
+					<MeshFilter mesh="th_pic1_obj2_rect" />
+				</GameObject> 
+				<GameObject name="th_pic2_obj1" >
+					<Transform position="0.5152658662092624 0.2093511450381679 0.0 1"/>
+					<Renderer material="th_pic2_obj1_material" />
+					<MeshFilter mesh="th_pic2_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic2_obj2" >
+					<Transform position="0.2853125 0.0770833333333333 0.0 1"/>
+					<Renderer material="th_pic2_obj2_material" />
+					<MeshFilter mesh="th_pic2_obj2_rect" />
+				</GameObject> 
+				<GameObject name="th_pic3_obj1" >
+					<Transform position="-0.2046875 0.2958333333333333 0.0 1"/>
+					<Renderer material="th_pic3_obj1_material" />
+					<MeshFilter mesh="th_pic3_obj1_rect" />
+				</GameObject> 
+				<GameObject name="th_pic3_obj2" >
+					<Transform position="0.0578125 -0.11875 0.0 1"/>
+					<Renderer material="pic3_obj2_material" />
+					<MeshFilter mesh="th_pic3_obj2_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic3_obj3" >
+					<Transform position="-0.396875 -0.078125 0.0 1"/>
+					<Renderer material="th_pic3_obj3_material" />
+					<MeshFilter mesh="th_pic3_obj3_rect" />
+				</GameObject>
+					<GameObject name="th_pic4_obj1">
+					<Transform position="0.0169764216366158 0.278125 0.0 1"/>
+					<Renderer material="th_pic4_obj1_material" />
+					<MeshFilter mesh="th_pic4_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic4_obj2">
+					<Transform position="-0.353125 0.5208333333333333 0.0 1"/>
+					<Renderer material="pic4_obj2_material" />
+					<MeshFilter mesh="th_pic4_obj2_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic4_obj3">
+					<Transform position="-0.48125 0.1616666666666667 0.0 1"/>
+					<Renderer material="th_pic4_obj3_material" />
+					<MeshFilter mesh="th_pic4_obj3_rect" />
+				</GameObject> 
+				<GameObject name="th_pic5_obj1" >
+					<Transform position="0.1553125 -0.0049166666666667 0.0 1"/>
+					<Renderer material="th_pic5_obj1_material" />
+					<MeshFilter mesh="th_pic5_obj1_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic5_obj2" >
+					<Transform position="-0.2703125 -0.2052083333333333 0.0 1"/>
+					<Renderer material="th_pic5_obj2_material" />
+					<MeshFilter mesh="th_pic5_obj2_rect" />
+				</GameObject> 
+				<ParticleSystem name="ps_root" src="particle_system.particle" />	
+				<GameObject name="th_pic5_obj3" >
+					<Transform position="-0.225 0.01875 0.0 1"/>
+					<Renderer material="th_pic5_obj3_material" />
+					<MeshFilter mesh="th_pic5_obj3_rect" />
+				</GameObject> 	
+				<GameObject name="th_pic5_obj4" >
+					<Transform position="-0.1875 -0.115625 0.0 1"/>
+					<Renderer material="th_pic5_obj4_material" />
+					<MeshFilter mesh="th_pic5_obj4_rect" />
+				</GameObject> 
+		</GameObject> 
+	 </GameObject>         
+	 
+	 <ParticleSystem name="ps_root" src="particle_system.particle" />
+
+	 <PathSpline name="splinetest" 
+ pathControlPoints="0.0 0.0 0.0; 1.0 1.0 0.0;  0.0 2.0 0.0; -1.0 1.0 0.0; -0.5 0.3 0.0 ; 0.0 0.0 0.0"
+ />
+
+<PathBrokenLine name="brokenlinetest" 
+ pathControlPoints="0.0 0.0 0.0; 1.0 1.0 0.0;  0.0 2.0 0.0; -1.0 1.0 0.0; -0.5 0.3 0.0 ; 0.0 0.0 0.0"
+ />
+
+ <PathSimpleBezier name="simplebeziertest"
+	pathControlPoints="0.0 0.0 0.0; 1.0 1.0 0.0;  0.0 2.0 0.0; -1.0 1.0 0.0; -0.5 0.3 0.0 ; 0.0 0.0 0.0"
+ />
+
+
+<PathAnimation interpolator="Linear"
+
+	name="camera_animation"
+	canstop="true"
+	start="true"
+	fillBefore="false"
+	fillEnabled="true"
+	startOffset="0"
+	repeatCount="0"
+	path="splinetest"
+	duration="6000"
+	target="pCubeTest" 
+	/> 
+
+	<PathAnimation interpolator="Linear"
+	name="camera_animation"
+	canstop="true"
+	start="true"
+	fillBefore="false"
+	fillEnabled="true"
+	startOffset="6000"
+	repeatCount="10"
+	isAutoRot="true"
+	path="splinetest"
+	duration="1000"        
+	target="pCube1" 
+  headDirection="1 0 0"
+	/>
+	
+	
+		<TexCoordSetAnimation
+		    fillEnabled="true"
+		    fillBefore="false"
+		    interpolator="linear"
+		    start="true"
+		    canstop="true"
+		    stack_slice_set="1 3 0 1 2"
+		    startOffset="0"
+			duration="300"
+			repeatCount="-1"
+		    target="bird_rect" /> 
+		    
+		<TexCoordSetAnimation
+		    fillEnabled="true"
+		    fillBefore="false"
+		    interpolator="linear"
+		    start="true"
+		    canstop="true"
+		    stack_slice_set="1 3 0 1 2"
+		    startOffset="0"
+			duration="300"
+			repeatCount="-1"
+		    target="cp_bird_rect" /> 
+		    
+		<TexCoordSetAnimation
+		    fillEnabled="true"
+		    fillBefore="false"
+		    interpolator="linear"
+		    start="true"
+		    canstop="true"
+		    stack_slice_set="1 3 0 1 2"
+		    startOffset="0"
+			duration="300"
+			repeatCount="-1"
+		    target="th_bird_rect" /> 
+
+	<AnimationSet name="animation1" start="false" canstop="true">	    
+		  <RotateAnimation
+		    name="sky_rotate"
+		    fillEnabled="true"
+		    fillBefore="false"
+		    interpolator="average"
+		    start="true"
+	        startOffset="0"
+	        duration="25000"
+	        repeatCount="-1"
+	        target="sky_rotate_animation"
+	        fromDegrees="0"
+	        toDegrees="6.2831852"
+	        axis="0 0 -1"
+	        TransformSpace="TS_LOCAL"/>  
+	        
+		 <ScaleAnimation 
+		    name="bird_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="bird"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.3"
+	        duration="8000"
+	        repeatCount="-1"
+	        startOffset="0"
+	        start="true"/>  
+		<TranslateAnimation 
+		    name="bird_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="bird"
+		   	mFromXDelta="0.8"
+		   	mFromYDelta="0.1" 
+		   	mToXDelta="0.06"
+		   	mToYDelta= "0.05"
+		   	startOffset="0"
+		   	duration="8000"
+		   	repeatCount="-1"
+			canstop="true"/> 
+	 	<TexAlphaModifierAnimation 
+		    name="bird_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="bird"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="8000" 
+			repeatCount="-1"
+			canstop="true"/>   
+			
+	 	 <TranslateAnimation 
+		    name="pic1_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic1_obj1"
+		   	mFromXDelta="-0.8"
+		   	mFromYDelta="-0.19" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="6000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic1_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic1_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="6000"
+	        repeatCount="-1"
+	        start="true"
+	        startOffset="0"/>   
+	    <TexAlphaModifierAnimation 
+	        name="pic1_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic1_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="6000"
+			repeatCount="-1"
+			canstop="true"/>   
+			
+ 	    <TranslateAnimation 
+		    name="pic1_obj2_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic1_obj2"
+		   	mFromXDelta="0.8"
+		   	mFromYDelta="-0.41" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="15000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic1_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic1_obj2"
+	        canstop="false"
+	        mToXDelta="0.7"
+	        mToYDelta="0.7"
+	        duration="15000"
+	        repeatCount="-1"/>
+		<TexAlphaModifierAnimation 
+	        name="pic1_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic1_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="15000"
+			repeatCount="-1"
+			canstop="true"/>   
+			
+ 
+		<TranslateAnimation 
+		    name="pic2_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic2_obj1"
+		   	mFromXDelta="0.8"
+		   	mFromYDelta="0.3" 
+		   	mToXDelta="0.01 "
+		   	mToYDelta= "0.08"
+		   	startOffset="0"
+		   	duration="17000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic2_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic2_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="17000"
+	        repeatCount="-1"
+	        startOffset="0"/>  
+	    <TexAlphaModifierAnimation 
+		    name="pic2_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic2_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="17000" 
+			repeatCount="-1"
+			canstop="true"/>    
+		
+	  	<TranslateAnimation 
+		    name="pic2_obj2_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic2_obj2"
+		   	mFromXDelta="0.8"
+		   	mFromYDelta="-0.22" 
+		   	mToXDelta="0.05"
+		   	mToYDelta= "-0.06"
+		   	startOffset="0"
+		   	duration="5000" 
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic2_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic2_obj2"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="5000"
+	        repeatCount="-1"
+	        startOffset="0"/>   
+  		<TexAlphaModifierAnimation 
+		    name="pic2_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic2_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="5000" 
+			repeatCount="-1"
+			canstop="true"/>  
+			
+ 		 <TranslateAnimation 
+		    name="pic3_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic3_obj1"
+		   	mFromXDelta="-0.8"
+		   	mFromYDelta="0.7" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.04"
+		   	startOffset="0"
+		   	duration="12000" 
+		   	repeatCount="-1"
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="pic3_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic3_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="12000"
+	        repeatCount="-1"
+	        startOffset="0"/> 
+	      <TexAlphaModifierAnimation 
+		    name="pic3_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic3_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="12000"
+			repeatCount="-1" 
+			canstop="true"/> 
+	        		   
+		<TranslateAnimation 
+		    name="pic3_obj2_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic3_obj2"
+		   	mFromXDelta="0.8"
+		   	mFromYDelta="-0.25" 
+		   	mToXDelta="0.05 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="-0.04"
+		   	duration="12000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="pic3_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic3_obj2"
+	        canstop="true"
+	        mToXDelta="0.9"
+	        mToYDelta="0.9"
+	        duration="12000"
+	        repeatCount="-1"
+	        startOffset="0"/> 
+	    <TexAlphaModifierAnimation 
+		    name="pic3_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic3_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.2" 
+			start="true"
+			startOffset="0"
+			duration="12000"
+			repeatCount="-1" 
+			canstop="true"/>
+	   		   
+		<TranslateAnimation 
+		    name="pic3_obj3_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic3_obj3"
+		   	mFromXDelta="-0.8"
+		   	mFromYDelta="-0.1" 
+		   	mToXDelta="-0.05 "
+		   	mToYDelta= "0"
+		   	startOffset="0"
+		   	duration="20000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic3_obj3_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic3_obj3"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="20000"
+	        repeatCount="-1"
+	        startOffset="0"/>    
+		<TexAlphaModifierAnimation 
+		    name="pic3_obj3_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic3_obj3"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="20000"
+			repeatCount="-1" 
+			canstop="true"/>	
+	    
+		<TranslateAnimation
+		    name="pic4_obj1_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic4_obj1"
+		   	mFromXDelta="0"
+		   	mFromYDelta="0.8" 
+		   	mToXDelta="0  "
+		   	mToYDelta= "0.08"
+		   	startOffset="0"
+		   	duration="9000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic4_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic4_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="9000"
+	        repeatCount="-1"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="pic4_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic4_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			repeatCount="-1"
+			duration="9000" 
+			canstop="true"/>  
+			  
+		<TranslateAnimation
+		    name="pic4_obj2_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic4_obj2"
+		   	mFromXDelta="-0.5"
+		   	mFromYDelta="0.8" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.05 "
+		   	startOffset="0"
+		   	duration="15000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic4_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic4_obj2"
+	        canstop="false"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="15000"
+	        repeatCount="-1"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="pic4_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic4_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			repeatCount="-1"
+			duration="15000" 
+			canstop="true"/>  
+			 
+		<TranslateAnimation
+		    name="pic4_obj3_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic4_obj3"
+		   	mFromXDelta="-0.8"
+		   	mFromYDelta="0.3" 
+		   	mToXDelta="-0.07  "
+		   	mToYDelta= "0.05 "
+		   	startOffset="0"
+		   	duration="13000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic4_obj3_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic4_obj3"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="13000"
+	        repeatCount="-1"
+	        startOffset="0"/>   
+		<TexAlphaModifierAnimation 
+		    name="pic4_obj3_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic4_obj3"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			repeatCount="-1"
+			duration="13000" 
+			canstop="true"/>
+		
+		<TranslateAnimation 
+		    name="pic5_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic5_obj1"
+		   	mFromXDelta="0.8"
+		   	mFromYDelta="-0.08" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.02"
+		   	startOffset="0"
+		   	duration="16000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic5_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic5_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="16000"
+	        repeatCount="-1"
+	        startOffset="0"/> 
+	     <TexAlphaModifierAnimation 
+		    name="pic5_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic5_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="16000" 
+			repeatCount="-1"
+			canstop="true"/> 
+			   
+		<TranslateAnimation
+		    name="pic5_obj2_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic5_obj2"
+		   	mFromXDelta="-0.35"
+		   	mFromYDelta="-0.8" 
+		   	mToXDelta="-0.05 "
+		   	mToYDelta= "-0.08"
+		   	startOffset="0"
+		   	duration="13000"
+		   	repeatCount="-1"
+			canstop="true"/> 
+		<ScaleAnimation 
+		    name="pic5_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic5_obj2"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="13000"
+	        repeatCount="-1"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="pic5_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic5_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="13000" 
+			repeatCount="-1"
+			canstop="true"/> 
+			   
+		<TranslateAnimation
+		    name="pic5_obj3_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic5_obj3"
+		   	mFromXDelta="-0.8"
+		   	mFromYDelta="-0.1" 
+		   	mToXDelta="-0.03 "
+		   	mToYDelta= "0.03"
+		   	startOffset="0"
+		   	duration="11000"
+		   	repeatCount="-1"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="pic5_obj3_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic5_obj3"
+	        canstop="false"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="11000"
+	        repeatCount="-1"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="pic5_obj3_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic5_obj3"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="11000" 
+			repeatCount="-1"
+			canstop="true"/> 
+			    
+		<TranslateAnimation 
+		    name="pic5_obj4_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="false"
+		   	target="pic5_obj4"
+		   	mFromXDelta="-0.8"
+		   	mFromYDelta="-0.20" 
+		   	mToXDelta="-0.07 "
+		   	mToYDelta= " -0.04 "
+		   	startOffset="0"
+		   	duration="19000"
+		   	repeatCount="-1"
+			canstop="true"/>		
+		<ScaleAnimation 
+		    name="pic5_obj4_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="pic5_obj4"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="19000"
+	        repeatCount="-1"
+	        startOffset="0"/>    
+		<TexAlphaModifierAnimation 
+		    name="pic5_obj4_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="pic5_obj4"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="19000" 
+			repeatCount="-1"
+			canstop="true"/>  
+	</AnimationSet>
+	
+
+	<AnimationSet name="animation2" start="false" >	    
+		  <RotateAnimation
+		    name="cp_sky_rotate2"
+		    fillEnabled="true"
+		    fillBefore="false"
+		    interpolator="accelerate-decelerate"
+		    start="true"
+	        startOffset="0"
+	        duration="3900"
+	        target="cp_sky_rotate_animation"
+	        fromDegrees="0"
+	        toDegrees="6.2831852"
+	        axis="0 0 -1"
+	        TransformSpace="TS_LOCAL"/>  
+	        
+		 <ScaleAnimation 
+		    name="cp_bird_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_bird"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="3000"
+	        startOffset="0"
+	        start="true"/>  
+		<TranslateAnimation 
+		    name="cp_bird_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_bird"
+		   	mFromXDelta="0.2595918367346939"
+		   	mFromYDelta="-0.2507251908396947" 
+		   	mToXDelta="0.06"
+		   	mToYDelta= "0.05"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/> 
+	 	<TexAlphaModifierAnimation 
+		    name="cp_bird_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_bird"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"
+			canstop="true"/>   
+			
+	 	 <TranslateAnimation 
+		    name="cp_pic1_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic1_obj1"
+		   	mFromXDelta="-0.4283018867924528 "
+		   	mFromYDelta="-0.2507251908396947" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic1_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic1_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="3000"
+	        start="true"
+	        startOffset="0"/>   
+	    <TexAlphaModifierAnimation 
+	        name="cp_pic1_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic1_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"
+			canstop="true"/>   
+			
+ 	    <TranslateAnimation 
+		    name="cp_pic1_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic1_obj2"
+		   	mFromXDelta="0.0120748299319728 "
+		   	mFromYDelta="-0.23203125" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic1_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic1_obj2"
+	        canstop="false"
+	        mToXDelta="0.7"
+	        mToYDelta="0.7"
+	        duration="3000"/>
+		<TexAlphaModifierAnimation 
+	        name="cp_pic1_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic1_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"
+			canstop="true"/>   
+			
+ 
+		<TranslateAnimation 
+		    name="cp_pic2_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic2_obj1"
+		   	mFromXDelta="0.5152658662092624 "
+		   	mFromYDelta="0.2093511450381679" 
+		   	mToXDelta="0.01 "
+		   	mToYDelta= "0.08"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic2_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic2_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="3000"
+	        startOffset="0"/>  
+	    <TexAlphaModifierAnimation 
+		    name="cp_pic2_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic2_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/>    
+		
+	  	<TranslateAnimation 
+		    name="cp_pic2_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic2_obj2"
+		   	mFromXDelta="0.2853125 "
+		   	mFromYDelta="0.0770833333333333" 
+		   	mToXDelta="0.05"
+		   	mToYDelta= "-0.06"
+		   	startOffset="0"
+		   	duration="3000" 
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic2_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic2_obj2"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="3000"
+	        startOffset="0"/>   
+  		<TexAlphaModifierAnimation 
+		    name="cp_pic2_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic2_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"/> 
+			
+ 		 <TranslateAnimation 
+		    name="cp_pic3_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic3_obj1"
+		   	mFromXDelta="-0.2046875  "
+		   	mFromYDelta="0.2958333333333333" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.04"
+		   	startOffset="0"
+		   	duration="3000" 
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="cp_pic3_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic3_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="3000"
+	        startOffset="0"/> 
+	      <TexAlphaModifierAnimation 
+		    name="cp_pic3_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic3_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"
+			canstop="true"/> 
+	        		   
+		<TranslateAnimation 
+		    name="cp_pic3_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic3_obj2"
+		   	mFromXDelta="0.0578125 "
+		   	mFromYDelta="-0.11875" 
+		   	mToXDelta="0.05 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="-0.04"
+		   	duration="3000"
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="cp_pic3_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic3_obj2"
+	        canstop="true"
+	        mToXDelta="0.9"
+	        mToYDelta="0.9"
+	        duration="3000"
+	        startOffset="0"/> 
+	    <TexAlphaModifierAnimation 
+		    name="cp_pic3_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic3_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"
+			canstop="true"/>
+	   		   
+		<TranslateAnimation 
+		    name="cp_pic3_obj3_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic3_obj3"
+		   	mFromXDelta="-0.396875 "
+		   	mFromYDelta="-0.078125" 
+		   	mToXDelta="-0.05 "
+		   	mToYDelta= "0"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic3_obj3_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic3_obj3"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="3000"
+	        startOffset="0"/>    
+		<TexAlphaModifierAnimation 
+		    name="cp_pic3_obj3_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic3_obj3"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000"
+			canstop="true"/>	
+			
+			 <TranslateAnimation 
+		    name="cp2_pic1_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic1_obj1"
+		   	mFromXDelta="-0.6 "
+		   	mFromYDelta="-0.3" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "-0.05"
+		   	startOffset="1000"
+		   	duration="2500"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp2_pic1_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic1_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="2500"
+	        start="true"
+	        startOffset="1000"/>   
+	    <TexAlphaModifierAnimation 
+	        name="cp2_pic1_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="average"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic1_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1000"
+			duration="2500"
+			canstop="true"/>   
+			
+ 	    <TranslateAnimation 
+		    name="cp2_pic1_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic1_obj2"
+		   	mFromXDelta="0 "
+		   	mFromYDelta="-0.5" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="600"
+		   	duration="2700"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp2_pic1_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic1_obj2"
+	        canstop="false"
+	        mToXDelta="0.7"
+	        mToYDelta="0.7"
+	        startOffset="600"
+	        duration="2700"/>
+		<TexAlphaModifierAnimation 
+	        name="cp2_pic1_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="average"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic1_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1600"
+			duration="1700"
+			canstop="true"/>   
+			
+ 
+		 <TranslateAnimation 
+		    name="cp2_pic2_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic2_obj1"
+		   	mFromXDelta="0.5"
+		   	mFromYDelta="0.5" 
+		   	mToXDelta="0.01 "
+		   	mToYDelta= "0.08"
+		   	startOffset="600"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp2_pic2_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic2_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="3000"
+	        startOffset="600"/>  
+	    <TexAlphaModifierAnimation 
+		    name="cp2_pic2_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="average"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic2_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1600"
+			duration="2000" 
+			canstop="true"/>    
+		
+	 	<TranslateAnimation 
+		    name="cp2_pic2_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic2_obj2"
+		   	mFromXDelta="0.5 "
+		   	mFromYDelta="0.8" 
+		   	mToXDelta="0.05"
+		   	mToYDelta= "-0.06"
+		   	startOffset="700"
+		   	duration="3000" 
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp2_pic2_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic2_obj2"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="3000"
+	        startOffset="700"/>   
+  		<TexAlphaModifierAnimation 
+		    name="cp2_pic2_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="average"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic2_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1700"
+			duration="2000"/> 
+			
+ 		  <TranslateAnimation 
+		    name="cp2_pic3_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic3_obj1"
+		   	mFromXDelta="-0.8  "
+		   	mFromYDelta="0.4" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.04"
+		   	startOffset="800"
+		   	duration="2600" 
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="cp2_pic3_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic3_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="2600"
+	        startOffset="800"/> 
+	      <TexAlphaModifierAnimation 
+		    name="cp2_pic3_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic3_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1400"
+			duration="2000"
+			canstop="true"/> 
+	        		   
+		<TranslateAnimation 
+		    name="cp2_pic3_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic3_obj2"
+		   	mFromXDelta="0"
+		   	mFromYDelta="-1.0" 
+		   	mToXDelta="0.05 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="900"
+		   	duration="3000"
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="cp2_pic3_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic3_obj2"
+	        canstop="true"
+	        mToXDelta="0.9"
+	        mToYDelta="0.9"
+	        duration="3000"
+	        startOffset="900"/> 
+	    <TexAlphaModifierAnimation 
+		    name="cp2_pic3_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic3_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1400"
+			duration="2500"
+			canstop="true"/>
+	   		   
+		<TranslateAnimation 
+		    name="cp2_pic3_obj3_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp2_pic3_obj3"
+		   	mFromXDelta="-0.3 "
+		   	mFromYDelta="-0.6" 
+		   	mToXDelta="-0.05 "
+		   	mToYDelta= "0"
+		   	startOffset="500"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp2_pic3_obj3_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp2_pic3_obj3"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="3000"
+	        startOffset="500"/>    
+		<TexAlphaModifierAnimation 
+		    name="cp2_pic3_obj3_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp2_pic3_obj3"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="1500"
+			duration="2000"
+			canstop="true"/>	
+		    
+		<TranslateAnimation
+		    name="cp_pic4_obj1_translate2" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic4_obj1"
+		   	mFromXDelta="0.0169764216366158 "
+		   	mFromYDelta="0.278125" 
+		   	mToXDelta="0  "
+		   	mToYDelta= "0.08"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic4_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic4_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="3000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="cp_pic4_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic4_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/>  
+			  
+		<TranslateAnimation
+		    name="cp_pic4_obj2_translate2" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic4_obj2"
+		   	mFromXDelta="-0.353125 "
+		   	mFromYDelta="0.5208333333333333" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.05 "
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic4_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic4_obj2"
+	        canstop="false"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="3000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="cp_pic4_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic4_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/>  
+			 
+		<TranslateAnimation
+		    name="cp_pic4_obj3_translate2" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic4_obj3"
+		   	mFromXDelta="-0.48125 "
+		   	mFromYDelta="0.1616666666666667" 
+		   	mToXDelta="-0.07  "
+		   	mToYDelta= "0.05 "
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic4_obj3_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic4_obj3"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="3000"
+	        startOffset="0"/>   
+		<TexAlphaModifierAnimation 
+		    name="cp_pic4_obj3_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic4_obj3"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/>
+		
+		<TranslateAnimation 
+		    name="cp_pic5_obj1_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic5_obj1"
+		   	mFromXDelta="0.1553125 "
+		   	mFromYDelta="-0.0049166666666667" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.02"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic5_obj1_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic5_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="3000"
+	        startOffset="0"/> 
+	     <TexAlphaModifierAnimation 
+		    name="cp_pic5_obj1_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic5_obj1"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/> 
+			   
+		<TranslateAnimation
+		    name="cp_pic5_obj2_translate2" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic5_obj2"
+		   	mFromXDelta="-0.2703125 "
+		   	mFromYDelta="-0.2052083333333333" 
+		   	mToXDelta="-0.05 "
+		   	mToYDelta= "-0.08"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/> 
+		<ScaleAnimation 
+		    name="cp_pic5_obj2_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic5_obj2"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="3000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="cp_pic5_obj2_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic5_obj2"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/> 
+			   
+		<TranslateAnimation
+		    name="cp_pic5_obj3_translate2" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic5_obj3"
+		   	mFromXDelta="-0.225 "
+		   	mFromYDelta="0.01875" 
+		   	mToXDelta="-0.03 "
+		   	mToYDelta= "0.03"
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="cp_pic5_obj3_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic5_obj3"
+	        canstop="false"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="3000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="cp_pic5_obj3_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic5_obj3"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/> 
+			    
+		<TranslateAnimation 
+		    name="cp_pic5_obj4_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="cp_pic5_obj4"
+		   	mFromXDelta="-0.1875 "
+		   	mFromYDelta="-0.115625" 
+		   	mToXDelta="-0.07 "
+		   	mToYDelta= " -0.04 "
+		   	startOffset="0"
+		   	duration="3000"
+			canstop="true"/>		
+		<ScaleAnimation 
+		    name="cp_pic5_obj4_scale2"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic5_obj4"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="3000"
+	        startOffset="0"/>    
+		<TexAlphaModifierAnimation 
+		    name="cp_pic5_obj4_alpha2"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="cp_pic5_obj4"
+			mFromAlpha="0.7"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="3000" 
+			canstop="true"/>  
+	</AnimationSet> 
+
+		 <AnimationSet name="animation3" start="true" >	    
+		  <RotateAnimation
+		    name="th_sky_rotate"
+		    fillEnabled="true"
+		    fillBefore="false"
+		    interpolator="average"
+		    start="true"
+	        startOffset="0"
+	        duration="13000"
+	        target="th_sky_rotate_animation"
+	        fromDegrees="0"
+	        toDegrees="6.2831852"
+	        axis="0 0 -1"
+	        TransformSpace="TS_LOCAL"/>  
+	        
+		 <ScaleAnimation 
+		    name="th_bird_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_bird"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="8000"
+	        startOffset="0"
+	        start="true"/>  
+		<TranslateAnimation 
+		    name="th_bird_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_bird"
+		   	mFromXDelta="0.2595918367346939"
+		   	mFromYDelta="-0.2507251908396947" 
+		   	mToXDelta="-0.06"
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="8000"
+			canstop="true"/> 
+	 	<TexAlphaModifierAnimation 
+		    name="th_bird_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_bird"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="8000"
+			canstop="true"/>   
+			
+	 	 <TranslateAnimation 
+		    name="th_pic1_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic1_obj1"
+		   	mFromXDelta="-0.4283018867924528 "
+		   	mFromYDelta="-0.2507251908396947" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="6000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic1_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic1_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="6000"
+	        start="true"
+	        startOffset="0"/>   
+	    <TexAlphaModifierAnimation 
+	        name="th_pic1_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic1_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="6000"
+			canstop="true"/>   
+			
+	    <TranslateAnimation 
+		    name="th_pic1_obj2_translate2"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic1_obj2"
+		   	mFromXDelta="0.0120748299319728 "
+		   	mFromYDelta="-0.23203125" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="0"
+		   	duration="11000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic1_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic1_obj2"
+	        canstop="false"
+	        mToXDelta="0.7"
+	        mToYDelta="0.7"
+	        duration="11000"/>
+		<TexAlphaModifierAnimation 
+	        name="th_pic1_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic1_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="11000"
+			canstop="true"/>   
+			
+ 
+		<TranslateAnimation 
+		    name="th_pic2_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic2_obj1"
+		   	mFromXDelta="0.5152658662092624 "
+		   	mFromYDelta="0.2093511450381679" 
+		   	mToXDelta="0.01 "
+		   	mToYDelta= "0.08"
+		   	startOffset="0"
+		   	duration="7000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic2_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic2_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="7000"
+	        startOffset="0"/>  
+	    <TexAlphaModifierAnimation 
+		    name="th_pic2_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic2_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="7000" 
+			canstop="true"/>    
+		
+	  	<TranslateAnimation 
+		    name="th_pic2_obj2_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic2_obj2"
+		   	mFromXDelta="0.2853125 "
+		   	mFromYDelta="0.0770833333333333" 
+		   	mToXDelta="0.05"
+		   	mToYDelta= "0.06"
+		   	startOffset="0"
+		   	duration="5000" 
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic2_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic2_obj2"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="5000"
+	        startOffset="0"/>   
+  		<TexAlphaModifierAnimation 
+		    name="th_pic2_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic2_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="5000"/> 
+			
+ 		 <TranslateAnimation 
+		    name="th_pic3_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic3_obj1"
+		   	mFromXDelta="-0.2046875  "
+		   	mFromYDelta="0.2958333333333333" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.04"
+		   	startOffset="0"
+		   	duration="12000" 
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="th_pic3_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic3_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="12000"
+	        startOffset="0"/> 
+	      <TexAlphaModifierAnimation 
+		    name="th_pic3_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic3_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="12000"
+			canstop="true"/> 
+	        		   
+		<TranslateAnimation 
+		    name="th_pic3_obj2_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic3_obj2"
+		   	mFromXDelta="0.0578125 "
+		   	mFromYDelta="-0.11875" 
+		   	mToXDelta="0.05 "
+		   	mToYDelta= "-0.05"
+		   	startOffset="-0.04"
+		   	duration="14000"
+			canstop="true"/>
+		 <ScaleAnimation 
+		    name="th_pic3_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic3_obj2"
+	        canstop="true"
+	        mToXDelta="0.9"
+	        mToYDelta="0.9"
+	        duration="14000"
+	        startOffset="0"/> 
+	    <TexAlphaModifierAnimation 
+		    name="th_pic3_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic3_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="14000"
+			canstop="true"/>
+	   		   
+	 	<TranslateAnimation 
+		    name="th_pic3_obj3_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic3_obj3"
+		   	mFromXDelta="-0.396875 "
+		   	mFromYDelta="-0.078125" 
+		   	mToXDelta="-0.05 "
+		   	mToYDelta= "0"
+		   	startOffset="0"
+		   	duration="9000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic3_obj3_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic3_obj3"
+	        canstop="true"
+	        mToXDelta="0.4"
+	        mToYDelta="0.4"
+	        duration="9000"
+	        startOffset="0"/>    
+		<TexAlphaModifierAnimation 
+		    name="th_pic3_obj3_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic3_obj3"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="9000"
+			canstop="true"/>	
+	    
+		<TranslateAnimation
+		    name="th_pic4_obj1_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic4_obj1"
+		   	mFromXDelta="0.0169764216366158 "
+		   	mFromYDelta="0.278125" 
+		   	mToXDelta="0  "
+		   	mToYDelta= "0.08"
+		   	startOffset="0"
+		   	duration="9000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic4_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic4_obj1"
+	        canstop="true"
+	        mToXDelta="0.2"
+	        mToYDelta="0.2"
+	        duration="9000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="th_pic4_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic4_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="9000" 
+			canstop="true"/>  
+			  
+		<TranslateAnimation
+		    name="th_pic4_obj2_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic4_obj2"
+		   	mFromXDelta="-0.353125 "
+		   	mFromYDelta="0.5208333333333333" 
+		   	mToXDelta="-0.05"
+		   	mToYDelta= "0.05 "
+		   	startOffset="0"
+		   	duration="11000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic4_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic4_obj2"
+	        canstop="false"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="11000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="th_pic4_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic4_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="11000" 
+			canstop="true"/>  
+			 
+		<TranslateAnimation
+		    name="th_pic4_obj3_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic4_obj3"
+		   	mFromXDelta="-0.48125 "
+		   	mFromYDelta="0.1616666666666667" 
+		   	mToXDelta="-0.07  "
+		   	mToYDelta= "0.05 "
+		   	startOffset="0"
+		   	duration="13000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic4_obj3_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic4_obj3"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="13000"
+	        startOffset="0"/>   
+		<TexAlphaModifierAnimation 
+		    name="th_pic4_obj3_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic4_obj3"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="13000" 
+			canstop="true"/>
+		
+		<TranslateAnimation 
+		    name="th_pic5_obj1_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic5_obj1"
+		   	mFromXDelta="0.1553125 "
+		   	mFromYDelta="-0.0049166666666667" 
+		   	mToXDelta="0.02 "
+		   	mToYDelta= "-0.02"
+		   	startOffset="0"
+		   	duration="10000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic5_obj1_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic5_obj1"
+	        canstop="true"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="10000"
+	        startOffset="0"/> 
+	     <TexAlphaModifierAnimation 
+		    name="th_pic5_obj1_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic5_obj1"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="10000" 
+			canstop="true"/> 
+			   
+		<TranslateAnimation
+		    name="th_pic5_obj2_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic5_obj2"
+		   	mFromXDelta="-0.2703125 "
+		   	mFromYDelta="-0.2052083333333333" 
+		   	mToXDelta="-0.01 "
+		   	mToYDelta= "-0.01"
+		   	startOffset="0"
+		   	duration="13000"
+			canstop="true"/> 
+		<ScaleAnimation 
+		    name="th_pic5_obj2_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic5_obj2"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="13000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="th_pic5_obj2_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic5_obj2"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="13000" 
+			canstop="true"/> 
+			   
+		<TranslateAnimation
+		    name="th_pic5_obj3_translate" 
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic5_obj3"
+		   	mFromXDelta="-0.225 "
+		   	mFromYDelta="0.01875" 
+		   	mToXDelta="-0.03 "
+		   	mToYDelta= "0.03"
+		   	startOffset="0"
+		   	duration="7000"
+			canstop="true"/>
+		<ScaleAnimation 
+		    name="th_pic5_obj3_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="th_pic5_obj3"
+	        canstop="false"
+	        mToXDelta="0.5"
+	        mToYDelta="0.5"
+	        duration="7000"
+	        startOffset="0"/>
+		<TexAlphaModifierAnimation 
+		    name="th_pic5_obj3_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic5_obj3"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="7000" 
+			canstop="true"/> 
+			    
+		<TranslateAnimation 
+		    name="th_pic5_obj4_translate"
+		   	fillEnabled="true" 
+		   	fillBefore="false"
+		   	interpolator="linear" 
+		   	isCoordinateRelativeToScreen="true"
+		   	start="true"
+		   	target="th_pic5_obj4"
+		   	mFromXDelta="-0.1875 "
+		   	mFromYDelta="-0.115625" 
+		   	mToXDelta="-0.07 "
+		   	mToYDelta= " -0.04 "
+		   	startOffset="0"
+		   	duration="9000"
+			canstop="true"/>		
+		<ScaleAnimation 
+		    name="th_pic5_obj4_scale"
+			interpolator="linear"
+			fillEnabled="true" 
+			fillBefore="false"
+	        target="cp_pic5_obj4"
+	        canstop="true"
+	        mToXDelta="0.3"
+	        mToYDelta="0.3"
+	        duration="9000"
+	        startOffset="0"/>    
+		<TexAlphaModifierAnimation 
+		    name="th_pic5_obj4_alpha"
+		    fillEnabled="true" 
+		  	fillBefore="false"
+		    interpolator="accelerate"
+	    	isCoordinateRelativeToScreen="true"
+			target="th_pic5_obj4"
+			mFromAlpha="1.0"
+			mToAlpha="0.0" 
+			start="true"
+			startOffset="0"
+			duration="9000" 
+			canstop="true"/>  
+	</AnimationSet> 
+	<Lua src="main.lua"/>
+	
+</Scene>

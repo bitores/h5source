@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="html5 js2png">
+		<meta name="keywords" content="html5,canvas,png,js">
+		<meta name="author" content="WangXinsheng">
+		<title>CopyRight&copy;WangXinsheng</title>
+		<script src="jquery-1.9.1.min.js"></script>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+	<p>
+	javascript:<br />
+		<textarea id='js' rows="5" cols="50">
+function a(arg){alert(arg)};
+a("hello world!");</textarea>
+		<br />
+		<button id='topng' type="button">2png</button>
+		<button id='tojs' type="button">2js</button>
+		<button id='canvastoimg' type="button">c2img</button>
+		<button id='runjs' type="button">run Js</button>
+		<button id='clear' type="button">clear</button>
+	</p>
+	<p>
+	picture:<br />
+		<input id='pngFile' type="file" onchange="onPngFileChange(this)" /><br />
+		<canvas id="png" width='10' height='10'></canvas>
+		<img id="pngImg" />
+	</p>
+	</body>
+	<script src="imageData.js"></script>
+</html>

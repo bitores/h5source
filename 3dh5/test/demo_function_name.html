@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>function add name</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var root = function() {
+		this.listener=[];
+	};
+	root.prototype.registerFun = function(scope, fun){
+		if(fun) {
+			fun.scene = scope;
+			this.listener.push(fun);
+		}
+	}
+	function aa(){
+		alert("ff");
+	};
+
+	var mRoot = new root();
+	mRoot.registerFun("hell",aa);
+
+	alert(aa.scene);
+
+	aa();
+	</script>
+</body>
+</html>
