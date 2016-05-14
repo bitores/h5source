@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base href="/" />
+		<link rel="import" href="/common/meta.tpl.html?__inline">
+		<title ng-bind="title"></title>
+		<link rel="stylesheet" type="text/css" href="lib/ng-animation.css">
+	</head>
+	<body>
+		<div ui-view></div>
+		<!-- data-baseurl是额外加入的属性，主要好处是可以轻松在html（0缓存）中对js的url进行修改。
+		Async属性表明文件需要异步加载，IE不支持这个属性，只支持defer，所以上面把这2个属性都加上。
+		但是如果我不使用shim这个参数的话，在最新版的requirejs2.1.15中(以前的版本我不太清楚)，也可以通过require([‘XX’])来解决
+		1、fis.hook('module', { mode:'amd' 时有效
+		2、fis.hook('amd',{  配合 require(['/src/js/main'])使用
+		 -->
+		<script src="/lib/require.js" defer async="true" data-main="/src/js/main.js" id='main' charset="utf-8"></script>
+		<script type="text/javascript">
+		console.log("测试一下html中的js压缩");
+		require(["/src/js/main.js"])
+		</script>
+	</body>
+</html>
