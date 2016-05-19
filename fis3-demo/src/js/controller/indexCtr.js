@@ -1,4 +1,4 @@
-define(['angular'],function(angular){
+define(['angular','zepto','swiper'],function(angular){
 	// 要在之前绑定 info 才可以
 	return function($scope,info){
 		$scope.tile = "2313.1234Hello indexCtrl"

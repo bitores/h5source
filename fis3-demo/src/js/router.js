@@ -1,6 +1,6 @@
 //http://www.tuicool.com/articles/zeiy6ff
 //https://github.com/angular-ui/ui-router
-define(['angular','angular-ui-router','angular-resource','angular-animate','angular-messages','angular-cookies','angular-sanitize',
+define(['zepto','angular','angular-ui-router','angular-resource','angular-animate','angular-messages','angular-cookies','angular-sanitize',
     //Filters
     'math',
     //Direetives
@@ -11,7 +11,7 @@ define(['angular','angular-ui-router','angular-resource','angular-animate','angu
     //Controller
     'indexCtr'
     ],
-    function(angular,angular_ui_router,angular_resource,angular_animate,angular_messages,angular_cookies,angular_sanitize,
+    function('nnz',angular,angular_ui_router,angular_resource,angular_animate,angular_messages,angular_cookies,angular_sanitize,
     //Filters
     math,
     //Direetives
