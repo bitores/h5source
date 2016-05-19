@@ -64,7 +64,7 @@ define(['zepto','angular','angular-ui-router','angular-animate',//'angular-resou
     app.service("info",info);
 
 
-    app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $uiViewScrollProvider){//,$rootScope
+    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$uiViewScrollProvider',function($stateProvider, $urlRouterProvider, $locationProvider, $uiViewScrollProvider){//,$rootScope
         console.log('route config ...');
         //用于改变state时跳至顶部
         $uiViewScrollProvider.useAnchorScroll();
@@ -108,10 +108,9 @@ define(['zepto','angular','angular-ui-router','angular-animate',//'angular-resou
         //开启HTML5链接 
         // $locationProvider.html5Mode(true);  
         // 关于angularjs-ui-router的 html5Model开启后的一些问题,解决的核心还是要配置nginx                    
-    })
+    }])
 
-    app.run(['$rootScope','$state','$stateParams',
-        function ($rootScope, $state, $stateParams) {
+    app.run(['$rootScope','$state','$stateParams',function ($rootScope, $state, $stateParams) {
             console.log('app run ...');
             //方便获得当前状态的方法，绑到根作用域
             $rootScope.$state = $state;
@@ -128,9 +127,9 @@ define(['zepto','angular','angular-ui-router','angular-animate',//'angular-resou
             $rootScope.$on('$viewContentLoading', function(event, viewConfig){console.log('viewContentLoading',viewConfig);})
             $rootScope.$on('$viewContentLoaded', function(event){console.log('viewContentLoaded');})
 
-            $state.go('PageTab.Page3');
+            // $state.go('PageTab.Page3');
         }
      ])
 
-    angular.bootstrap(document, ['app']);
+    // angular.bootstrap(document, ['app']);
 });
