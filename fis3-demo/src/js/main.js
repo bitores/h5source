@@ -78,6 +78,6 @@
 
 // require run
 //应用配置
-require(['bootstrap'], function () {
+require(['router'], function () {
     console.log('main app require');
 });

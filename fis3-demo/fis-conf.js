@@ -33,12 +33,12 @@ fis.hook('amd', {
     // 一些库文件
       "angular":"/bower_components/angular/angular", 
       "angular-animate":"/bower_components/angular-animate/angular-animate",
-      "angular-cookies":"/bower_components/angular-cookies/angular-cookies",
-      "angular-messages":"/bower_components/angular-messages/angular-messages",
-      "angular-resource":"/bower_components/angular-resource/angular-resource",
-      "angular-route":"/bower_components/angular-route/angular-route",
-      "angular-ui-router":"/bower_components/angular-ui-router/angular-ui-router",
-      "angular-sanitize":"/bower_components/angular-sanitize/angular-sanitize",
+      // "angular-cookies":"/bower_components/angular-cookies/angular-cookies",
+      // "angular-messages":"/bower_components/angular-messages/angular-messages",
+      // "angular-resource":"/bower_components/angular-resource/angular-resource",
+      // "angular-route":"/bower_components/angular-route/angular-route",
+      "angular-ui-router":"/bower_components/angular-ui-router/release/angular-ui-router",
+      // "angular-sanitize":"/bower_components/angular-sanitize/angular-sanitize",
       "swiper":"/lib/swiper.min",
       "zepto":"/lib/zepto.min",
       //js文件
@@ -59,44 +59,41 @@ fis.hook('amd', {
   "shim":{
     "angular":{
       exports:"angular"
-    }
-    ,
+    },
+    
     "angular-animate": {
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-animate"
+      deps: ['angular']
+      // ,   //依赖什么模块
+      // exports:"angular_animate"
     },
-    "angular-cookies":  {
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-cookies"
-    },
-    "angular-messages":  {
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-messages"
-    },
-    "angular-resource":  {
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-resource"
-    },
-    "angular-route":{
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-route"
-    },
-    "angular-ui-router":{
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-ui-router"
-    },
-    "angular-sanitize":  {
-      deps: ['angular'],   //依赖什么模块
-      exports:"angular-sanitize"
-    },
+    // "angular-cookies":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-cookies"
+    // },
+    // "angular-messages":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-messages"
+    // },
+    // "angular-resource":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-resource"
+    // },
+    // "angular-route":{
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-route"
+    // },
+    "angular-ui-router": ['angular'],
+    // "angular-sanitize":  {
+    //   deps: ['angular'],   //依赖什么模块
+    //   exports:"angular-sanitize"
+    // },
     "swiper":  {
-      exports:"swiper"
+      // exports:"swiper"
     },
     "zepto":  {
-      exports:"zepto"
+      // exports:"zepto"
     }
-  },
-  deps:['init']
+  }
 });
 
 fis.match('*.{js,css}', {
@@ -113,11 +110,16 @@ fis.match('/src/**/(*).js', {
   optimizer: fis.plugin('uglify-js')
 });
 
-fis.match('/lib/(**).js', {
+fis.match('/lib/(**).min.js', {
   isMod:true,
   moduleId: '$1'
   // useHash: false,
   // optimizer: null
+});
+
+fis.match('/lib/require.js', {
+  isMod:false,
+  useHash:false
 });
 
 

@@ -1,6 +1,6 @@
 //http://www.tuicool.com/articles/zeiy6ff
 //https://github.com/angular-ui/ui-router
-define(['zepto','angular','angular-ui-router','angular-resource','angular-animate','angular-messages','angular-cookies','angular-sanitize',
+define(['zepto','angular','angular-ui-router','angular-animate',//'angular-resource','angular-messages','angular-cookies','angular-sanitize',
     //Filters
     'math',
     //Direetives
@@ -11,7 +11,7 @@ define(['zepto','angular','angular-ui-router','angular-resource','angular-animat
     //Controller
     'indexCtr'
     ],
-    function('nnz',angular,angular_ui_router,angular_resource,angular_animate,angular_messages,angular_cookies,angular_sanitize,
+    function(nnz,angular,angular_ui_router,angular_animate,//angular_resource,angular_messages,angular_cookies,angular_sanitize,
     //Filters
     math,
     //Direetives
@@ -20,11 +20,9 @@ define(['zepto','angular','angular-ui-router','angular-resource','angular-animat
     info,
     //TopController
     //Controller
-    indexCtr
-
-        ){
+    indexCtr){
     console.log('router...',app);
-    var app = angular.module('app', ['ui.router','ngResource','ngAnimate','ngMessages','ngCookies','ngSanitize']);
+    var app = angular.module('app', ['ui.router','ngAnimate']);//,'ngResource','ngMessages','ngCookies','ngSanitize'
 
     //动画
     app.animation('.fadeOut', function(){
@@ -134,4 +132,5 @@ define(['zepto','angular','angular-ui-router','angular-resource','angular-animat
         }
      ])
 
+    angular.bootstrap(document, ['app']);
 });
