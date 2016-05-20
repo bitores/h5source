@@ -1,0 +1,23 @@
+{
+  "name": "seajs",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "huangzhengjie <huangzhengjie@kuaiqiangche.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "seajs": "^3.0.0",
+    "jquery": "^2.2.3"
+  }
+}
